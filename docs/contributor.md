@@ -122,3 +122,11 @@ lắp ráp phần chỉnh sửa.
 
 Sau khi hoàn thành, components cũng được kiểm thử ngay tại vị trí sẽ được sử dụng trong 
 môi trường triển khai thực tế.
+
+
+| Tên                |   Vị trí   |                 Yêu cầu |
+| :----------------- | :--------: | ----------------------: |
+| Trần Diệp Phương   |  Dữ liệu   | Node, Keystone, GraphQL |
+| Trần Vũ Minh Triết | Trung gian |  Apollo client, GraphQL |
+| Trần Ngọc Huy      | Giao diện  |            React native |
+| Nguyễn Kim Huy     | Giao diện  |         Next, Chakra-ui |
