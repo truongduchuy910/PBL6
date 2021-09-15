@@ -10,7 +10,7 @@
 Relationship
 <ul>
 <li> User-Role: ManyToOne </li>
-<li> User-Post: OntToMany <li>
-<li> Post-Tag: ManyToMany <li>
-<li> Post-Comment: OneToMany <li>
+<li> User-Post: OntToMany </li>
+<li> Post-Tag: ManyToMany </li>
+<li> Post-Comment: OneToMany </li>
 </ul>
