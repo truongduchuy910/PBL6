@@ -4,7 +4,7 @@
 # Tag
 # Comment
 
-<h2>Relationship</h2>
+Relationship
 User-Role: ManyToOne
 User-Post: OntToMany
 Post-Tag: ManyToMany
