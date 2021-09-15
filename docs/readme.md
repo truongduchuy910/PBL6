@@ -1,6 +1,9 @@
 # Tên đề tài
 
-## PBL6
+## Yêu cầu
+
+- [Hướng dẫn chung](/contributor)
+- [Hướng dẫn trả kết quả](/submit)
 
 ## Thành viên
 
