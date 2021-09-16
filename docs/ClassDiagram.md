@@ -2,11 +2,10 @@
 - [x] In processing
 - [ ] Done
 
-![ClassDiagram](https://user-images.githubusercontent.com/63086038/133543835-a51e1f30-eebf-4180-bf57-d818b60ad65b.png)
+![diaupdate](https://user-images.githubusercontent.com/63086038/133571765-4be0fad1-4c5e-45f4-8a94-57e10320ef4e.png)
 
 ```
 Class diagram chưa đầy đủ, đang trong quá trình phát triển để phù hợp với BE
-
 ```
 
 
