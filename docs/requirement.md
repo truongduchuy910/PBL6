@@ -12,7 +12,6 @@
     + Có AdminUI
 ### Phạm vi
 - Web app + mobile app
-## [Trang chủ](/)
 ## Yêu cầu chức năng chính:
 
 - Đối với user:
