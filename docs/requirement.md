@@ -48,5 +48,5 @@
     + ...
         
 ## Tài liệu tham khảo
-    -
+-
 Trên đây là những chức năng chính dự kiến, có thể phát sinh/loại bỏ trong giai đoạn phát triển.
