@@ -1,3 +1,4 @@
+[Trang chủ](/)
 # Hướng dẫn dành cho tác giả
 
 ## Lựa chọn công nghệ, kiến trúc
