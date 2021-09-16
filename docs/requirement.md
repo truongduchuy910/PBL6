@@ -1,6 +1,6 @@
 # Mô tả yêu cầu của đề tài
 
-* [Trang chủ] (/)
+* [Trang chủ](#Mô-tả-yêu-cầu-của-đề-tài)
 * [Giới thiệu đề tài](#Giới-thiệu)
 * [Yêu cầu chức năng chính](#Yêu-cầu-chức-năng-chính)
 * [Tài liệu tham khảo](#Tài-liệu-tham-khảo)
