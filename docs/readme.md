@@ -1,15 +1,16 @@
 # Tên đề tài
 
-## Yêu cầu
+## Hướng dẫn
 
 - [Hướng dẫn chung](/contributor)
 - [Hướng dẫn trả kết quả](/submit)
 
-## Thành viên
+## Tài liệu
 
- - Trần Ngọc Huy
- - Nguyễn Kim Huy
- - Trần Diệp Phương
- - Trần Viễn Minh Trút
+- [Yêu cầu đề tài](/requirement)
+- [Đặc tả](/diagram)
 
+## Quy trình, kế hoạch
 
+- [Scrum](/scrum)
+- [Phân công](/contributor)
