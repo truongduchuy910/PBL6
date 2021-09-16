@@ -2,7 +2,7 @@
 - [x] In processing
 - [ ] Done
 
-![diaupdate](https://user-images.githubusercontent.com/63086038/133572469-9d4d6720-8034-4810-8cfa-9be85baba5e9.png)
+![Untitled](https://user-images.githubusercontent.com/63086038/133572878-b18d0bef-e157-44a8-85b5-6b6c3741446c.png)
 
 Link: https://online.visual-paradigm.com/community/share/class-diagram-sn-oskrc3dhu
 
