@@ -1,16 +1,28 @@
 # Các bảng dự kiến:
 
-<ul>
-<li> Role </li>
-<li> Post </li>
-<li> Tag </li>
-<li> Comment </li>
-</ul>
 
-Relationship
-<ul>
-<li> User-Role: ManyToOne </li>
-<li> User-Post: OntToMany </li>
-<li> Post-Tag: ManyToMany </li>
-<li> Post-Comment: OneToMany </li>
-</ul>
+- Role
+
+- Post
+
+- Tag
+
+- Comment
+
+- Like
+
+# Relationship
+
+- User-Role: ManyToOne
+
+- User-Post: OneToMany 
+
+- Post-Tag: ManyToMany
+
+- Post-Comment: OneToMany
+
+- User-Comment: OneToMany
+
+- Post-Like: OneToMany
+
+- User-Like: OneToMany
