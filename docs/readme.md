@@ -39,3 +39,5 @@ hoặc nhiều server khi triển khai thực tế.
 
 Nhóm server này nhận các yêu cầu từ người dùng và gửi về cho server dữ liệu xử lý.
 Cache các dữ liệu cần thiết. Điều hướng giữa các trang và phản hồi HTML về cho người dùng.
+
+![](https://v5.keystonejs.com/MutationLifecycleMasterDiagram-80d08af56ae981ef3fa02c9431e0345a.svg)
