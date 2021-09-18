@@ -41,3 +41,4 @@ Nhóm server này nhận các yêu cầu từ người dùng và gửi về cho 
 Cache các dữ liệu cần thiết. Điều hướng giữa các trang và phản hồi HTML về cho người dùng.
 
 ![](https://v5.keystonejs.com/MutationLifecycleMasterDiagram-80d08af56ae981ef3fa02c9431e0345a.svg)
+![](https://wp.apollographql.com/wp-content/uploads/2021/08/The-Graph-4.png)
