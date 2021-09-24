@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import UserSignInSimple from "../SignIn/Simple";
-import UserSignOutButton from "@itoa/web-ui/User/SignOut/Button";
+import UserSignOutButton from "../SignOut/Button";
 import UserAuth from "./";
 function UI({ loading, error, user }) {
   if (loading) return "...";

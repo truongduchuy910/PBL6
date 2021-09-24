@@ -13,26 +13,24 @@
     "@itoa/adapter-mongoose": "^12.0.0",
     "@itoa/app-graphql": "^7.0.0",
     "@itoa/app-next": "^7.0.0",
-    "@itoa/app-ui": "file:app/ui",
     "@itoa/auth-password": "^7.0.0",
-    "@itoa/controllers": "file:controllers",
     "@itoa/fields": "^24.1.4",
     "@itoa/file-adapters": "^8.0.0",
     "@itoa/keystone": "^21.0.0",
     "@itoa/lib": "file:lib",
     "@itoa/list-plugins": "^9.0.0",
-    "@itoa/ui": "file:app/ui",
-    "@itoa/web-ui": "file:web/ui",
     "connect-mongo": "^4.6.0",
     "deepmerge": "^4.2.2",
     "dotenv": "^10.0.0",
     "jimp": "^0.16.1",
     "next": "^11.1.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-native-web": "^0.17.1"
   },
   "devDependencies": {
-    "@itoa/app-admin-ui": "^10.0.7"
+    "@itoa/app-admin-ui": "^10.0.7",
+    "babel-plugin-react-native-web": "^0.17.1"
   },
   "author": "",
   "license": "ISC"
