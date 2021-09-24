@@ -1,11 +1,4 @@
-const {
-  Text,
-  Password,
-  Checkbox,
-  Select,
-  File,
-  Editor,
-} = require("@itoa/fields");
+const { Text, Password, Checkbox, File, Editor } = require("@itoa/fields");
 const { modelUser } = require("@itoa/lib/access");
 const { users } = require("@itoa/lib/cache");
 const lang = require("@itoa/lib/lang.json");
