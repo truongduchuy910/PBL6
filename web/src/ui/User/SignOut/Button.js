@@ -1,4 +1,5 @@
 import UserSignOut from "./Controller";
+import { Button } from "native-base";
 function UI({ loading, error, signOut }) {
   /**
    *
@@ -7,7 +8,11 @@ function UI({ loading, error, signOut }) {
   const clickSignOut = (e) => {
     signOut();
   };
-  return <button onClick={clickSignOut}>Sign-out?</button>;
+  return (
+    <Button onPress={clickSignOut} onClick={clickSignOut}>
+      Sign-out?
+    </Button>
+  );
 }
 export default function UserSignOutButton() {
   return <UserSignOut UI={UI} />;
