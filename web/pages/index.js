@@ -1,12 +1,6 @@
-import { UserAuthShort } from "../ui/User";
-// import UserSignInSimple from "@itoa/web-ui/User/SignIn/Simple";
-import { StyleSheet, Text, View } from "react-native";
+import { UserAuthShort } from "@itoa/ui/User";
+import { Container } from "native-base";
 
 export default function Home() {
-  return (
-    <View>
-      {/* AUTH USER */}
-      <UserAuthShort />
-    </View>
-  );
+  return <UserAuthShort />;
 }

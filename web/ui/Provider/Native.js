@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // next
-import NextApp from "next/app";
 // important
 //
 import { ApolloClient } from "@apollo/client";
@@ -100,56 +99,6 @@ export function getApolloState(pageProps = {}) {
   return pageProps[APOLLO_STATE_PROP_NAME];
 }
 
-export async function executeInitialProps(context, initialProps, queries = []) {
-  if (typeof window === "undefined") {
-    console.log(context.asPath);
-    const { props } = await executeServerSide(context, queries);
-    initialProps.pageProps = props;
-  } else {
-    const { domain, locale } = getContextVar(context);
-    initialProps.pageProps[VARIABLE_PROP_NAME] = { domain, locale };
-  }
-  return initialProps;
-}
-
-export async function executeServerSide(context, queries = []) {
-  // add
-  const { domain, locale } = getContextVar(context);
-  const client = initializeApollo(null, { domain, locale });
-  for (var i in queries) {
-    var QUERY = queries[i];
-    if (!QUERY.disableLocale) {
-      if (QUERY.variables) QUERY.variables.locale = locale;
-      else QUERY.variables = { locale };
-    }
-    try {
-      await client.query(QUERY);
-    } catch (e) {
-      console.log("cannot execute", QUERY, e);
-    }
-  }
-
-  return {
-    props: {
-      [APOLLO_STATE_PROP_NAME]: client.cache.extract(),
-      [VARIABLE_PROP_NAME]: { domain, locale },
-    },
-  };
-}
-
-export function appInitialProps(queries = []) {
-  return async (app) => {
-    var initialProps = await NextApp.getInitialProps(app);
-    const context = app.ctx;
-    if (context.res)
-      context.res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=10, stale-while-revalidate=59",
-      );
-    const props = await executeInitialProps(context, initialProps, queries);
-    return props;
-  };
-}
 export const PageContext = createContext();
 export default function ProviderNext(props) {
   const { pageProps = {} } = props;
