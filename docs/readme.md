@@ -1,5 +1,5 @@
 # Tên đề tài
-
+![](https://docs.nativebase.io/img/minion.gif)
 ## Hướng dẫn
 
 - [Hướng dẫn trả kết quả](/submit)
