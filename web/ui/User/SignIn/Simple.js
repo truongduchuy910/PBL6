@@ -1,4 +1,4 @@
-import UserSignIn from "./";
+import UserSignIn from "./Controller";
 
 function UI({ signIn, loading, error, user }) {
   /**

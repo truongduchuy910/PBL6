@@ -1,5 +1,4 @@
-import ProviderNext, { appInitialProps } from "../ui/Provider/Next";
-
+import { ProviderNext, appInitialProps } from "../ui/Provider";
 function App({ Component, pageProps }) {
   return (
     <ProviderNext pageProps={pageProps}>

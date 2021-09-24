@@ -1,4 +1,4 @@
-import UserSignOut from "./";
+import UserSignOut from "./Controller";
 function UI({ loading, error, signOut }) {
   /**
    *
