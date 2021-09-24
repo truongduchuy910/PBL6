@@ -1,11 +1,14 @@
 {
-  "name": "@itoa/controllers",
+  "name": "@pbl6/web",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "next.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@itoa/controllers": "file:controllers"
+  }
 }

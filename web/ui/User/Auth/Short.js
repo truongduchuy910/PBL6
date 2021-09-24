@@ -1,8 +1,18 @@
-import UserAuth from "@itoa/controllers/User/Auth";
-function UI({ loading, error, authenticatedUser }) {
+import { Fragment } from "react";
+import UserSignInSimple from "../SignIn/Simple";
+import UserSignOutButton from "@itoa/web-ui/User/SignOut/Button";
+import UserAuth from "./";
+function UI({ loading, error, user }) {
   if (loading) return "...";
   if (error) return JSON.stringify(error);
-  return !authenticatedUser ? "Sign in?" : authenticatedUser.name || "---";
+  return !user ? (
+    <UserSignInSimple />
+  ) : (
+    <Fragment>
+      {user.name}
+      <UserSignOutButton />
+    </Fragment>
+  );
 }
 export default function UserAuthShort() {
   return <UserAuth UI={UI} />;

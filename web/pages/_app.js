@@ -1,4 +1,4 @@
-import ProviderNext, { appInitialProps } from "@itoa/ui/Provider/Next";
+import ProviderNext, { appInitialProps } from "@itoa/web-ui/Provider/Next";
 
 function App({ Component, pageProps }) {
   return (
