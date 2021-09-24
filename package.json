@@ -1,0 +1,36 @@
+{
+  "name": "itwork",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "cross-env PORT=3000 NODE_ENV=development DISABLE_LOGGING=true VALID=true keystone dev",
+    "start": "cross-env PORT=3000 NODE_ENV=production DISABLE_LOGGING=true keystone start"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@itoa/adapter-mongoose": "^12.0.0",
+    "@itoa/app-graphql": "^7.0.0",
+    "@itoa/app-next": "^7.0.0",
+    "@itoa/auth-password": "^7.0.0",
+    "@itoa/fields": "^24.1.4",
+    "@itoa/file-adapters": "^8.0.0",
+    "@itoa/keystone": "^21.0.0",
+    "@itoa/lib": "file:lib",
+    "@itoa/list-plugins": "^9.0.0",
+    "@itoa/ui": "file:app/ui",
+    "connect-mongo": "^4.6.0",
+    "deepmerge": "^4.2.2",
+    "dotenv": "^10.0.0",
+    "jimp": "^0.16.1",
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@itoa/app-admin-ui": "^10.0.7"
+  },
+  "author": "",
+  "license": "ISC"
+}
