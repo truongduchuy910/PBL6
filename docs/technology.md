@@ -1,3 +1,4 @@
+[Trang chủ](/)
 
 ## Lựa chọn công nghệ, kiến trúc
 

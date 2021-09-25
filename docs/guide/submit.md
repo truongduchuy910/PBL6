@@ -1,3 +1,5 @@
+[Trang chủ](/)
+
 # Hướng Dẫn Trả Kết Quả
 
 ## 1. Tách nhánh

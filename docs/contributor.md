@@ -1,4 +1,5 @@
 [Trang chủ](/)
+
 # Hướng dẫn dành cho tác giả
 
 ## Phân loại công việc
@@ -16,7 +17,7 @@
 - Xuất bộ components
 - Lắp ráp components
 
-## Phân chia nhiệm vụ 
+## Phân chia nhiệm vụ
 
 ### Người làm dữ liệu.
 
@@ -68,7 +69,7 @@ Sau khi cài đặt xong, người làm dữ liệu sẽ tạo dữ liệu mẫu
 
 Người làm trung gian sẽ viết components xử lí logic.
 
-Người làm giao diện thì độc lập hơn. Một vùng phân tích thiết kế được chia ra. 
+Người làm giao diện thì độc lập hơn. Một vùng phân tích thiết kế được chia ra.
 Nếu 2 người trước đó nhận được các diagram thì người làm giao diện nhận được design
 và tiến hành chuyển thành components giao diện.
 
@@ -96,7 +97,7 @@ lắp ráp phần chỉnh sửa.
 
 #### 5. Kiểm thử
 
-Sau khi hoàn thành, components cũng được kiểm thử ngay tại vị trí sẽ được sử dụng trong 
+Sau khi hoàn thành, components cũng được kiểm thử ngay tại vị trí sẽ được sử dụng trong
 môi trường triển khai thực tế.
 
 
