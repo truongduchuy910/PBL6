@@ -1,13 +1,16 @@
 # Tên đề tài
+
 ![](https://docs.nativebase.io/img/minion.gif)
+
 ## Hướng dẫn
 
-- [Hướng dẫn trả kết quả](/submit)
+- [Hướng dẫn trả kết quả](/guide/submit)
 
 ## Tài liệu
 
 - [Yêu cầu đề tài](/requirement)
-- [Đặc tả](/diagram)
+- [Cơ sở lý thuyết](/technology)
+- [Schemas](/schemas)
 
 ## Quy trình, kế hoạch
 
@@ -15,30 +18,8 @@
 - [Phân công](/contributor)
 
 
-## Lựa chọn công nghệ, kiến trúc
+## Báo cáo
 
-### 1. Database server hoặc cluster database server.
-
-Database server để lưu trữ dữ liệu người dùng, các phiên đăng nhập.
-
-Cluster giúp ghép nối nhiều database server lại với nhau.
-
-### 2. Proxy, load balancer.
-
-reverse proxy giúp điều hướng request từ mạng ngoài đến một server đang chạy cục bộ.
-
-load balancer giúp cân bằng tải giữa các server.
-
-### 3. Server xử lí dữ.
-
-Server làm việc trực tiếp với dữ liệu từ database. Xử lí các truy vấn,
-phần quyền, đảm bảo toàn vẹn dữ liệu. Được khởi chạy ở nhiều luồng
-hoặc nhiều server khi triển khai thực tế.
-
-### 4. Server để phản hồi với người dùng cuối.
-
-Nhóm server này nhận các yêu cầu từ người dùng và gửi về cho server dữ liệu xử lý.
-Cache các dữ liệu cần thiết. Điều hướng giữa các trang và phản hồi HTML về cho người dùng.
-
-![](https://v5.keystonejs.com/MutationLifecycleMasterDiagram-80d08af56ae981ef3fa02c9431e0345a.svg)
-![](https://wp.apollographql.com/wp-content/uploads/2021/08/The-Graph-4.png)
+- [Tuần 01](/reports/01.md)
+- [Tuần 02](/reports/02.md)
+- [Tuần 03](/reports/03.md)
