@@ -12,12 +12,12 @@ function UI({ signIn, loading, error, user }) {
     if (!loading) signIn({ phone, password });
   };
   if (loading) return "loading...";
-  if (error) return JSON.stringify(error);
   return (
     <form onSubmit={submitSignIn}>
       <input placeholder="phone" name="phone" />
       <input placeholder="password" type="password" name="password" />
       <button type="submit">Sign In</button>
+      {error && "sai mat khau"}
     </form>
   );
 }

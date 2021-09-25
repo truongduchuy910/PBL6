@@ -5,9 +5,12 @@ import UserAuth from "./Controller";
 
 function UI({ loading, error, user }) {
   if (loading) return "...";
-  if (error) return JSON.stringify(error);
   return !user ? (
-    <UserSignInSimple />
+    <Fragment>
+      ...
+      <UserSignInSimple />
+      {error && "error"}
+    </Fragment>
   ) : (
     <Fragment>
       {user.name}
