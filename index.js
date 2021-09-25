@@ -9,8 +9,10 @@ const { PasswordAuthStrategy } = require("@itoa/auth-password");
 const MongoStore = require("connect-mongo");
 const express = require("express");
 const { reads } = require("@itoa/lib/files");
-// const initialiseData = require("./initial-data");
+const initialUser = require("@itoa/lib/initial-user");
+
 var keystone = new Keystone({
+  onConnect: initialUser,
   adapter: new MongooseAdapter({
     mongoUri:
       process.env.NODE_ENV === `production`
