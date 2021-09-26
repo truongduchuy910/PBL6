@@ -8,11 +8,9 @@ function UI({ loading, error, user }) {
   return !user ? (
     <Fragment>
       <UserSignInSimple />
-      {error && "error"}
     </Fragment>
   ) : (
     <Fragment>
-      {user.name}
       <UserSignOutButton />
     </Fragment>
   );
