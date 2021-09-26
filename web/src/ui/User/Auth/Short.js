@@ -7,7 +7,6 @@ function UI({ loading, error, user }) {
   if (loading) return "...";
   return !user ? (
     <Fragment>
-      ...
       <UserSignInSimple />
       {error && "error"}
     </Fragment>
