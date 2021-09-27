@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "cross-env PORT=3000 NODE_ENV=development DISABLE_LOGGING=true VALID=true keystone dev",
-    "start": "cross-env PORT=3000 NODE_ENV=production DISABLE_LOGGING=true keystone start"
+    "start": "cross-env PORT=3000 NODE_ENV=production DISABLE_LOGGING=true keystone start",
+    "next": "next dev"
   },
   "directories": {
     "lib": "lib"
@@ -19,6 +20,7 @@
     "@itoa/keystone": "^21.0.0",
     "@itoa/lib": "file:lib",
     "@itoa/list-plugins": "^9.0.0",
+    "@itoa/ui": "file:web/src/ui",
     "@react-native-async-storage/async-storage": "^1.15.8",
     "connect-mongo": "^4.6.0",
     "cross-env": "^7.0.3",

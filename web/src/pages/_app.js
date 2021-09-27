@@ -3,11 +3,11 @@ import { ProviderNext, appInitialProps } from "../ui/Provider";
 
 function App({ Component, pageProps }) {
   return (
-    <NativeBaseProvider>
-      <ProviderNext pageProps={pageProps}>
+    <ProviderNext pageProps={pageProps}>
+      {/* <NativeBaseProvider> */}
         <Component {...pageProps} />
-      </ProviderNext>
-    </NativeBaseProvider>
+      {/* </NativeBaseProvider> */}
+    </ProviderNext>
   );
 }
 App.getInitialProps = appInitialProps([]);
