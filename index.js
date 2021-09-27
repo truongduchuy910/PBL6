@@ -67,7 +67,7 @@ var apps = [
     authStrategy,
     enableDefaultRoute: false,
   }),
-  new NextApp({ dir: "web" }),
+  // new NextApp({ dir: "web" }),
 ];
 /**
  *
