@@ -1,9 +1,12 @@
-import { useState } from "react";
+import ListToggleText from "../List/ToggleText";
+import CreateText from "../Create/Text";
+import { InteractionReactionCreateText } from "../../Reaction";
+
 import { VStack, HStack, Box, Image, Text } from "native-base";
 
 function UI() {
   return (
-    <Box maxW="600" mx="auto" w="100%">
+    <Box maxW="600" mx="auto" my="2" w="100%">
       <VStack>
         <HStack space="2" display="flex" flexDirection="row" w="100%">
           <Image
@@ -15,7 +18,6 @@ function UI() {
             size="8"
             rounded="100"
           />
-
           <VStack flex="1">
             <Box bgColor="gray.50" rounded="8" px="3" py="2">
               <Text color="gray.900" fontWeight="600" fontSize="14">
@@ -26,11 +28,18 @@ function UI() {
                 với mình để biết thêm thông tin chi tiết.
               </Text>
             </Box>
-            <Box ml="3" mt="2">
-              <Text color="gray.400" fontSize="11">
+            <HStack ml="3" mt="1" space="3">
+              <InteractionReactionCreateText />
+              <CreateText />
+              <Text color="gray.400" fontSize="12">
                 14 giờ
               </Text>
-            </Box>
+            </HStack>
+
+            {/* Check if this comment has reponses */}
+            <HStack ml="3" mt="1">
+              <ListToggleText />
+            </HStack>
           </VStack>
         </HStack>
       </VStack>

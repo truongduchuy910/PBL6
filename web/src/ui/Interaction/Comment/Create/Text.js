@@ -1,9 +1,8 @@
 import { Button } from "native-base";
-import { IoIosReturnRight } from "react-icons/io";
 
 function UI() {
   const toggleText = (e) => {
-    console.log("Comment List ToggleText");
+    console.log("Comment Create Text");
   };
 
   return (
@@ -11,10 +10,9 @@ function UI() {
       _text={{ color: "gray.400", fontSize: "12" }}
       p="0"
       bgColor="transparent"
-      leftIcon={<IoIosReturnRight size="16" />}
       onPress={toggleText}
     >
-      Xem câu trả lời (1)
+      Trả lời
     </Button>
   );
 }
