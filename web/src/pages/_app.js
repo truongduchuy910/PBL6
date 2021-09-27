@@ -1,13 +1,21 @@
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, extendTheme } from "native-base";
 import { ProviderNext, appInitialProps } from "../ui/Provider";
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Roboto",
+    body: "Roboto",
+    mono: "Roboto",
+  },
+});
 
 function App({ Component, pageProps }) {
   return (
-    <ProviderNext pageProps={pageProps}>
-      {/* <NativeBaseProvider> */}
+    <NativeBaseProvider theme={theme}>
+      <ProviderNext pageProps={pageProps}>
         <Component {...pageProps} />
-      {/* </NativeBaseProvider> */}
-    </ProviderNext>
+      </ProviderNext>
+    </NativeBaseProvider>
   );
 }
 App.getInitialProps = appInitialProps([]);
