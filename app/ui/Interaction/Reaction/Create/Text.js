@@ -18,7 +18,7 @@ function UI() {
           bgColor="transparent"
           onPress={likeHandle}
         >
-          <Text>Thích</Text>
+          Thích
         </Button>
       )}
       {!isLike && (
@@ -28,7 +28,7 @@ function UI() {
           bgColor="transparent"
           onPress={likeHandle}
         >
-          <Text>Thích</Text>
+          Thích
         </Button>
       )}
     </Fragment>

@@ -1,23 +1,32 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { NativeBaseProvider, extendTheme, Container } from "native-base";
+import { StyleSheet, View } from "react-native";
+import { NativeBaseProvider, extendTheme, Container, Text } from "native-base";
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_500Medium,
+} from "@expo-google-fonts/roboto";
+
 // import { ProviderNext } from "./ui/Provider";
 import { PostItemSimple } from "./ui/Post";
 const theme = extendTheme({
   fonts: {
-    heading: "Roboto",
-    body: "Roboto",
-    mono: "Roboto",
+    heading: "Roboto_500Medium",
+    body: "Roboto_400Regular",
+    mono: "Roboto_400Regular",
   },
 });
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_500Medium,
+  });
   return (
     // <ProviderNext>
     <NativeBaseProvider theme={theme}>
       <Container maxW="conainer.lg">
         <PostItemSimple />
-        <Text>Open up App.js to start working on your app!</Text>
         <StatusBar style="auto" />
       </Container>
     </NativeBaseProvider>

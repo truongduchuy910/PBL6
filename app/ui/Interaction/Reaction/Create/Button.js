@@ -22,7 +22,7 @@ function UI() {
           _hover={{ bgColor: "gray.100" }}
           onPress={likeHandle}
         >
-          <Text>Thích</Text>
+          Thích
         </Button>
       )}
       {!isLike && (
@@ -35,7 +35,7 @@ function UI() {
           _hover={{ bgColor: "gray.100" }}
           onPress={likeHandle}
         >
-          <Text>Thích</Text>
+          Thích
         </Button>
       )}
     </Fragment>

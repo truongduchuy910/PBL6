@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Text } from "native-base";
-
+import { Button } from "native-base";
 function UI() {
   const toggleText = (e) => {
     console.log("Comment Create Text");
@@ -13,7 +12,7 @@ function UI() {
       bgColor="transparent"
       onPress={toggleText}
     >
-      <Text>Trả lời</Text>
+      Trả lời
     </Button>
   );
 }

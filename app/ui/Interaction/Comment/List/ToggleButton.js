@@ -17,7 +17,7 @@ function UI() {
       _hover={{ bgColor: "gray.100" }}
       onPress={toggleButton}
     >
-      <Text>Bình luận</Text>
+      Bình luận
     </Button>
   );
 }

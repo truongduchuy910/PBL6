@@ -14,8 +14,9 @@ function UI() {
       bgColor="transparent"
       leftIcon={<IoIosReturnRight size="16" />}
       onPress={toggleText}
+      fontFamily="body"
     >
-      <Text>Xem câu trả lời (1)</Text>
+      Xem câu trả lời (1)
     </Button>
   );
 }
