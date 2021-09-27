@@ -1,5 +1,5 @@
 // react
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // next
@@ -100,7 +100,7 @@ export function getApolloState(pageProps = {}) {
 }
 
 export const PageContext = createContext();
-export default function ProviderNext(props) {
+export default function ProviderNative(props) {
   const { pageProps = {} } = props;
   const state = getApolloState(pageProps);
   const variables = getVariables(pageProps);

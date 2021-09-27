@@ -8,8 +8,9 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 
-// import { ProviderNext } from "./ui/Provider";
+import { ProviderNative } from "./ui/Provider";
 import { PostItemSimple } from "./ui/Post";
+import { UserSignInSimple } from "./ui/User";
 const theme = extendTheme({
   fonts: {
     heading: "Roboto_500Medium",
@@ -23,14 +24,15 @@ export default function App() {
     Roboto_500Medium,
   });
   return (
-    // <ProviderNext>
-    <NativeBaseProvider theme={theme}>
-      <Container maxW="conainer.lg">
-        <PostItemSimple />
-        <StatusBar style="auto" />
-      </Container>
-    </NativeBaseProvider>
-    // </ProviderNext>
+    <ProviderNative>
+      <NativeBaseProvider theme={theme}>
+        <Container maxW="conainer.lg">
+          <PostItemSimple />
+          <StatusBar style="auto" />
+          <UserSignInSimple />
+        </Container>
+      </NativeBaseProvider>
+    </ProviderNative>
   );
 }
 

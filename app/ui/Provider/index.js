@@ -1,2 +1,3 @@
-import ProviderNext, { appInitialProps } from "./Next";
-export { ProviderNext, appInitialProps };
+// import ProviderNext, { appInitialProps } from "./Next";
+import ProviderNative from "./Native";
+export { ProviderNative };
