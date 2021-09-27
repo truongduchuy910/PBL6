@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HStack, Box, Image, Input } from "native-base";
+import { HStack, Box, Image, Input, Text } from "native-base";
 
 function UI() {
   const [userInput, setUserInput] = useState("");
@@ -18,8 +18,8 @@ function UI() {
   };
 
   return (
-    <Box w="600" mx="auto">
-      <HStack space={2} w="100%" space={2}>
+    <Box maxW="600" mx="auto" w="100%">
+      <HStack space="2" display="flex" flexDirection="row" w="100%">
         <Image
           source={{
             uri:
@@ -30,25 +30,26 @@ function UI() {
           mx="auto"
           rounded="100"
         />
-        <Input
-          w="100%"
-          name="comment"
-          type="text"
-          bgColor="white"
-          px={2}
-          py={1.5}
-          fontSize={14}
-          borderWidth={1}
-          borderColor="gray.100"
-          rounded={6}
-          _focus={{
-            borderColor: "gray.100",
-          }}
-          placeholder="Viết bình luận ..."
-          value={userInput}
-          onChange={userInputChangeHandle}
-          onSubmitEditing={userCommentHandle}
-        />
+        <Box flex="1">
+          <Input
+            name="comment"
+            type="text"
+            bgColor="white"
+            px={2}
+            py={1.5}
+            fontSize={14}
+            borderWidth={1}
+            borderColor="gray.100"
+            rounded={6}
+            _focus={{
+              borderColor: "gray.100",
+            }}
+            placeholder="Viết bình luận ..."
+            value={userInput}
+            onChange={userInputChangeHandle}
+            onSubmitEditing={userCommentHandle}
+          />
+        </Box>
       </HStack>
     </Box>
   );
