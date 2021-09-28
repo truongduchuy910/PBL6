@@ -41,7 +41,7 @@
 | content       |     Text                                          | Nội dung bài đăng             |
 | tags          |     Relationship, ref:'Tag', many: true           | Các thẻ tag gắn thêm          |
 | images        |     Relationship, ref:'Upload_Image', many: true  | Các hình ảnh                  |
-| intractitive  |     Relationship, ref:'Intractive'                | Các comments, reactions       |
+| interactive   |     Relationship, ref:'Interactive'               | Các comments, reactions       |
 <!-- | comments      |     Relationship, ref:'Comment'| Các bình luận                 | -->
 <!-- | userId        |     Uuid                       | ID của người đăng             | -->
 
@@ -64,26 +64,26 @@
 | content       |     Text                      | Nội dung tag: #cats, #man,... | 
 <!-- | postId        |     Uuid                      | ID của bài post               |  -->
 
-## 5. Intractitive
+## 5. Interactive 
 ### Mô tả
-- Bảng Intractitive: bảng trung gian, liên kết giữa Post và các bảng Reaction, Comment. Một bài Post có thể có nhiều comment và reaction. Mục đích: nếu muốn một bảng khác cũng có chức năng tương tự Comment, Reaction thì chỉ cần kết nối với bảng này.
+- Bảng Interactive : bảng trung gian, liên kết giữa Post và các bảng Reaction, Comment. Một bài Post có thể có nhiều comment và reaction. Mục đích: nếu muốn một bảng khác cũng có chức năng tương tự Comment, Reaction thì chỉ cần kết nối với bảng này.
 
 |       Field   |      Type                                    | 
 | :------------:|:--------------------------------------------:|
 |    Comments   | Relationship, ref:'Intractive', many: true   |  
 |    Reactions  | Relationship, ref:'Intractive', many: true   |  
-## 6. Intractitive_Reaction
+## 6. Interactive_Reaction
 ### Mô tả
-- Bảng Intractitive_Reaction: lưu trữ thông tin người dùng khi nhấn thả reation (Like, Heart, Angry, Smile, Sad, Surprise...) cho một đối tượng (Hiện tại: một bài post; có thể nâng cấp: một comment, một hình ảnh,...).
+- Bảng Interactive_Reaction: lưu trữ thông tin người dùng khi nhấn thả reation (Like, Heart, Angry, Smile, Sad, Surprise...) cho một đối tượng (Hiện tại: một bài post; có thể nâng cấp: một comment, một hình ảnh,...).
 
 |       Field   |      Type                     | Description                                                    | 
 | :------------:|:-----------------------------:|:--------------------------------------------------------------:|
 | emoij         |     Select                    | Chuỗi ký tự thể hiện cảm xúc (ví dụ: _:like_ , _:sad:_ ...)    |
 
 
-## 7. Intractitive_Comment
+## 7. Interactive_Comment
 ### Mô tả
-- Bảng Intractitive_Comment: lưu trữ bình luận của người dùng trong một bài post.
+- Bảng Interactive_Comment: lưu trữ bình luận của người dùng trong một bài post.
 
 |       Field   |      Type                     | Description                   | 
 | :------------:|:-----------------------------:|:-----------------------------:|
