@@ -21,8 +21,6 @@ var keystone = new Keystone({
         ? process.env.DB_DEV
         : `mongodb://localhost:27017/${process.env.DB_NAME}`,
   }),
-  // onConnect: initialiseData,
-  //
   sessionStore: new MongoStore({
     mongoUrl:
       process.env.NODE_ENV === `production`
@@ -42,21 +40,22 @@ var keystone = new Keystone({
 });
 var authStrategy = null;
 const schemaConfigs = reads("", "./schemas");
-console.log(schemaConfigs)
+console.log(schemaConfigs);
 schemaConfigs.map((config) => {
   const schema = require(config.path);
-  keystone.createList(config.name, schema);
-  //
-  if (schema.auth) {
-    const { identityField, secretField } = schema.auth;
-    authStrategy = keystone.createAuthStrategy({
-      type: PasswordAuthStrategy,
-      list: config.name,
-      config: {
-        identityField,
-        secretField,
-      },
-    });
+  if (schema.active) {
+    keystone.createList(config.name, schema);
+    if (schema.auth) {
+      const { identityField, secretField } = schema.auth;
+      authStrategy = keystone.createAuthStrategy({
+        type: PasswordAuthStrategy,
+        list: config.name,
+        config: {
+          identityField,
+          secretField,
+        },
+      });
+    }
   }
 });
 var apps = [
@@ -68,7 +67,7 @@ var apps = [
     authStrategy,
     enableDefaultRoute: false,
   }),
-//  new NextApp({ dir: "web" }),
+  //  new NextApp({ dir: "web" }),
 ];
 /**
  *

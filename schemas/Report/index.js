@@ -2,6 +2,7 @@ let { DateTime, Editor } = require("@itoa/fields");
 let { roleSeller } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
+  active: true,
   fields: {
     checkin: {
       type: DateTime,

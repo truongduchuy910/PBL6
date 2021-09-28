@@ -3,6 +3,7 @@ let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 let { roleSeller } = require("@itoa/lib/access");
 
 module.exports = {
+  active: true,
   fields: {
     file: {
       type: File,

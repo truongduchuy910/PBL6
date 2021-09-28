@@ -2,6 +2,7 @@ let { File, Text } = require("@itoa/fields");
 let { fileAdapter, fileHooks } = require("@itoa/lib/stores");
 let { roleSeller } = require("@itoa/lib/access");
 module.exports = {
+  active: true,
   fields: {
     file: {
       type: File,
