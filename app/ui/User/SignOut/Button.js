@@ -16,7 +16,7 @@ function UI({ loading, error, signOut }) {
       bgColor="green.500"
       py={2}
       px={3}
-      _text={{ color: "white" }}
+      _text={{ color: "white", fontWeight: "600" }}
       leftIcon={<IoLogOut size={24} />}
     >
       Đăng xuất
