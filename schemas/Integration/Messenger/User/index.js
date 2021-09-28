@@ -1,6 +1,6 @@
 let { Text, Relationship, Checkbox } = require("@itoa/fields");
-const { own } = require("../../access");
-const { ip } = require("../../plugin");
+const { roleSeller } = require("@itoa/lib/access");
+const { ip } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
     psid: { type: Text, isUnique: true },
@@ -27,6 +27,6 @@ module.exports = {
       await ip.hooks.validateInput({ context, resolvedData });
     },
   },
-  access: own,
+  access: roleSeller,
   labelField: "full_name",
 };

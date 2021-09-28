@@ -11,8 +11,8 @@ let {
 
 const { Color } = require("@itoa/fields-color");
 
-const { modelPage } = require("../access");
-let { imageAdapter, imageHooks } = require("../localFileAdapter");
+const { modelPage } = require("@itoa/lib/access");
+let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 
 module.exports = {
   fields: {

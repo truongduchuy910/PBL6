@@ -1,9 +1,9 @@
 let { Text, Relationship } = require("@itoa/fields");
 const { gql } = require("graphql-request");
-const Mail = require("../../packages/Mail");
-const Messenger = require("../../packages/Messenger");
-const { own } = require("../access");
-const { ip } = require("../plugin");
+const Mail = require("./Mail");
+const Messenger = require("./Messenger");
+const { roleSeller } = require("@itoa/lib/access");
+const { ip } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
     group: { type: Relationship, ref: "NotificationGroup" },
@@ -59,7 +59,7 @@ module.exports = {
       });
 
       const text = `
-      🎉 ${resolvedData.text}. 
+      🎉 ${resolvedData.text}.
       ---
       Trân trọng,
       Itoa Chatbot
@@ -75,6 +75,6 @@ module.exports = {
       return resolvedData;
     },
   },
-  access: own,
+  access: roleSeller,
   labelField: "full_name",
 };

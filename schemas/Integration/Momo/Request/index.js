@@ -3,9 +3,9 @@
  */
 const { gql } = require("@apollo/client");
 let { Text, Relationship } = require("@itoa/fields");
-const Momo = require("../../../packages/Momo");
-const { own } = require("../../access");
-const { ip } = require("../../plugin");
+const Momo = require("../Momo");
+const { roleSeller } = require("@itoa/lib/access");
+const { ip } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
     returnUrl: { type: Text, isRequired: true }, // tra ve khi quet thanh cong
@@ -60,6 +60,6 @@ module.exports = {
       if (data) resolvedData.payUrl = data.payUrl;
     },
   },
-  // access: own,
+  // access: roleSeller,
   labelField: "extraData",
 };

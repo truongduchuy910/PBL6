@@ -7,9 +7,9 @@ let {
   Integer,
   Editor,
 } = require("@itoa/fields");
-const { roleSeller } = require("../../access");
-const { cache } = require("../../cache");
-let { imageAdapter, imageHooks } = require("../../localFileAdapter");
+const { roleSeller } = require("@itoa/lib/access");
+const { cache } = require("@itoa/lib/cache");
+let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 
 module.exports = {
   fields: {

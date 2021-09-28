@@ -2,8 +2,8 @@
  * This is a keystone list that stores facebook messages
  */
 let { Text, Relationship, Checkbox, Wysiwyg } = require("@itoa/fields");
-const { own } = require("../access");
-const { ip } = require("../plugin");
+const { roleSeller } = require("@itoa/lib/access");
+const { ip } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
     name: { type: Text },
@@ -17,6 +17,6 @@ module.exports = {
       await ip.hooks.validateInput({ context, resolvedData });
     },
   },
-  access: own,
+  access: roleSeller,
   labelField: "name",
 };

@@ -1,6 +1,7 @@
 let { File, Text, Slug } = require("@itoa/fields");
-const { roleSeller } = require("../access");
-let { imageAdapter, imageHooks } = require("../localFileAdapter");
+const { roleSeller } = require("@itoa/lib/access");
+let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
+
 module.exports = {
   fields: {
     name: {

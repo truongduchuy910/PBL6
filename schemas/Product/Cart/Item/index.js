@@ -1,7 +1,7 @@
 const { gql } = require("@apollo/client/core");
 let { Relationship, Integer, Text } = require("@itoa/fields");
-const { roleAny } = require("../../../access");
-const { of } = require("../../../plugin");
+const { roleAny } = require("@itoa/lib/access");
+const { of } = require("@itoa/lib/plugins");
 const GET = gql`
   query($product: ID!, $stock: ID) {
     product: Product(where: { id: $product }) {

@@ -6,8 +6,8 @@ let {
   Editor,
   Integer,
 } = require("@itoa/fields");
-let { imageAdapter, imageHooks } = require("../localFileAdapter");
-let { roleSeller } = require("../access");
+let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
+let { roleSeller } = require("@itoa/lib/access");
 const { content } = require("./hooks");
 
 module.exports = {

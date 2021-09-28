@@ -1,6 +1,6 @@
 let { Text, Checkbox, Editor, Relationship } = require("@itoa/fields");
-const { roleAny, roleMember } = require("../access");
-const { of } = require("../plugin");
+const { roleAny, roleMember } = require("@itoa/lib/access");
+const { of } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
     content: {

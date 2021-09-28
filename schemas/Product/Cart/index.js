@@ -1,7 +1,7 @@
 let { Relationship } = require("@itoa/fields");
 
-const { roleAny } = require("../../access");
-const { of, ip } = require("../../plugin");
+const { roleAny } = require("@itoa/lib/access");
+const { of, ip } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
     items: {

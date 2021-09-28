@@ -9,8 +9,8 @@ let {
 } = require("@itoa/fields");
 const { Color } = require("@itoa/fields-color");
 
-let { roleSeller } = require("../../access");
-const { imageAdapter, imageHooks } = require("../../localFileAdapter");
+let { roleSeller } = require("@itoa/lib/access");
+const { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 
 module.exports = {
   fields: {

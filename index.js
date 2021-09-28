@@ -40,7 +40,6 @@ var keystone = new Keystone({
 });
 var authStrategy = null;
 const schemaConfigs = reads("", "./schemas");
-console.log(schemaConfigs);
 schemaConfigs.map((config) => {
   const schema = require(config.path);
   if (schema.active) {

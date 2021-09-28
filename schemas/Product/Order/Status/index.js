@@ -1,5 +1,5 @@
 let { Text, Select } = require("@itoa/fields");
-const { roleSeller } = require("../../../access");
+const { roleSeller } = require("@itoa/lib/access");
 module.exports = {
   fields: {
     value: {

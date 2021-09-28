@@ -1,8 +1,8 @@
 let { Text, Relationship, Slug, Integer, File } = require("@itoa/fields");
 const { gql } = require("@apollo/client");
-const { roleSeller } = require("../../access");
+const { roleSeller } = require("@itoa/lib/access");
 
-let { imageAdapter } = require("../../localFileAdapter");
+let { imageAdapter } = require("@itoa/lib/stores");
 
 module.exports = {
   fields: {

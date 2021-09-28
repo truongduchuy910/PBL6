@@ -7,8 +7,8 @@ let {
   Integer,
   Checkbox,
 } = require("@itoa/fields");
-const { roleAny } = require("../../access");
-const { of } = require("../../plugin");
+const { roleAny } = require("@itoa/lib/access");
+const { of } = require("@itoa/lib/plugins");
 const DELETE_CARTITEMS = gql`
   mutation($cart: ID!) {
     updateProductCart(id: $cart, data: { items: { disconnectAll: true } }) {
@@ -215,7 +215,7 @@ ${contact.name},
 Điện thoại ${contact.phone}.
 Địa chỉ ${contact.address}.
 Thanh toán ${resolvedData.payment}
-CHI TIẾT  
+CHI TIẾT
 ${allProductCartItems
   .map(
     (item) =>
@@ -227,7 +227,7 @@ ${allProductCartItems
           : ``
       }`
   )
-  .join("\n")}  
+  .join("\n")}
 
   ${
     discount
