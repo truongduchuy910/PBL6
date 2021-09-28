@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "cross-env PORT=3000 NODE_ENV=development DISABLE_LOGGING=true VALID=true keystone dev",
+    "dev": "cross-env PORT=3000 cross-env NODE_ENV=development cross-env DISABLE_LOGGING=true cross-env VALID=true keystone dev",
     "start": "cross-env PORT=3000 NODE_ENV=production DISABLE_LOGGING=true keystone start",
     "next": "next dev"
   },
@@ -22,13 +22,13 @@
     "@itoa/list-plugins": "^9.0.0",
     "@itoa/ui": "file:web/src/ui",
     "connect-mongo": "^4.6.0",
-    "cross-env": "^7.0.3",
     "deepmerge": "^4.2.2",
     "dotenv": "^10.0.0",
     "jimp": "^0.16.1"
   },
   "devDependencies": {
     "@itoa/app-admin-ui": "^10.0.7",
+    "cross-env": "^7.0.3",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^8.0.0"
   },

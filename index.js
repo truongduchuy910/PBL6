@@ -3,7 +3,7 @@ dotenv.config();
 const { Keystone } = require("@itoa/keystone");
 const { GraphQLApp } = require("@itoa/app-graphql");
 const { AdminUIApp } = require("@itoa/app-admin-ui");
-const { NextApp } = require("@itoa/lib/app");
+//const { NextApp } = require("@itoa/lib/app");
 const { MongooseAdapter } = require("@itoa/adapter-mongoose");
 const { PasswordAuthStrategy } = require("@itoa/auth-password");
 const MongoStore = require("connect-mongo");
@@ -41,8 +41,9 @@ var keystone = new Keystone({
   },
 });
 var authStrategy = null;
-const shemaConfigs = reads("", "./schemas");
-shemaConfigs.map((config) => {
+const schemaConfigs = reads("", "./schemas");
+console.log(schemaConfigs)
+schemaConfigs.map((config) => {
   const schema = require(config.path);
   keystone.createList(config.name, schema);
   //
@@ -67,7 +68,7 @@ var apps = [
     authStrategy,
     enableDefaultRoute: false,
   }),
-  // new NextApp({ dir: "web" }),
+//  new NextApp({ dir: "web" }),
 ];
 /**
  *
