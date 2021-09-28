@@ -66,7 +66,7 @@
 
 ## 5. Intractitive
 ### Mô tả
-- Bảng Entyti: bảng trung gian, liên kết giữa Post và các bảng Reaction, Comment. Một bài Post có thể có nhiều comment và reaction. Mục đích: nếu muốn một bảng khác cũng có chức năng tương tự Comment, Reaction thì chỉ cần kết nối với bảng này.
+- Bảng Intractitive: bảng trung gian, liên kết giữa Post và các bảng Reaction, Comment. Một bài Post có thể có nhiều comment và reaction. Mục đích: nếu muốn một bảng khác cũng có chức năng tương tự Comment, Reaction thì chỉ cần kết nối với bảng này.
 
 |       Field   |      Type                                    | 
 | :------------:|:--------------------------------------------:|
