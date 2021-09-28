@@ -28,8 +28,8 @@ export default function App() {
       <NativeBaseProvider theme={theme}>
         <Container maxW="conainer.lg">
           <PostItemSimple />
-          <StatusBar style="auto" />
-          <UserSignInSimple />
+          {/* <StatusBar style="auto" />
+          <UserSignInSimple /> */}
         </Container>
       </NativeBaseProvider>
     </ProviderNative>

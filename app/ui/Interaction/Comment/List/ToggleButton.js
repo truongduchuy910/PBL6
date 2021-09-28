@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text } from "native-base";
+import { Button } from "native-base";
 import { FaRegComment } from "react-icons/fa";
 
 function UI() {
@@ -9,7 +9,7 @@ function UI() {
 
   return (
     <Button
-      _text={{ color: "gray.400", fontSize: "14" }}
+      _text={{ color: "gray.400", fontSize: "14", fontWeight: "600" }}
       p="2"
       m="1"
       bgColor="transparent"

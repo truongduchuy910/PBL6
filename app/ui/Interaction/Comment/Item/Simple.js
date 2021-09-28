@@ -1,7 +1,10 @@
 import React from "react";
 import ListToggleText from "../List/ToggleText";
 import CreateText from "../Create/Text";
-import { InteractionReactionCreateText } from "../../Reaction";
+import {
+  InteractionReactionCreateText,
+  InteractionReactionListTextWithCount,
+} from "../../Reaction";
 
 import { VStack, HStack, Box, Image, Text } from "native-base";
 
@@ -29,9 +32,10 @@ function UI() {
                 với mình để biết thêm thông tin chi tiết.
               </Text>
             </Box>
-            <HStack ml="3" mt="1" space="3">
+            <HStack ml="3" mt="1" space="4">
               <InteractionReactionCreateText />
               <CreateText />
+              <InteractionReactionListTextWithCount />
               <Text color="gray.400" fontSize="12">
                 14 giờ
               </Text>

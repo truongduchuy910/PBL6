@@ -7,7 +7,7 @@ function UI() {
 
   return (
     <Button
-      _text={{ color: "gray.400", fontSize: "12" }}
+      _text={{ color: "gray.400", fontSize: "12", fontWeight: "600" }}
       p="0"
       bgColor="transparent"
       onPress={toggleText}
