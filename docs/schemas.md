@@ -74,11 +74,11 @@
 
 ## 6. Intractitive_Reaction
 ### Mô tả
-- Bảng Intractitive_Reaction: lưu trữ thông tin người dùng khi nhấn thả reation (Hiện tại: Like; có thể nâng cấp: Haha, Sad,...) cho một đối tượng (Hiện tại: một bài post; có thể nâng cấp: một comment, một hình ảnh,...).
+- Bảng Intractitive_Reaction: lưu trữ thông tin người dùng khi nhấn thả reation (Like, Heart, Angry, Smile, Sad, Surprise...) cho một đối tượng (Hiện tại: một bài post; có thể nâng cấp: một comment, một hình ảnh,...).
 
 |       Field   |      Type                     | Description                                            | 
 | :------------:|:-----------------------------:|:------------------------------------------------------:|
-| emoij         |     Text                      | Chuỗi ký tự thể hiện cảm xúc (ví dụ: _:like_ , ...)    |
+| emoij         |     Text                      | Chuỗi ký tự thể hiện cảm xúc (ví dụ: _:like_ , _:sad:_ ...)    |
 
 
 ## 7. Intractitive_Comment
