@@ -18,7 +18,7 @@ function UI() {
               uri:
                 "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
             }}
-            alt="Alternate Text"
+            alt="Profile image"
             size="8"
             rounded="100"
           />
@@ -28,8 +28,7 @@ function UI() {
                 Trần Ngọc Huy
               </Text>
               <Text color="gray.700" lineHeight="18">
-                Đây là một địa điểm tuyệt vời cho các bạn sống ảo. Hãy liên hệ
-                với mình để biết thêm thông tin chi tiết.
+                Đây là một địa điểm tuyệt vời cho các bạn sống ảo.
               </Text>
             </Box>
             <HStack ml="3" mt="1" space="4">
