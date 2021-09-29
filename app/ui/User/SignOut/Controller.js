@@ -7,12 +7,13 @@ export const USER_SIGNIN = gql`
     }
   }
 `;
-export default function UserSignIn({ UI }) {
+export default function UserSignIn({ UI, navigation }) {
   const client = useApolloClient();
   const [on, result = {}] = useMutation(USER_SIGNIN, {
-    onCompleted: ({ status }) => {
-      client.clearStore();
-      client.resetStore();
+    onCompleted: async ({ status }) => {
+      await client.clearStore();
+      await client.resetStore();
+      navigation.navigate("sign-in");
     },
     onError: (error) => {},
   });

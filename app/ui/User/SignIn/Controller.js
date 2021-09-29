@@ -1,7 +1,7 @@
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import { useMutation, gql, useApolloClient } from "@apollo/client";
+import { USER_AUTH } from "../Auth/Controller";
+import { useMutation, gql, useApolloClient, useQuery } from "@apollo/client";
 export const USER_SIGNIN = gql`
   mutation($phone: String, $password: String) {
     user: authenticateUserWithPassword(phone: $phone, password: $password) {
@@ -13,13 +13,19 @@ export const USER_SIGNIN = gql`
     }
   }
 `;
-export default function UserSignIn({ UI }) {
+export default function UserSignIn({ UI, navigation }) {
   const client = useApolloClient();
+  useQuery(USER_AUTH, {
+    onCompleted: ({ user }) => {
+      if (user) navigation.navigate("home");
+    },
+  });
   const [on, result = {}] = useMutation(USER_SIGNIN, {
     onCompleted: async ({ user = {} }) => {
       const { token } = user;
       try {
         await AsyncStorage.setItem("@token", token);
+        navigation.navigate("home");
       } catch (e) {
       } finally {
         await client.clearStore();

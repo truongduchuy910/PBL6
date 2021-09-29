@@ -1,7 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { NativeBaseProvider, extendTheme, Container, Text } from "native-base";
+import { NativeBaseProvider, extendTheme, Container } from "native-base";
+import pages from "./pages";
 import {
   useFonts,
   Roboto_400Regular,
@@ -9,14 +8,6 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { ProviderNative } from "./ui/Provider";
-import {
-  UserSignInSimple,
-  UserListSuggest,
-  UserAuthShort,
-  UserSignOutButton,
-} from "./ui/User";
-import { PostCreateSimple, PostItemSimple, PostCreateButton } from "./ui/Post";
-
 const theme = extendTheme({
   fonts: {
     heading: "Roboto_500Medium",
@@ -30,28 +21,8 @@ export default function App() {
     Roboto_500Medium,
   });
   return (
-    <ProviderNative>
-      <NativeBaseProvider theme={theme}>
-        <Container maxW="conainer.lg">
-          {/* <PostCreateButton /> */}
-          {/* <PostCreateSimple /> */}
-          {/* <PostItemSimple /> */}
-          {/* <PostItemSimple /> */}
-          {/* <UserSignInSimple /> */}
-          <UserAuthShort />
-          {/* <UserListSuggest /> */}
-          {/* <UserListSuggest /> */}
-        </Container>
-      </NativeBaseProvider>
-    </ProviderNative>
+    <NativeBaseProvider theme={theme}>
+      <ProviderNative navigation={pages} />
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

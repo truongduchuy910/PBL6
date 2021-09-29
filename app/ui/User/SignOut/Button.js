@@ -2,7 +2,7 @@ import React from "react";
 import UserSignOut from "./Controller";
 import { Button } from "native-base";
 import { IoLogOut } from "react-icons/io5";
-function UI({ loading, error, signOut }) {
+function UI({ loading, error, signOut, navigation }) {
   /**
    *
    * @param {Event} e
@@ -24,6 +24,6 @@ function UI({ loading, error, signOut }) {
     </Button>
   );
 }
-export default function UserSignOutButton() {
-  return <UserSignOut UI={UI} />;
+export default function UserSignOutButton(props) {
+  return <UserSignOut {...props} UI={UI} />;
 }

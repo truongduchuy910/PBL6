@@ -13,7 +13,7 @@ import {
   Image,
 } from "native-base";
 
-function UI({ signIn, loading, error, user }) {
+function UI({ signIn, loading, error, user, navigation }) {
   /**
    *
    * @param {Event} e
@@ -185,6 +185,6 @@ function UI({ signIn, loading, error, user }) {
     </Fragment>
   );
 }
-export default function UserSignInSimple() {
-  return <UserSignIn UI={UI} />;
+export default function UserSignInSimple(props) {
+  return <UserSignIn {...props} UI={UI} />;
 }
