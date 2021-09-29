@@ -40,7 +40,7 @@ function UI() {
             fontSize={14}
             borderWidth={1}
             borderColor="gray.100"
-            rounded={6}
+            rounded="8"
             _focus={{
               borderColor: "gray.100",
             }}

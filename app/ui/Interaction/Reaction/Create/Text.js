@@ -13,7 +13,7 @@ function UI() {
     <Fragment>
       {isLike && (
         <Button
-          _text={{ color: "red.500", fontSize: "12", fontWeight: "600" }}
+          _text={{ color: "green.500", fontSize: "12", fontWeight: "600" }}
           p="0"
           bgColor="transparent"
           onPress={likeHandle}
