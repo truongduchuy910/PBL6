@@ -1,7 +1,7 @@
 import SignIn from "./SignIn";
 import Home from "./Home";
 export default {
-  initialRouteName: "sign-in",
+  initialRouteName: "home",
   screens: [
     {
       name: "sign-in",

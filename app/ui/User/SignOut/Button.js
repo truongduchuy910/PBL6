@@ -1,8 +1,8 @@
 import React from "react";
 import UserSignOut from "./Controller";
-import { Button } from "native-base";
-import { IoLogOut } from "react-icons/io5";
-function UI({ loading, error, signOut, navigation }) {
+import { Button, Text } from "native-base";
+import { IoLogOut, IoLogIn } from "react-icons/io5";
+function UI({ loading, error, signOut, navigation, auth }) {
   /**
    *
    * @param {Event} e
@@ -10,7 +10,9 @@ function UI({ loading, error, signOut, navigation }) {
   const clickSignOut = (e) => {
     signOut();
   };
-  return (
+  return loading ? (
+    <Text>Loading...</Text>
+  ) : (
     <Button
       onPress={clickSignOut}
       rounded={8}
@@ -18,9 +20,11 @@ function UI({ loading, error, signOut, navigation }) {
       py={2}
       px={3}
       _text={{ color: "white", fontWeight: "600" }}
-      leftIcon={<IoLogOut size={24} />}
+      leftIcon={
+        auth.data?.user ? <IoLogOut size={24} /> : <IoLogIn size={24} />
+      }
     >
-      Đăng xuất
+      {auth.data?.user ? "Đăng xuất" : "Đăng nhập"}
     </Button>
   );
 }
