@@ -3,13 +3,13 @@
 # Mô tả yêu cầu của đề tài
 
 - [Mô tả yêu cầu của đề tài](#mô-tả-yêu-cầu-của-đề-tài)
-  - [Giới thiệu](#giới-thiệu)
-    - [Mục tiêu](#mục-tiêu)
-    - [Phạm vi](#phạm-vi)
-  - [Phân công nhiệm vụ](#phân-công-nhiệm-vụ)
-  - [Yêu cầu chức năng chính:](#yêu-cầu-chức-năng-chính)
-  - [Thiết kế hệ thống](#thiết-kế-hệ-thống)
-  - [Tài liệu tham khảo](#tài-liệu-tham-khảo)
+- [Giới thiệu](#giới-thiệu)
+  - [Mục tiêu](#mục-tiêu)
+  - [Phạm vi](#phạm-vi)
+- [Phân công nhiệm vụ](#phân-công-nhiệm-vụ)
+- [Yêu cầu chức năng chính:](#yêu-cầu-chức-năng-chính)
+- [Thiết kế hệ thống](#thiết-kế-hệ-thống)
+- [Tài liệu tham khảo](#tài-liệu-tham-khảo)
 
 ## Giới thiệu
 
@@ -19,7 +19,7 @@
 - Mục tiêu phần mềm:
     + Tạo một mạng xã hội với các tính năng cơ bản, giao diện dễ sử dụng.
     + Có AdminUI
-    
+
 ### Phạm vi
 
 - Web app + mobile app
