@@ -1,24 +1,33 @@
-import React from "react";
-import { Box, HStack, Image, Text } from "native-base";
+import React, { useState } from "react";
+import { Box, HStack, Image, Text, Button, VStack, Divider } from "native-base";
 import {
   InteractionCommentCreateSimple,
   InteractionCommentListSimple,
   InteractionCommentListToggleButton,
-} from "../../../ui/Interaction/Comment";
+} from "../../Interaction/Comment";
 import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
-} from "../../../ui/Interaction/Reaction";
+} from "../../Interaction/Reaction";
+import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 function UI() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+    console.log(isModalOpen);
+  };
+
   return (
     <Box
-      mt="1"
       maxW="600"
       mx="auto"
+      my="2"
       w="100%"
-      py="2"
+      py="4"
       rounded="xl"
       borderWidth="1"
       borderColor="gray.100"
@@ -30,6 +39,8 @@ function UI() {
         w="100%"
         px="3"
         alignItems="center"
+        position="relative"
+        zIndex="1"
       >
         <Image
           source={{
@@ -46,6 +57,32 @@ function UI() {
         <Text color="gray.400" fontSize="12">
           14 giờ
         </Text>
+        {isModalOpen && (
+          <VStack
+            position="absolute"
+            right="3"
+            top="8"
+            borderColor="gray.100"
+            borderWidth="1"
+            bgColor="white"
+            rounded="10"
+            space="1"
+            p="2"
+          >
+            <PostUpdateText />
+            <Divider w="100%" bgColor="gray.100" />
+            <PostDeleteText />
+          </VStack>
+        )}
+        <Button
+          bgColor="transparent"
+          p="1"
+          color="gray.500"
+          ml="auto"
+          onPress={toggleModal}
+        >
+          <HiOutlineDotsHorizontal />
+        </Button>
       </HStack>
       <Text px="3" my="2">
         Lần đầu check in tại nhà hàng ở Paris 😍

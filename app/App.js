@@ -12,6 +12,9 @@ import { ProviderNative } from "./ui/Provider";
 import { PostItemSimple } from "./ui/Post";
 import { UserSignInSimple } from "./ui/User";
 import { UserListSuggest } from "./ui/User";
+import { PostCreateSimple } from "./ui/Post";
+import { PostCreateButton } from "./ui/Post";
+
 const theme = extendTheme({
   fonts: {
     heading: "Roboto_500Medium",
@@ -28,10 +31,12 @@ export default function App() {
     <ProviderNative>
       <NativeBaseProvider theme={theme}>
         <Container maxW="conainer.lg">
-          {/* <PostItemSimple />
-          <StatusBar style="auto" />
-          <UserSignInSimple /> */}
-          <UserListSuggest />
+          {/* <PostCreateButton /> */}
+          <PostCreateSimple />
+          {/* <PostItemSimple /> */}
+          {/* <PostItemSimple /> */}
+          {/* <UserSignInSimple /> */}
+          {/* <UserListSuggest /> */}
         </Container>
       </NativeBaseProvider>
     </ProviderNative>

@@ -14,10 +14,10 @@ function UI() {
     <Fragment>
       {isLike && (
         <Button
-          _text={{ color: "red.600", fontSize: "14", fontWeight: "600" }}
+          _text={{ color: "green.500", fontSize: "14", fontWeight: "600" }}
           p="2"
           bgColor="transparent"
-          leftIcon={<FaHeart color="#dc2626" size="17" />}
+          leftIcon={<FaHeart color="#22c55e" size="17" />}
           _hover={{ bgColor: "gray.100" }}
           onPress={likeHandle}
         >
