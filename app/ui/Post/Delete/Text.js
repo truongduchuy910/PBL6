@@ -1,18 +1,22 @@
 import React from "react";
 import { Button } from "native-base";
+import { FaRegTrashAlt } from "react-icons/fa";
+
 function UI() {
   const toggleText = (e) => {
-    console.log("Comment Create Text");
+    console.log("Post Delete Text");
   };
 
   return (
     <Button
       _text={{ color: "gray.400", fontSize: "12", fontWeight: "600" }}
-      p="0"
-      bgColor="transparent"
+      p="3"
+      py="1.5"
+      bgColor="transparrent"
       onPress={toggleText}
+      leftIcon={<FaRegTrashAlt color="#22c55e" fontSize="15" />}
     >
-      Trả lời
+      Xoá bài viết
     </Button>
   );
 }

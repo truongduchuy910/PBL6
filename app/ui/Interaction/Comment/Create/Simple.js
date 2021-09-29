@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HStack, Box, Image, Input, Text } from "native-base";
+import { HStack, Box, Image, Input } from "native-base";
 
 function UI() {
   const [userInput, setUserInput] = useState("");
@@ -40,7 +40,7 @@ function UI() {
             fontSize={14}
             borderWidth={1}
             borderColor="gray.100"
-            rounded={6}
+            rounded="8"
             _focus={{
               borderColor: "gray.100",
             }}

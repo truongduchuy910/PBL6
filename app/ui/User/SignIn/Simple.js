@@ -124,7 +124,7 @@ function UI({ signIn, loading, error, user }) {
                 rounded={8}
                 bgColor="green.500"
                 p={2}
-                _text={{ color: "white" }}
+                _text={{ color: "white", fontWeight: "600" }}
               >
                 ĐĂNG NHẬP
               </Button>
@@ -134,7 +134,7 @@ function UI({ signIn, loading, error, user }) {
                 rounded={8}
                 bgColor="green.500"
                 p={2}
-                _text={{ color: "white" }}
+                _text={{ color: "white", fontWeight: "600" }}
               >
                 ĐANG TẢI ...
               </Button>

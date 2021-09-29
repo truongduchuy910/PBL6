@@ -3,20 +3,25 @@
 # Mô tả yêu cầu của đề tài
 
 - [Mô tả yêu cầu của đề tài](#mô-tả-yêu-cầu-của-đề-tài)
-  - [Giới thiệu](#giới-thiệu)
-    - [Mục tiêu](#mục-tiêu)
-    - [Phạm vi](#phạm-vi)
-  - [Phân công nhiệm vụ](#phân-công-nhiệm-vụ)
-  - [Yêu cầu chức năng chính:](#yêu-cầu-chức-năng-chính)
-  - [Thiết kế hệ thống](#thiết-kế-hệ-thống)
-  - [Tài liệu tham khảo](#tài-liệu-tham-khảo)
+- [Giới thiệu](#giới-thiệu)
+  - [Mục tiêu](#mục-tiêu)
+  - [Phạm vi](#phạm-vi)
+- [Phân công nhiệm vụ](#phân-công-nhiệm-vụ)
+- [Yêu cầu chức năng chính:](#yêu-cầu-chức-năng-chính)
+- [Thiết kế hệ thống](#thiết-kế-hệ-thống)
+- [Tài liệu tham khảo](#tài-liệu-tham-khảo)
+
 ## Giới thiệu
+
 ### Mục tiêu
+
 - Tài liệu cung cấp các yêu cầu chi tiết cho phần mềm: Mạng xã hội FAKEBOOK.
 - Mục tiêu phần mềm:
     + Tạo một mạng xã hội với các tính năng cơ bản, giao diện dễ sử dụng.
     + Có AdminUI
+
 ### Phạm vi
+
 - Web app + mobile app
 
 ## Phân công nhiệm vụ
@@ -35,6 +40,8 @@
     + Tạo tài khoản và đăng nhập
 
     + Upload avatar
+
+    + Tìm kiếm user khác, kết bạn
 
     + Chỉnh sửa thông tin cá nhân
 

@@ -1,78 +1,35 @@
-let {
-  Text,
-  Relationship,
-  Slug,
-  File,
-  Editor,
-  Integer,
-} = require("@itoa/fields");
-let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
-let { roleSeller } = require("@itoa/lib/access");
-const { content } = require("./hooks");
-
+const { Text, Relationship, Images } = require("@itoa/fields");
+const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
   fields: {
-    title: {
+    content: {
       type: Text,
       isRequired: true,
-      label: "Tên bài viết",
     },
-    thumbnail: {
-      type: File,
-      adapter: imageAdapter,
-      hooks: imageHooks("thumbnail"),
-      label: "Bìa",
-    },
-    content: {
-      type: Editor,
-      hooks: content,
-      label: "Nội dung",
-    },
-    hashtags: {
+    tags: {
       type: Relationship,
-      ref: "PostHashtag",
+      ref: "PostTag.posts",
       many: true,
-      label: "Phân loại",
     },
-    embed: { type: Text, label: "Mã nhúng" },
-    description: {
-      type: Text,
-      label: "Mô tả ngắn",
-      adminConfig: {
-        isReadOnly: true,
-      },
+    images: {
+      type: Images,
+      ref: "UploadImage",
+      search: "alt",
+      file: "file",
+      label: "Hình thêm",
+      many: true,
     },
-    keywords: {
-      type: Text,
-      label: "Các từ khóa",
-      adminConfig: {
-        isReadOnly: true,
-      },
-    },
-    url: {
-      type: Slug,
-      adminConfig: {
-        isReadOnly: true,
-      },
-      from: "title",
-    },
-    body: {
-      type: Editor,
-      label: "Nội dung (Sắp bị lược bỏ)",
-      adminConfig: {
-        isReadOnly: true,
-      },
-    },
-    page: {
+    interactive: {
       type: Relationship,
-      ref: "Page.company",
-      label: "Ghim",
+      ref: "Interactive.post",
+      many: false,
     },
-    prioritize: { type: Integer, label: "độ ưu tiên" },
   },
-  labelField: "title",
-  access: roleSeller,
-  feed: 100,
+  ...multipleLanguage("Translate"),
+  labelField: "",
+  access: true,
+  // access: modelUser,
+  hooks: {},
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour
