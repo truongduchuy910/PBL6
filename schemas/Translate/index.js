@@ -4,6 +4,7 @@ const { MongoId } = require("@itoa/fields-mongoid");
 const { roleSeller } = require("@itoa/lib/access");
 
 module.exports = {
+  active: true,
   fields: {
     item: { type: MongoId, isRequired: true },
     listKey: { type: Text, isRequired: true },

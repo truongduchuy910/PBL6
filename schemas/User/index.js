@@ -5,6 +5,7 @@ const lang = require("@itoa/lib/lang.json");
 const { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
+  active: true,
   fields: {
     phone: {
       type: Text,
