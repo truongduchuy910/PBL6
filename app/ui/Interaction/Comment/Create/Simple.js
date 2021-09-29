@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HStack, Box, Image, Input, Text } from "native-base";
+import { HStack, Box, Image, Input } from "native-base";
 
 function UI() {
   const [userInput, setUserInput] = useState("");

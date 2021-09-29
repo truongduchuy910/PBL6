@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, HStack, Image, Text } from "native-base";
+import React, { useState } from "react";
+import { Box, HStack, Image, Text, Button } from "native-base";
 import {
   InteractionCommentCreateSimple,
   InteractionCommentListSimple,
@@ -10,8 +10,16 @@ import {
   InteractionReactionListIconTextWithCount,
 } from "../../../ui/Interaction/Reaction";
 import { UploadImageListCarousel } from "../../Upload/Image";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 function UI() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+    console.log(isModalOpen);
+  };
+
   return (
     <Box
       mt="1"
@@ -46,6 +54,15 @@ function UI() {
         <Text color="gray.400" fontSize="12">
           14 giờ
         </Text>
+        <Button
+          bgColor="transparent"
+          p="1"
+          color="gray.500"
+          ml="auto"
+          onPress={toggleModal}
+        >
+          <HiOutlineDotsHorizontal />
+        </Button>
       </HStack>
       <Text px="3" my="2">
         Lần đầu check in tại nhà hàng ở Paris 😍
