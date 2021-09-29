@@ -17,8 +17,8 @@ export const VARIABLE_PROP_NAME = "__variable__";
 /**
  * @returns {ApolloClient}
  */
-function createApolloClient(domain = "", locale) {
-  const cms = process.env.CMS;
+function createApolloClient(domain = "_", locale = "_") {
+  const cms = process.env.CMS || "http://localhost:3000";
   const uri = cms + "/admin/api";
   const as =
     process.env.NODE_ENV === "production" ? domain : process.env.HOST_DEV;
@@ -30,18 +30,16 @@ function createApolloClient(domain = "", locale) {
       locale,
     },
   });
-  const link =
-    typeof window === "object"
-      ? setContext(async (_, { headers }) => {
-          const token = await AsyncStorage.getItem("token");
-          return {
-            headers: {
-              ...headers,
-              authorization: token ? `Bearer ${token}` : "",
-            },
-          };
-        }).concat(httpLink)
-      : httpLink;
+  const link = setContext(async (_, { headers }) => {
+    const token = await AsyncStorage.getItem("@token");
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+  }).concat(httpLink);
+
   const cache = new InMemoryCache();
   return new ApolloClient({
     link,
@@ -73,7 +71,10 @@ function mergeState(a, b) {
  * @param {*} param1
  * @returns {ApolloClient}
  */
-export function initializeApollo(initialState = null, { domain, locale }) {
+export function initializeApollo(
+  initialState = null,
+  { domain = "_", locale = "_" },
+) {
   const _apolloClient =
     existingApolloClient(domain) || createApolloClient(domain, locale);
   if (initialState) {

@@ -9,11 +9,13 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { ProviderNative } from "./ui/Provider";
-import { PostItemSimple } from "./ui/Post";
-import { UserSignInSimple } from "./ui/User";
-import { UserListSuggest } from "./ui/User";
-import { PostCreateSimple } from "./ui/Post";
-import { PostCreateButton } from "./ui/Post";
+import {
+  UserSignInSimple,
+  UserListSuggest,
+  UserAuthShort,
+  UserSignOutButton,
+} from "./ui/User";
+import { PostCreateSimple, PostItemSimple, PostCreateButton } from "./ui/Post";
 
 const theme = extendTheme({
   fonts: {
@@ -32,10 +34,12 @@ export default function App() {
       <NativeBaseProvider theme={theme}>
         <Container maxW="conainer.lg">
           {/* <PostCreateButton /> */}
-          <PostCreateSimple />
+          {/* <PostCreateSimple /> */}
           {/* <PostItemSimple /> */}
           {/* <PostItemSimple /> */}
           {/* <UserSignInSimple /> */}
+          <UserAuthShort />
+          {/* <UserListSuggest /> */}
           {/* <UserListSuggest /> */}
         </Container>
       </NativeBaseProvider>
