@@ -8,6 +8,8 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { ProviderNative } from "./ui/Provider";
+
+import { UserItemDetail } from "./ui/User";
 const theme = extendTheme({
   fonts: {
     heading: "Roboto_500Medium",
@@ -22,7 +24,8 @@ export default function App() {
   });
   return (
     <NativeBaseProvider theme={theme}>
-      <ProviderNative navigation={pages} />
+      <UserItemDetail />
+      {/* <ProviderNative navigation={pages} /> */}
     </NativeBaseProvider>
   );
 }
