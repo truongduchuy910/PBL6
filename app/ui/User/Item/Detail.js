@@ -4,6 +4,8 @@ import { PostListGrid } from "../../Post";
 import RelationshipCreateButton from "../Relationship/Create/Button";
 import RelationshipUpdateButton from "../Relationship/Update/Button";
 import RelationshipDeleteButton from "../Relationship/Delete/Button";
+import RelationshipDeleteCancel from "../Relationship/Delete/Cancel";
+import RelationshipDeleteFriend from "../Relationship/Delete/Friend";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 function UI() {
@@ -42,19 +44,42 @@ function UI() {
             </Text>
           </HStack>
 
-          <HStack space="2" alignItems="center">
+          {/* <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-              {/* Nguyễn Kim Huy đã gửi lời mời kết bạn */}
               Bạn có quen Nguyễn Kim Huy không?
             </Text>
-            {/* <Box w="100px">
+            <Box w="120px">
+              <RelationshipCreateButton />
+            </Box>
+          </HStack> */}
+
+          {/* <HStack space="2" alignItems="center">
+            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+              Bạn đã gửi lời mời kết bạn cho Nguyễn Kim Huy
+            </Text>
+            <Box w="100px">
+              <RelationshipDeleteCancel />
+            </Box>
+          </HStack> */}
+
+          {/* <HStack space="2" alignItems="center">
+            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+              Nguyễn Kim Huy đã gửi lời mời kết bạn
+            </Text>
+            <Box w="100px">
               <RelationshipUpdateButton />
             </Box>
             <Box w="60px">
               <RelationshipDeleteButton />
-            </Box> */}
-            <Box w="120px">
-              <RelationshipCreateButton />
+            </Box>
+          </HStack> */}
+
+          <HStack space="2" alignItems="center">
+            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+              Bạn và Nguyễn Kim Huy là bạn bè
+            </Text>
+            <Box w="100px">
+              <RelationshipDeleteFriend />
             </Box>
           </HStack>
         </VStack>

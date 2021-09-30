@@ -15,10 +15,10 @@ function UI() {
       bgColor="gray.100"
       onPress={clickHandler}
     >
-      Xoá
+      Huỷ lời mời
     </Button>
   );
 }
 export default UI;
 
-// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B và B từ chối
+// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B nhưng A lại huỷ lời mời

@@ -20,3 +20,5 @@ function UI() {
   );
 }
 export default UI;
+
+// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B

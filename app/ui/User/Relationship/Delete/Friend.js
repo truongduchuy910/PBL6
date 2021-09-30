@@ -3,22 +3,22 @@ import { Button } from "native-base";
 
 function UI() {
   const clickHandler = (e) => {
-    console.log("User Relationship Update Button");
+    console.log("User Relationship Delete Button");
   };
 
   return (
     <Button
-      _text={{ color: "white", fontSize: "14", fontWeight: "600" }}
+      _text={{ color: "gray.400", fontSize: "14", fontWeight: "600" }}
       p="2"
       rounded="8"
       w="100%"
-      bgColor="green.500"
+      bgColor="gray.100"
       onPress={clickHandler}
     >
-      Xác nhận
+      Huỷ kết bạn
     </Button>
   );
 }
 export default UI;
 
-// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B và B đồng ý
+// A và B đã kết bạn với nhau, B huỷ kết bạn với A
