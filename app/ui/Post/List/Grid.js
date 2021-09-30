@@ -42,23 +42,16 @@ const data = [
 
 function UI() {
   return (
-    <HStack
-      maxW="900"
-      mx="auto"
-      w="100%"
-      flexWrap="wrap"
-      justifyContent="center"
-    >
+    <HStack maxW="900" w="100%" flexWrap="wrap" justifyContent="center">
       {data.map((item) => (
         <Box
           key={item.id}
           m="0.5%"
-          minW="30%"
+          minW="32%"
           alignItems="center"
           borderWidth="1"
           borderColor="gray.100"
           rounded="10"
-          space="1.5"
           overflow="hidden"
         >
           <PostItemImageOnly key={item.id} item={item} />

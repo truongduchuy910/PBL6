@@ -15,7 +15,7 @@ function UI() {
       bgColor="green.500"
       onPress={clickHandler}
     >
-      Gửi yêu cầu
+      Thêm bạn bè
     </Button>
   );
 }
