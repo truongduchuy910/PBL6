@@ -16,19 +16,20 @@
 ### Mô tả
 - Bảng User: chứa thông tin của người dùng 
 
-|       Field   |      Type                                |      Description                             |
-| :------------:|:----------------------------------------:|:--------------------------------------------:|
-| userName      |     Text                                 |       Tên đăng nhập                          |
-| passWord      |     Password                             |     Mật khẩu                                 |
-| firstName     |     Text                                 |     Tên                                      |
-| lastName      |     Text                                 |     Họ                                       |
-| gender        |     Text                                 |     Giới tính                                |
-| email         |     Text                                 |     Email                                    |
-| phoneNumber   |     Text                                 |     Số điện thoại                            |
-| address       |     Text                                 |     Địa chỉ                                  |
-| avatar        |     Upload_Image                         |     Ảnh đại diện                             |
-| posts         |     Relationship, ref:'Post', many: true |     Các bài đăng                             |
-| isAdmin       |     Boolean                              |     Có phải là tài khoản admin hay không     |
+|       Field   |      Type                                  |      Description                             |
+| :------------:|:------------------------------------------:|:--------------------------------------------:|
+| userName      |     Text                                   |       Tên đăng nhập                          |
+| passWord      |     Password                               |     Mật khẩu                                 |
+| firstName     |     Text                                   |     Tên                                      |
+| lastName      |     Text                                   |     Họ                                       |
+| gender        |     Text                                   |     Giới tính                                |
+| email         |     Text                                   |     Email                                    |
+| phoneNumber   |     Text                                   |     Số điện thoại                            |
+| address       |     Text                                   |     Địa chỉ                                  |
+| avatar        |     Upload_Image                           |     Ảnh đại diện                             |
+| posts         |     Relationship, ref:'Post', many: true   |     Các bài đăng                             |
+| isAdmin       |     Boolean                                |     Có phải là tài khoản admin hay không     |
+| friends       |     Relationship, ref:'Friend', many: true |     Danh sách bạn bè                         |
 <!-- | photos        |     Relationship, ref:'Photo'   |     Album ảnh                    | -->
 
 
@@ -88,4 +89,25 @@
 |       Field   |      Type                     | Description                   | 
 | :------------:|:-----------------------------:|:-----------------------------:|
 | content       |     Text                      | Bình luận của người dùng      | 
+
+## 8. Friend
+### Mô tả
+- Bảng Friend: lưu trữ một số thông tin cơ bản của một người dùng khác khi người đó đồng ý kết bạn.
+
+|       Field   |      Type                     | Description                   | 
+| :------------:|:-----------------------------:|:-----------------------------:|
+| firstName     |     Text                      |     Tên                       |
+| lastName      |     Text                      |     Họ                        |    
+| numberPhone   |     Text                      |     Số điện thoại             |
+| email         |     Text                      |     Email                     |
+
+## 9. Request_Friend
+### Mô tả
+- Bảng Request_Friend: lưu trữ lời mời kết bạn từ người dùng A đến người dùng B.
+
+|       Field   |      Type                     | Description                   | 
+| :------------:|:-----------------------------:|:-----------------------------:|
+| fromUserId    |     Uuid                      |  Người dùng A (gửi lời mời)   |
+| toUserId      |     Uuid                      |  Người dùng B (nhận lời mời)  |
+| isAccepted    |     Boolean                   |  Được chấp nhận hay chưa      |
 
