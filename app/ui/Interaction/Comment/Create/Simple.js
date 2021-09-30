@@ -18,7 +18,7 @@ function UI() {
   };
 
   return (
-    <Box maxW="600" mx="auto" w="100%">
+    <Box mx="auto" w="100%">
       <HStack space="2" display="flex" flexDirection="row" w="100%">
         <Image
           source={{

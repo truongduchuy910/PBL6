@@ -1,6 +1,7 @@
 import PostListGrid from "./List/Grid";
 import PostListSimple from "./List/Simple";
 import PostItemSimple from "./Item/Simple";
+import PostItemDetail from "./Item/Detail";
 import PostItemImageOnly from "./Item/ImageOnly";
 import PostCreateButton from "./Create/Button";
 import PostCreateSimple from "./Create/Simple";
@@ -11,6 +12,7 @@ export {
   PostListGrid,
   PostListSimple,
   PostItemSimple,
+  PostItemDetail,
   PostItemImageOnly,
   PostCreateButton,
   PostCreateSimple,
