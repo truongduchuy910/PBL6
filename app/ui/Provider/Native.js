@@ -2,23 +2,23 @@
 import React, { useMemo } from "react";
 import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// next
 // important
-//
+import { NavigationContainer } from "@react-navigation/native";
 import { ApolloClient } from "@apollo/client";
 import { HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 //
 import isEqual from "lodash/isEqual";
 import { setContext } from "@apollo/client/link/context";
 import merge from "deepmerge";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export const APOLLO_STATE_PROP_NAME = "__apollo_state__";
 export const VARIABLE_PROP_NAME = "__variable__";
 /**
  * @returns {ApolloClient}
  */
-function createApolloClient(domain = "", locale) {
-  const cms = process.env.CMS;
+function createApolloClient(domain = "_", locale = "_") {
+  const cms = process.env.CMS || "http://localhost:3000";
   const uri = cms + "/admin/api";
   const as =
     process.env.NODE_ENV === "production" ? domain : process.env.HOST_DEV;
@@ -30,18 +30,16 @@ function createApolloClient(domain = "", locale) {
       locale,
     },
   });
-  const link =
-    typeof window === "object"
-      ? setContext(async (_, { headers }) => {
-          const token = await AsyncStorage.getItem("token");
-          return {
-            headers: {
-              ...headers,
-              authorization: token ? `Bearer ${token}` : "",
-            },
-          };
-        }).concat(httpLink)
-      : httpLink;
+  const link = setContext(async (_, { headers }) => {
+    const token = await AsyncStorage.getItem("@token");
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+  }).concat(httpLink);
+
   const cache = new InMemoryCache();
   return new ApolloClient({
     link,
@@ -73,7 +71,8 @@ function mergeState(a, b) {
  * @param {*} param1
  * @returns {ApolloClient}
  */
-export function initializeApollo(initialState = null, { domain, locale }) {
+export function initializeApollo(initialState = null, variables = {}) {
+  const { domain = "_", locale = "_" } = variables;
   const _apolloClient =
     existingApolloClient(domain) || createApolloClient(domain, locale);
   if (initialState) {
@@ -100,10 +99,21 @@ export function getApolloState(pageProps = {}) {
 }
 
 export const PageContext = createContext();
+const Stack = createNativeStackNavigator();
 export default function ProviderNative(props) {
-  const { pageProps = {} } = props;
-  const state = getApolloState(pageProps);
-  const variables = getVariables(pageProps);
-  const client = useMemo(() => initializeApollo(state, variables), [pageProps]);
-  return <ApolloProvider {...props} client={client} />;
+  const { pageProps = {}, navigation } = props;
+  console.log(navigation.initialRouteName);
+  const client = useMemo(() => initializeApollo(), [pageProps]);
+  return (
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={navigation.initialRouteName}>
+          {navigation.screens?.map((screen, index) => {
+            console.log(screen.name, index);
+            return <Stack.Screen key={screen.name + index} {...screen} />;
+          })}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
+  );
 }
