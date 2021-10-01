@@ -26,8 +26,8 @@ export default function App() {
   });
   return (
     <NativeBaseProvider theme={theme}>
-      {/* <UserItemDetail /> */}
-      <PostItemDetail />
+      <UserItemDetail />
+      {/* <PostItemDetail /> */}
       {/* <PostItemSimple /> */}
       {/* <ProviderNative navigation={pages} /> */}
     </NativeBaseProvider>

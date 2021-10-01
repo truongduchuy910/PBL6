@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { HStack, VStack, Box, Image, Text } from "native-base";
-import UserRelationshipUpdateButton from "../Relationship/Update/Button";
-import UserRelationshipDeleteButton from "../Relationship/Delete/Button";
+import {
+  RelationshipUpdateButton,
+  RelationshipDeleteDelete,
+} from "../../Relationship";
 
 const data = [
   {

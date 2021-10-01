@@ -1,11 +1,13 @@
 import React from "react";
 import { Box, Button, HStack, Image, VStack, Text, Divider } from "native-base";
 import { PostListGrid } from "../../Post";
-import RelationshipCreateButton from "../Relationship/Create/Button";
-import RelationshipUpdateButton from "../Relationship/Update/Button";
-import RelationshipDeleteButton from "../Relationship/Delete/Button";
-import RelationshipDeleteCancel from "../Relationship/Delete/Cancel";
-import RelationshipDeleteFriend from "../Relationship/Delete/Friend";
+import {
+  RelationshipCreateButton,
+  RelationshipUpdateButton,
+  RelationshipDeleteActive,
+  RelationshipDeleteCancel,
+  RelationshipDeleteDelete,
+} from "../../Relationship";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 function UI() {
@@ -17,7 +19,7 @@ function UI() {
           <Image
             source={{
               uri:
-                "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719777/200960556_1184264562021915_3530694902678239694_n_u7mk8s.jpg",
+                "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
             }}
             alt="Alternate Text"
             w="120"
@@ -28,7 +30,7 @@ function UI() {
         <VStack flex="1" space="3">
           <HStack space="2">
             <Text fontSize="22" fontWeight="600">
-              Nguyễn Kim Huy
+              Trần Ngọc Huy
             </Text>
             <Button bgColor="transparent" p="2" color="gray.500">
               <HiOutlineDotsHorizontal />
@@ -62,26 +64,26 @@ function UI() {
             </Box>
           </HStack> */}
 
-          {/* <HStack space="2" alignItems="center">
+          <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-              Nguyễn Kim Huy đã gửi lời mời kết bạn
+              Trần Ngọc Huy đã gửi lời mời kết bạn
             </Text>
-            <Box w="100px">
+            <Box w="130px">
               <RelationshipUpdateButton />
             </Box>
-            <Box w="60px">
-              <RelationshipDeleteButton />
+            <Box w="110px">
+              <RelationshipDeleteDelete />
             </Box>
-          </HStack> */}
+          </HStack>
 
-          <HStack space="2" alignItems="center">
+          {/* <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
               Bạn và Nguyễn Kim Huy là bạn bè
             </Text>
             <Box w="100px">
-              <RelationshipDeleteFriend />
+              <RelationshipDeleteActive />
             </Box>
-          </HStack>
+          </HStack> */}
         </VStack>
       </HStack>
 
@@ -91,7 +93,7 @@ function UI() {
         </Text>
         <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
         <Text fontSize="14" fontWeight="400" color="gray.600" lineHeight="26px">
-          👋 Tôi tên là Nguyễn Kim Huy <br></br>📚 Tôi đang tìm hiểu về du lịch
+          👋 Tôi tên là Trần Ngọc Huy <br></br>📚 Tôi đang tìm hiểu về du lịch
           <br></br>
           🛩 Thích đi du lịch bằng máy bay
         </Text>

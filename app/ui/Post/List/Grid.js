@@ -24,7 +24,7 @@ const data = [
     id: 4,
     link: "#",
     thumbnailUrl:
-      "https://lh3.googleusercontent.com/proxy/oN_Gj3W0VeP1j2XAQ6NaH-uVITwMhLeIus4SKQpDRTdpcn4t9z-kxF2D9EkKeOOpP6NybLDAGVZH-1m9jH1bPuDtoW0LP38WB-EnnRe_It9JnePk3MAHg56i54s__jIaTdtrxM93L9_iTSA",
+      "http://tonyenglish.vn/uploads/news/2019/0106/1546787257_MW-GY949_travel_20181122135819_ZH.jpg",
   },
   {
     id: 5,
