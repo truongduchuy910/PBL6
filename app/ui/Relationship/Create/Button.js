@@ -3,7 +3,7 @@ import { Button } from "native-base";
 
 function UI() {
   const clickHandler = (e) => {
-    console.log("User Relationship Update Button");
+    console.log("User Relationship Create Button");
   };
 
   return (
@@ -15,10 +15,10 @@ function UI() {
       bgColor="green.500"
       onPress={clickHandler}
     >
-      Xác nhận
+      Thêm bạn bè
     </Button>
   );
 }
 export default UI;
 
-// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B và B đồng ý
+// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B, hoặc ngược lại

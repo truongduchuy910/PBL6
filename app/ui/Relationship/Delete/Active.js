@@ -15,10 +15,11 @@ function UI() {
       bgColor="gray.100"
       onPress={clickHandler}
     >
-      Huỷ lời mời
+      Xoá bạn bè
     </Button>
   );
 }
 export default UI;
 
-// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B nhưng A lại huỷ lời mời
+// A đã tạo Relationship tới B, B đã đồng ý (cập nhật trạng thái Relationship là active)
+// A vào tường của B sẽ thấy nút "xóa bạn"

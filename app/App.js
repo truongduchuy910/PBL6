@@ -9,7 +9,7 @@ import {
 
 import { ProviderNative } from "./ui/Provider";
 
-import { UserItemDetail } from "./ui/User";
+import { UserSignUpSimple } from "./ui/User";
 import { PostItemDetail, PostItemSimple } from "./ui/Post";
 
 const theme = extendTheme({
@@ -26,8 +26,8 @@ export default function App() {
   });
   return (
     <NativeBaseProvider theme={theme}>
-      {/* <UserItemDetail /> */}
-      <PostItemDetail />
+      <UserSignUpSimple />
+      {/* <PostItemDetail /> */}
       {/* <PostItemSimple /> */}
       {/* <ProviderNative navigation={pages} /> */}
     </NativeBaseProvider>
