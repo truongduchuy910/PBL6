@@ -16,19 +16,20 @@
 ### Mô tả
 - Bảng User: chứa thông tin của người dùng 
 
-|       Field   |      Type                                |      Description                             |
-| :------------:|:----------------------------------------:|:--------------------------------------------:|
-| userName      |     Text                                 |       Tên đăng nhập                          |
-| passWord      |     Password                             |     Mật khẩu                                 |
-| firstName     |     Text                                 |     Tên                                      |
-| lastName      |     Text                                 |     Họ                                       |
-| gender        |     Text                                 |     Giới tính                                |
-| email         |     Text                                 |     Email                                    |
-| phoneNumber   |     Text                                 |     Số điện thoại                            |
-| address       |     Text                                 |     Địa chỉ                                  |
-| avatar        |     Upload_Image                         |     Ảnh đại diện                             |
-| posts         |     Relationship, ref:'Post', many: true |     Các bài đăng                             |
-| isAdmin       |     Boolean                              |     Có phải là tài khoản admin hay không     |
+|       Field   |      Type                                  |      Description                             |
+| :------------:|:------------------------------------------:|:--------------------------------------------:|
+| userName      |     Text                                   |       Tên đăng nhập                          |
+| passWord      |     Password                               |     Mật khẩu                                 |
+| firstName     |     Text                                   |     Tên                                      |
+| lastName      |     Text                                   |     Họ                                       |
+| gender        |     Text                                   |     Giới tính                                |
+| email         |     Text                                   |     Email                                    |
+| phoneNumber   |     Text                                   |     Số điện thoại                            |
+| address       |     Text                                   |     Địa chỉ                                  |
+| avatar        |     Upload_Image                           |     Ảnh đại diện                             |
+| posts         |     Relationship, ref:'Post', many: true   |     Các bài đăng                             |
+| isAdmin       |     Boolean                                |     Có phải là tài khoản admin hay không     |
+| friends       |     Relationship, ref:'Friend', many: true |     Danh sách bạn bè                         |
 <!-- | photos        |     Relationship, ref:'Photo'   |     Album ảnh                    | -->
 
 
@@ -88,4 +89,14 @@
 |       Field   |      Type                     | Description                   | 
 | :------------:|:-----------------------------:|:-----------------------------:|
 | content       |     Text                      | Bình luận của người dùng      | 
+
+## 8. Relationship
+### Mô tả
+- Bảng Relationship: lưu trữ lời mời kết bạn từ người dùng A đến người dùng B đồng thời dùng để truy vấn danh sách bạn bè.
+
+|       Field   |      Type                     | Description                      | 
+| :------------:|:-----------------------------:|:--------------------------------:|
+| createBy      |     Uuid                      |  ID người dùng A (gửi lời mời)   |
+| to            |     Uuid                      |  ID người dùng B (nhận lời mời)  |
+| isAccepted    |     Boolean                   |  Được chấp nhận hay chưa         |
 
