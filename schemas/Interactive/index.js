@@ -1,15 +1,16 @@
 const { Relationship } = require("@itoa/fields");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
+    active: true,
     fields: {
         reactions: {
             type: Relationship,
-            ref: "InteractiveReaction.interaction",
+            ref: "InteractiveReaction.interactive",
             many: true,
         },
         comments: {
             type: Relationship,
-            ref: "InteractionComment.interaction",
+            ref: "InteractiveComment.interactive",
             many: true
         },
         post: {
