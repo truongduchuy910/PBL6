@@ -10,7 +10,7 @@ import { VStack, HStack, Box, Image, Text } from "native-base";
 
 function UI() {
   return (
-    <Box maxW="600" mx="auto" my="2" w="100%">
+    <Box mx="auto" my="2" w="100%">
       <VStack>
         <HStack space="2" display="flex" flexDirection="row" w="100%">
           <Image

@@ -21,12 +21,11 @@ function UI() {
         "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632806027/241112067_307788851102765_1403995891199547762_n_qzsigo.jpg",
     },
     {
-      img:
-        "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632806027/241234883_755141348519810_2296093530347369693_n_ulyxyc.jpg",
+      img: "https://static.toiimg.com/photo/84475061.cms",
     },
     {
       img:
-        "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632806027/241259419_246687107340299_4139464774758156957_n_s1zuao.jpg",
+        "https://tuandungtravel.com/wp-content/uploads/2019/07/du-lich-ba-na-hills-tuan-dung-travel-9.jpg",
     },
     {
       img:

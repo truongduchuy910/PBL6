@@ -15,8 +15,10 @@ function UI() {
       bgColor="green.500"
       onPress={clickHandler}
     >
-      Gửi yêu cầu
+      Thêm bạn bè
     </Button>
   );
 }
 export default UI;
+
+// A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B
