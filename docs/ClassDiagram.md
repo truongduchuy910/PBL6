@@ -4,7 +4,7 @@
 - [x] In processing
 - [ ] Done
 
-![Untitled](https://s3-img-demo.s3.ap-southeast-1.amazonaws.com/class-diagram-sc.png)
+![ClassDiagram](https://s3-img-demo.s3.ap-southeast-1.amazonaws.com/class-diagram-sc.png)
 
 
 Link pdf: https://s3-img-demo.s3.ap-southeast-1.amazonaws.com/Social+NetWork+(5).pdf
