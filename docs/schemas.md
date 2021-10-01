@@ -90,24 +90,13 @@
 | :------------:|:-----------------------------:|:-----------------------------:|
 | content       |     Text                      | Bình luận của người dùng      | 
 
-## 8. Friend
+## 8. Relationship
 ### Mô tả
-- Bảng Friend: lưu trữ một số thông tin cơ bản của một người dùng khác khi người đó đồng ý kết bạn.
+- Bảng Relationship: lưu trữ lời mời kết bạn từ người dùng A đến người dùng B đồng thời dùng để truy vấn danh sách bạn bè.
 
-|       Field   |      Type                     | Description                   | 
-| :------------:|:-----------------------------:|:-----------------------------:|
-| firstName     |     Text                      |     Tên                       |
-| lastName      |     Text                      |     Họ                        |    
-| numberPhone   |     Text                      |     Số điện thoại             |
-| email         |     Text                      |     Email                     |
-
-## 9. Request_Friend
-### Mô tả
-- Bảng Request_Friend: lưu trữ lời mời kết bạn từ người dùng A đến người dùng B.
-
-|       Field   |      Type                     | Description                   | 
-| :------------:|:-----------------------------:|:-----------------------------:|
-| fromUserId    |     Uuid                      |  Người dùng A (gửi lời mời)   |
-| toUserId      |     Uuid                      |  Người dùng B (nhận lời mời)  |
-| isAccepted    |     Boolean                   |  Được chấp nhận hay chưa      |
+|       Field   |      Type                     | Description                      | 
+| :------------:|:-----------------------------:|:--------------------------------:|
+| createBy      |     Uuid                      |  ID người dùng A (gửi lời mời)   |
+| to            |     Uuid                      |  ID người dùng B (nhận lời mời)  |
+| isAccepted    |     Boolean                   |  Được chấp nhận hay chưa         |
 
