@@ -29,7 +29,6 @@
 | avatar        |     Upload_Image                           |     Ảnh đại diện                             |
 | posts         |     Relationship, ref:'Post', many: true   |     Các bài đăng                             |
 | isAdmin       |     Boolean                                |     Có phải là tài khoản admin hay không     |
-| friends       |     Relationship, ref:'Friend', many: true |     Danh sách bạn bè                         |
 <!-- | photos        |     Relationship, ref:'Photo'   |     Album ảnh                    | -->
 
 
