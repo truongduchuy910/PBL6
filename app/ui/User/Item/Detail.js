@@ -8,12 +8,22 @@ import {
   RelationshipDeleteCancel,
   RelationshipDeleteDelete,
 } from "../../Relationship";
+import SkeletonDetail from "./SkeletonDetail";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
-function UI() {
+function UI(loading) {
+  if (loading)
+    return (
+      <VStack maxW="900" mx="auto" my="5" w="100%" space="4">
+        <SkeletonDetail />
+        <PostListGrid />
+      </VStack>
+    );
+
   return (
     <VStack maxW="900" mx="auto" my="5" w="100%" space="4">
       {/* Personal Detail */}
+      <SkeletonDetail />
       <HStack space="7" m="1%" alignItems="center">
         <Box>
           <Image

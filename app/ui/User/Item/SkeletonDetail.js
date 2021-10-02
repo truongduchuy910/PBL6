@@ -1,6 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
-import { Rect } from "react-content-loader/native";
+import { Rect, Circle } from "react-content-loader/native";
 import { Box } from "native-base";
 
 function UI(props) {
@@ -10,14 +10,16 @@ function UI(props) {
         speed="1"
         w="100%"
         mx="auto"
-        viewBox="0 0 900 280"
+        viewBox="0 0 900 320"
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
         animate="true"
       >
-        <Rect x="0" y="0" rx="10" ry="10" width="290" height="270" />
-        <Rect x="305" y="0" rx="10" ry="10" width="290" height="270" />
-        <Rect x="610" y="0" rx="10" ry="10" width="290" height="270" />
+        <Circle cx="60" cy="60" r="60" />
+        <Rect x="150" y="10" rx="15" ry="15" width="220" height="30" />
+        <Rect x="150" y="55" rx="10" ry="10" width="150" height="20" />
+        <Rect x="150" y="90" rx="10" ry="10" width="280" height="20" />
+        <Rect x="0" y="160" rx="10" ry="10" width="900" height="150" />
       </ContentLoader>
     </Box>
   );
