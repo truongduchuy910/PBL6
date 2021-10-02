@@ -1,8 +1,9 @@
 import SignIn from "./SignIn";
 import Home from "./Home";
 import User from "./User";
+import Post from "./Post";
 export default {
-  initialRouteName: "user",
+  initialRouteName: "post",
   screens: [
     {
       name: "sign-in",
@@ -11,5 +12,6 @@ export default {
     },
     { name: "home", component: Home, options: { title: "Trang chủ" } },
     { name: "user", component: User, options: { title: "Trang cá nhân" } },
+    { name: "post", component: Post, options: { title: "Trang bài viết" } },
   ],
 };

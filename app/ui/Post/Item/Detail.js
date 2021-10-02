@@ -21,14 +21,19 @@ import {
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import PostItemSkeletonDetail from "./SkeletonDetail";
 
-function UI() {
+function UI(loading) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
     console.log(isModalOpen);
   };
+
+  if (loading) {
+    return <PostItemSkeletonDetail />;
+  }
 
   return (
     <Stack
