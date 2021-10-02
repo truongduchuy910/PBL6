@@ -6,7 +6,6 @@ export const POST_DELETE = gql`
           id
           content
       }
-   
   }
 `;
 
