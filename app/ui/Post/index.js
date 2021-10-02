@@ -1,5 +1,7 @@
 import PostListGrid from "./List/Grid";
 import PostListSimple from "./List/Simple";
+import PostListSkeletonGrid from "./List/SkeletonGrid";
+import PostListSkeletonSimple from "./List/SkeletonSimple";
 import PostItemSimple from "./Item/Simple";
 import PostItemDetail from "./Item/Detail";
 import PostItemImageOnly from "./Item/ImageOnly";
@@ -11,6 +13,8 @@ import PostDeleteText from "./Delete/Text";
 export {
   PostListGrid,
   PostListSimple,
+  PostListSkeletonGrid,
+  PostListSkeletonSimple,
   PostItemSimple,
   PostItemDetail,
   PostItemImageOnly,

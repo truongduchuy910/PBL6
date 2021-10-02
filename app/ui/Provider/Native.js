@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // important
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { ApolloClient } from "@apollo/client";
 import { HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 //
@@ -60,7 +60,7 @@ function mergeState(a, b) {
     arrayMerge: (destinationArray, sourceArray) => [
       ...sourceArray,
       ...destinationArray.filter((d) =>
-        sourceArray.every((s) => !isEqual(d, s)),
+        sourceArray.every((s) => !isEqual(d, s))
       ),
     ],
   });
@@ -100,14 +100,28 @@ export function getApolloState(pageProps = {}) {
 
 export const PageContext = createContext();
 const Stack = createNativeStackNavigator();
+
+const customTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "rgb(255, 255, 255)",
+  },
+};
+
 export default function ProviderNative(props) {
   const { pageProps = {}, navigation } = props;
   console.log(navigation.initialRouteName);
   const client = useMemo(() => initializeApollo(), [pageProps]);
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={navigation.initialRouteName}>
+      <NavigationContainer theme={customTheme}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName={navigation.initialRouteName}
+        >
           {navigation.screens?.map((screen, index) => {
             console.log(screen.name, index);
             return <Stack.Screen key={screen.name + index} {...screen} />;

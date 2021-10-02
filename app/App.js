@@ -9,9 +9,6 @@ import {
 
 import { ProviderNative } from "./ui/Provider";
 
-import { UserSignUpSimple } from "./ui/User";
-import { PostItemDetail, PostItemSimple } from "./ui/Post";
-
 const theme = extendTheme({
   fonts: {
     heading: "Roboto_500Medium",
@@ -26,10 +23,7 @@ export default function App() {
   });
   return (
     <NativeBaseProvider theme={theme}>
-      <UserSignUpSimple />
-      {/* <PostItemDetail /> */}
-      {/* <PostItemSimple /> */}
-      {/* <ProviderNative navigation={pages} /> */}
+      <ProviderNative navigation={pages} />
     </NativeBaseProvider>
   );
 }
