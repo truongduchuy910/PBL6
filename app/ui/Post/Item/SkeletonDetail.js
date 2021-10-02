@@ -1,6 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
-import { Rect, Circle } from "react-content-loader/native";
+import { Rect } from "react-content-loader/native";
 import { Box } from "native-base";
 
 function UI() {
