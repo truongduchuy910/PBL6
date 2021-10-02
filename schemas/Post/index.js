@@ -9,7 +9,7 @@ module.exports = {
     },
     tags: {
       type: Relationship,
-      ref: "PostTag.posts",
+      ref: "PostTag",
       many: true,
     },
     images: {

@@ -6,13 +6,7 @@ module.exports = {
     content: {
       type: Text,
       isRequired: true,
-      isUnique: true,
-    },
-    posts: {
-      type: Relationship,
-      ref: "Post.tags",
-      many: true,
-    },
+    }
   },
   ...multipleLanguage("Translate"),
 
