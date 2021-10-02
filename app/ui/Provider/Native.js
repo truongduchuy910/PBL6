@@ -4,13 +4,14 @@ import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // important
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { ApolloClient } from "@apollo/client";
+import { ApolloClient, useQuery } from "@apollo/client";
 import { HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 //
 import isEqual from "lodash/isEqual";
 import { setContext } from "@apollo/client/link/context";
 import merge from "deepmerge";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { USER_AUTH } from "../User/Auth/Controller";
 
 export const APOLLO_STATE_PROP_NAME = "__apollo_state__";
 export const VARIABLE_PROP_NAME = "__variable__";
@@ -60,7 +61,7 @@ function mergeState(a, b) {
     arrayMerge: (destinationArray, sourceArray) => [
       ...sourceArray,
       ...destinationArray.filter((d) =>
-        sourceArray.every((s) => !isEqual(d, s))
+        sourceArray.every((s) => !isEqual(d, s)),
       ),
     ],
   });
@@ -100,34 +101,48 @@ export function getApolloState(pageProps = {}) {
 
 export const PageContext = createContext();
 const Stack = createNativeStackNavigator();
+function Native({ navigation, header }) {
+  const { loading, error, data = {} } = useQuery(USER_AUTH);
 
-const customTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: "rgb(255, 255, 255)",
-  },
-};
-
+  const { user } = data;
+  const customTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: "rgb(255, 255, 255)",
+    },
+  };
+  if (loading) return "...";
+  return (
+    <NavigationContainer linking={navigation.linking} theme={customTheme}>
+      <Stack.Navigator
+        screenOptions={{
+          header,
+        }}
+        initialRouteName={navigation.initialRouteName}
+      >
+        {navigation.screens?.map((screen, index) => {
+          if (!user && navigation.auth.requires.includes(screen.name)) {
+            screen.component = navigation.auth.component;
+          }
+          return (
+            <Stack.Screen
+              options={{ headerShown: false }}
+              key={screen.name + index}
+              {...screen}
+            />
+          );
+        })}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 export default function ProviderNative(props) {
-  const { pageProps = {}, navigation } = props;
-  console.log(navigation.initialRouteName);
+  const { pageProps = {}, navigation, header } = props;
   const client = useMemo(() => initializeApollo(), [pageProps]);
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer theme={customTheme}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initialRouteName={navigation.initialRouteName}
-        >
-          {navigation.screens?.map((screen, index) => {
-            console.log(screen.name, index);
-            return <Stack.Screen key={screen.name + index} {...screen} />;
-          })}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Native navigation={navigation} header={header} />
     </ApolloProvider>
   );
 }

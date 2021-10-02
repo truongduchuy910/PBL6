@@ -22,21 +22,11 @@ function UI() {
   };
 
   return (
-    <Box
-      maxW="600"
-      mx="auto"
-      my="2"
-      w="100%"
-      py="4"
-      rounded="xl"
-      borderWidth="1"
-      borderColor="gray.100"
-    >
+    <Box my={4} py={2} rounded="xl" borderWidth="1" borderColor="gray.100">
       <HStack
         space="3"
         display="flex"
         flexDirection="row"
-        w="100%"
         px="3"
         alignItems="center"
         position="relative"

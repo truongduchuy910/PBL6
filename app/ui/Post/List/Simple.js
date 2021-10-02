@@ -9,7 +9,7 @@ function UI(loading) {
   // }
 
   return (
-    <VStack maxW="600" w="100%" mx="auto">
+    <VStack boxSize="full">
       {/* Map list posts */}
       <PostItemSimple />
       <PostItemSimple />

@@ -5,9 +5,7 @@ import { PostListSimple } from "../ui/Post";
 
 export default function Home({ navigation }) {
   return (
-    <Container maxW="conainer.lg">
-      {/* <UserAuthShort navigation={navigation} />
-      <UserSignOutButton navigation={navigation} /> */}
+    <Container w="container.md" margin="auto">
       <PostListSimple />
     </Container>
   );

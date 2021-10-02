@@ -4,7 +4,7 @@ import { UserItemDetail } from "../ui/User";
 
 export default function User({ navigation }) {
   return (
-    <Container maxW="conainer.lg">
+    <Container w="container.md" margin="auto">
       <UserItemDetail />
     </Container>
   );
