@@ -1,6 +1,7 @@
 const { Text, Relationship } = require("@itoa/fields");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
+  active: true,
   fields: {
     content: {
       type: Text,

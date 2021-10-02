@@ -1,4 +1,4 @@
-const { Text, Password, Checkbox, File, Editor } = require("@itoa/fields");
+const { Text, Password, Checkbox, File, Editor, Relationship } = require("@itoa/fields");
 const { modelUser } = require("@itoa/lib/access");
 const { users } = require("@itoa/lib/cache");
 const lang = require("@itoa/lib/lang.json");
@@ -22,7 +22,7 @@ module.exports = {
       type: Text,
       adminConfig: { className: "col-sm-12 col-md-6" },
     },
-    domain: { type: Text },
+    //domain: { type: Text },
     avatar: {
       type: File,
       adapter: imageAdapter,
@@ -38,10 +38,10 @@ module.exports = {
       },
       adminConfig: { className: "col-sm-12 col-md-6" },
     },
-    isSeller: {
-      type: Checkbox,
-      adminConfig: { className: "col-sm-12 col-md-6" },
-    },
+    // isSeller: {
+    //   type: Checkbox,
+    //   adminConfig: { className: "col-sm-12 col-md-6" },
+    // },
     description: {
       type: Editor,
       label: "Mô tả",
@@ -50,6 +50,14 @@ module.exports = {
         fileField: "file",
         searchField: "alt",
       },
+    },
+    gender: {
+      type: Text
+    },
+    posts: {
+      type: Relationship,
+      ref: "Post.user",
+      many: true
     },
     ...multipleLanguage("Translate"),
   },

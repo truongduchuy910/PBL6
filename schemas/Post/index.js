@@ -1,6 +1,7 @@
 const { Text, Relationship, Images } = require("@itoa/fields");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
+  active: true,
   fields: {
     content: {
       type: Text,
@@ -24,6 +25,11 @@ module.exports = {
       ref: "Interactive.post",
       many: false,
     },
+    user: {
+      type: Relationship,
+      ref: "User.posts",
+      many: false
+    }
   },
   ...multipleLanguage("Translate"),
   labelField: "",
