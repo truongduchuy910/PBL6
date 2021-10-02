@@ -4,7 +4,7 @@ import { UserAuthShort, UserSignOutButton } from "../ui/User";
 
 export default function Home({ navigation }) {
   return (
-    <Container>
+    <Container maxW="conainer.lg">
       <UserAuthShort navigation={navigation} />
       <UserSignOutButton navigation={navigation} />
     </Container>
