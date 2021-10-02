@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 
 export const POST_UPDATE = gql`
   mutation($id: ID!, $data: UpdatePostInput) {
-    deletePost(id: $id, data: $data) {
+    updatePost(id: $id, data: $data) {
       id
       content
       tags {
