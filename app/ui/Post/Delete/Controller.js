@@ -10,9 +10,7 @@ export const POST_DELETE = gql`
 `;
 
 export default function PostDelete({ UI, children, page }) {
-  const [on, { loading, error, data = {} }] = useMutation(POST_DELETE, {
-    variables: { id },
-  });
+  const [on, { loading, error, data = {} }] = useMutation(POST_DELETE);
   if (loading) return "...";
   if (error) return error.message;
   const { postDeleted } = data;

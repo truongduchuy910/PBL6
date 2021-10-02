@@ -13,9 +13,7 @@ export const POST_UPDATE = gql`
 `;
 
 export default function PostUpdate({ UI, children, page }) {
-  const [on, { loading, error, data = {} }] = useMutation(POST_UPDATE, {
-    variables: { id, updatePostInput },
-  });
+  const [on, { loading, error, data = {} }] = useMutation(POST_UPDATE);
   if (loading) return "...";
   if (error) return error.message;
   const { postUpdated } = data;
