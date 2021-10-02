@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-export const query = gql`
+export const POST_ITEM = gql`
   query($id: ID!) {
     Post(where: { id: $id }) {
       content
@@ -23,7 +23,7 @@ export const query = gql`
 // file anh dang loi nen chua bo vao
 export default function PostItem({ id, UI, children }) {
   if (!id) return "Id required!";
-  const { loading, error, data = {} } = useQuery(query, {
+  const { loading, error, data = {} } = useQuery(POST_ITEM, {
     variables: { id },
   });
   if (loading) return "...";

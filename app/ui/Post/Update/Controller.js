@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 
-export const POST_DELETE = gql`
-mutation($id: ID!, $data: UpdatePostInput) {
+export const POST_UPDATE = gql`
+  mutation($id: ID!, $data: UpdatePostInput) {
     deletePost(id: $id, data: $data) {
       id
       content
@@ -13,7 +13,9 @@ mutation($id: ID!, $data: UpdatePostInput) {
 `;
 
 export default function PostUpdate({ UI, children, page }) {
-  const [on, { loading, error, data = {} }] = useMutation(mutation);
+  const [on, { loading, error, data = {} }] = useMutation(POST_UPDATE, {
+    variables: { id, updatePostInput },
+  });
   if (loading) return "...";
   if (error) return error.message;
   const { postUpdated } = data;
