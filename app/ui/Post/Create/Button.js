@@ -1,5 +1,6 @@
 import React from "react";
 import { HStack, Box, Image, Text, Button } from "native-base";
+import { Link } from "@react-navigation/native";
 
 function UI() {
   const createHandler = () => {};
@@ -31,16 +32,18 @@ function UI() {
             Chia sẻ kỉ niệm du lịch của bạn
           </Text>
         </Box>
-        <Button
-          bgColor="green.500"
-          _text={{ color: "white", fontSize: "14", fontWeight: "600" }}
-          rounded="8"
-          py="2"
-          px="4"
-          onPress={createHandler}
-        >
-          THÊM BÀI VIẾT
-        </Button>
+        <Link to={{ screen: "newpost" }}>
+          <Button
+            bgColor="green.500"
+            _text={{ color: "white", fontSize: "14", fontWeight: "600" }}
+            rounded="8"
+            py="2"
+            px="4"
+            onPress={createHandler}
+          >
+            THÊM BÀI VIẾT
+          </Button>
+        </Link>
       </HStack>
     </Box>
   );

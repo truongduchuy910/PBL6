@@ -19,8 +19,8 @@ export default function Home({ navigation }) {
         w="260"
         display={["none", "none", "none", "block"]}
       >
-        <Container position="fixed" bgColor="gray.100">
-          Friend list
+        <Container position="fixed">
+          <UserSignOutButton />
         </Container>
       </Container>
     </Container>
