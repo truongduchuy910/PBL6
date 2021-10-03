@@ -50,7 +50,7 @@ function UI({ signIn, loading, error, user, navigation }) {
 
   return (
     <Fragment>
-      <Box w={420} p={10} mx="auto">
+      <Box maxW="350" w="100%" mx="auto" mt="10">
         <Image
           source={{
             uri:

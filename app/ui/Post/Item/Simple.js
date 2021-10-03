@@ -22,7 +22,14 @@ function UI() {
   };
 
   return (
-    <Box my={4} py={2} rounded="xl" borderWidth="1" borderColor="gray.100">
+    <Box
+      maxW="700"
+      my={2}
+      py={4}
+      rounded="xl"
+      borderWidth="1"
+      borderColor="gray.100"
+    >
       <HStack
         space="3"
         display="flex"

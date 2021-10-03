@@ -42,12 +42,12 @@ const data = [
 ];
 
 function UI(loading) {
-  if (loading) {
-    return <PostItemSkeletonGrid />;
-  }
+  // if (loading) {
+  //   return <PostItemSkeletonGrid />;
+  // }
 
   return (
-    <HStack maxW="900" w="100%" flexWrap="wrap" justifyContent="center">
+    <HStack maxW="100%" w="100%" flexWrap="wrap" justifyContent="center">
       {data.map((item) => (
         <Box
           key={item.id}

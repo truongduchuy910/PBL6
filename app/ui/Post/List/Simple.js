@@ -9,7 +9,7 @@ function UI(loading) {
   // }
 
   return (
-    <VStack boxSize="full">
+    <VStack>
       {/* Map list posts */}
       <PostItemSimple />
       <PostItemSimple />

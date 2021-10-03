@@ -5,14 +5,13 @@ function UI() {
   const createHandler = () => {};
 
   return (
-    <Box maxW="600" mx="auto" w="100%">
+    <Box mt="2" mx="0" w="700" maxW="100%">
       <HStack
         space="4"
         alignItems="center"
         w="100%"
-        p="2"
-        px="3"
-        my="1.5"
+        p="3"
+        my="2"
         rounded="12"
         borderWidth="1"
         borderColor="gray.100"

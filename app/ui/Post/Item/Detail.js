@@ -31,25 +31,28 @@ function UI(loading) {
     console.log(isModalOpen);
   };
 
-  if (loading) {
-    return <PostItemSkeletonDetail />;
-  }
+  // if (loading) {
+  //   return <PostItemSkeletonDetail />;
+  // }
 
   return (
     <Stack
-      direction={["column", "column", "row"]}
-      maxW="900px"
+      direction={["column", "column", "column", "row"]}
       mx="auto"
-      my="2"
-      w="100%"
+      my="3"
+      w={["100%", "100%", "80%", "100%"]}
       rounded="xl"
       borderWidth="1"
       borderColor="gray.100"
     >
-      <Box w={["100%", "100%", "60%"]}>
+      <Box w={["100%", "100%", "100%", "60%"]}>
         <UploadImageListCarousel />
       </Box>
-      <VStack maxW={["100%", "100%", "40%"]} py="3" px={["0", "0", "1"]}>
+      <VStack
+        maxW={["100%", "100%", "100%", "40%"]}
+        py="3"
+        px={["0", "0", "1"]}
+      >
         <HStack
           space="3"
           display="flex"
