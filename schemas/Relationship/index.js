@@ -1,13 +1,11 @@
-const { Uuid, Checkbox } = require("@itoa/fields");
+const { Uuid, Checkbox, Relationship } = require("@itoa/fields");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 module.exports = {
     active: true,
     fields: {
-        createBy: {
-            type: Uuid
-        },
         to: {
-            type: Uuid
+            type: Relationship,
+            ref: "User"
         },
         isAccepted: {
             type: Checkbox
