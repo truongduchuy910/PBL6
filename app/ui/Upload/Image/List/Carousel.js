@@ -55,14 +55,15 @@ function UI() {
   return (
     <Flex w="100%" alignItems="center" justifyContent="center">
       <Flex w="100%" direction="row" overflow="hidden" position="relative">
-        <Flex h="600" direction="row" w="100%" {...carouselStyle}>
+        <Flex direction="row" w="100%" {...carouselStyle}>
           {slides.map((slide, index) => (
             <Box key={`slide-${index}`} boxSize="100%" flex="none">
               <Image
                 src={slide.img}
                 alt="Slide Image"
-                boxSize="100%"
                 backgroundSize="cover"
+                flex="1"
+                p="50%"
               />
             </Box>
           ))}
