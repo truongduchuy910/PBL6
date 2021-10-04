@@ -3,6 +3,7 @@ import UserSignInSimple from "./SignIn/Simple";
 import UserSignUpSimple from "./SignUp/Simple";
 import UserSignOutButton from "./SignOut/Button";
 import UserListSuggest from "./List/Suggest";
+import UserListSuggestFixed from "./List/SuggestFixed";
 import UserListRequest from "./List/Request";
 import UserItemDetail from "./Item/Detail";
 import UserUpdateSimple from "./Update/Simple";
@@ -13,6 +14,7 @@ export {
   UserSignUpSimple,
   UserSignOutButton,
   UserListSuggest,
+  UserListSuggestFixed,
   UserListRequest,
   UserItemDetail,
   UserUpdateSimple,

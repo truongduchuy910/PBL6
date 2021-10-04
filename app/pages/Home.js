@@ -1,6 +1,10 @@
 import React from "react";
 import { Container, HStack, Box } from "native-base";
-import { UserAuthShort, UserSignOutButton } from "../ui/User";
+import {
+  UserAuthShort,
+  UserSignOutButton,
+  UserListSuggestFixed,
+} from "../ui/User";
 import { PostListSimple, PostCreateButton } from "../ui/Post";
 
 export default function Home({ navigation }) {
@@ -12,14 +16,15 @@ export default function Home({ navigation }) {
       </Container>
       <Container
         maxW="100%"
-        mx="auto"
         position="absolute"
         right="2"
         top="4"
-        w="260"
+        w="270"
         display={["none", "none", "none", "block"]}
       >
-        <Container position="fixed"></Container>
+        <Container position="fixed">
+          <UserListSuggestFixed />
+        </Container>
       </Container>
     </Container>
   );
