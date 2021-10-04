@@ -3,7 +3,6 @@ dotenv.config();
 const { Keystone } = require("@itoa/keystone");
 const { GraphQLApp } = require("@itoa/app-graphql");
 const { AdminUIApp } = require("@itoa/app-admin-ui");
-//const { NextApp } = require("@itoa/lib/app");
 const { MongooseAdapter } = require("@itoa/adapter-mongoose");
 const { PasswordAuthStrategy } = require("@itoa/auth-password");
 const MongoStore = require("connect-mongo");
@@ -39,8 +38,7 @@ var keystone = new Keystone({
   },
 });
 var authStrategy = null;
-const schemaConfigs = reads("", "./schemas");
-schemaConfigs.map((config) => {
+reads("", "./schemas").map((config) => {
   const schema = require(config.path);
   if (schema.active) {
     keystone.createList(config.name, schema);
@@ -57,26 +55,28 @@ schemaConfigs.map((config) => {
     }
   }
 });
-var apps = [
-  new GraphQLApp(),
-  new AdminUIApp({
-    name: "Itoa.vn",
-    appId: process.env.NODE_ENV === "production" ? "145518257438217" : false,
-    pageId: process.env.NODE_ENV === "production" ? "106614338147778" : false,
-    authStrategy,
-    enableDefaultRoute: false,
-  }),
-  //  new NextApp({ dir: "web" }),
-];
 /**
  *
  * @param {express.Router} app
  */
 function configureExpress(app) {
-  // const routeConfigs = reads("", "./routes");
+  reads("", "./routers", [".js"], ["default", "post", "get"]).map((config) => {
+    const { handler } = require(config.path);
+    app[config.file](config.dir, handler);
+  });
+  return app;
 }
 module.exports = {
   keystone,
-  apps,
+  apps: [
+    new GraphQLApp(),
+    new AdminUIApp({
+      name: "Itoa.vn",
+      appId: process.env.NODE_ENV === "production" ? "145518257438217" : false,
+      pageId: process.env.NODE_ENV === "production" ? "106614338147778" : false,
+      authStrategy,
+      enableDefaultRoute: false,
+    }),
+  ],
   configureExpress,
 };

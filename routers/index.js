@@ -7,7 +7,7 @@ const fs = require("fs");
 const chalk = require("chalk");
 const { gql } = require("@apollo/client");
 const morgan = require("morgan");
-const { uploadPath, sizes } = require("../schemas/localFileAdapter");
+const { uploadPath, sizes } = require("@itoa/lib/stores");
 /**
  * Router sử dụng tham chiếu keystonejs
  */
@@ -62,8 +62,6 @@ class Router {
     });
   };
 }
-module.exports = { Router };
-
 /**
  *
  * @param {express.Router} app
@@ -132,3 +130,10 @@ function distributeFileSystem(app) {
     }
   });
 }
+
+/**
+ *
+ * @param {express.Router} app
+ */
+function configureExpress(app) {}
+module.exports = { Router, configureExpress };
