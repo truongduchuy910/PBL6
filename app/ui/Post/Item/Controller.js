@@ -7,7 +7,9 @@ export const POST_ITEM = gql`
         content
       }
       images {
-        alt
+        file {
+          publicUrl
+        }
       }
       interactive {
         comments {

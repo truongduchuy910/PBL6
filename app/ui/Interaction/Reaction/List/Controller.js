@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 export const REACTION_LIST= gql`
-query($postId: ID!) {
-    Post(where: {id: $postId}){
+query($id: ID!) {
+    Post(where: {id: $id}){
       content
       interactive{
         reactions{
@@ -13,8 +13,8 @@ query($postId: ID!) {
   }
 
 `;
-export default function ReactionList({ UI, postId, ...props }) {
-    if (!postId) return "Post ID required!";
+export default function ReactionList({ UI, id, ...props }) {
+    if (!postId) return "ID required!";
     const { loading, error, data = {}, refetch } = useQuery(REACTION_LIST, {
       variables: { postId },
     });

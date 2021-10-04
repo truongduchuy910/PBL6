@@ -14,8 +14,16 @@ export default function CommentDelete({ UI, children, comment }) {
   if (loading) return "...";
   if (error) return error.message;
   const { commentDeleted } = data;
+  const clickDetete = () => {
+    on({ variables: { id: comment.id } });
+  };
   return (
-    <UI comment={comment} onDeleteComment={on} commentDeleted={commentDeleted} /> ||
-    children({ comment, onDeleteComment, commentDeleted })
+    (
+      <UI
+        comment={comment}
+        onClickDetete={clickDetete}
+        commentDeleted={commentDeleted}
+      />
+    ) || children({ comment, onDeleteComment, commentDeleted })
   );
 }

@@ -10,7 +10,7 @@ export const COMMENT_ITEM = gql`
 export function CommenItem(UI, id, children) {
   if (!id) return "id is required!";
   const { loading, error, data = {} } = useQuery(COMMENT_ITEM, {
-    variables: id,
+    variables: { id },
   });
   if (loading) return "...";
   if (error) return error.message;

@@ -14,8 +14,11 @@ export default function PostDelete({ UI, children, post }) {
   if (loading) return "...";
   if (error) return error.message;
   const { postDeleted } = data;
+  const clickDetete = () => {
+    on({ variables: { id: post.id } });
+  };
   return (
-    <UI post={post} onDeletePost={on} postDeleted={postDeleted} /> ||
+    <UI post={post} onClickDetete={clickDetete} postDeleted={postDeleted} /> ||
     children({ post, onDeletePost, postDeleted })
   );
 }

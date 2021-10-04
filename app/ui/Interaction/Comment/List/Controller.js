@@ -1,7 +1,7 @@
 import {gql, useQuery} from "@apollo/client";
 export const COMMENT_LIST = gql`
-query($postId: ID!){
-    Post(where: {id: $postId}){
+query($id: ID!){
+    Post(where: {id: $id}){
         interactive{
             comments{
                 id
@@ -12,8 +12,8 @@ query($postId: ID!){
 
 }
 `;
-export function CommentList(UI, postId, ...props){
-    if(!postId) return 'postId is required!';
+export function CommentList(UI, id, ...props){
+    if(!id) return 'id is required!';
  const {loading, error, data = {}, refetch}= useQuery(COMMENT_LIST,{variables:postId});
  const { commentList = [] } = data.Post.interactive.comments;
     return (

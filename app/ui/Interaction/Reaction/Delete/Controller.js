@@ -9,13 +9,21 @@ export const REACTION_DELETE = gql`
   }
 `;
 
-export default function ReactionDelete({ UI, children, page }) {
+export default function ReactionDelete({ UI, children, reaction }) {
   const [on, { loading, error, data = {} }] = useMutation(REACTION_DELETE);
   if (loading) return "...";
   if (error) return error.message;
   const { reactionDeleted } = data;
+  const clickDetete = () => {
+    on({ variables: { id: reaction.id } });
+  };
   return (
-    <UI page={page} onDelete={on} reactionDeleted={reactionDeleted} /> ||
-    children({ page, onDelete, commentDeleted })
+    (
+      <UI
+        page={reaction}
+        onClickDelete={clickDetete}
+        reactionDeleted={reactionDeleted}
+      />
+    ) || children({ reaction, onDelete, commentDeleted })
   );
 }
