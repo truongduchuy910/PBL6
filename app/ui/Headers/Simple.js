@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getHeaderTitle } from "@react-navigation/elements";
 import {
   Container,
@@ -8,14 +8,31 @@ import {
   Box,
   Heading,
   Image,
+  Button,
 } from "native-base";
 
 import { AiOutlineMore, AiOutlineArrowLeft } from "react-icons/ai";
+import { BsFillCaretDownFill } from "react-icons/bs";
+import { HiBell } from "react-icons/hi";
 import { Link } from "@react-navigation/native";
 import { UserAuthShort } from "../User";
 export default function HeaderSimple({ navigation, route, options, back }) {
   const title = getHeaderTitle(options, route.name);
   const pressBack = navigation.goBack;
+
+  // const [isOpenNotification, setIsOpenNotification] = useState(false);
+  // const [isOpenOptions, setIsOpenOptions] = useState(false);
+
+  const notificationHandler = () => {
+    console.log("Click on notification");
+    // setIsOpenNotification((prev) => !prev);
+  };
+
+  const optionsHandler = () => {
+    console.log("Click on options");
+    // setIsOpenOptions((prev) => !prev);
+  };
+
   return (
     // <Container w="container.md" margin="auto">
     //   <Box
@@ -72,8 +89,34 @@ export default function HeaderSimple({ navigation, route, options, back }) {
                 h="40px"
               />
             </Link>
-            <HStack>
+            <HStack alignItems="center" space="2">
               <UserAuthShort navigation={navigation} />
+              {/* <Button
+                onPress={notificationHandler}
+                rounded="100"
+                bgColor="gray.100"
+                p="2.5"
+                _text={{ color: "gray.400", fontWeight: "600" }}
+              >
+                {isOpenNotification ? (
+                  <HiBell color="#22c55e" />
+                ) : (
+                  <HiBell color="#a1a1aa" />
+                )}
+              </Button>
+              <Button
+                onPress={optionsHandler}
+                rounded="100"
+                bgColor="gray.100"
+                p="2.5"
+                _text={{ color: "gray.400", fontWeight: "600" }}
+              >
+                {isOpenOptions ? (
+                  <BsFillCaretDownFill color="#22c55e" />
+                ) : (
+                  <BsFillCaretDownFill color="#a1a1aa" />
+                )}
+              </Button> */}
             </HStack>
           </HStack>
         </Box>

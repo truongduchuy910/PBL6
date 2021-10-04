@@ -19,9 +19,7 @@ export default function Home({ navigation }) {
         w="260"
         display={["none", "none", "none", "block"]}
       >
-        <Container position="fixed">
-          <UserSignOutButton />
-        </Container>
+        <Container position="fixed"></Container>
       </Container>
     </Container>
   );
