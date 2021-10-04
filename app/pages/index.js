@@ -7,6 +7,7 @@ import NewPost from "./NewPost";
 import FriendSuggestion from "./FriendSuggestion";
 import FriendRequest from "./FriendRequest";
 import UserUpdate from "./UserUpdate";
+import UpdatePassword from "./UpdatePassword";
 
 export default {
   initialRouteName: "home",
@@ -40,6 +41,11 @@ export default {
       component: UserUpdate,
       options: { title: "Chỉnh sửa trang cá nhân" },
     },
+    {
+      name: "updatepassword",
+      component: UpdatePassword,
+      options: { title: "Đổi mật khẩu" },
+    },
   ],
   linking: {
     config: {
@@ -52,6 +58,7 @@ export default {
         friendsuggestion: "friendsuggestion",
         friendrequest: "friendrequest",
         userupdate: "userupdate",
+        updatepassword: "updatepassword",
       },
     },
   },
@@ -62,11 +69,13 @@ Các trang:
 Trang đăng nhập                 /login                Form đăng nhập
 Trang đăng ký                   /signup               Form đăng ký
 Trang chủ                       /                     Nút thêm bài viết, newfeed của tài khoản, gợi ý bạn bè fixed bên phải
-Trang thêm bài viết             /newpost              Form thêm bài viết
+Trang thêm bài viết             /newpost              Form thêm bài viết *
+Trang sửa bài viết              /updatepost           Form sửa bài viết *
 Trang bài viết đơn              /[postID]             Hiển thị duy nhất 1 bài viết
 Trang cá nhân                   /[userID]             Hiển thị thông tin cá nhân, có hiện quan hệ bạn bè
-Trang bạn bè                    /[userID]/friends     Hiển thị toàn bộ bạn bè của user
+Trang bạn bè                    /[userID]/friends     Hiển thị toàn bộ bạn bè của user *
 Trang gợi ý bạn bè              /friendsuggestion     Hiển thị danh sách bạn bè gợi ý
 Trang lời mời kết bạn           /friendrequest        Hiển thị danh sách lời mời kết bạn
-Trang chỉnh sửa trang cá nhân   /userupdate           Form đổi thông tin cá nhân và form đổi mật khẩu
+Trang chỉnh sửa trang cá nhân   /userupdate           Form đổi thông tin cá nhân
+Trang đổi mật khẩu              /userupdate           Form đổi mật khẩu
 */

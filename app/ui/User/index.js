@@ -6,6 +6,7 @@ import UserListSuggest from "./List/Suggest";
 import UserListRequest from "./List/Request";
 import UserItemDetail from "./Item/Detail";
 import UserUpdateSimple from "./Update/Simple";
+import UserUpdatePassword from "./Update/Password";
 export {
   UserAuthShort,
   UserSignInSimple,
@@ -15,4 +16,5 @@ export {
   UserListRequest,
   UserItemDetail,
   UserUpdateSimple,
+  UserUpdatePassword,
 };
