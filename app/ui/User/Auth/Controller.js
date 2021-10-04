@@ -15,7 +15,7 @@ export default function UserAuth({ UI, navigation }) {
     onCompleted: ({ user }) => {
       console.log(user);
       if (!user) {
-        navigation.navigate("sign-in");
+        // navigation.navigate("sign-in");
       }
     },
     onError: (error) => {},

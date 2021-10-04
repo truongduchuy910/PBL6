@@ -1,6 +1,7 @@
 import React from "react";
 import { HStack, Box } from "native-base";
 import PostItemImageOnly from "../Item/ImageOnly";
+import PostItemSkeletonGrid from "./SkeletonGrid";
 
 const data = [
   {
@@ -40,7 +41,11 @@ const data = [
   },
 ];
 
-function UI() {
+function UI(loading) {
+  if (loading) {
+    return <PostItemSkeletonGrid />;
+  }
+
   return (
     <HStack maxW="900" w="100%" flexWrap="wrap" justifyContent="center">
       {data.map((item) => (

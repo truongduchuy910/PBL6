@@ -1,8 +1,7 @@
-import { Text } from "native-base";
+import { Button, Text } from "native-base";
 import React, { Fragment } from "react";
-import UserSignInSimple from "../SignIn/Simple";
-import UserSignOutButton from "../SignOut/Button";
 import UserAuth from "./Controller";
+import { Link } from "@react-navigation/native";
 
 function UI({ loading, error, user }) {
   return loading ? <Text>Loading...</Text> : <Text>{user && user.phone}</Text>;
