@@ -25,11 +25,11 @@ function UI({ loading, error }) {
   return (
     <Box maxW="560" mx="auto" w="100%" p="2">
       <Heading
-        my={5}
+        my="5"
         textAlign="center"
         fontWeight="400"
-        fontSize={24}
-        color="coolGray.800"
+        fontSize="24"
+        color="gray.800"
       >
         Tạo bài viết mới
       </Heading>

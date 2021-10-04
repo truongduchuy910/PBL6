@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "@react-navigation/native";
 import {
   Box,
@@ -6,11 +6,12 @@ import {
   Heading,
   VStack,
   FormControl,
-  Input,
+  TextArea,
   Button,
   HStack,
   Image,
   Radio,
+  Input,
 } from "native-base";
 function UI({ loading, error, user, navigation }) {
   /**
@@ -18,18 +19,14 @@ function UI({ loading, error, user, navigation }) {
    * @param {Event} e
    */
 
-  const usernameRef = useRef();
-  const phoneRef = useRef();
-  const passwordRef = useRef();
+  const [username, setUsername] = useState("Nguyễn Kim Huy");
+  const [phone, setPhone] = useState("0394123560");
+  const [description, setDescription] = useState("");
   const [sex, setSex] = useState("male");
   const [inputError, setInputError] = useState(null);
 
   const submitSignUp = () => {
     setInputError(null);
-
-    const username = usernameRef.current.value;
-    const phone = phoneRef.current.value;
-    const password = passwordRef.current.value;
 
     // Validation username
     if (!username.trim() || !isNaN(username) || !username.includes(" ")) {
@@ -47,38 +44,23 @@ function UI({ loading, error, user, navigation }) {
       return;
     }
 
-    // Validation password
-    if (password.trim().length < 6) {
-      setInputError("Độ dài mật khẩu ít nhất 6 kí tự");
-      return;
-    }
+    console.log(username, phone, description, sex);
 
-    console.log(username, phone, password, sex);
-
-    // Sign up
+    // Save change
     // if (!loading);
   };
 
   return (
     <Fragment>
-      <Box maxW="350" w="100%" mx="auto" mt="24">
-        <Image
-          source={{
-            uri:
-              "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632635691/favicon_gc42jc.svg",
-          }}
-          alt="Alternate Text"
-          size="sm"
-          mx="auto"
-        />
+      <Box maxW="400" w="100%" mx="auto" mt="4">
         <Heading
           my={5}
           textAlign="center"
           fontWeight="400"
           fontSize={24}
-          color="coolGray.800"
+          color="gray.800"
         >
-          Tạo tài khoản mới
+          Chỉnh sửa trang cá nhân
         </Heading>
         <Box
           px={5}
@@ -89,10 +71,36 @@ function UI({ loading, error, user, navigation }) {
           bg="gray.50"
         >
           <VStack space={3}>
+            <VStack space="4" mb="3">
+              <Image
+                source={{
+                  uri:
+                    "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719777/200960556_1184264562021915_3530694902678239694_n_u7mk8s.jpg",
+                }}
+                alt="Alternate Text"
+                size="lg"
+                mx="auto"
+                rounded="100"
+              />
+              <Button
+                _text={{
+                  color: "gray.400",
+                  fontSize: "14",
+                  fontWeight: "600",
+                }}
+                p="2"
+                rounded="8"
+                w="50%"
+                bgColor="gray.100"
+                mx="auto"
+              >
+                Thay đổi ảnh đại diện
+              </Button>
+            </VStack>
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -100,7 +108,8 @@ function UI({ loading, error, user, navigation }) {
                 Họ và tên
               </FormControl.Label>
               <Input
-                ref={usernameRef}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
                 name="username"
                 bgColor="white"
                 px={2}
@@ -117,7 +126,7 @@ function UI({ loading, error, user, navigation }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -125,7 +134,8 @@ function UI({ loading, error, user, navigation }) {
                 Số điện thoại
               </FormControl.Label>
               <Input
-                ref={phoneRef}
+                onChange={(e) => setPhone(e.target.value)}
+                value={phone}
                 name="phone"
                 bgColor="white"
                 px={2}
@@ -142,17 +152,17 @@ function UI({ loading, error, user, navigation }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
               >
-                Mật khẩu
+                Giới thiệu
               </FormControl.Label>
-              <Input
-                ref={passwordRef}
-                name="password"
-                type="password"
+              <TextArea
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                name="description"
                 bgColor="white"
                 px={2}
                 py={1.5}
@@ -168,7 +178,7 @@ function UI({ loading, error, user, navigation }) {
             <FormControl mb="2">
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -228,7 +238,7 @@ function UI({ loading, error, user, navigation }) {
                 p={2}
                 _text={{ color: "white", fontWeight: "600" }}
               >
-                TẠO TÀI KHOẢN
+                LƯU THAY ĐỔI
               </Button>
             )}
             {loading && (
@@ -242,16 +252,6 @@ function UI({ loading, error, user, navigation }) {
               </Button>
             )}
           </VStack>
-        </Box>
-        <Box mt={4} p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
-          <HStack justifyContent="center">
-            <Text>Bạn đã có tài khoản? </Text>
-            <Link to={{ screen: "home" }}>
-              <Text color="green.500" textDecoration="none">
-                Đăng nhập ngay
-              </Text>
-            </Link>
-          </HStack>
         </Box>
         {error && (
           <Box

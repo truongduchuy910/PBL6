@@ -9,6 +9,7 @@ import {
   RelationshipDeleteCancel,
   RelationshipDeleteDelete,
 } from "../../Relationship";
+import UserUpdateButton from "../Update/Button";
 import SkeletonDetail from "./SkeletonDetail";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
@@ -75,7 +76,7 @@ function UI(loading) {
             </Box>
           </HStack> */}
 
-          <HStack space="2" alignItems="center">
+          {/* <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
               Trần Ngọc Huy đã gửi lời mời kết bạn
             </Text>
@@ -85,7 +86,7 @@ function UI(loading) {
             <Box w="110px">
               <RelationshipDeleteDelete />
             </Box>
-          </HStack>
+          </HStack> */}
 
           {/* <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
@@ -95,6 +96,14 @@ function UI(loading) {
               <RelationshipDeleteActive />
             </Box>
           </HStack> */}
+
+          <HStack space="2" alignItems="center">
+            <Box w="210px">
+              <Link to={{ screen: "userupdate" }}>
+                <UserUpdateButton />
+              </Link>
+            </Box>
+          </HStack>
         </VStack>
       </HStack>
 
