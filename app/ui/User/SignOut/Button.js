@@ -15,16 +15,11 @@ function UI({ loading, error, signOut, navigation, auth }) {
   ) : (
     <Button
       onPress={clickSignOut}
-      rounded={8}
-      bgColor="green.500"
-      py={2}
-      px={3}
-      _text={{ color: "white", fontWeight: "600" }}
-      leftIcon={
-        auth.data?.user ? <IoLogOut size={24} /> : <IoLogIn size={24} />
-      }
+      bgColor="white"
+      _text={{ color: "gray.800" }}
+      leftIcon={<IoLogOut color="#22c55e" />}
     >
-      {auth.data?.user ? "Đăng xuất" : "Đăng nhập"}
+      Đăng xuất
     </Button>
   );
 }

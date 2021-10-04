@@ -3,11 +3,11 @@ import { getHeaderTitle } from "@react-navigation/elements";
 import {
   Container,
   HStack,
+  Box,
+  Image,
   Icon,
   IconButton,
-  Box,
   Heading,
-  Image,
   Button,
 } from "native-base";
 
@@ -16,6 +16,8 @@ import { BsFillCaretDownFill } from "react-icons/bs";
 import { HiBell } from "react-icons/hi";
 import { Link } from "@react-navigation/native";
 import { UserAuthShort } from "../User";
+import Options from "./Options";
+
 export default function HeaderSimple({ navigation, route, options, back }) {
   const title = getHeaderTitle(options, route.name);
   const pressBack = navigation.goBack;
@@ -89,8 +91,9 @@ export default function HeaderSimple({ navigation, route, options, back }) {
                 h="40px"
               />
             </Link>
-            <HStack alignItems="center" space="2">
+            <HStack alignItems="center" space="2.5">
               <UserAuthShort navigation={navigation} />
+              <Options />
               {/* <Button
                 onPress={notificationHandler}
                 rounded="100"
