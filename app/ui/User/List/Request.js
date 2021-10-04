@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HStack, VStack, Box, Image, Text, Heading } from "native-base";
 import {
-  RelationshipCreateButton,
+  RelationshipUpdateButton,
   RelationshipDeleteDelete,
 } from "../../Relationship";
 
@@ -85,7 +85,7 @@ function UI() {
   return (
     <VStack px="1">
       <Text fontSize="20" fontWeight="600" alignSelf="center" my="4">
-        Những người bạn có thể biết
+        Lời mời kết bạn
       </Text>
 
       <HStack
@@ -120,7 +120,7 @@ function UI() {
               />
             </Box>
             <Text my="2">{item.name}</Text>
-            <RelationshipCreateButton />
+            <RelationshipUpdateButton />
             <RelationshipDeleteDelete />
           </VStack>
         ))}

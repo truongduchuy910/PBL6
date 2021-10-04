@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@react-navigation/native";
 import { Box, Button, HStack, Image, VStack, Text, Divider } from "native-base";
 import { PostListGrid } from "../../Post";
 import {
@@ -104,9 +105,21 @@ function UI(loading) {
         <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
         <Text fontSize="14" fontWeight="400" color="gray.600" lineHeight="26px">
           👋 Tôi tên là Trần Ngọc Huy <br></br>📚 Tôi đang tìm hiểu về du lịch
-          <br></br>
-          🛩 Thích đi du lịch bằng máy bay
         </Text>
+      </VStack>
+
+      <VStack space="2" m="1%">
+        <HStack justifyContent="space-between" alignItems="center">
+          <Text fontSize="18" fontWeight="600" color="green.500">
+            Bạn bè
+          </Text>
+          <Link to={{ screen: "home" }}>
+            <Text color="green.500" textDecoration="none">
+              Xem tất cả
+            </Text>
+          </Link>
+        </HStack>
+        <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
       </VStack>
 
       {/* Personal Post */}
