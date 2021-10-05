@@ -5,6 +5,7 @@ const { GraphQLApp } = require("@itoa/app-graphql");
 const { AdminUIApp } = require("@itoa/app-admin-ui");
 const { MongooseAdapter } = require("@itoa/adapter-mongoose");
 const { PasswordAuthStrategy } = require("@itoa/auth-password");
+const { StaticApp } = require("@itoa/app-static");
 const MongoStore = require("connect-mongo");
 const express = require("express");
 const { reads } = require("@itoa/lib/files");
@@ -76,6 +77,11 @@ module.exports = {
       pageId: process.env.NODE_ENV === "production" ? "106614338147778" : false,
       authStrategy,
       enableDefaultRoute: false,
+    }),
+    new StaticApp({
+      path: "/",
+      src: "app/web-build",
+      fallback: "index.html",
     }),
   ],
   configureExpress,

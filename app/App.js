@@ -29,7 +29,4 @@ function App() {
   );
 }
 AppRegistry.registerComponent("Kilogram", () => App);
-AppRegistry.runApplication("App", {
-  rootTag: document.getElementById("react-root"),
-});
 export default App;
