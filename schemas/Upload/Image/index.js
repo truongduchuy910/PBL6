@@ -1,6 +1,7 @@
 let { File, Text } = require("@itoa/fields");
 let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 let { roleSeller } = require("@itoa/lib/access");
+const { atTracking, byTracking } = require("@itoa/list-plugins");
 
 module.exports = {
   active: true,
@@ -24,4 +25,5 @@ module.exports = {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour
   },
+  plugins: [atTracking(), byTracking()],
 };

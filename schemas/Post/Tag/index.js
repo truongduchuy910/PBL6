@@ -1,12 +1,13 @@
 const { Text, Relationship } = require("@itoa/fields");
 const { multipleLanguage } = require("@itoa/lib/plugins");
+const { byTracking } = require("@itoa/list-plugins");
 module.exports = {
   active: true,
   fields: {
     content: {
       type: Text,
       isRequired: true,
-    }
+    },
   },
   ...multipleLanguage("Translate"),
 
@@ -18,4 +19,5 @@ module.exports = {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour
   },
+  plugins: [byTracking()],
 };

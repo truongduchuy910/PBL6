@@ -1,9 +1,15 @@
-const { Text, Password, Checkbox, File, Editor, Relationship } = require("@itoa/fields");
-const { modelUser } = require("@itoa/lib/access");
+const {
+  Text,
+  Password,
+  Checkbox,
+  File,
+  Editor,
+  Relationship,
+} = require("@itoa/fields");
 const { users } = require("@itoa/lib/cache");
-const lang = require("@itoa/lib/lang.json");
 const { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 const { multipleLanguage } = require("@itoa/lib/plugins");
+const { atTracking } = require("@itoa/list-plugins");
 module.exports = {
   active: true,
   fields: {
@@ -52,12 +58,12 @@ module.exports = {
       },
     },
     gender: {
-      type: Text
+      type: Text,
     },
     posts: {
       type: Relationship,
       ref: "Post.user",
-      many: true
+      many: true,
     },
     ...multipleLanguage("Translate"),
   },
@@ -77,4 +83,5 @@ module.exports = {
     identityField: "phone",
     secretField: "password",
   },
+  plugins: [atTracking()],
 };
