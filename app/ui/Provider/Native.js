@@ -19,8 +19,7 @@ export const VARIABLE_PROP_NAME = "__variable__";
  * @returns {ApolloClient}
  */
 function createApolloClient(domain = "_", locale = "_") {
-  const cms = process.env.CMS || "http://localhost:3000";
-  const uri = cms + "/admin/api";
+  const uri = "https://odanang.net/admin/api";
   const as =
     process.env.NODE_ENV === "production" ? domain : process.env.HOST_DEV;
   console.log("createApolloClient", uri, as);
