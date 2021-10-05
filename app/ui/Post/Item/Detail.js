@@ -18,6 +18,7 @@ import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
 } from "../../Interaction/Reaction";
+import { AlbumCreateButton } from "../../Album";
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -119,12 +120,16 @@ function UI(loading) {
             borderBottomColor="gray.100"
             borderTopWidth="1"
             borderTopColor="gray.100"
+            justifyContent="space-around"
           >
-            <Box w="50%">
+            <Box w="33%">
               <InteractionReactionCreateButton />
             </Box>
-            <Box w="50%">
+            <Box w="33%">
               <InteractionCommentListToggleButton />
+            </Box>
+            <Box w="33%">
+              <AlbumCreateButton />
             </Box>
           </HStack>
           <Box w="100%">

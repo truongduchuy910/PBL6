@@ -1,2 +1,3 @@
 import AlbumListSimple from "./List/Simple";
-export { AlbumListSimple };
+import AlbumCreateButton from "./Create/Button";
+export { AlbumListSimple, AlbumCreateButton };
