@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HStack, VStack, Box, Image, Text, Heading } from "native-base";
+import { HStack, VStack, Box, Image, Text, Heading, Spacer } from "native-base";
 import { Link } from "@react-navigation/native";
 
 // Fetch 12 items
@@ -38,11 +38,12 @@ const data = [
 
 function UI() {
   return (
-    <VStack px="1" my="2">
-      <HStack mb="3" alignItems="center" justifyContent="space-between">
+    <VStack my="2" w="full">
+      <HStack mb="3" w="full">
         <Text fontSize="16" fontWeight="600" color="gray.400">
           Gợi ý cho bạn
         </Text>
+        <Spacer />
         <Link to={{ screen: "friendsuggestion" }}>
           <Text color="green.500">Xem thêm</Text>
         </Link>
@@ -54,7 +55,7 @@ function UI() {
           m="1"
           mt="3"
           flex="1"
-          maxW="100%"
+          maxw="full"
           w="260px"
           alignItems="center"
           rounded="8"

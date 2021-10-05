@@ -7,7 +7,7 @@ function UI({ item }) {
   };
 
   return (
-    <Box w="100%" position="relative">
+    <Box w="full" position="relative">
       <Image
         source={{
           uri: item.thumbnailUrl,
@@ -20,7 +20,7 @@ function UI({ item }) {
       <Button
         onPress={singlePostHandler}
         position="absolute"
-        w="100%"
+        w="full"
         h="100%"
         bgColor="transparent"
       ></Button>

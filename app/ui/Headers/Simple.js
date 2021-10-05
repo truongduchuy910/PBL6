@@ -34,7 +34,7 @@ function UI({ user, navigation, route, options, back }) {
       borderColor="gray.100"
       bgColor="white"
     >
-      <Container w="container.md" mx="auto" maxW="100%" px="2">
+      <Container w="container.md" mx="auto" maxw="full" px="2">
         <Box safeAreaTop pt="3" pb="2" boxSize="full">
           <HStack justifyContent="space-between" alignItems="center">
             <Link to={{ screen: "home" }}>

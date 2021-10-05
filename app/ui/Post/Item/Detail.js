@@ -58,7 +58,7 @@ function UI(loading) {
           space="3"
           display="flex"
           flexDirection="row"
-          w="100%"
+          w="full"
           px="3"
           alignItems="center"
           position="relative"
@@ -92,7 +92,7 @@ function UI(loading) {
               p="2"
             >
               <PostUpdateText />
-              <Divider w="100%" bgColor="gray.100" />
+              <Divider w="full" bgColor="gray.100" />
               <PostDeleteText />
             </VStack>
           )}
@@ -114,7 +114,7 @@ function UI(loading) {
         </Box>
         <Box px="3">
           <HStack
-            w="100%"
+            w="full"
             my="2"
             borderBottomWidth="1"
             borderBottomColor="gray.100"
@@ -132,7 +132,7 @@ function UI(loading) {
               <AlbumCreateButton />
             </Box>
           </HStack>
-          <Box w="100%">
+          <Box w="full">
             <InteractionCommentCreateSimple my="10" />
             <InteractionCommentListSimple />
           </Box>

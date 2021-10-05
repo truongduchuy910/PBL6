@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, HStack, Box } from "native-base";
+import { Container, HStack, Box, Flex } from "native-base";
 import {
   UserAuthShort,
   UserSignOutButton,
@@ -9,23 +9,24 @@ import { PostListSimple, PostCreateButton } from "../ui/Post";
 
 export default function Home({ navigation }) {
   return (
-    <Container w="container.lg" m="auto" mt="16" px="2" maxW="100%">
-      <Container maxW="100%" mx={["auto", "auto", "auto", "0"]}>
-        <PostCreateButton />
-        <PostListSimple />
-      </Container>
-      <Container
-        maxW="100%"
-        position="absolute"
-        right="2"
-        top="4"
-        w="270"
-        display={["none", "none", "none", "block"]}
-      >
-        <Container position="fixed">
-          <UserListSuggestFixed />
-        </Container>
-      </Container>
+    <Container w="container.md" mx="auto" mt="16">
+      <Flex w="full" mx={["auto", "auto", "auto", "0"]} direction="row">
+        <Box flex={8}>
+          <PostCreateButton />
+          <PostListSimple />
+        </Box>
+        <Box flex={4}>
+          <Box
+            w="full"
+            px={4}
+            position="sticky"
+            top="64px"
+            display={["none", "none", "none", "block"]}
+          >
+            <UserListSuggestFixed />
+          </Box>
+        </Box>
+      </Flex>
     </Container>
   );
 }

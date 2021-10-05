@@ -23,7 +23,7 @@ function UI() {
 
   return (
     <Box
-      maxW="700"
+      maxW="container.md"
       my={2}
       py={4}
       rounded="xl"
@@ -67,7 +67,7 @@ function UI() {
             p="2"
           >
             <PostUpdateText />
-            <Divider w="100%" bgColor="gray.100" />
+            <Divider w="full" bgColor="gray.100" />
             <PostDeleteText />
           </VStack>
         )}
@@ -90,7 +90,7 @@ function UI() {
       </Box>
       <Box px="3">
         <HStack
-          w="100%"
+          w="full"
           my="2"
           borderBottomWidth="1"
           borderBottomColor="gray.100"

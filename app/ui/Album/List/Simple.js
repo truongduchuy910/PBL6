@@ -47,14 +47,14 @@ function UI(loading) {
   // }
 
   return (
-    // <VStack w="100%">
-    //   <VStack w="100%" space="2" m="1%">
+    // <VStack w="full">
+    //   <VStack w="full" space="2" m="1%">
     //     <Text fontSize="18" fontWeight="600" color="gray.700">
     //       Bài viết
     //     </Text>
-    //     <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
+    //     <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
     //   </VStack>
-    //   <HStack maxW="100%" w="100%" flexWrap="wrap" justifyContent="center">
+    //   <HStack maxw="full" w="full" flexWrap="wrap" justifyContent="center">
     //     {data.map((item) => (
     //       <Box
     //         key={item.id}
@@ -72,14 +72,14 @@ function UI(loading) {
     //   </HStack>
     // </VStack>
 
-    <VStack w="100%">
-      <Box w="100%" mt="5" mb="2" px="0.5%">
+    <VStack w="full">
+      <Box w="full" mt="5" mb="2" px="0.5%">
         <Text fontSize="18" fontWeight="600" color="gray.700">
           Bài viết bạn đã lưu
         </Text>
       </Box>
 
-      <HStack maxW="100%" w="100%" flexWrap="wrap" justifyContent="flex-start">
+      <HStack maxw="full" w="full" flexWrap="wrap" justifyContent="flex-start">
         {data.map((item) => (
           <Box
             key={item.id}

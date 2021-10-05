@@ -6,11 +6,11 @@ function UI() {
   const createHandler = () => {};
 
   return (
-    <Box mt="2" mx="0" w="700" maxW="100%">
+    <Box mt="2" mx="0" w="full">
       <HStack
         space="4"
         alignItems="center"
-        w="100%"
+        w="full"
         p="3"
         my="2"
         rounded="12"

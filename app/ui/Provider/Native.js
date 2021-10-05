@@ -134,14 +134,15 @@ function Native({ navigation, header }) {
             initialRouteName={navigation.initialRouteName}
           >
             {navigation.screens?.map((screen, index) => {
-              if (!user && navigation.auth.requires.includes(screen.name)) {
-                screen.component = navigation.auth.component;
-              }
               return (
                 <Stack.Screen
-                  options={{ headerShown: false }}
-                  key={screen.name + index}
                   {...screen}
+                  key={screen.name + index}
+                  component={
+                    !user && navigation.auth.requires.includes(screen.name)
+                      ? navigation.auth.component
+                      : screen.component
+                  }
                 />
               );
             })}
@@ -149,7 +150,7 @@ function Native({ navigation, header }) {
         </NavigationContainer>
       </AuthContext.Provider>
     ),
-    [user],
+    [user, loading],
   );
   return screens;
 }

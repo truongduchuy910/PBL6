@@ -10,7 +10,7 @@ function UI(props) {
           space="3"
           display="flex"
           flexDirection="row"
-          w="100%"
+          w="full"
           px="1"
           alignItems="flex-start"
           justifyContent="flex-start"

@@ -84,16 +84,16 @@ const data = [
 function UI() {
   return (
     <VStack>
-      <Box w="100%" mt="5" mb="2" px="0.5%">
+      <Box w="full" mt="5" mb="2" px="0.5%">
         <Text fontSize="18" fontWeight="600" color="gray.700">
           Những người bạn có thể biết
         </Text>
       </Box>
 
       <HStack
-        maxW="100%"
+        maxw="full"
         mx="auto"
-        w="100%"
+        w="full"
         flexWrap="wrap"
         justifyContent="flex-start"
       >

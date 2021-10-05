@@ -51,7 +51,7 @@ function UI({ loading, error, user, navigation }) {
 
   return (
     <Fragment>
-      <Box maxW="350" w="100%" mx="auto" mt="4">
+      <Box maxW="350" w="full" mx="auto" mt="4">
         <Heading
           my={5}
           textAlign="center"

@@ -11,7 +11,7 @@ function UI() {
       _text={{ color: "gray.400", fontSize: "14", fontWeight: "600" }}
       p="2"
       rounded="8"
-      w="100%"
+      w="full"
       bgColor="gray.100"
       onPress={clickHandler}
     >

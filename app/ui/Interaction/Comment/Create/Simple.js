@@ -18,8 +18,8 @@ function UI() {
   };
 
   return (
-    <Box mx="auto" w="100%">
-      <HStack space="2" display="flex" flexDirection="row" w="100%">
+    <Box mx="auto" w="full">
+      <HStack space="2" display="flex" flexDirection="row" w="full">
         <Image
           source={{
             uri:

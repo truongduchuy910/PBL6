@@ -5,10 +5,10 @@ import { Box } from "native-base";
 
 function UI(props) {
   return (
-    <Box maxW="1005" w="100%" mx="auto" p="1%">
+    <Box maxW="1005" w="full" mx="auto" p="1%">
       <ContentLoader
         speed="1"
-        w="100%"
+        w="full"
         mx="auto"
         viewBox="0 0 1005 320"
         backgroundColor="#f3f3f3"

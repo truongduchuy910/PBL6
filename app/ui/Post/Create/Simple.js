@@ -23,7 +23,7 @@ function UI({ loading, error }) {
   };
 
   return (
-    <Box maxW="560" mx="auto" w="100%" p="2">
+    <Box maxW="560" mx="auto" w="full" p="2">
       <Heading
         my="5"
         textAlign="center"
@@ -54,7 +54,7 @@ function UI({ loading, error }) {
             </FormControl.Label>
             <TextArea
               placeholder="Nhập nội dung ..."
-              w="100%"
+              w="full"
               ref={contentRef}
               name="content"
               bgColor="white"

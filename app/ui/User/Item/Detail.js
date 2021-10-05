@@ -16,14 +16,14 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 function UI(loading) {
   // if (loading)
   //   return (
-  //     <VStack maxW="100%" mx="auto" my="5" w="100%" space="4">
+  //     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
   //       <SkeletonDetail />
   //       <PostListGrid />
   //     </VStack>
   //   );
 
   return (
-    <VStack maxW="100%" mx="auto" my="5" w="100%" space="4">
+    <VStack maxw="full" mx="auto" my="5" w="full" space="4">
       {/* Personal Detail */}
       {/* <SkeletonDetail /> */}
       <HStack space="7" m="1%" alignItems="center">
@@ -111,7 +111,7 @@ function UI(loading) {
         <Text fontSize="18" fontWeight="600" color="gray.700">
           Giới thiệu
         </Text>
-        <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
+        <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
         <Text fontSize="14" fontWeight="400" color="gray.600" lineHeight="26px">
           👋 Tôi tên là Trần Ngọc Huy <br></br>📚 Tôi đang tìm hiểu về du lịch
         </Text>
@@ -128,7 +128,7 @@ function UI(loading) {
             </Text>
           </Link>
         </HStack>
-        <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
+        <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
       </VStack>
 
       {/* Personal Post */}
@@ -137,7 +137,7 @@ function UI(loading) {
           <Text fontSize="18" fontWeight="600" color="gray.700">
             Bài viết
           </Text>
-          <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
+          <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
         </VStack>
         <PostListGrid />
       </Box>
