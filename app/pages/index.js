@@ -8,6 +8,7 @@ import FriendSuggestion from "./FriendSuggestion";
 import FriendRequest from "./FriendRequest";
 import UserUpdate from "./UserUpdate";
 import UpdatePassword from "./UpdatePassword";
+import Album from "./Album";
 
 export default {
   initialRouteName: "home",
@@ -46,6 +47,11 @@ export default {
       component: UpdatePassword,
       options: { title: "Đổi mật khẩu" },
     },
+    {
+      name: "album",
+      component: Album,
+      options: { title: "Đã lưu" },
+    },
   ],
   linking: {
     config: {
@@ -59,6 +65,7 @@ export default {
         friendrequest: "friendrequest",
         userupdate: "userupdate",
         updatepassword: "updatepassword",
+        album: "album",
       },
     },
   },

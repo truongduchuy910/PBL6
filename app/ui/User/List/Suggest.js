@@ -95,7 +95,7 @@ function UI() {
         mx="auto"
         w="100%"
         flexWrap="wrap"
-        justifyContent="center"
+        justifyContent="flex-start"
       >
         {data.map((item) => (
           <VStack

@@ -62,7 +62,7 @@ function UI() {
               leftIcon={<RiDownloadCloudFill color="#22c55e" />}
               onPress={optionsHandler}
             >
-              <Link to={{ screen: "user" }}>Lưu</Link>
+              <Link to={{ screen: "album" }}>Lưu</Link>
             </Button>
 
             <UserSignOutButton />
