@@ -12,7 +12,8 @@ import {
   Image,
   Radio,
 } from "native-base";
-function UI({ loading, error, user, navigation }) {
+import Controller from "../Create/Controller.js";
+function UI({ loading, error, user, navigation, on }) {
   /**
    *
    * @param {Event} e
@@ -24,9 +25,8 @@ function UI({ loading, error, user, navigation }) {
   const [sex, setSex] = useState("male");
   const [inputError, setInputError] = useState(null);
 
-  const submitSignUp = () => {
+  const clickSignUp = () => {
     setInputError(null);
-
     const username = usernameRef.current.value;
     const phone = phoneRef.current.value;
     const password = passwordRef.current.value;
@@ -56,7 +56,9 @@ function UI({ loading, error, user, navigation }) {
     console.log(username, phone, password, sex);
 
     // Sign up
-    // if (!loading);
+    if (!loading) {
+      on({ variables: { data: { name: username, phone, password } } });
+    }
   };
 
   return (
@@ -222,7 +224,7 @@ function UI({ loading, error, user, navigation }) {
             </FormControl>
             {!loading && (
               <Button
-                onPress={submitSignUp}
+                onPress={clickSignUp}
                 rounded={8}
                 bgColor="green.500"
                 p={2}
@@ -283,4 +285,6 @@ function UI({ loading, error, user, navigation }) {
     </Fragment>
   );
 }
-export default UI;
+export default function UserSignUp(props) {
+  return <Controller {...props} UI={UI} />;
+}
