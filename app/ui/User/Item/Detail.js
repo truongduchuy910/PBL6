@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@react-navigation/native";
 import { Box, Button, HStack, Image, VStack, Text, Divider } from "native-base";
 import { PostListGrid } from "../../Post";
 import {
@@ -8,22 +9,23 @@ import {
   RelationshipDeleteCancel,
   RelationshipDeleteDelete,
 } from "../../Relationship";
+import UserUpdateButton from "../Update/Button";
 import SkeletonDetail from "./SkeletonDetail";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 function UI(loading) {
-  if (loading)
-    return (
-      <VStack maxW="900" mx="auto" my="5" w="100%" space="4">
-        <SkeletonDetail />
-        <PostListGrid />
-      </VStack>
-    );
+  // if (loading)
+  //   return (
+  //     <VStack maxW="100%" mx="auto" my="5" w="100%" space="4">
+  //       <SkeletonDetail />
+  //       <PostListGrid />
+  //     </VStack>
+  //   );
 
   return (
-    <VStack maxW="900" mx="auto" my="5" w="100%" space="4">
+    <VStack maxW="100%" mx="auto" my="5" w="100%" space="4">
       {/* Personal Detail */}
-      <SkeletonDetail />
+      {/* <SkeletonDetail /> */}
       <HStack space="7" m="1%" alignItems="center">
         <Box>
           <Image
@@ -74,7 +76,7 @@ function UI(loading) {
             </Box>
           </HStack> */}
 
-          <HStack space="2" alignItems="center">
+          {/* <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
               Trần Ngọc Huy đã gửi lời mời kết bạn
             </Text>
@@ -84,7 +86,7 @@ function UI(loading) {
             <Box w="110px">
               <RelationshipDeleteDelete />
             </Box>
-          </HStack>
+          </HStack> */}
 
           {/* <HStack space="2" alignItems="center">
             <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
@@ -94,25 +96,45 @@ function UI(loading) {
               <RelationshipDeleteActive />
             </Box>
           </HStack> */}
+
+          <HStack space="2" alignItems="center">
+            <Box w="210px">
+              <Link to={{ screen: "userupdate" }}>
+                <UserUpdateButton />
+              </Link>
+            </Box>
+          </HStack>
         </VStack>
       </HStack>
 
       <VStack space="2" m="1%">
-        <Text fontSize="18" fontWeight="600" color="green.500">
+        <Text fontSize="18" fontWeight="600" color="gray.700">
           Giới thiệu
         </Text>
         <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
         <Text fontSize="14" fontWeight="400" color="gray.600" lineHeight="26px">
           👋 Tôi tên là Trần Ngọc Huy <br></br>📚 Tôi đang tìm hiểu về du lịch
-          <br></br>
-          🛩 Thích đi du lịch bằng máy bay
         </Text>
+      </VStack>
+
+      <VStack space="2" m="1%">
+        <HStack justifyContent="space-between" alignItems="center">
+          <Text fontSize="18" fontWeight="600" color="gray.700">
+            Bạn bè
+          </Text>
+          <Link to={{ screen: "home" }}>
+            <Text color="green.500" textDecoration="none">
+              Xem tất cả
+            </Text>
+          </Link>
+        </HStack>
+        <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
       </VStack>
 
       {/* Personal Post */}
       <Box>
         <VStack w="98%" space="2" m="1%">
-          <Text fontSize="18" fontWeight="600" color="green.500">
+          <Text fontSize="18" fontWeight="600" color="gray.700">
             Bài viết
           </Text>
           <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />

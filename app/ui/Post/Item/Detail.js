@@ -18,6 +18,7 @@ import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
 } from "../../Interaction/Reaction";
+import { AlbumCreateButton } from "../../Album";
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -31,25 +32,28 @@ function UI(loading) {
     console.log(isModalOpen);
   };
 
-  if (loading) {
-    return <PostItemSkeletonDetail />;
-  }
+  // if (loading) {
+  //   return <PostItemSkeletonDetail />;
+  // }
 
   return (
     <Stack
-      direction={["column", "column", "row"]}
-      maxW="900px"
+      direction={["column", "column", "column", "row"]}
       mx="auto"
-      my="2"
-      w="100%"
+      my="3"
+      w={["100%", "100%", "80%", "100%"]}
       rounded="xl"
       borderWidth="1"
       borderColor="gray.100"
     >
-      <Box w={["100%", "100%", "60%"]}>
+      <Box w={["100%", "100%", "100%", "60%"]}>
         <UploadImageListCarousel />
       </Box>
-      <VStack maxW={["100%", "100%", "40%"]} py="3" px={["0", "0", "1"]}>
+      <VStack
+        maxW={["100%", "100%", "100%", "40%"]}
+        py="3"
+        px={["0", "0", "1"]}
+      >
         <HStack
           space="3"
           display="flex"
@@ -116,12 +120,16 @@ function UI(loading) {
             borderBottomColor="gray.100"
             borderTopWidth="1"
             borderTopColor="gray.100"
+            justifyContent="space-around"
           >
-            <Box w="50%">
+            <Box w="33%">
               <InteractionReactionCreateButton />
             </Box>
-            <Box w="50%">
+            <Box w="33%">
               <InteractionCommentListToggleButton />
+            </Box>
+            <Box w="33%">
+              <AlbumCreateButton />
             </Box>
           </HStack>
           <Box w="100%">

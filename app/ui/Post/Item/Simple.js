@@ -9,10 +9,10 @@ import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
 } from "../../Interaction/Reaction";
+import { AlbumCreateButton } from "../../Album";
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-
 function UI() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,7 +22,14 @@ function UI() {
   };
 
   return (
-    <Box my={4} py={2} rounded="xl" borderWidth="1" borderColor="gray.100">
+    <Box
+      maxW="700"
+      my={2}
+      py={4}
+      rounded="xl"
+      borderWidth="1"
+      borderColor="gray.100"
+    >
       <HStack
         space="3"
         display="flex"
@@ -89,12 +96,16 @@ function UI() {
           borderBottomColor="gray.100"
           borderTopWidth="1"
           borderTopColor="gray.100"
+          justifyContent="space-around"
         >
-          <Box w="50%">
+          <Box w="33%">
             <InteractionReactionCreateButton />
           </Box>
-          <Box w="50%">
+          <Box w="33%">
             <InteractionCommentListToggleButton />
+          </Box>
+          <Box w="33%">
+            <AlbumCreateButton />
           </Box>
         </HStack>
         <InteractionCommentCreateSimple my="10" />
