@@ -1,25 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
-export const USER_AUTH = gql`
-  query {
-    user: authenticatedUser {
-      id
-      phone
-      name
-      email
-    }
-  }
-`;
-export default function UserAuth({ UI, navigation }) {
-  const { loading, error, data = {} } = useQuery(USER_AUTH, {
-    onCompleted: ({ user }) => {
-      console.log(user);
-      if (!user) {
-        // navigation.navigate("sign-in");
-      }
-    },
-    onError: (error) => {},
-  });
+import { AuthContext } from "../../Provider/Native";
+export default function UserAuth({ UI, navigation, ...props }) {
+  const { loading, error, data = {} } = useContext(AuthContext);
   const { user = {} } = data;
-  return <UI loading={loading} error={error} user={user} />;
+  return (
+    <UI
+      {...props}
+      navigation={navigation}
+      loading={loading}
+      error={error}
+      user={user}
+    />
+  );
 }

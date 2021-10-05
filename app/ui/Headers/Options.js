@@ -7,7 +7,7 @@ import { MdSettings } from "react-icons/md";
 import { HiLockClosed } from "react-icons/hi";
 import { UserSignOutButton } from "../User";
 
-function UI() {
+function UI({ navigation }) {
   const [isOpenOptions, setIsOpenOptions] = useState(false);
 
   const optionsHandler = () => {
@@ -65,7 +65,7 @@ function UI() {
               <Link to={{ screen: "album" }}>Lưu</Link>
             </Button>
 
-            <UserSignOutButton />
+            <UserSignOutButton navigation={navigation} />
           </VStack>
         </Box>
       )}

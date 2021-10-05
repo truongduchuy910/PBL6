@@ -1,18 +1,27 @@
 // react
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // important
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { ApolloClient, useQuery } from "@apollo/client";
+import { ApolloClient, useQuery, gql } from "@apollo/client";
 import { HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 //
 import isEqual from "lodash/isEqual";
 import { setContext } from "@apollo/client/link/context";
 import merge from "deepmerge";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { USER_AUTH } from "../User/Auth/Controller";
 
+export const USER_AUTH = gql`
+  query {
+    user: authenticatedUser {
+      id
+      phone
+      name
+      email
+    }
+  }
+`;
 export const APOLLO_STATE_PROP_NAME = "__apollo_state__";
 export const VARIABLE_PROP_NAME = "__variable__";
 /**
@@ -98,12 +107,12 @@ export function getApolloState(pageProps = {}) {
   return pageProps[APOLLO_STATE_PROP_NAME];
 }
 
-export const PageContext = createContext();
+export const AuthContext = createContext();
 const Stack = createNativeStackNavigator();
 function Native({ navigation, header }) {
-  const { loading, error, data = {} } = useQuery(USER_AUTH);
-
-  const { user } = data;
+  const result = useQuery(USER_AUTH);
+  const { loading, error, data = {} } = result;
+  const { user = null } = data;
   const customTheme = {
     ...DefaultTheme,
     colors: {
@@ -111,30 +120,38 @@ function Native({ navigation, header }) {
       background: "rgb(255, 255, 255)",
     },
   };
-  if (loading) return "...";
-  return (
-    <NavigationContainer linking={navigation.linking} theme={customTheme}>
-      <Stack.Navigator
-        screenOptions={{
-          header,
-        }}
-        initialRouteName={navigation.initialRouteName}
-      >
-        {navigation.screens?.map((screen, index) => {
-          if (!user && navigation.auth.requires.includes(screen.name)) {
-            screen.component = navigation.auth.component;
-          }
-          return (
-            <Stack.Screen
-              options={{ headerShown: false }}
-              key={screen.name + index}
-              {...screen}
-            />
-          );
-        })}
-      </Stack.Navigator>
-    </NavigationContainer>
+  useEffect(() => {
+    console.log("navigation renderd", user);
+  });
+  const screens = useMemo(
+    () => (
+      <AuthContext.Provider value={result}>
+        <NavigationContainer linking={navigation.linking} theme={customTheme}>
+          <Stack.Navigator
+            screenOptions={{
+              header,
+            }}
+            initialRouteName={navigation.initialRouteName}
+          >
+            {navigation.screens?.map((screen, index) => {
+              if (!user && navigation.auth.requires.includes(screen.name)) {
+                screen.component = navigation.auth.component;
+              }
+              return (
+                <Stack.Screen
+                  options={{ headerShown: false }}
+                  key={screen.name + index}
+                  {...screen}
+                />
+              );
+            })}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AuthContext.Provider>
+    ),
+    [user],
   );
+  return screens;
 }
 export default function ProviderNative(props) {
   const { pageProps = {}, navigation, header } = props;

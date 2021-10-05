@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useMutation, gql, useApolloClient, useQuery } from "@apollo/client";
-import { USER_AUTH } from "../Auth/Controller";
+import { AuthContext } from "../../Provider/Native";
 export const USER_SIGNIN = gql`
   mutation {
     status: unauthenticateUser {
@@ -8,14 +8,14 @@ export const USER_SIGNIN = gql`
     }
   }
 `;
-export default function UserSignIn({ UI, navigation }) {
+export default function UserSignOut({ UI, navigation }) {
   const client = useApolloClient();
-  const auth = useQuery(USER_AUTH);
+  const auth = useContext(AuthContext);
   const [on, result = {}] = useMutation(USER_SIGNIN, {
     onCompleted: async ({ status }) => {
       await client.clearStore();
       await client.resetStore();
-      navigation.navigate("sign-in");
+      navigation.navigate("home");
     },
     onError: (error) => {},
   });
