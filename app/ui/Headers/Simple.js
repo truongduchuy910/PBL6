@@ -17,7 +17,7 @@ import { HiBell } from "react-icons/hi";
 import { Link } from "@react-navigation/native";
 import { UserAuthShort } from "../User";
 import Options from "./Options";
-
+import { NotificationListToggle } from "../Notification";
 export default function HeaderSimple({ navigation, route, options, back }) {
   const title = getHeaderTitle(options, route.name);
   const pressBack = navigation.goBack;
@@ -93,6 +93,7 @@ export default function HeaderSimple({ navigation, route, options, back }) {
             </Link>
             <HStack alignItems="center" space="2.5">
               <UserAuthShort navigation={navigation} />
+              <NotificationListToggle />
               <Options />
               {/* <Button
                 onPress={notificationHandler}
