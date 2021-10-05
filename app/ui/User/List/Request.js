@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HStack, VStack, Box, Image, Text, Heading } from "native-base";
+import { HStack, VStack, Box, Image, Text, Divider } from "native-base";
 import {
   RelationshipUpdateButton,
   RelationshipDeleteDelete,
@@ -83,10 +83,12 @@ const data = [
 
 function UI() {
   return (
-    <VStack px="1">
-      <Text fontSize="20" fontWeight="600" alignSelf="center" my="4">
-        Lời mời kết bạn
-      </Text>
+    <VStack>
+      <Box w="100%" mt="5" mb="2" px="0.5%">
+        <Text fontSize="18" fontWeight="600" color="gray.700">
+          Lời mời kết bạn
+        </Text>
+      </Box>
 
       <HStack
         maxW="100%"
@@ -99,13 +101,13 @@ function UI() {
           <VStack
             key={item.id}
             p="3"
-            m={["1", "1.5"]}
-            minW={["45%", "30%", "23%"]}
+            minW={["49%", "32%", "24%"]}
+            m="0.5%"
+            space={["1", "1.5"]}
             alignItems="center"
             borderWidth="1"
             borderColor="gray.100"
             rounded="8"
-            space={["1", "1.5"]}
           >
             <Box>
               <Image

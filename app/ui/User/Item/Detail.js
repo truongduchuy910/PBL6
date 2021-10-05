@@ -108,7 +108,7 @@ function UI(loading) {
       </HStack>
 
       <VStack space="2" m="1%">
-        <Text fontSize="18" fontWeight="600" color="green.500">
+        <Text fontSize="18" fontWeight="600" color="gray.700">
           Giới thiệu
         </Text>
         <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />
@@ -119,7 +119,7 @@ function UI(loading) {
 
       <VStack space="2" m="1%">
         <HStack justifyContent="space-between" alignItems="center">
-          <Text fontSize="18" fontWeight="600" color="green.500">
+          <Text fontSize="18" fontWeight="600" color="gray.700">
             Bạn bè
           </Text>
           <Link to={{ screen: "home" }}>
@@ -134,7 +134,7 @@ function UI(loading) {
       {/* Personal Post */}
       <Box>
         <VStack w="98%" space="2" m="1%">
-          <Text fontSize="18" fontWeight="600" color="green.500">
+          <Text fontSize="18" fontWeight="600" color="gray.700">
             Bài viết
           </Text>
           <Divider bg="gray.100" w="100%" my="1" orientation="horizontal" />

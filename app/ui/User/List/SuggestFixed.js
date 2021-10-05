@@ -38,10 +38,15 @@ const data = [
 
 function UI() {
   return (
-    <VStack px="1">
-      <Text fontSize="16" fontWeight="600" my="2" color="gray.400">
-        Gợi ý cho bạn
-      </Text>
+    <VStack px="1" my="2">
+      <HStack mb="3" alignItems="center" justifyContent="space-between">
+        <Text fontSize="16" fontWeight="600" color="gray.400">
+          Gợi ý cho bạn
+        </Text>
+        <Link to={{ screen: "friendsuggestion" }}>
+          <Text color="green.500">Xem thêm</Text>
+        </Link>
+      </HStack>
 
       {data.map((item) => (
         <HStack
