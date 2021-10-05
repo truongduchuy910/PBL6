@@ -1,5 +1,5 @@
 import React from "react";
-import { NativeBaseProvider, extendTheme, Container } from "native-base";
+import { NativeBaseProvider, extendTheme } from "native-base";
 import pages from "./pages";
 import {
   useFonts,
@@ -9,6 +9,7 @@ import {
 
 import { ProviderNative } from "./ui/Provider";
 import HeaderSimple from "./ui/Headers/Simple";
+import { AppRegistry } from "react-native";
 const theme = extendTheme({
   fonts: {
     heading: "Roboto_500Medium",
@@ -16,7 +17,7 @@ const theme = extendTheme({
     mono: "Roboto_400Regular",
   },
 });
-export default function App() {
+function App() {
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
@@ -27,3 +28,8 @@ export default function App() {
     </NativeBaseProvider>
   );
 }
+AppRegistry.registerComponent("Kilogram", () => App);
+AppRegistry.runApplication("App", {
+  rootTag: document.getElementById("react-root"),
+});
+export default App;
