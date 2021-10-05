@@ -2,10 +2,9 @@
   "expo": {
     "name": "app",
     "slug": "app",
+    "icon": "./assets/favicon.png",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   },
   "name": "app"
 }

@@ -42,18 +42,17 @@ const data = [
 ];
 
 function UI(loading) {
-  if (loading) {
-    return <PostItemSkeletonGrid />;
-  }
+  // if (loading) {
+  //   return <PostItemSkeletonGrid />;
+  // }
 
   return (
-    <HStack maxW="900" w="100%" flexWrap="wrap" justifyContent="center">
+    <HStack maxW="100%" w="100%" flexWrap="wrap" justifyContent="flex-start">
       {data.map((item) => (
         <Box
           key={item.id}
+          minW={["49%", "32%", "24%"]}
           m="0.5%"
-          minW="32%"
-          alignItems="center"
           borderWidth="1"
           borderColor="gray.100"
           rounded="10"

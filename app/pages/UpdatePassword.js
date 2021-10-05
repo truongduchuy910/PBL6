@@ -1,11 +1,11 @@
 import React from "react";
 import { Container } from "native-base";
-import { UserItemDetail } from "../ui/User";
+import { UserUpdatePassword } from "../ui/User";
 
-export default function User({ navigation }) {
+export default function UserUpdate({ navigation }) {
   return (
     <Container w="container.lg" margin="auto" mt="16" maxW="100%" px="2">
-      <UserItemDetail />
+      <UserUpdatePassword />
     </Container>
   );
 }

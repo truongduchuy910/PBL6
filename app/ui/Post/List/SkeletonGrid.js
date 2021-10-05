@@ -5,19 +5,19 @@ import { Box } from "native-base";
 
 function UI(props) {
   return (
-    <Box maxW="900" w="100%" mx="auto" p="1%">
+    <Box maxW="1005" w="100%" mx="auto" p="1%">
       <ContentLoader
         speed="1"
         w="100%"
         mx="auto"
-        viewBox="0 0 900 280"
+        viewBox="0 0 1005 310"
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
         animate="true"
       >
-        <Rect x="0" y="0" rx="10" ry="10" width="290" height="270" />
-        <Rect x="305" y="0" rx="10" ry="10" width="290" height="270" />
-        <Rect x="610" y="0" rx="10" ry="10" width="290" height="270" />
+        <Rect x="0" y="0" rx="10" ry="10" width="325" height="300" />
+        <Rect x="340" y="0" rx="10" ry="10" width="325" height="300" />
+        <Rect x="680" y="0" rx="10" ry="10" width="325" height="300" />
       </ContentLoader>
     </Box>
   );

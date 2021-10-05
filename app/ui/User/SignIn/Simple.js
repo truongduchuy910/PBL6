@@ -1,5 +1,6 @@
 import React, { Fragment, useRef, useState } from "react";
 import UserSignIn from "./Controller";
+import { Link } from "@react-navigation/native";
 import {
   Box,
   Text,
@@ -7,7 +8,6 @@ import {
   VStack,
   FormControl,
   Input,
-  Link,
   Button,
   HStack,
   Image,
@@ -50,7 +50,7 @@ function UI({ signIn, loading, error, user, navigation }) {
 
   return (
     <Fragment>
-      <Box w={420} p={10} mx="auto">
+      <Box maxW="350" w="100%" mx="auto" mt="24">
         <Image
           source={{
             uri:
@@ -155,14 +155,10 @@ function UI({ signIn, loading, error, user, navigation }) {
         <Box mt={4} p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
           <HStack justifyContent="center">
             <Text>Bạn chưa có tài khoản? </Text>
-            <Link
-              _text={{
-                color: "green.500",
-                textDecoration: "none",
-              }}
-              href="#"
-            >
-              Tạo tài khoản
+            <Link to={{ screen: "signup" }}>
+              <Text color="green.500" textDecoration="none">
+                Tạo tài khoản
+              </Text>
             </Link>
           </HStack>
         </Box>
