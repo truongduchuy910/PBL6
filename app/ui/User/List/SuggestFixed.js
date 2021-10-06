@@ -39,7 +39,7 @@ const data = [
 function UI() {
   return (
     <VStack my="2" w="full">
-      <HStack mb="3" w="full">
+      <HStack mb="2" w="full">
         <Text fontSize="16" fontWeight="600" color="gray.400">
           Gợi ý cho bạn
         </Text>

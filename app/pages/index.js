@@ -9,6 +9,7 @@ import FriendRequest from "./FriendRequest";
 import UserUpdate from "./UserUpdate";
 import UpdatePassword from "./UpdatePassword";
 import Album from "./Album";
+import EarlyAcess from "./EarlyAcess";
 
 export default {
   initialRouteName: "home",
@@ -52,6 +53,11 @@ export default {
       component: Album,
       options: { title: "Đã lưu" },
     },
+    {
+      name: "earlyaccess",
+      component: EarlyAcess,
+      options: { title: "Kilogram - Sắp ra mắt" },
+    },
   ],
   linking: {
     config: {
@@ -66,6 +72,7 @@ export default {
         userupdate: "userupdate",
         updatepassword: "updatepassword",
         album: "album",
+        earlyaccess: "earlyaccess",
       },
     },
   },

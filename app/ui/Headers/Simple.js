@@ -13,19 +13,6 @@ function UI({ user, navigation, route, options, back }) {
   const title = getHeaderTitle(options, route.name);
   const pressBack = navigation.goBack;
 
-  // const [isOpenNotification, setIsOpenNotification] = useState(false);
-  // const [isOpenOptions, setIsOpenOptions] = useState(false);
-
-  const notificationHandler = () => {
-    console.log("Click on notification");
-    // setIsOpenNotification((prev) => !prev);
-  };
-
-  const optionsHandler = () => {
-    console.log("Click on options");
-    // setIsOpenOptions((prev) => !prev);
-  };
-
   return (
     <Box
       w="full"
@@ -34,7 +21,7 @@ function UI({ user, navigation, route, options, back }) {
       borderColor="gray.100"
       bgColor="white"
     >
-      <Container w="container.md" mx="auto" maxw="full" px="2">
+      <Container w="container.lg" mx="auto" maxW="full" px="2">
         <Box safeAreaTop pt="3" pb="2" boxSize="full">
           <HStack justifyContent="space-between" alignItems="center">
             <Link to={{ screen: "home" }}>
@@ -48,41 +35,15 @@ function UI({ user, navigation, route, options, back }) {
                 h="40px"
               />
             </Link>
-            {user ? (
+            {user && (
               <HStack alignItems="center" space="2.5">
-                <UserAuthShort navigation={navigation} />
+                <Box display={["none", "block"]}>
+                  <UserAuthShort navigation={navigation} />
+                </Box>
                 <NotificationListToggle />
                 <Options navigation={navigation} />
               </HStack>
-            ) : (
-              <Text>Login first</Text>
             )}
-            {/* <Button
-                onPress={notificationHandler}
-                rounded="100"
-                bgColor="gray.100"
-                p="2.5"
-                _text={{ color: "gray.400", fontWeight: "600" }}
-              >
-                {isOpenNotification ? (
-                  <HiBell color="#22c55e" />
-                ) : (
-                  <HiBell color="#a1a1aa" />
-                )}
-              </Button>
-              <Button
-                onPress={optionsHandler}
-                rounded="100"
-                bgColor="gray.100"
-                p="2.5"
-                _text={{ color: "gray.400", fontWeight: "600" }}
-              >
-                {isOpenOptions ? (
-                  <BsFillCaretDownFill color="#22c55e" />
-                ) : (
-                  <BsFillCaretDownFill color="#a1a1aa" />
-                )}
-              </Button> */}
           </HStack>
         </Box>
       </Container>

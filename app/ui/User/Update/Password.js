@@ -56,7 +56,7 @@ function UI({ loading, error, user, navigation }) {
           my={5}
           textAlign="center"
           fontWeight="400"
-          fontSize={24}
+          fontSize={22}
           color="gray.800"
         >
           Đổi mật khẩu
