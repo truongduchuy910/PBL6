@@ -25,12 +25,7 @@ module.exports = {
       type: Relationship,
       ref: "Interactive.post",
       many: false,
-    },
-    user: {
-      type: Relationship,
-      ref: "User.posts",
-      many: false,
-    },
+    }
   },
   ...multipleLanguage("Translate"),
   labelField: "",

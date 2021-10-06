@@ -62,7 +62,7 @@ module.exports = {
     },
     posts: {
       type: Relationship,
-      ref: "Post.user",
+      ref: "Post",
       many: true,
     },
     ...multipleLanguage("Translate"),
@@ -71,9 +71,9 @@ module.exports = {
   access: true,
   // access: modelUser,
   hooks: {
-    afterChange: async ({ context, existingItem }) => {
-      users(context);
-    },
+    // afterChange: async ({ context, existingItem }) => {
+    //   users(context);
+    // },
   },
   cacheHint: {
     scope: "PUBLIC",
