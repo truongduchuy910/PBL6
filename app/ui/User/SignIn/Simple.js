@@ -65,7 +65,7 @@ function UI({ signIn, loading, error, user, navigation }) {
           textAlign="center"
           fontWeight="400"
           fontSize={24}
-          color="coolGray.800"
+          color="gray.800"
         >
           Đăng nhập để tiếp tục
         </Heading>
@@ -81,7 +81,7 @@ function UI({ signIn, loading, error, user, navigation }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -106,7 +106,7 @@ function UI({ signIn, loading, error, user, navigation }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}

@@ -78,7 +78,7 @@ function UI({ loading, error, user, navigation, on }) {
           textAlign="center"
           fontWeight="400"
           fontSize={24}
-          color="coolGray.800"
+          color="gray.800"
         >
           Tạo tài khoản mới
         </Heading>
@@ -94,7 +94,7 @@ function UI({ loading, error, user, navigation, on }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -119,7 +119,7 @@ function UI({ loading, error, user, navigation, on }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -144,7 +144,7 @@ function UI({ loading, error, user, navigation, on }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -170,7 +170,7 @@ function UI({ loading, error, user, navigation, on }) {
             <FormControl mb="2">
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
