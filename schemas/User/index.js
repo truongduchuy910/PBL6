@@ -10,6 +10,7 @@ const { users } = require("@itoa/lib/cache");
 const { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking } = require("@itoa/list-plugins");
+const { modelUser } = require("@itoa/lib/access");
 module.exports = {
   active: true,
   fields: {
@@ -68,8 +69,7 @@ module.exports = {
     ...multipleLanguage("Translate"),
   },
   labelField: "domain",
-  access: true,
-  // access: modelUser,
+  access: modelUser,
   hooks: {
     // afterChange: async ({ context, existingItem }) => {
     //   users(context);
