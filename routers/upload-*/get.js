@@ -8,24 +8,30 @@ const chalk = require("chalk");
  * @param {Express.Response} res
  */
 function handler(req, res) {
-  const { url: _url, w = 1920, h = 1920 } = req.query;
-  const url = decodeURI(_url).replace(/\/md/g, "").replace(/\/sm/g, "");
-  const size =
-    sizes
-      .sort((a, b) => (a.size > b.size ? -1 : 1))
-      .find((a) => a.size < (w > h ? w : h)) || sizes[0];
-
+  const { size: url } = req.query;
+  const _filename = url ? decodeURI(url) : decodeURI(req.url);
+  const filename =
+    req.headers.referer && req.headers.referer.includes("admin")
+      ? _filename
+          .replace("/sm", "")
+          .replace("/md", "")
+          .replace("/upload/img/", "")
+      : _filename.replace("/upload/img/", "");
+  const size = sizes.sort((a, b) => (a.size > b.size ? 1 : -1))[0]; // smallest
+  //
   const dir = path.join(
     path.resolve(),
     uploadPath,
-    url.replace(/\/img\//g, `/img/${size.name}/`),
+    "/upload/img",
+    size.name,
+    filename,
   );
   //
   if (fs.existsSync(dir)) {
     res.sendFile(dir);
   } else {
     if (process.env.NODE_ENV === "production")
-      console.log(chalk.red("missing  "), chalk.gray(url));
+      console.log(chalk.red("missing  "), chalk.gray(dir), req.url);
     res.sendFile(path.join(path.resolve(), "public/no-image.png"), (err) => {
       console.log(err);
     });

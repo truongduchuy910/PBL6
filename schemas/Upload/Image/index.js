@@ -20,6 +20,12 @@ module.exports = {
   labelResolver: (item) => {
     return `${item.alt ? item.alt : item.file.originalFilename}`;
   },
+  hooks: {
+    resolveInput: async ({ resolvedData = {} }) => {
+      if (!resolvedData.alt && resolvedData.file) resolvedData.file.filename;
+      return resolvedData;
+    },
+  },
   access: roleSimple,
   cacheHint: {
     scope: "PUBLIC",
