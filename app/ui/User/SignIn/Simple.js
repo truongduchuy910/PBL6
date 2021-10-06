@@ -40,8 +40,8 @@ function UI({ signIn, loading, error, user, navigation }) {
     }
 
     // Validation password
-    if (password.trim().length < 6) {
-      setInputError("Độ dài mật khẩu ít nhất 6 kí tự");
+    if (password.trim().length < 8) {
+      setInputError("Độ dài mật khẩu ít nhất 8 kí tự");
       return;
     }
 
