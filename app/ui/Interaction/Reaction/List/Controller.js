@@ -12,12 +12,12 @@ export default function ReactionList({ UI, postId }) {
   const { loading, error, data = {} } = useQuery(REACTION_LIST, {
     variables: { id: postId },
   });
-  const { reactionsList = [] } = data;
+  const { allReactions = [] } = data;
   return (
     <UI
       loading={loading}
       error={error}
-      reactionsList={reactionsList}
+      allReactions={allReactions}
     />
   );
 }
