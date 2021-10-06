@@ -9,21 +9,18 @@ export const COMMENT_DELETE = gql`
   }
 `;
 
-export default function CommentDelete({ UI, children, comment }) {
+export default function CommentDelete({ UI, id }) {
   const [on, { loading, error, data = {} }] = useMutation(COMMENT_DELETE);
-  if (loading) return "...";
-  if (error) return error.message;
   const { commentDeleted } = data;
   const clickDetete = () => {
-    on({ variables: { id: comment.id } });
+    on({ variables: { id: id } });
   };
   return (
-    (
-      <UI
-        comment={comment}
-        onClickDetete={clickDetete}
-        commentDeleted={commentDeleted}
-      />
-    ) || children({ comment, onDeleteComment, commentDeleted })
+    <UI
+      loading={loading}
+      error={error}
+      onClickDetete={clickDetete}
+      commentDeleted={commentDeleted}
+    />
   );
 }

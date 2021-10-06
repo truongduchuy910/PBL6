@@ -1,6 +1,6 @@
 const { Relationship } = require("@itoa/fields");
 const { multipleLanguage } = require("@itoa/lib/plugins");
-const { atTracking } = require("@itoa/list-plugins");
+const { atTracking, byTracking } = require("@itoa/list-plugins");
 module.exports = {
   active: true,
   fields: {

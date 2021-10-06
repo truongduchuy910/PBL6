@@ -22,7 +22,6 @@ export const POST_ITEM = gql`
     }
   }
 `;
-// file anh dang loi nen chua bo vao
 export default function PostItem({ id, UI, children }) {
   if (!id) return "Id required!";
   const { loading, error, data = {} } = useQuery(POST_ITEM, {
