@@ -23,10 +23,10 @@ function UI() {
 
   return (
     <Box
-      maxW="container.md"
+      maxW={["100%", "container.md"]}
       my={2}
       py={4}
-      rounded="xl"
+      rounded={["0", "xl"]}
       borderWidth="1"
       borderColor="gray.100"
     >

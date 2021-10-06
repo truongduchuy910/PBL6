@@ -4,7 +4,7 @@ import { UserListSuggest } from "../ui/User";
 
 export default function NewPost({ navigation }) {
   return (
-    <Container w="container.md" margin="auto" mt="16" maxw="full" px="2">
+    <Container w="container.lg" margin="auto" mt="16" maxW="full" px="2">
       <UserListSuggest />
     </Container>
   );
