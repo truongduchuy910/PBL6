@@ -122,7 +122,7 @@ function UI(loading) {
           <Text fontSize="18" fontWeight="600" color="gray.700">
             Bạn bè
           </Text>
-          <Link to={{ screen: "home" }}>
+          <Link to={{ screen: "friends" }}>
             <Text color="green.500" textDecoration="none">
               Xem tất cả
             </Text>
