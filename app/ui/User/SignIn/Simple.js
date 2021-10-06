@@ -152,7 +152,7 @@ function UI({ signIn, loading, error, user, navigation }) {
             )}
           </VStack>
         </Box>
-        <Box mt={4} p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
+        <Box mt="3" p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
           <HStack justifyContent="center">
             <Text>Bạn chưa có tài khoản? </Text>
             <Link to={{ screen: "signup" }}>
@@ -164,7 +164,7 @@ function UI({ signIn, loading, error, user, navigation }) {
         </Box>
         {error && (
           <Box
-            mt={4}
+            mt="3"
             p={3.5}
             rounded={10}
             borderWidth={1}
@@ -177,7 +177,7 @@ function UI({ signIn, loading, error, user, navigation }) {
         )}
         {inputError && (
           <Box
-            mt={4}
+            mt="3"
             p={3.5}
             rounded={10}
             borderWidth={1}
