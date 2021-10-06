@@ -14,7 +14,6 @@ module.exports = {
       ],
       type: Select,
       isRequired: true,
-      isUnique: true,
     },
     interactive: {
       type: Relationship,
