@@ -13,7 +13,7 @@ const initialUser = require("@itoa/lib/initial-user");
 const bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-
+const path = require("path");
 var keystone = new Keystone({
   onConnect: initialUser,
   adapter: new MongooseAdapter({
@@ -64,6 +64,7 @@ reads("", "./schemas").map((config) => {
  * @param {express.Router} app
  */
 function configureExpress(app) {
+  app.use(express.static(path.join(path.resolve(), "public")));
   app.use(morgan("short"));
   app.set("trust proxy", true);
   app.use(bodyParser.json());

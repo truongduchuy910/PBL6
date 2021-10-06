@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HStack, VStack, Box, Image, Text, Heading, Spacer } from "native-base";
 import { Link } from "@react-navigation/native";
-
+import Controller from "./Controller";
 // Fetch 12 items
 const data = [
   {
@@ -36,7 +36,7 @@ const data = [
   },
 ];
 
-function UI() {
+function UI({ allUsers }) {
   return (
     <VStack my="2" w="full">
       <HStack mb="2" w="full">
@@ -49,9 +49,9 @@ function UI() {
         </Link>
       </HStack>
 
-      {data.map((item) => (
+      {allUsers?.map((user) => (
         <HStack
-          key={item.id}
+          key={user.id}
           m="1"
           mt="3"
           flex="1"
@@ -64,9 +64,11 @@ function UI() {
           <Box>
             <Image
               source={{
-                uri: item.profileImg,
+                uri:
+                  "https://odanang.net" +
+                  (user?.avatar ? user.avatar.publicUrl : "/img/no-image.png"),
               }}
-              alt="Profile Image"
+              alt="img"
               size="8"
               mx="auto"
               rounded="100"
@@ -74,7 +76,7 @@ function UI() {
           </Box>
           <Link to={{ screen: "user" }}>
             <Text fontWeight="600" color="gray.700">
-              {item.name}
+              {user.name}
             </Text>
           </Link>
         </HStack>
@@ -82,4 +84,6 @@ function UI() {
     </VStack>
   );
 }
-export default UI;
+export default function UserListSuggestFixed(props) {
+  return <Controller {...props} UI={UI} />;
+}

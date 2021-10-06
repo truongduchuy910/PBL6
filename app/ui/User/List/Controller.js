@@ -8,6 +8,10 @@ export const POST_LIST = gql`
     allUsers(first: $first, where: $where) {
       id
       phone
+      name
+      avatar {
+        publicUrl
+      }
     }
   }
 `;
@@ -18,6 +22,7 @@ export default function UserList({ UI, first = 4, where, ...props }) {
   });
   const { allUsers = [], _allUsersMeta = {} } = data;
   const { count } = _allUsersMeta;
+  console.log(data);
   return (
     <UI
       {...props}

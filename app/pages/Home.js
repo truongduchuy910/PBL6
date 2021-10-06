@@ -6,6 +6,7 @@ import {
   UserListSuggestFixed,
 } from "../ui/User";
 import { PostListSimple, PostCreateButton } from "../ui/Post";
+import EarlyAccess from "./EarlyAcess";
 
 export default function Home({ navigation }) {
   return (
@@ -16,6 +17,7 @@ export default function Home({ navigation }) {
       maxW="full"
       px={["0", "2"]}
     >
+      {/* <EarlyAccess /> */}
       <Flex w="full" direction="row">
         <Box
           flex={[1, 1, 1, 9]}

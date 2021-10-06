@@ -17,7 +17,7 @@ export default {
   screens: [
     {
       name: "home",
-      component: EarlyAcess,
+      component: Home,
       options: { title: "Trang chủ" },
     },
     { name: "user", component: User, options: { title: "Trang cá nhân" } },

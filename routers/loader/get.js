@@ -26,9 +26,12 @@ function handler(req, res) {
   } else {
     if (process.env.NODE_ENV === "production")
       console.log(chalk.red("missing  "), chalk.gray(url));
-    res.sendFile(path.join(path.resolve(), "public/no-image.png"), (err) => {
-      console.log(err);
-    });
+    res.sendFile(
+      path.join(path.resolve(), "public/img/no-image.png"),
+      (err) => {
+        console.log(err);
+      },
+    );
   }
 }
 module.exports = { handler };
