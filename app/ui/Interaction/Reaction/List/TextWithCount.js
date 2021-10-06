@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "native-base";
 
-function UI(loading, error, reactionsList) {
+function UI({loading, error, reactionsList}) {
   const countAllReactions = reactionsList.length;
   return loading ? (
     <Text>...</Text>

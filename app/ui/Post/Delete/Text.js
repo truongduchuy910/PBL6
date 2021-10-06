@@ -3,7 +3,7 @@ import { Button } from "native-base";
 import { FaRegTrashAlt } from "react-icons/fa";
 import PostDelete from "./Controller";
 
-function UI(loading, error, onClickDetete, postDeleted) {
+function UI({loading, error, onClickDetete, postDeleted}) {
   const toggleText = (e) => {
     console.log("Post Delete Text");
   };

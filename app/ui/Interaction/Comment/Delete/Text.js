@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "native-base";
 import CommentDelete from "./Controller";
-function UI(loading, error, commentDeleted, onClickDetete) {
+function UI({loading, error, commentDeleted, onClickDetete}) {
   const toggleText = (e) => {
     console.log("Comment Delete Text");
   };
