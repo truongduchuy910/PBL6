@@ -7,19 +7,17 @@ export const REACTION_LIST = gql`
     }
   }
 `;
-export default function ReactionList({ UI, id, ...props }) {
+export default function ReactionList({ UI, postId }) {
   if (!postId) return "ID required!";
-  const { loading, error, data = {}, refetch } = useQuery(REACTION_LIST, {
-    variables: { postId },
+  const { loading, error, data = {} } = useQuery(REACTION_LIST, {
+    variables: { id: postId },
   });
-  const { reactionsList = [] } = data.Post.interactive.reactions;
+  const { reactionsList = [] } = data;
   return (
     <UI
-      {...props}
       loading={loading}
       error={error}
       reactionsList={reactionsList}
-      refetch={refetch}
     />
   );
 }
