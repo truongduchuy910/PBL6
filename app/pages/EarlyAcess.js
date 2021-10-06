@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import {
   Container,
   Heading,
@@ -10,8 +10,10 @@ import {
 } from "native-base";
 import { Link } from "@react-navigation/native";
 import { FooterSimple } from "../ui/Footer";
-
+import { UserListCount } from "../ui/User";
+import { AuthContext } from "../ui/Provider/Native";
 export default function EarlyAccess({ navigation }) {
+  const { loading, error, user } = useContext(AuthContext);
   return (
     <Fragment>
       <Container w="container.lg" margin="auto" mt="6" maxW="full" px="2">
@@ -56,26 +58,24 @@ export default function EarlyAccess({ navigation }) {
           </Heading>
           <Box>
             <HStack justifyContent="center" mb="8">
-              <Text fontSize="18" color="gray.500">
-                Số lượng người dùng:
+              <Text fontSize="18" color="gray.500" mr={3}>
+                Số người đăng ký
               </Text>
-              <Text fontSize="18" fontWeight="600">
-                {" "}
-                1000
-              </Text>
+              <Box fontSize="18" fontWeight="600">
+                <UserListCount />
+              </Box>
             </HStack>
-            <HStack justifyContent="center">
-              <Text>Hãy </Text>
-              <Link to={{ screen: "signup" }}>
-                <Text color="green.500" textDecoration="none">
-                  đăng ký
-                </Text>
-              </Link>
-              <Text> một tài khoản để giữ chỗ </Text>
-            </HStack>
-            <Text textAlign="center" mt="1">
-              Cảm ơn các bạn đã quan tâm!
-            </Text>
+            {!user && (
+              <HStack justifyContent="center">
+                <Text>Hãy </Text>
+                <Link to={{ screen: "signup" }}>
+                  <Text color="green.500" textDecoration="none">
+                    đăng ký
+                  </Text>
+                </Link>
+                <Text> một tài khoản để giữ chỗ </Text>
+              </HStack>
+            )}
           </Box>
         </VStack>
       </Container>
