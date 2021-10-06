@@ -1,7 +1,7 @@
 let { Text } = require("@itoa/fields");
 const { MongoId } = require("@itoa/fields-mongoid");
 
-const { roleSeller } = require("@itoa/lib/access");
+const { roleSimple } = require("@itoa/lib/access");
 
 module.exports = {
   active: true,
@@ -12,7 +12,7 @@ module.exports = {
     lang: { type: Text, isRequired: true },
     content: { type: Text, isRequired: true },
   },
-  access: roleSeller,
+  access: roleSimple,
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour
