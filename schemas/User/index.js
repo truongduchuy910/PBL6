@@ -40,7 +40,7 @@ module.exports = {
       type: Checkbox,
       access: {
         update: ({ authentication: { item: user } }) => {
-          return user && user.isAdmin;
+          return Boolean(user && user.isAdmin);
         },
       },
       adminConfig: { className: "col-sm-12 col-md-6" },
