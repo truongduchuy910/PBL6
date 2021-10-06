@@ -2,8 +2,8 @@ import React from "react";
 import { HStack, Text } from "native-base";
 import { FaHeart } from "react-icons/fa";
 
-function UI() {
-  const countAllReactions = reactionsList.allInteractiveComments.length;
+function UI(loading, error, reactionsList) {
+  const countAllReactions = reactionsList.length;
   return loading ? (
     <Text>...</Text>
   ) : (
