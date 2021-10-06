@@ -20,7 +20,7 @@ module.exports = {
   labelResolver: (item) => {
     return `${item.alt ? item.alt : item.file.originalFilename}`;
   },
-  access: roleSeller,
+  access: true,
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour
