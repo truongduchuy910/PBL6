@@ -59,7 +59,7 @@ export default function EarlyAccess({ navigation }) {
           <Box>
             <HStack justifyContent="center" mb="8">
               <Text fontSize="18" color="gray.500" mr={3}>
-                Số người đăng ký
+                Số người đăng ký:
               </Text>
               <Box fontSize="18" fontWeight="600">
                 <UserListCount />
