@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Container,
   Heading,
@@ -13,7 +13,7 @@ import { FooterSimple } from "../ui/Footer";
 
 export default function EarlyAccess({ navigation }) {
   return (
-    <>
+    <Fragment>
       <Container w="container.lg" margin="auto" mt="6" maxW="full" px="2">
         <VStack
           maxW="500"
@@ -55,6 +55,15 @@ export default function EarlyAccess({ navigation }) {
             SẮP RA MẮT
           </Heading>
           <Box>
+            <HStack justifyContent="center" mb="8">
+              <Text fontSize="18" color="gray.500">
+                Số lượng người dùng:
+              </Text>
+              <Text fontSize="18" fontWeight="600">
+                {" "}
+                1000
+              </Text>
+            </HStack>
             <HStack justifyContent="center">
               <Text>Hãy </Text>
               <Link to={{ screen: "signup" }}>
@@ -67,14 +76,10 @@ export default function EarlyAccess({ navigation }) {
             <Text textAlign="center" mt="1">
               Cảm ơn các bạn đã quan tâm!
             </Text>
-            <HStack justifyContent="center" mt="3">
-              <Text color="gray.500">Số lượng người dùng:</Text>
-              <Text fontWeight="600"> 1000</Text>
-            </HStack>
           </Box>
         </VStack>
       </Container>
       <FooterSimple />
-    </>
+    </Fragment>
   );
 }
