@@ -34,7 +34,7 @@ module.exports = {
   },
   ...multipleLanguage("Translate"),
   labelField: "",
-  access: true,
+  // access: true,
   // access: modelUser,
   hooks: {},
   cacheHint: {

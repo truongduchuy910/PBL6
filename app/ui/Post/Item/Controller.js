@@ -2,15 +2,16 @@ import { gql, useQuery } from "@apollo/client";
 export const POST_ITEM = gql`
   query($id: ID!) {
     Post(where: { id: $id }) {
+      id
       content
       tags {
         content
       }
-      images {
-        file {
-          publicUrl
-        }
-      }
+      # images {
+      #   file {
+      #     publicUrl
+      #   }
+      # }
       interactive {
         comments {
           content

@@ -12,7 +12,7 @@ module.exports = {
     lang: { type: Text, isRequired: true },
     content: { type: Text, isRequired: true },
   },
-  access: roleSeller,
+  //access: roleSeller,
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour

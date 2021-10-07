@@ -7,8 +7,9 @@ import {
   InteractionReactionListTextWithCount,
 } from "../../Reaction";
 import { VStack, HStack, Box, Image, Text } from "native-base";
+import { CommenItemController } from "./Controller";
 
-function UI() {
+function UI({comment}) {
   return (
     <Box mx="auto" my="2" w="full">
       <VStack>
@@ -29,8 +30,7 @@ function UI() {
                   Trần Ngọc Huy
                 </Text>
                 <Text color="gray.700" lineHeight="18">
-                  Đây là một địa điểm tuyệt vời cho các bạn sống ảo. Đây là một
-                  địa điểm tuyệt vời cho các bạn sống ảo.
+                  {comment.content}
                 </Text>
               </Box>
             </HStack>
@@ -54,4 +54,6 @@ function UI() {
     </Box>
   );
 }
-export default UI;
+export default function InteractionCommentItemSimple(){
+  return <CommenItemController UI={UI}/>
+};

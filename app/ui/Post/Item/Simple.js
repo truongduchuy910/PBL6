@@ -13,7 +13,8 @@ import { AlbumCreateButton } from "../../Album";
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-function UI() {
+import PostItem from "./Controller";
+function UI({ post }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -49,7 +50,7 @@ function UI() {
           rounded="100"
         />
         <Text color="gray.900" fontWeight="600" fontSize="14">
-          Trần Ngọc Huy
+          {post.content}
         </Text>
         <Text color="gray.400" fontSize="12">
           14 giờ
@@ -109,9 +110,13 @@ function UI() {
           </Box>
         </HStack>
         <InteractionCommentCreateSimple my="10" />
-        <InteractionCommentListSimple />
+        <InteractionCommentListSimple
+          where={{ interactive: { post: { id: post.id } } }}
+        />
       </Box>
     </Box>
   );
 }
-export default UI;
+export default function PostItemSimple() {
+  return <PostItem UI={UI} />;
+}

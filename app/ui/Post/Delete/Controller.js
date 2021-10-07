@@ -9,11 +9,11 @@ export const POST_DELETE = gql`
   }
 `;
 
-export default function PostDelete({ UI, postId }) {
+export default function PostDelete({ UI, id }) {
   const [on, { loading, error, data = {} }] = useMutation(POST_DELETE);
   const { postDeleted } = data;
   const clickDetete = () => {
-    on({ variables: { id: postId } });
+    on({ variables: { id } });
   };
   return (
     <UI
