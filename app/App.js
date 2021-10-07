@@ -3,30 +3,64 @@ import { NativeBaseProvider, extendTheme } from "native-base";
 import pages from "./pages";
 import {
   useFonts,
-  Roboto_400Regular,
-  Roboto_500Medium,
-} from "@expo-google-fonts/roboto";
-
+  Lexend_300Light,
+  Lexend_400Regular,
+  Lexend_500Medium,
+  Lexend_600SemiBold,
+  Lexend_700Bold,
+} from "@expo-google-fonts/lexend";
 import { ProviderNative } from "./ui/Provider";
 import HeaderSimple from "./ui/Headers/Simple";
 import { AppRegistry } from "react-native";
+
 const theme = extendTheme({
   fonts: {
-    heading: "Roboto_500Medium",
-    body: "Roboto_400Regular",
-    mono: "Roboto_400Regular",
+    heading: "Lexend",
+    body: "Lexend",
+    mono: "Lexend",
+  },
+  components: {
+    Text: {
+      baseStyle: {
+        color: "gray.800",
+        fontFamily: "Lexend_400Regular",
+      },
+      defaultProps: { size: "md" },
+      sizes: {
+        lg: { fontSize: "32px" },
+        md: { fontSize: "14px" },
+        sm: { fontSize: "12px" },
+      },
+    },
+    Heading: {
+      baseStyle: {
+        color: "gray.800",
+        fontFamily: "Lexend_500Medium",
+      },
+      defaultProps: { size: "lg" },
+      sizes: {
+        lg: { fontSize: "32px" },
+        md: { fontSize: "20px" },
+      },
+    },
   },
 });
+
 function App() {
   let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
+    Lexend_300Light,
+    Lexend_400Regular,
+    Lexend_500Medium,
+    Lexend_600SemiBold,
+    Lexend_700Bold,
   });
+
   return (
     <NativeBaseProvider theme={theme}>
       <ProviderNative navigation={pages} header={HeaderSimple} />
     </NativeBaseProvider>
   );
 }
+
 AppRegistry.registerComponent("Kilogram", () => App);
 export default App;

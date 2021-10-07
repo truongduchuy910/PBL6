@@ -83,7 +83,6 @@ function UI({ signIn, loading, error, user, navigation }) {
                 _text={{
                   color: "gray.800",
                   fontSize: "14",
-                  fontWeight: 400,
                 }}
               >
                 Số điện thoại
@@ -154,7 +153,7 @@ function UI({ signIn, loading, error, user, navigation }) {
         </Box>
         <Box mt="3" p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
           <HStack justifyContent="center">
-            <Text>Bạn chưa có tài khoản? </Text>
+            <Text fontWeight="500">Bạn chưa có tài khoản? </Text>
             <Link to={{ screen: "signup" }}>
               <Text color="green.500" textDecoration="none">
                 Tạo tài khoản

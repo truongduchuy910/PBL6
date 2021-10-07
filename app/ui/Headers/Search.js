@@ -24,6 +24,7 @@ function UI({ navigation }) {
           borderColor="gray.100"
           rounded={6}
           placeholder="Tìm kiếm trên Kilogram"
+          fontFamily="Lexend_400Regular"
           w="250px"
           _focus={{
             borderColor: "green.500",
