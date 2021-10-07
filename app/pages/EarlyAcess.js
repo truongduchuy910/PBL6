@@ -57,8 +57,8 @@ export default function EarlyAccess({ navigation }) {
             SẮP RA MẮT
           </Heading>
           <Box>
-            <HStack justifyContent="center" mb="32px">
-              <Text fontSize="18px" color="gray.500" mr="12px">
+            <HStack justifyContent="center" mb="8">
+              <Text fontSize="18" color="gray.500" mr={3}>
                 Số người đăng ký:
               </Text>
               <Box fontSize="18px" fontWeight="600">
