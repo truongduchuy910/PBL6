@@ -1,3 +1,4 @@
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
 export const POST_LIST = gql`
   query($first: Int, $where: PostWhereInput) {
@@ -7,10 +8,10 @@ export const POST_LIST = gql`
       tags {
         content
       }
-      // images {
-      //   file {
-      //     publicUrl
-      //   }
+      images {
+        file {
+          publicUrl
+        }
       }
       interactive {
         comments {
