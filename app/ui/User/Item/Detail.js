@@ -22,19 +22,9 @@ import UserUpdateButton from "../Update/Button";
 import SkeletonDetail from "./SkeletonDetail";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
-function UI(loading) {
-  // if (loading)
-  //   return (
-  //     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
-  //       <SkeletonDetail />
-  //       <PostListGrid />
-  //     </VStack>
-  //   );
-
+function UI({ loading, error, data }) {
   return (
     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
-      {/* Personal Detail */}
-      {/* <SkeletonDetail /> */}
       <HStack space="7" m="1%" alignItems="center">
         <Box>
           <Image
@@ -66,36 +56,10 @@ function UI(loading) {
               144 bạn bè
             </Text>
           </HStack>
-
-          {/* <HStack space="2" alignItems="center">
-            <Box w="210px">
-              <Link to={{ screen: "userupdate" }}>
-                <UserUpdateButton />
-              </Link>
-            </Box>
-          </HStack> */}
         </VStack>
       </HStack>
 
       <VStack space="2" mx="1%" my={["1", "0"]}>
-        {/* <HStack space="2" alignItems="center">
-          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-            Bạn có quen Nguyễn Kim Huy không?
-          </Text>
-          <Box w="120px">
-            <RelationshipCreateButton />
-          </Box>
-        </HStack> */}
-
-        {/* <HStack space="2" alignItems="center">
-          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-            Bạn đã gửi lời mời kết bạn cho Nguyễn Kim Huy
-          </Text>
-          <Box w="100px">
-            <RelationshipDeleteCancel />
-          </Box>
-        </HStack> */}
-
         <Stack
           space="2"
           alignItems={["start", "center"]}
@@ -113,15 +77,6 @@ function UI(loading) {
             </Box>
           </HStack>
         </Stack>
-
-        {/* <HStack space="2" alignItems="center">
-          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-            Bạn và Nguyễn Kim Huy là bạn bè
-          </Text>
-          <Box w="100px">
-            <RelationshipDeleteActive />
-          </Box>
-        </HStack> */}
       </VStack>
 
       <VStack space="2" m="1%">
@@ -147,8 +102,6 @@ function UI(loading) {
         </HStack>
         <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
       </VStack>
-
-      {/* Personal Post */}
       <Box>
         <VStack w="98%" space="2" m="1%">
           <Text fontSize="18" fontWeight="600" color="gray.700">
@@ -161,4 +114,4 @@ function UI(loading) {
     </VStack>
   );
 }
-export default UI;
+export { UI };
