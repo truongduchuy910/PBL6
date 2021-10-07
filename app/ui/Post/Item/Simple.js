@@ -83,7 +83,7 @@ function UI({ loading, error, post }) {
         </Button>
       </HStack>
       <Text px="3" my="2">
-       {post.content}
+        {post.content}
       </Text>
       <UploadImageListCarousel />
       <Box px="3" mt="2">
@@ -111,7 +111,10 @@ function UI({ loading, error, post }) {
             <AlbumCreateButton />
           </Box>
         </HStack>
-        <InteractionCommentCreateSimple my="10" />
+        <InteractionCommentCreateSimple
+          my="10"
+          whereInteractiveID={post.interactive.id}
+        />
         <InteractionCommentListSimple
           where={{ interactive: { post: { id: post.id } } }}
         />
