@@ -14,4 +14,5 @@ export function CommenItemController(UI, id) {
   });
   const { InteractiveComment } = data;
   return <UI loading={loading} error={error} comment={InteractiveComment} />;
+
 }

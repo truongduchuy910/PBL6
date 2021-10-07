@@ -41,8 +41,8 @@ function UI(loading, error, post) {
       direction={["column", "column", "column", "row"]}
       mx="auto"
       my="3"
-      w={["100%", "100%", "80%", "100%"]}
-      rounded="xl"
+      w={["100%", "90%", "80%", "100%"]}
+      rounded={["0", "xl"]}
       borderWidth="1"
       borderColor="gray.100"
     >

@@ -56,4 +56,5 @@ function UI({loading, error, comment}) {
 }
 export default function InteractionCommentItemSimple(props){
   return <CommenItemController {...props} UI={UI}/>
+
 };

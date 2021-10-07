@@ -6,23 +6,29 @@ import {
   UserListSuggestFixed,
 } from "../ui/User";
 import { PostListSimple, PostCreateButton } from "../ui/Post";
+import EarlyAccess from "./EarlyAcess";
 
 export default function Home({ navigation }) {
   return (
-    <Container w="container.md" mx="auto" mt="16">
-      <Flex w="full" mx={["auto", "auto", "auto", "0"]} direction="row">
-        <Box flex={8}>
+    <Container
+      w="container.lg"
+      margin="auto"
+      mt="16"
+      maxW="full"
+      px={["0", "2"]}
+    >
+      {/* <EarlyAccess /> */}
+      <Flex w="full" direction="row">
+        <Box
+          flex={[1, 1, 1, 9]}
+          maxW="680px"
+          mx={["auto", "auto", "auto", "0"]}
+        >
           <PostCreateButton />
           <PostListSimple />
         </Box>
-        <Box flex={4}>
-          <Box
-            w="full"
-            px={4}
-            position="sticky"
-            top="64px"
-            display={["none", "none", "none", "block"]}
-          >
+        <Box flex={[0, 0, 0, 3]} display={["none", "none", "none", "block"]}>
+          <Box w="full" py="2" pl="6" pr="2" position="sticky" top="64px">
             <UserListSuggestFixed />
           </Box>
         </Box>

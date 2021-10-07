@@ -1,6 +1,6 @@
 let { File, Text } = require("@itoa/fields");
 let { fileAdapter, fileHooks } = require("@itoa/lib/stores");
-let { roleSeller } = require("@itoa/lib/access");
+let { roleSimple } = require("@itoa/lib/access");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
 module.exports = {
   active: true,
@@ -17,7 +17,7 @@ module.exports = {
       isUnique: true,
     },
   },
-  access: roleSeller,
+  access: roleSimple,
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour

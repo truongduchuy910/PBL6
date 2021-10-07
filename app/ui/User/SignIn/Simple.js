@@ -40,8 +40,8 @@ function UI({ signIn, loading, error, user, navigation }) {
     }
 
     // Validation password
-    if (password.trim().length < 6) {
-      setInputError("Độ dài mật khẩu ít nhất 6 kí tự");
+    if (password.trim().length < 8) {
+      setInputError("Độ dài mật khẩu ít nhất 8 kí tự");
       return;
     }
 
@@ -65,7 +65,7 @@ function UI({ signIn, loading, error, user, navigation }) {
           textAlign="center"
           fontWeight="400"
           fontSize={24}
-          color="coolGray.800"
+          color="gray.800"
         >
           Đăng nhập để tiếp tục
         </Heading>
@@ -81,7 +81,7 @@ function UI({ signIn, loading, error, user, navigation }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -106,7 +106,7 @@ function UI({ signIn, loading, error, user, navigation }) {
             <FormControl>
               <FormControl.Label
                 _text={{
-                  color: "coolGray.800",
+                  color: "gray.800",
                   fontSize: "14",
                   fontWeight: 400,
                 }}
@@ -152,7 +152,7 @@ function UI({ signIn, loading, error, user, navigation }) {
             )}
           </VStack>
         </Box>
-        <Box mt={4} p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
+        <Box mt="3" p={3.5} rounded={10} borderWidth={1} borderColor="gray.100">
           <HStack justifyContent="center">
             <Text>Bạn chưa có tài khoản? </Text>
             <Link to={{ screen: "signup" }}>
@@ -164,7 +164,7 @@ function UI({ signIn, loading, error, user, navigation }) {
         </Box>
         {error && (
           <Box
-            mt={4}
+            mt="3"
             p={3.5}
             rounded={10}
             borderWidth={1}
@@ -177,7 +177,7 @@ function UI({ signIn, loading, error, user, navigation }) {
         )}
         {inputError && (
           <Box
-            mt={4}
+            mt="3"
             p={3.5}
             rounded={10}
             borderWidth={1}

@@ -10,6 +10,7 @@ const { users } = require("@itoa/lib/cache");
 const { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking } = require("@itoa/list-plugins");
+const { modelUser } = require("@itoa/lib/access");
 module.exports = {
   active: true,
   fields: {
@@ -39,7 +40,7 @@ module.exports = {
       type: Checkbox,
       access: {
         update: ({ authentication: { item: user } }) => {
-          return user && user.isAdmin;
+          return Boolean(user && user.isAdmin);
         },
       },
       adminConfig: { className: "col-sm-12 col-md-6" },
@@ -62,18 +63,17 @@ module.exports = {
     },
     posts: {
       type: Relationship,
-      ref: "Post.user",
+      ref: "Post",
       many: true,
     },
     ...multipleLanguage("Translate"),
   },
   labelField: "domain",
-  access: true,
-  // access: modelUser,
+  access: modelUser,
   hooks: {
-    afterChange: async ({ context, existingItem }) => {
-      users(context);
-    },
+    // afterChange: async ({ context, existingItem }) => {
+    //   users(context);
+    // },
   },
   cacheHint: {
     scope: "PUBLIC",

@@ -3,6 +3,7 @@ import InteractionCommentItemSimple from "../Item/Simple";
 import { Button, VStack } from "native-base";
 import { CommentListController } from "./Controller";
 
+
 function UI({ loading, error, allComments, _allCommentsMeta }) {
   const moreCommentHandler = () => {
     console.log("More comments");
@@ -14,7 +15,6 @@ function UI({ loading, error, allComments, _allCommentsMeta }) {
       {allComments.map((cmt) => {
         return <InteractionCommentItemSimple comment={cmt} />;
       })}
-
       {/* More comments */}
       <Button
         _text={{
@@ -34,3 +34,4 @@ function UI({ loading, error, allComments, _allCommentsMeta }) {
 export default function InteractionCommentListSimple(props) {
   return <CommentListController {...props} UI={UI} />;
 }
+

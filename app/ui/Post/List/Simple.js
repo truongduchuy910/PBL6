@@ -20,4 +20,5 @@ function UI(loading, error, allPosts, _allPostsMeta) {
 }
 export default function PostListSimple(props) {
   return <PostListController {...props} UI={UI} />;
+
 }
