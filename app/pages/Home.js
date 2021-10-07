@@ -13,9 +13,9 @@ export default function Home({ navigation }) {
     <Container
       w="container.lg"
       margin="auto"
-      mt="16"
+      mt="64px"
       maxW="full"
-      px={["0", "2"]}
+      px={["0", "8px"]}
     >
       {/* <EarlyAccess /> */}
       <Flex w="full" direction="row">
@@ -28,7 +28,14 @@ export default function Home({ navigation }) {
           <PostListSimple />
         </Box>
         <Box flex={[0, 0, 0, 3]} display={["none", "none", "none", "block"]}>
-          <Box w="full" py="2" pl="6" pr="2" position="sticky" top="64px">
+          <Box
+            w="full"
+            py="8px"
+            pl="24px"
+            pr="8px"
+            position="sticky"
+            top="64px"
+          >
             <UserListSuggestFixed />
           </Box>
         </Box>

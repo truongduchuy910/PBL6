@@ -10,7 +10,7 @@ function UI(loading, error, allPosts, _allPostsMeta) {
   }
 
   return (
-    <VStack>
+    <VStack px={["0", "1"]}>
       {/* Map list posts */}
       {allPosts.map((post) => (
         <PostItemSimple id={post.id} />

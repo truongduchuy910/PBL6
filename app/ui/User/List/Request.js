@@ -71,15 +71,15 @@ const data = [
 
 function UI() {
   return (
-    <VStack>
-      <Box w="full" mt="5" mb="2" px="0.5%">
-        <Text fontSize="18" fontWeight="600" color="gray.700">
+    <VStack w="100%">
+      <Box w="full" mt="20px" mb="8px" px="0.5%">
+        <Text fontSize="18px" fontWeight="600" color="gray.700">
           Lời mời kết bạn
         </Text>
       </Box>
 
       <HStack
-        maxw="full"
+        maxW="full"
         mx="auto"
         w="full"
         flexWrap="wrap"
@@ -88,14 +88,14 @@ function UI() {
         {data.map((item) => (
           <VStack
             key={item.id}
-            p="3"
+            p="12px"
             minW={["49%", "32%", "24%"]}
             m="0.5%"
-            space={["1", "1.5"]}
+            space={["4px", "6px"]}
             alignItems="center"
-            borderWidth="1"
+            borderWidth="1px"
             borderColor="gray.100"
-            rounded="8"
+            rounded="8px"
           >
             <Box>
               <Image
@@ -103,13 +103,15 @@ function UI() {
                   uri: item.profileImg,
                 }}
                 alt="Profile Image"
-                size="20"
+                size="80px"
                 mx="auto"
-                mt="2"
+                mt="8px"
                 rounded="100"
               />
             </Box>
-            <Text my="2">{item.name}</Text>
+            <Text my="8px" fontWeight="600">
+              {item.name}
+            </Text>
             <RelationshipUpdateButton />
             <RelationshipDeleteDelete />
           </VStack>

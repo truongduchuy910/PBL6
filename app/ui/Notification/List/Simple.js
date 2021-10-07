@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, Box, VStack } from "native-base";
-import { Link } from "@react-navigation/native";
+import React from "react";
+import { Box, VStack } from "native-base";
 import NotificationItemSimple from "../Item/Simple";
+import { Link } from "@react-navigation/native";
 
 const data = [
   {
@@ -42,10 +42,10 @@ function UI(props) {
   return (
     <Box position="absolute" top="10" right="0" w="300px">
       <VStack
-        py="2"
+        py="8px"
         bgColor="white"
-        rounded="8"
-        borderWidth="1"
+        rounded="8px"
+        borderWidth="1px"
         borderColor="gray.100"
         alignItems="start"
       >

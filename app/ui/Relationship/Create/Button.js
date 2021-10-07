@@ -8,9 +8,9 @@ function UI() {
 
   return (
     <Button
-      _text={{ color: "white", fontSize: "14", fontWeight: "600" }}
-      p="2"
-      rounded="8"
+      _text={{ color: "white", fontSize: ["13", "14"], fontWeight: "600" }}
+      p="8px"
+      rounded="8px"
       w="full"
       bgColor="green.500"
       onPress={clickHandler}

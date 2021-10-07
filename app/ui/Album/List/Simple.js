@@ -47,34 +47,9 @@ function UI(loading) {
   // }
 
   return (
-    // <VStack w="full">
-    //   <VStack w="full" space="2" m="1%">
-    //     <Text fontSize="18" fontWeight="600" color="gray.700">
-    //       Bài viết
-    //     </Text>
-    //     <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
-    //   </VStack>
-    //   <HStack maxw="full" w="full" flexWrap="wrap" justifyContent="center">
-    //     {data.map((item) => (
-    //       <Box
-    //         key={item.id}
-    //         m="0.5%"
-    //         minW="32%"
-    //         alignItems="center"
-    //         borderWidth="1"
-    //         borderColor="gray.100"
-    //         rounded="10"
-    //         overflow="hidden"
-    //       >
-    //         <PostItemImageOnly key={item.id} item={item} />
-    //       </Box>
-    //     ))}
-    //   </HStack>
-    // </VStack>
-
     <VStack w="full">
-      <Box w="full" mt="5" mb="2" px="0.5%">
-        <Text fontSize="18" fontWeight="600" color="gray.700">
+      <Box w="full" mt="20px" mb="8px" px="0.5%">
+        <Text fontSize="18px" fontWeight="600" color="gray.700">
           Bài viết bạn đã lưu
         </Text>
       </Box>
@@ -85,9 +60,9 @@ function UI(loading) {
             key={item.id}
             minW={["49%", "32%", "24%"]}
             m="0.5%"
-            borderWidth="1"
+            borderWidth="1px"
             borderColor="gray.100"
-            rounded="10"
+            rounded="10px"
             overflow="hidden"
           >
             <PostItemImageOnly key={item.id} item={item} />

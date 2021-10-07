@@ -1,7 +1,7 @@
 import React from "react";
 import UserSignOut from "./Controller";
 import { Button, Text } from "native-base";
-import { IoLogOut, IoLogIn } from "react-icons/io5";
+import { IoLogOut } from "react-icons/io5";
 function UI({ loading, error, signOut, navigation, auth }) {
   /**
    *
@@ -11,15 +11,15 @@ function UI({ loading, error, signOut, navigation, auth }) {
     signOut();
   };
   return loading ? (
-    <Text>Loading...</Text>
+    <Text></Text>
   ) : (
     <Button
       onPress={clickSignOut}
       bgColor="white"
-      _text={{ color: "gray.800" }}
+      _text={{ color: "gray.900" }}
       leftIcon={<IoLogOut color="#22c55e" />}
     >
-      Đăng xuất
+      <Text>Đăng xuất</Text>
     </Button>
   );
 }

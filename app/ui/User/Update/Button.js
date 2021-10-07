@@ -9,7 +9,7 @@ function UI() {
 
   return (
     <Button
-      _text={{ color: "gray.400", fontSize: "14", fontWeight: "600" }}
+      _text={{ color: "gray.400", fontSize: ["13", "14"], fontWeight: "600" }}
       p="2"
       rounded="8"
       w="full"
