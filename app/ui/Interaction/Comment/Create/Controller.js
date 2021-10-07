@@ -5,20 +5,20 @@ export const COMMENT_CREATE = gql`
     createInteractiveComment(data: $data) {
       id
       content
-      user {
-        id
-      }
     }
   }
 `;
 
-export default function CommentCreate({ UI, children, comment }) {
+export default function CommentCreate({ UI, whereInteractiveID }) {
   const [on, { loading, error, data = {} }] = useMutation(COMMENT_CREATE);
-  if (loading) return "...";
-  if (error) return error.message;
   const { createComment } = data;
   return (
-    <UI comment={comment} on={on} createComment={createComment} /> ||
-    children({ comment, on, createComment })
+    <UI
+      loading={loading}
+      error={error}
+      on={on}
+      createComment={createComment}
+      whereInteractiveID={whereInteractiveID}
+    />
   );
 }
