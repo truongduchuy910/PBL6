@@ -10,6 +10,7 @@ import {
   Button,
   TextArea,
 } from "native-base";
+import Controller from "./Controller";
 
 function UI({ loading, error }) {
   const contentRef = useRef();
@@ -18,8 +19,11 @@ function UI({ loading, error }) {
     console.log(value);
   };
 
-  const submitHandler = () => {
+  const submitHandler = (event) => {
     console.log("Post Create Simple");
+    event.preventDefault();
+    let ref = "commentContent" + i;
+    console.log("value", this.refs[ref].value);
   };
 
   return (
@@ -103,4 +107,6 @@ function UI({ loading, error }) {
     </Box>
   );
 }
-export default UI;
+export default function PostCreateSimple(props) {
+  return <Controller {...props} UI={UI} />;
+}

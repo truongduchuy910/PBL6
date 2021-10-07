@@ -15,6 +15,13 @@ export default function ReactionListController({ UI, where }) {
   const { loading, error, data = {} } = useQuery(REACTION_LIST, {
     variables: { where },
   });
-  const { allReactions = [] } = data;
-  return <UI loading={loading} error={error} allReactions={allReactions} />;
+  const { allInteractiveReactions, _allInteractiveReactionsMeta } = data;
+  return (
+    <UI
+      loading={loading}
+      error={error}
+      allReactions={allInteractiveReactions}
+      _allReactionsMeta={_allInteractiveReactionsMeta}
+    />
+  );
 }
