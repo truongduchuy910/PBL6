@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { HStack, Box, Image, Input } from "native-base";
 import Controller  from "./Controller";
 
-function UI({ loading, error, on, whereInteractiveID }) {
+function UI({ loading, error, on, interactive  }) {
   const clickCreate = () => {
     on({
       variables: {
         data: {
           content: userInput,
-          interactive: { connect: { id: whereInteractiveID } },
+          interactive: { connect: { id: interactive.id } },
         },
       },
     });

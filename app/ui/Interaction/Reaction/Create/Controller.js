@@ -9,14 +9,14 @@ export const REACTION_CREATE = gql`
   }
 `;
 
-export default function ReactionCreate({ UI, whereInteractiveID }) {
+export default function ReactionCreate({ UI, interactive }) {
   const [on, { loading, error, data = {} }] = useMutation(REACTION_CREATE);
   const { createReaction } = data;
   return (
     <UI
       loading={loading}
       error={error}
-      whereInteractiveID={whereInteractiveID}
+      interactive={interactive}
       on={on}
       createReaction={createReaction}
     />

@@ -135,7 +135,7 @@ function UI(loading, error, post) {
             </Box>
           </HStack>
           <Box w="full">
-            <InteractionCommentCreateSimple my="10" whereInteractiveID={post.interactive.id} />
+            <InteractionCommentCreateSimple my="10" interactive ={post.interactive} />
             <InteractionCommentListSimple />
           </Box>
         </Box>

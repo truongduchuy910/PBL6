@@ -23,7 +23,7 @@ function UI({ loading, error, on }) {
     console.log("Post Create Simple");
     event.preventDefault();
     on({
-      varaible: {
+      variables: {
         content: contentRef,
         interactive: { comments: null, reactions: null },
       },

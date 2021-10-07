@@ -113,7 +113,7 @@ function UI({ loading, error, post }) {
         </HStack>
         <InteractionCommentCreateSimple
           my="10"
-          whereInteractiveID={post.interactive.id}
+          interactive={post.interactive}
         />
         <InteractionCommentListSimple
           where={{ interactive: { post: { id: post.id } } }}

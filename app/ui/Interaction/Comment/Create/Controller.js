@@ -9,7 +9,7 @@ export const COMMENT_CREATE = gql`
   }
 `;
 
-export default function CommentCreate({ UI, whereInteractiveID }) {
+export default function CommentCreate({ UI, interactive  }) {
   const [on, { loading, error, data = {} }] = useMutation(COMMENT_CREATE);
   const { createComment } = data;
   return (
@@ -18,7 +18,7 @@ export default function CommentCreate({ UI, whereInteractiveID }) {
       error={error}
       on={on}
       createComment={createComment}
-      whereInteractiveID={whereInteractiveID}
+      interactive ={interactive }
     />
   );
 }

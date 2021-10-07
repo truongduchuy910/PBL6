@@ -11,7 +11,7 @@ export const REACTION_DELETE = gql`
 
 export default function ReactionDelete({ UI, id }) {
   const [on, { loading, error, data = {} }] = useMutation(REACTION_DELETE);
-  const { reactionDeleted } = data;
+  const { reaction } = data;
   const clickDetete = () => {
     on({ variables: { id: id } });
   };
@@ -20,7 +20,7 @@ export default function ReactionDelete({ UI, id }) {
       loading={loading}
       error={error}
       onClickDelete={clickDetete}
-      reactionDeleted={reactionDeleted}
+      reaction={reaction}
     />
   );
 }
