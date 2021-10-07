@@ -4,6 +4,8 @@ import UserSignUpSimple from "./SignUp/Simple";
 import UserSignOutButton from "./SignOut/Button";
 import UserListSuggest from "./List/Suggest";
 import UserListCount from "./List/Count";
+import UserListSimple from "./List/Simple";
+import UserListSearch from "./List/Search";
 import UserListSuggestFixed from "./List/SuggestFixed";
 import UserListRequest from "./List/Request";
 import UserItemDetail from "./Item/Detail";
@@ -15,6 +17,8 @@ export {
   UserSignUpSimple,
   UserSignOutButton,
   UserListSuggest,
+  UserListSimple,
+  UserListSearch,
   UserListSuggestFixed,
   UserListRequest,
   UserItemDetail,

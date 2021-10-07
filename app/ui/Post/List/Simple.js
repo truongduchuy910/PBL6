@@ -10,7 +10,7 @@ function UI(loading, error, allPosts) {
   }
 
   return (
-    <VStack>
+    <VStack px={["0", "1"]}>
       {/* Map list posts */}
       {allPosts.map((post) => (
         <PostItemSimple post={post} />

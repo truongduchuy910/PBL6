@@ -7,9 +7,9 @@ export default function Post({ navigation }) {
     <Container
       w="container.lg"
       margin="auto"
-      mt="16"
+      mt="64px"
       maxW="full"
-      px={["0", "2"]}
+      px={["0", "8px"]}
     >
       <PostItemDetail />
     </Container>

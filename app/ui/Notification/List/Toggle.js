@@ -16,7 +16,7 @@ function UI() {
         onPress={notificationHandler}
         rounded="100"
         bgColor="gray.100"
-        p="2.5"
+        p="10px"
         _text={{ color: "gray.400", fontWeight: "600" }}
       >
         <HiBell color="#a1a1aa" />

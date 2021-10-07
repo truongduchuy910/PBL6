@@ -1179,6 +1179,16 @@
   "resolved" "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.7.5.tgz"
   "version" "0.7.5"
 
+"@expo-google-fonts/inter@^0.2.0":
+  "integrity" "sha512-gIjkti/NxHABPc4xB/AlgSpbLJod/8Iill7DfW+rh2CHv3jjz7I7SLQY8u/3NoF8zZk0GNU8gTZkVwGQibuWcQ=="
+  "resolved" "https://registry.npmjs.org/@expo-google-fonts/inter/-/inter-0.2.0.tgz"
+  "version" "0.2.0"
+
+"@expo-google-fonts/lexend@^0.2.0":
+  "integrity" "sha512-l0aWBS3bTqeIssZfzUmXpIzyPXbV/mLyGvENfgCA6U1297FNvcoXT3n7UiqzBUzqdaamU4bB2Pq8Ncni7nycTQ=="
+  "resolved" "https://registry.npmjs.org/@expo-google-fonts/lexend/-/lexend-0.2.0.tgz"
+  "version" "0.2.0"
+
 "@expo-google-fonts/roboto@^0.2.0":
   "integrity" "sha512-dZ7e0OOHqbKI80htdxlXooAA6UrhqpJY/6w2JC/RW53nUt1U96PGMbE4F5uLXQt93stp3/fc+cvESKKk64kXKg=="
   "resolved" "https://registry.npmjs.org/@expo-google-fonts/roboto/-/roboto-0.2.0.tgz"
@@ -2864,6 +2874,11 @@
   "version" "0.2.2"
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
+
+"babel-plugin-react-native-web@^0.17.5":
+  "integrity" "sha512-UWl0E9FGYVr5Gj7lbVc4DFy8pTgc6wIXBa0rDvPGxx3OmcKwcdvCfDn9mLuh7JesYfh+wLjp01fwPplMus7IPw=="
+  "resolved" "https://registry.npmjs.org/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.17.5.tgz"
+  "version" "0.17.5"
 
 "babel-plugin-react-native-web@~0.13.6":
   "integrity" "sha512-f8pAxyKqXBNRIh8l4Sqju055BNec+DQlItdtutByYxULU0iJ1F7evIYE3skPKAkTB/xJH17l+n3Z8dVabGIIGg=="
@@ -6279,7 +6294,7 @@
     "unimodules-app-loader" "~2.2.0"
     "unimodules-task-manager-interface" "~6.2.0"
 
-"react-native-web@~0.13.12":
+"react-native-web@^0.13.18":
   "integrity" "sha512-WR/0ECAmwLQ2+2cL2Ur+0/swXFAtcSM0URoADJmG6D4MnY+wGc91JO8LoOTlgY0USBOY+qG/beRrjFa+RAuOiA=="
   "resolved" "https://registry.npmjs.org/react-native-web/-/react-native-web-0.13.18.tgz"
   "version" "0.13.18"

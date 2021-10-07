@@ -25,7 +25,7 @@ function UI({ post }) {
   return (
     <Box
       maxW={["100%", "container.md"]}
-      my={2}
+      my={1}
       py={4}
       rounded={["0", "xl"]}
       borderWidth="1"

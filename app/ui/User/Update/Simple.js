@@ -53,13 +53,7 @@ function UI({ loading, error, user, navigation }) {
   return (
     <Fragment>
       <Box maxW="400" w="full" mx="auto" mt="4">
-        <Heading
-          my={5}
-          textAlign="center"
-          fontWeight="400"
-          fontSize={22}
-          color="gray.800"
-        >
+        <Heading my="20px" textAlign="center" fontSize={["18px", "20px"]}>
           Chỉnh sửa trang cá nhân
         </Heading>
         <Box
@@ -255,7 +249,7 @@ function UI({ loading, error, user, navigation }) {
         </Box>
         {error && (
           <Box
-            mt={4}
+            my={4}
             p={3.5}
             rounded={10}
             borderWidth={1}
@@ -268,7 +262,7 @@ function UI({ loading, error, user, navigation }) {
         )}
         {inputError && (
           <Box
-            mt={4}
+            my={4}
             p={3.5}
             rounded={10}
             borderWidth={1}

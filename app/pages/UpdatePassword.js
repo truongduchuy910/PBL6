@@ -4,7 +4,7 @@ import { UserUpdatePassword } from "../ui/User";
 
 export default function UserUpdate({ navigation }) {
   return (
-    <Container w="container.lg" margin="auto" mt="16" maxW="full" px="3">
+    <Container w="container.lg" margin="auto" mt="64px" maxW="full" px="8px">
       <UserUpdatePassword />
     </Container>
   );

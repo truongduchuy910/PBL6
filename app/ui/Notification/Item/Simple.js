@@ -7,11 +7,11 @@ function UI(props) {
     <Button bgColor="white" onPress={props.notificationHandler}>
       <Link to={{ screen: "user" }}>
         <HStack
-          space="3"
+          space="12px"
           display="flex"
           flexDirection="row"
           w="full"
-          px="1"
+          px="4px"
           alignItems="flex-start"
           justifyContent="flex-start"
           position="relative"
@@ -22,18 +22,16 @@ function UI(props) {
               uri: props.item.imgUrl,
             }}
             alt="Profile image"
-            size="10"
+            size="40px"
             rounded="100"
-            mt="1"
+            mt="4px"
           />
           <Box>
-            <Text color="gray.900" fontWeight="600" fontSize="14">
+            <Text color="gray.900" fontWeight="600">
               {props.item.user}
             </Text>
-            <Text color="gray.900" fontSize="14">
-              {props.item.content}
-            </Text>
-            <Text color="gray.400" fontSize="12">
+            <Text>{props.item.content}</Text>
+            <Text color="gray.400" fontSize="12px">
               {props.item.time}
             </Text>
           </Box>

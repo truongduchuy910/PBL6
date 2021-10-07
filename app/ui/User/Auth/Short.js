@@ -4,8 +4,8 @@ import UserAuth from "./Controller";
 import { Link } from "@react-navigation/native";
 
 function UI({ loading, error, user }) {
-  if (loading) return <Text>Loading</Text>;
-  if (!user) return <Text>Login first</Text>;
+  if (loading) return <Text></Text>;
+  if (!user) return <Text></Text>;
   return (
     <Link to={{ screen: "user" }}>
       <Button
