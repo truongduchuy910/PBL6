@@ -24,7 +24,7 @@ import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItemSkeletonDetail from "./SkeletonDetail";
 
-function UI(loading) {
+function UI(loading, error, post) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -110,7 +110,9 @@ function UI(loading) {
           Lần đầu check in tại nhà hàng ở Paris 😍
         </Text>
         <Box px="3" mt="2">
-          <InteractionReactionListIconTextWithCount />
+          <InteractionReactionListIconTextWithCount
+            where={{ interactive: { post: { id: post.id } } }}
+          />
         </Box>
         <Box px="3">
           <HStack
@@ -133,7 +135,7 @@ function UI(loading) {
             </Box>
           </HStack>
           <Box w="full">
-            <InteractionCommentCreateSimple my="10" />
+            <InteractionCommentCreateSimple my="10" interactive ={post.interactive} />
             <InteractionCommentListSimple />
           </Box>
         </Box>

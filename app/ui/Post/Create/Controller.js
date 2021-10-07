@@ -12,13 +12,8 @@ export const POST_CREATE = gql`
   }
 `;
 
-export default function PostCreate({ UI, children, post }) {
+export default function PostCreate({ UI }) {
   const [on, { loading, error, data = {} }] = useMutation(POST_CREATE);
-  if (loading) return "...";
-  if (error) return error.message;
   const { createPost } = data;
-  return (
-    <UI post={post} on={on} createPost={createPost} /> ||
-    children({ post, on, createPost })
-  );
+  return <UI loading={loading} error={error} on={on} createPost={createPost} />;
 }

@@ -10,16 +10,24 @@ import {
   Button,
   TextArea,
 } from "native-base";
+import Controller from "./Controller";
 
-function UI({ loading, error }) {
+function UI({ loading, error, on }) {
   const contentRef = useRef();
 
   const selectChangeHandler = (value) => {
     console.log(value);
   };
 
-  const submitHandler = () => {
+  const submitHandler = (event) => {
     console.log("Post Create Simple");
+    event.preventDefault();
+    on({
+      variables: {
+        content: contentRef,
+        interactive: { comments: null, reactions: null },
+      },
+    });
   };
 
   return (
@@ -97,4 +105,6 @@ function UI({ loading, error }) {
     </Box>
   );
 }
-export default UI;
+export default function PostCreateSimple(props) {
+  return <Controller {...props} UI={UI} />;
+}

@@ -14,7 +14,7 @@ import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
-function UI({ post }) {
+function UI({ loading, error, post }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -83,11 +83,13 @@ function UI({ post }) {
         </Button>
       </HStack>
       <Text px="3" my="2">
-        Lần đầu check in tại nhà hàng ở Paris 😍
+        {post.content}
       </Text>
       <UploadImageListCarousel />
       <Box px="3" mt="2">
-        <InteractionReactionListIconTextWithCount />
+        <InteractionReactionListIconTextWithCount
+          where={{ interactive: { post: { id: post.id } } }}
+        />
       </Box>
       <Box px="3">
         <HStack
@@ -109,7 +111,10 @@ function UI({ post }) {
             <AlbumCreateButton />
           </Box>
         </HStack>
-        <InteractionCommentCreateSimple my="10" />
+        <InteractionCommentCreateSimple
+          my="10"
+          interactive={post.interactive}
+        />
         <InteractionCommentListSimple
           where={{ interactive: { post: { id: post.id } } }}
         />
@@ -117,6 +122,6 @@ function UI({ post }) {
     </Box>
   );
 }
-export default function PostItemSimple() {
-  return <PostItem UI={UI} />;
+export default function PostItemSimple(props) {
+  return <PostItem {...props} UI={UI} />;
 }

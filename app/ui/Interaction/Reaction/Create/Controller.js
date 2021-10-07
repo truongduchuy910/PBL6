@@ -9,13 +9,16 @@ export const REACTION_CREATE = gql`
   }
 `;
 
-export default function ReactionCreate({ UI, children, reaction }) {
+export default function ReactionCreate({ UI, interactive }) {
   const [on, { loading, error, data = {} }] = useMutation(REACTION_CREATE);
-  if (loading) return "...";
-  if (error) return error.message;
   const { createReaction } = data;
   return (
-    <UI reaction={reaction} on={on} createReaction={createReaction} /> ||
-    children({ reaction, on, createReaction })
+    <UI
+      loading={loading}
+      error={error}
+      interactive={interactive}
+      on={on}
+      createReaction={createReaction}
+    />
   );
 }

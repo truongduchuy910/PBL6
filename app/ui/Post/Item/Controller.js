@@ -23,13 +23,11 @@ export const POST_ITEM = gql`
     }
   }
 `;
-export default function PostItem({ id, UI, children }) {
+export default function PostItem({ id, UI }) {
   if (!id) return "Id required!";
   const { loading, error, data = {} } = useQuery(POST_ITEM, {
     variables: { id },
   });
-  if (loading) return "...";
-  if (error) return error.message;
   const post = data;
-  return <UI post={post} /> || children({ post });
+  return <UI loading={loading} error={error} post={post} />;
 }

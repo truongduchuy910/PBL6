@@ -9,7 +9,7 @@ import {
 import { VStack, HStack, Box, Image, Text } from "native-base";
 import { CommenItemController } from "./Controller";
 
-function UI({comment}) {
+function UI({loading, error, comment}) {
   return (
     <Box mx="auto" my="2" w="full">
       <VStack>
@@ -54,6 +54,7 @@ function UI({comment}) {
     </Box>
   );
 }
-export default function InteractionCommentItemSimple(){
-  return <CommenItemController UI={UI}/>
+export default function InteractionCommentItemSimple(props){
+  return <CommenItemController {...props} UI={UI}/>
+
 };

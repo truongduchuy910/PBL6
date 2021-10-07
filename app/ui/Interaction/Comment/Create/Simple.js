@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import { HStack, Box, Image, Input } from "native-base";
+import Controller  from "./Controller";
 
-function UI() {
+function UI({ loading, error, on, interactive  }) {
+  const clickCreate = () => {
+    on({
+      variables: {
+        data: {
+          content: userInput,
+          interactive: { connect: { id: interactive.id } },
+        },
+      },
+    });
+  };
+
   const [userInput, setUserInput] = useState("");
 
   const userInputChangeHandle = (e) => {
@@ -14,6 +26,7 @@ function UI() {
       return;
     }
     console.log(value);
+    clickCreate();
     setUserInput("");
   };
 
@@ -54,4 +67,6 @@ function UI() {
     </Box>
   );
 }
-export default UI;
+export default function InteractionCommentCreateSimple(props) {
+  return <Controller {...props} UI={UI} />;
+}

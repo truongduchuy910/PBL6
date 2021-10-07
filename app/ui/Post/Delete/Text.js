@@ -3,12 +3,12 @@ import { Button } from "native-base";
 import { FaRegTrashAlt } from "react-icons/fa";
 import PostDelete from "./Controller";
 
-function UI({loading, error, onClickDetete, postDeleted}) {
+function UI({loading, error, clickDetete, postDeleted}) {
   const toggleText = (e) => {
     console.log("Post Delete Text");
   };
-  const clickDetete = (e) => {
-    onClickDetete();
+  const hadleSubmit = (e) => {
+    clickDetete();
   };
 
   return loading ? (
@@ -19,7 +19,7 @@ function UI({loading, error, onClickDetete, postDeleted}) {
       p="3"
       py="1.5"
       bgColor="transparrent"
-      onPress={clickDetete}
+      onPress={hadleSubmit}
       leftIcon={<FaRegTrashAlt color="#22c55e" fontSize="15" />}
     >
       Xoá bài viết
