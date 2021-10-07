@@ -9,6 +9,7 @@ import { Link } from "@react-navigation/native";
 import { UserAuthShort } from "../User";
 import Options from "./Options";
 import { NotificationListToggle } from "../Notification";
+import HeadersSearch from "./Search";
 function UI({ user, navigation, route, options, back }) {
   const title = getHeaderTitle(options, route.name);
   const pressBack = navigation.goBack;
@@ -35,6 +36,7 @@ function UI({ user, navigation, route, options, back }) {
                 h="40px"
               />
             </Link>
+            {user && <HeadersSearch />}
             {user && (
               <HStack alignItems="center" space="2.5">
                 <Box display={["none", "block"]}>
