@@ -56,14 +56,14 @@ function UI() {
             key={item.id}
             p={["3", "4"]}
             pl={["2", "4"]}
-            minW="99%"
-            m="0.5%"
+            minW={["100%", "99%"]}
+            m={["0", "0.5%"]}
             my="1"
             space={["0", "1.5"]}
             alignItems="center"
             borderWidth="1"
             borderColor="gray.100"
-            rounded="xl"
+            rounded={["0", "xl"]}
             justifyContent="space-between"
           >
             <HStack alignItems="center" space={["3", "4"]}>

@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "@react-navigation/native";
-import { Box, Button, HStack, Image, VStack, Text, Divider } from "native-base";
+import {
+  Box,
+  Button,
+  HStack,
+  Image,
+  VStack,
+  Text,
+  Divider,
+  Stack,
+} from "native-base";
 import { PostListGrid } from "../../Post";
 import {
   RelationshipCreateButton,
@@ -34,14 +43,14 @@ function UI(loading) {
                 "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
             }}
             alt="Alternate Text"
-            w={["80px", "120px"]}
-            h={["80px", "120px"]}
+            w={["100px", "120px"]}
+            h={["100px", "120px"]}
             rounded="100"
           />
         </Box>
-        <VStack flex="1" space="3">
+        <VStack flex="1" space={["2", "3"]}>
           <HStack space="2">
-            <Text fontSize="22" fontWeight="600">
+            <Text fontSize={["20", "22"]} fontWeight="600">
               Trần Ngọc Huy
             </Text>
             <Button bgColor="transparent" p="2" color="gray.500">
@@ -59,53 +68,61 @@ function UI(loading) {
           </HStack>
 
           {/* <HStack space="2" alignItems="center">
-            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-              Bạn có quen Nguyễn Kim Huy không?
-            </Text>
-            <Box w="120px">
-              <RelationshipCreateButton />
-            </Box>
-          </HStack> */}
-
-          {/* <HStack space="2" alignItems="center">
-            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-              Bạn đã gửi lời mời kết bạn cho Nguyễn Kim Huy
-            </Text>
-            <Box w="100px">
-              <RelationshipDeleteCancel />
-            </Box>
-          </HStack> */}
-
-          {/* <HStack space="2" alignItems="center">
-            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-              Trần Ngọc Huy đã gửi lời mời kết bạn
-            </Text>
-            <Box w="130px">
-              <RelationshipUpdateButton />
-            </Box>
-            <Box w="110px">
-              <RelationshipDeleteDelete />
-            </Box>
-          </HStack> */}
-
-          {/* <HStack space="2" alignItems="center">
-            <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-              Bạn và Nguyễn Kim Huy là bạn bè
-            </Text>
-            <Box w="100px">
-              <RelationshipDeleteActive />
-            </Box>
-          </HStack> */}
-
-          <HStack space="2" alignItems="center">
             <Box w="210px">
               <Link to={{ screen: "userupdate" }}>
                 <UserUpdateButton />
               </Link>
             </Box>
-          </HStack>
+          </HStack> */}
         </VStack>
       </HStack>
+
+      <VStack space="2" mx="1%" my={["1", "0"]}>
+        {/* <HStack space="2" alignItems="center">
+          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+            Bạn có quen Nguyễn Kim Huy không?
+          </Text>
+          <Box w="120px">
+            <RelationshipCreateButton />
+          </Box>
+        </HStack> */}
+
+        {/* <HStack space="2" alignItems="center">
+          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+            Bạn đã gửi lời mời kết bạn cho Nguyễn Kim Huy
+          </Text>
+          <Box w="100px">
+            <RelationshipDeleteCancel />
+          </Box>
+        </HStack> */}
+
+        <Stack
+          space="2"
+          alignItems={["start", "center"]}
+          direction={["column", "row"]}
+        >
+          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+            Trần Ngọc Huy đã gửi lời mời kết bạn
+          </Text>
+          <HStack space="2">
+            <Box w="130px">
+              <RelationshipUpdateButton />
+            </Box>
+            <Box w="130px">
+              <RelationshipDeleteDelete />
+            </Box>
+          </HStack>
+        </Stack>
+
+        {/* <HStack space="2" alignItems="center">
+          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+            Bạn và Nguyễn Kim Huy là bạn bè
+          </Text>
+          <Box w="100px">
+            <RelationshipDeleteActive />
+          </Box>
+        </HStack> */}
+      </VStack>
 
       <VStack space="2" m="1%">
         <Text fontSize="18" fontWeight="600" color="gray.700">

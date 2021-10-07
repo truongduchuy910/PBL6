@@ -35,7 +35,11 @@ function UI() {
         <Link to={{ screen: "newpost" }}>
           <Button
             bgColor="green.500"
-            _text={{ color: "white", fontSize: "14", fontWeight: "600" }}
+            _text={{
+              color: "white",
+              fontSize: ["13", "14"],
+              fontWeight: "600",
+            }}
             rounded="8"
             py="2"
             px="4"

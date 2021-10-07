@@ -52,13 +52,7 @@ function UI({ loading, error, user, navigation }) {
   return (
     <Fragment>
       <Box maxW="350" w="full" mx="auto" mt="4">
-        <Heading
-          my={5}
-          textAlign="center"
-          fontWeight="400"
-          fontSize={22}
-          color="gray.800"
-        >
+        <Heading my="20px" textAlign="center" fontSize={["18px", "20px"]}>
           Đổi mật khẩu
         </Heading>
         <Box

@@ -72,8 +72,8 @@ const data = [
 function UI() {
   return (
     <VStack>
-      <Box w="full" mt="5" mb="2" px="0.5%">
-        <Text fontSize="18" fontWeight="600" color="gray.700">
+      <Box w="full" mt="20px" mb="8px" px="0.5%">
+        <Text fontSize="18px" fontWeight="600" color="gray.700">
           Tất cả bạn bè
         </Text>
       </Box>
@@ -88,18 +88,19 @@ function UI() {
         {data.map((item) => (
           <HStack
             key={item.id}
-            p="3"
-            pl={["2", "4"]}
-            minW={["99%", "99%", "49%"]}
+            p="12px"
+            pl={["8px", "12px"]}
+            minW={["100%", "99%", "49%"]}
             m="0.5%"
-            space={["0", "1.5"]}
+            mx={["0", "0.5%"]}
+            space={["0", "6px"]}
             alignItems="center"
-            borderWidth="1"
+            borderWidth="1px"
             borderColor="gray.100"
-            rounded="8"
+            rounded="8px"
             justifyContent="space-between"
           >
-            <HStack alignItems="center" space={["3", "4"]}>
+            <HStack alignItems="center" space={["12px", "16px"]}>
               <Box>
                 <Image
                   source={{
@@ -108,18 +109,18 @@ function UI() {
                   alt="Profile Image"
                   size={["48px", "72px"]}
                   mx="auto"
-                  my={["2.5", "1.5"]}
+                  my={["10px", "6px"]}
                   rounded="100"
                 />
               </Box>
               <Link to={{ screen: "home" }}>
-                <Text my="2" fontWeight="600">
+                <Text my="8px" fontWeight="600">
                   {item.name}
                 </Text>
               </Link>
             </HStack>
             {item.type === "pending" && (
-              <VStack space="1.5">
+              <VStack space="6px">
                 <Box w="120px">
                   <RelationshipUpdateButton />
                 </Box>

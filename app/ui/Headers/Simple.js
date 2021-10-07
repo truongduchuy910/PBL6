@@ -1,35 +1,29 @@
-import React, { Fragment, useState } from "react";
-import { getHeaderTitle } from "@react-navigation/elements";
-import { Container, HStack, Box, Image, Text } from "native-base";
+import React from "react";
+import { Container, HStack, Box, Image } from "native-base";
 import AuthController from "../User/Auth/Controller";
-import { AiOutlineMore, AiOutlineArrowLeft } from "react-icons/ai";
-import { BsFillCaretDownFill } from "react-icons/bs";
-import { HiBell } from "react-icons/hi";
 import { Link } from "@react-navigation/native";
 import { UserAuthShort } from "../User";
 import Options from "./Options";
 import { NotificationListToggle } from "../Notification";
 import HeadersSearch from "./Search";
-function UI({ user, navigation, route, options, back }) {
-  const title = getHeaderTitle(options, route.name);
-  const pressBack = navigation.goBack;
 
+function UI({ user, navigation, route, options, back }) {
   return (
     <Box
       w="full"
       position="fixed"
-      borderBottomWidth="1"
+      borderBottomWidth="1px"
       borderColor="gray.100"
       bgColor="white"
     >
-      <Container w="container.lg" mx="auto" maxW="full" px="2">
-        <Box safeAreaTop pt="3" pb="2" boxSize="full">
+      <Container w="container.lg" mx="auto" maxW="full" px="8px">
+        <Box safeAreaTop pt="12px" pb="8px" boxSize="full">
           <HStack justifyContent="space-between" alignItems="center">
             <Link to={{ screen: "home" }}>
               <Image
                 source={{
                   uri:
-                    "https://res.cloudinary.com/cloudinaryassets/image/upload/v1633232418/logo-header_mc8fhl.svg",
+                    "https://res.cloudinary.com/cloudinaryassets/image/upload/v1633593799/logo-header_qh37fo.svg",
                 }}
                 alt="Logo"
                 w="150px"
@@ -38,7 +32,7 @@ function UI({ user, navigation, route, options, back }) {
             </Link>
             {user && <HeadersSearch />}
             {user && (
-              <HStack alignItems="center" space="2.5">
+              <HStack alignItems="center" space="10px">
                 <Box display={["none", "block"]}>
                   <UserAuthShort navigation={navigation} />
                 </Box>

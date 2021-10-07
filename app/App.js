@@ -32,15 +32,28 @@ const theme = extendTheme({
         sm: { fontSize: "12px" },
       },
     },
+    Input: {
+      baseStyle: {
+        color: "gray.800",
+        fontFamily: "Lexend_400Regular",
+      },
+      defaultProps: { size: "md" },
+      sizes: {
+        lg: { fontSize: "32px" },
+        md: { fontSize: "14px" },
+        sm: { fontSize: "12px" },
+      },
+    },
     Heading: {
       baseStyle: {
         color: "gray.800",
-        fontFamily: "Lexend_500Medium",
+        fontFamily: "Lexend_400Regular",
       },
       defaultProps: { size: "lg" },
       sizes: {
         lg: { fontSize: "32px" },
-        md: { fontSize: "20px" },
+        md: { fontSize: "24px" },
+        sm: { fontSize: "20px" },
       },
     },
   },
