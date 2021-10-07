@@ -12,7 +12,7 @@ import {
 } from "native-base";
 import Controller from "./Controller";
 
-function UI({ loading, error }) {
+function UI({ loading, error, on }) {
   const contentRef = useRef();
 
   const selectChangeHandler = (value) => {
@@ -22,8 +22,12 @@ function UI({ loading, error }) {
   const submitHandler = (event) => {
     console.log("Post Create Simple");
     event.preventDefault();
-    let ref = "commentContent" + i;
-    console.log("value", this.refs[ref].value);
+    on({
+      varaible: {
+        content: contentRef,
+        interactive: { comments: null, reactions: null },
+      },
+    });
   };
 
   return (

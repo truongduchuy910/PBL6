@@ -1,12 +1,19 @@
 import React, { useState, Fragment } from "react";
 import { Button } from "native-base";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import Controller from "./Controller";
 
-function UI() {
+function UI(loading, error, whereInteractiveID, on) {
   const [isLike, setIsLike] = useState(false);
 
   const likeHandle = (e) => {
     setIsLike((prev) => !prev);
+    on({
+      varaible: {
+        interactive: { connect: { id: whereInteractiveID } },
+        emoji: like,
+      },
+    });
     console.log("Reaction Create Button");
   };
 
@@ -39,4 +46,6 @@ function UI() {
     </Fragment>
   );
 }
-export default UI;
+export default function InteractionReactionCreateButton(props) {
+  return <Controller {...props} UI={UI} />;
+}

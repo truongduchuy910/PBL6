@@ -1,11 +1,18 @@
 import React, { Fragment, useState } from "react";
 import { Button, Text } from "native-base";
+import Controller from "./Controller"
 
-function UI() {
+function UI(loading, error, on, whereInteractiveID) {
   const [isLike, setIsLike] = useState(false);
 
   const likeHandle = (e) => {
     console.log("Reaction Create Text");
+    on({
+      varaible: {
+        interactive: { connect: { id: whereInteractiveID } },
+        emoji: like,
+      },
+    });
     setIsLike((prev) => !prev);
   };
 
@@ -34,4 +41,6 @@ function UI() {
     </Fragment>
   );
 }
-export default UI;
+export default function InteractionReactionCreateText(props) {
+  return <Controller {...props} UI={UI} />;
+}
