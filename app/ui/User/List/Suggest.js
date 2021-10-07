@@ -4,7 +4,7 @@ import {
   RelationshipCreateButton,
   RelationshipDeleteDelete,
 } from "../../Relationship";
-
+import Controller from "./Controller";
 // Fetch 12 items
 const data = [
   {
@@ -81,7 +81,7 @@ const data = [
   },
 ];
 
-function UI() {
+function UI({ loading, error, allUsers, count, refetch }) {
   return (
     <VStack>
       <Box w="full" mt="5" mb="2" px="0.5%">
@@ -97,9 +97,9 @@ function UI() {
         flexWrap="wrap"
         justifyContent="flex-start"
       >
-        {data.map((item) => (
+        {allUsers.map((user) => (
           <VStack
-            key={item.id}
+            key={user.id}
             p="3"
             minW={["49%", "32%", "24%"]}
             m="0.5%"
@@ -112,16 +112,16 @@ function UI() {
             <Box>
               <Image
                 source={{
-                  uri: item.profileImg,
+                  uri: user?.avatar?.publicUrl,
                 }}
-                alt="Profile Image"
+                alt={user.name}
                 size="20"
                 mx="auto"
                 mt="2"
                 rounded="100"
               />
             </Box>
-            <Text my="2">{item.name}</Text>
+            <Text my="2">{user.name}</Text>
             <RelationshipCreateButton />
           </VStack>
         ))}
@@ -129,4 +129,6 @@ function UI() {
     </VStack>
   );
 }
-export default UI;
+export default function UserListSuggest(props) {
+  return <Controller {...props} UI={UI} />;
+}

@@ -13,7 +13,7 @@ function UI() {
         w="full"
         p="3"
         my="2"
-        rounded="12"
+        rounded={["0", "12"]}
         borderWidth="1"
         borderColor="gray.100"
       >
@@ -29,7 +29,7 @@ function UI() {
         />
         <Box flex="1">
           <Text color="gray.500" fontSize="15">
-            Chia sẻ kỉ niệm du lịch của bạn
+            Bạn đang nghĩ gì?
           </Text>
         </Box>
         <Link to={{ screen: "newpost" }}>

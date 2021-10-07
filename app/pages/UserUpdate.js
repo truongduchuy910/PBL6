@@ -4,7 +4,7 @@ import { UserUpdateSimple } from "../ui/User";
 
 export default function UserUpdate({ navigation }) {
   return (
-    <Container w="container.md" margin="auto" mt="16" maxw="full" px="2">
+    <Container w="container.lg" margin="auto" mt="16" maxW="full" px="3">
       <UserUpdateSimple />
     </Container>
   );

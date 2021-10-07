@@ -1,6 +1,6 @@
 let { File, Text } = require("@itoa/fields");
 let { imageAdapter, imageHooks } = require("@itoa/lib/stores");
-let { roleSeller } = require("@itoa/lib/access");
+let { roleSeller, roleSimple } = require("@itoa/lib/access");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
 
 module.exports = {
@@ -20,7 +20,13 @@ module.exports = {
   labelResolver: (item) => {
     return `${item.alt ? item.alt : item.file.originalFilename}`;
   },
-  access: roleSeller,
+  hooks: {
+    resolveInput: async ({ resolvedData = {} }) => {
+      if (!resolvedData.alt && resolvedData.file) resolvedData.file.filename;
+      return resolvedData;
+    },
+  },
+  access: roleSimple,
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour

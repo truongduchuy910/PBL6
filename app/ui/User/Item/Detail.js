@@ -34,8 +34,8 @@ function UI(loading) {
                 "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
             }}
             alt="Alternate Text"
-            w="120"
-            h="120"
+            w={["80px", "120px"]}
+            h={["80px", "120px"]}
             rounded="100"
           />
         </Box>

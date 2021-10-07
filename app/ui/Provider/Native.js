@@ -110,9 +110,10 @@ export function getApolloState(pageProps = {}) {
 export const AuthContext = createContext();
 const Stack = createNativeStackNavigator();
 function Native({ navigation, header }) {
-  const result = useQuery(USER_AUTH);
+  var result = useQuery(USER_AUTH);
   const { loading, error, data = {} } = result;
   const { user = null } = data;
+  result.user = user;
   const customTheme = {
     ...DefaultTheme,
     colors: {

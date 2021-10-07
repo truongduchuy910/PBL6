@@ -3,6 +3,7 @@ import UserSignInSimple from "./SignIn/Simple";
 import UserSignUpSimple from "./SignUp/Simple";
 import UserSignOutButton from "./SignOut/Button";
 import UserListSuggest from "./List/Suggest";
+import UserListCount from "./List/Count";
 import UserListSuggestFixed from "./List/SuggestFixed";
 import UserListRequest from "./List/Request";
 import UserItemDetail from "./Item/Detail";
@@ -19,4 +20,5 @@ export {
   UserItemDetail,
   UserUpdateSimple,
   UserUpdatePassword,
+  UserListCount,
 };
