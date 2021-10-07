@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { POST_LIST } from "../List/Controller";
 export const POST_ITEM = gql`
   query($id: ID!) {
     Post(where: { id: $id }) {
@@ -7,11 +8,11 @@ export const POST_ITEM = gql`
       tags {
         content
       }
-      # images {
-      #   file {
-      #     publicUrl
-      #   }
-      # }
+      images {
+        file {
+          publicUrl
+        }
+      }
       interactive {
         comments {
           content
@@ -23,11 +24,15 @@ export const POST_ITEM = gql`
     }
   }
 `;
-export default function PostItem({ id, UI }) {
+export default function PostItem({ UI, id, where }) {
   if (!id) return "Id required!";
-  const { loading, error, data = {} } = useQuery(POST_ITEM, {
-    variables: { id },
+  const { loading, error, data = {} } = useQuery(id ? POST_ITEM : POST_LIST, {
+    variables: id ? { id } : { where },
   });
-  const post = data;
+ 
+  if (loading) return "...";
+  if (error) return error.message;
+  const { allPosts = [], Post } = data;
+  const [post] = allPosts || [Post];
   return <UI loading={loading} error={error} post={post} />;
 }
