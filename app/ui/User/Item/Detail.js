@@ -12,17 +12,15 @@ import {
 } from "native-base";
 import { PostListGrid } from "../../Post";
 import {
-  RelationshipCreateButton,
   RelationshipUpdateButton,
-  RelationshipDeleteActive,
-  RelationshipDeleteCancel,
   RelationshipDeleteDelete,
 } from "../../Relationship";
-import UserUpdateButton from "../Update/Button";
-import SkeletonDetail from "./SkeletonDetail";
+import Controller from "./Controller";
+import DetailSkeleton from "./DetailSkeleton";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
-function UI({ loading, error, data }) {
+function UI({ loading, error, user }) {
+  if (loading) return <DetailSkeleton />;
   return (
     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
       <HStack space="7" m="1%" alignItems="center">
@@ -30,7 +28,8 @@ function UI({ loading, error, data }) {
           <Image
             source={{
               uri:
-                "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
+                "https://odanang.net" +
+                (user?.avatar?.publicUrl || "/img/no-image.png"),
             }}
             alt="Alternate Text"
             w={["100px", "120px"]}
@@ -41,7 +40,7 @@ function UI({ loading, error, data }) {
         <VStack flex="1" space={["2", "3"]}>
           <HStack space="2">
             <Text fontSize={["20", "22"]} fontWeight="600">
-              Trần Ngọc Huy
+              {user.name}
             </Text>
             <Button bgColor="transparent" p="2" color="gray.500">
               <HiOutlineDotsHorizontal />
@@ -115,3 +114,6 @@ function UI({ loading, error, data }) {
   );
 }
 export { UI };
+export default function UserItemDetail(props) {
+  return <Controller {...props} UI={UI} />;
+}
