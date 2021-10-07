@@ -8,6 +8,7 @@ function UI({ count }) {
     </Text>
   );
 }
+export { UI };
 export default function UserListCount(props) {
   return <Controller {...props} UI={UI} />;
 }
