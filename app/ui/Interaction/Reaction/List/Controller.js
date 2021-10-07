@@ -1,25 +1,20 @@
 import { gql } from "@apollo/client";
 export const REACTION_LIST = gql`
-  query($id: ID!) {
-    allInteractiveReactions(where: { interactive: { post: { id: $id } } }) {
+  query($where: InteractiveReactionWhereInput) {
+    _allInteractiveReactionsMeta(where: $where) {
+      count
+    }
+    allInteractiveReactions(where: $where) {
       id
       emoji
     }
   }
 `;
-export default function ReactionList({ UI, id, ...props }) {
-  if (!postId) return "ID required!";
-  const { loading, error, data = {}, refetch } = useQuery(REACTION_LIST, {
-    variables: { postId },
+export default function ReactionListController({ UI, where }) {
+  if (!id) return "ID required!";
+  const { loading, error, data = {} } = useQuery(REACTION_LIST, {
+    variables: { where },
   });
-  const { reactionsList = [] } = data.Post.interactive.reactions;
-  return (
-    <UI
-      {...props}
-      loading={loading}
-      error={error}
-      reactionsList={reactionsList}
-      refetch={refetch}
-    />
-  );
+  const { allReactions = [] } = data;
+  return <UI loading={loading} error={error} allReactions={allReactions} />;
 }

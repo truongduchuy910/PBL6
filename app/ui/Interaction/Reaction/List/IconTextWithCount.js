@@ -2,14 +2,19 @@ import React from "react";
 import { HStack, Text } from "native-base";
 import { FaHeart } from "react-icons/fa";
 
-function UI() {
-  return (
+function UI({loading, error, reactionsList}) {
+  const countAllReactions = reactionsList.length;
+  return loading ? (
+    <Text>...</Text>
+  ) : (
     <HStack alignItems="center" space="1">
       <FaHeart color="#22c55e" size="16" />
       <Text color="gray.800" fontSize="14" fontWeight="500">
-        1,232 lượt thích
+        {countAllReactions} thích
       </Text>
     </HStack>
   );
 }
-export default UI;
+export default function InteractionReactionListIconTextWithCount(props) {
+  <UI {...props} UI={UI} />;
+}

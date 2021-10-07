@@ -1,11 +1,16 @@
 import React from "react";
 import { Text } from "native-base";
 
-function UI() {
-  return (
+function UI({loading, error, reactionsList}) {
+  const countAllReactions = reactionsList.length;
+  return loading ? (
+    <Text>...</Text>
+  ) : (
     <Text color="gray.400" fontSize="12" fontWeight="600">
-      12 thích
+      {countAllReactions} thích
     </Text>
   );
 }
-export default UI;
+export default function InteractionReactionListTextWithCount(props) {
+  <UI {...props} UI={UI} />;
+}

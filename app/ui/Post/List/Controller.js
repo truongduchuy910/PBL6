@@ -1,14 +1,16 @@
 import { gql, useQuery } from "@apollo/client";
 export const POST_LIST = gql`
-  query($first: Int) {
-    allPosts(first: $first) {
+  query($first: Int, $where: PostWhereInput) {
+    allPosts(first: $first, where: $where) {
       id
       content
       tags {
         content
       }
-      images {
-        alt
+      // images {
+      //   file {
+      //     publicUrl
+      //   }
       }
       interactive {
         comments {
@@ -22,9 +24,9 @@ export const POST_LIST = gql`
   }
 `;
 // file ảnh đang lỗi chưa đưa vô
-export default function PostList({ UI, first = 4, ...props }) {
+export default function PostListController({ UI, first = 4, where, ...props }) {
   const { loading, error, data = {}, refetch } = useQuery(POST_LIST, {
-    variables: { first },
+    variables: { first, where },
   });
   const { allPosts = [] } = data;
   return (
