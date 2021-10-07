@@ -11,12 +11,13 @@ function UI({ navigation }) {
   };
 
   return (
-    <Box position="relative" right="0">
+    <Box position="relative" right="0" display={["none", "none", "block"]}>
       <FormControl>
         <Input
           onKeyPress={submitHandler}
           bgColor="white"
           px={2}
+          py={1.5}
           pl="8"
           fontSize={14}
           borderWidth={1}
@@ -24,7 +25,6 @@ function UI({ navigation }) {
           rounded={6}
           placeholder="Tìm kiếm trên Kilogram"
           w="250px"
-          display={["none", "none", "block"]}
           _focus={{
             borderColor: "green.500",
           }}

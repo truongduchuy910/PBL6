@@ -6,7 +6,7 @@ function UI() {
   const createHandler = () => {};
 
   return (
-    <Box mt="2" mx="0" w="full">
+    <Box mt="2" mx="0" w="full" px={["0", "1"]}>
       <HStack
         space="4"
         alignItems="center"

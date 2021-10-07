@@ -11,6 +11,7 @@ import UpdatePassword from "./UpdatePassword";
 import Album from "./Album";
 import EarlyAcess from "./EarlyAcess";
 import Friends from "./Friends";
+import Result from "./Result";
 
 export default {
   initialRouteName: "home",
@@ -64,6 +65,11 @@ export default {
       component: Friends,
       options: { title: "Tất cả bạn bè" },
     },
+    {
+      name: "result",
+      component: Result,
+      options: { title: "Kết quả tìm kiếm" },
+    },
   ],
   linking: {
     config: {
@@ -80,6 +86,7 @@ export default {
         album: "album",
         earlyaccess: "earlyaccess",
         friends: "friends",
+        result: "result",
       },
     },
   },
