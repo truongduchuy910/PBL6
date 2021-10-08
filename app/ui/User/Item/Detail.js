@@ -18,7 +18,8 @@ import {
 import Controller from "./Controller";
 import DetailSkeleton from "./DetailSkeleton";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-
+import PostListCount from "../../Post/List/Count";
+import Field from "../../Field";
 function UI({ loading, error, user }) {
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
@@ -51,7 +52,7 @@ function UI({ loading, error, user }) {
 
           <HStack space="4">
             <Text fontSize="14" color="gray.500">
-              12 bài đăng
+              <PostListCount /> bài đăng
             </Text>
             <Text fontSize="14" color="gray.500">
               144 bạn bè
@@ -86,7 +87,7 @@ function UI({ loading, error, user }) {
         </Text>
         <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
         <Text fontSize="14" fontWeight="400" color="gray.600" lineHeight="26px">
-          👋 Tôi tên là Trần Ngọc Huy <br></br>📚 Tôi đang tìm hiểu về du lịch
+          <Field>{user.description}</Field>
         </Text>
       </VStack>
 

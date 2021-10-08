@@ -4,11 +4,11 @@ import {
   InteractionCommentCreateSimple,
   InteractionCommentListSimple,
   InteractionCommentListToggleButton,
-} from "../../Interaction/Comment";
+} from "../../Interactive/Comment";
 import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
-} from "../../Interaction/Reaction";
+} from "../../Interactive/Reaction";
 import { AlbumCreateButton } from "../../Album";
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
