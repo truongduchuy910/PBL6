@@ -55,7 +55,7 @@ function UI({ loading, error, user }) {
               <PostListCount /> bài đăng
             </Text>
             <Text fontSize="14" color="gray.500">
-              144 bạn bè
+              <RelationshipListCount /> bạn bè
             </Text>
           </HStack>
         </VStack>
