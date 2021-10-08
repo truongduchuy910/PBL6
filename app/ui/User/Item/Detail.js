@@ -114,4 +114,4 @@ function UI({ loading, error, data }) {
     </VStack>
   );
 }
-export { UI };
+export default UI;
