@@ -12,6 +12,7 @@ import Album from "./Album";
 import EarlyAcess from "./EarlyAcess";
 import Friends from "./Friends";
 import Result from "./Result";
+import Markdown from "./Markdown";
 
 export default {
   initialRouteName: "home",
@@ -70,6 +71,11 @@ export default {
       component: Result,
       options: { title: "Kết quả tìm kiếm" },
     },
+    {
+      name: "markdown",
+      component: Markdown,
+      options: { title: "Markdown" },
+    },
   ],
   linking: {
     config: {
@@ -87,6 +93,7 @@ export default {
         earlyaccess: "earlyaccess",
         friends: "friends",
         result: "result",
+        markdown: "markdown",
       },
     },
   },
