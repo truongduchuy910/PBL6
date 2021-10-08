@@ -41,7 +41,7 @@ function UI({ allUsers }) {
               rounded="100"
             />
           </Box>
-          <Link to={{ screen: "user" }}>
+          <Link to={{ screen: "users", params: { id: user.id } }}>
             <Text fontWeight="600" color="gray.700">
               {user.name}
             </Text>

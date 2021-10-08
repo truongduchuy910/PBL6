@@ -17,7 +17,7 @@ export default function UserItem({ UI, where, id }) {
   const { loading, error, data = {} } = useQuery(id ? POST_ITEM : POST_LIST, {
     variables: id ? { id } : { where },
   });
-  const { allUsers = [], User } = data;
+  const { allUsers, User } = data;
   const [user] = allUsers || [User];
   return <UI loading={loading} error={error} user={user} />;
 }

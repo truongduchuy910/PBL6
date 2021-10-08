@@ -5,7 +5,7 @@ import { Link } from "@react-navigation/native";
 function UI(props) {
   return (
     <Button bgColor="white" onPress={props.notificationHandler}>
-      <Link to={{ screen: "user" }}>
+      <Link to={{ screen: "users" }}>
         <HStack
           space="12px"
           display="flex"

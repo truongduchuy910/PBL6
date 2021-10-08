@@ -23,8 +23,8 @@ export default {
       component: Home,
       options: { title: "Trang chủ" },
     },
-    { name: "user", component: User, options: { title: "Trang cá nhân" } },
-    { name: "post", component: Post, options: { title: "Trang bài viết" } },
+    { name: "users", component: User, options: { title: "Trang cá nhân" } },
+    { name: "posts", component: Post, options: { title: "Trang bài viết" } },
     { name: "signup", component: SignUp, options: { title: "Đăng ký" } },
     {
       name: "newpost",
@@ -78,11 +78,12 @@ export default {
     },
   ],
   linking: {
+    prefixes: ["https://odanang.net"],
     config: {
       screens: {
         home: "/",
-        user: "user",
-        post: "post",
+        users: "users/:id",
+        posts: "posts/:id",
         signup: "signup",
         newpost: "newpost",
         friendsuggestion: "friendsuggestion",

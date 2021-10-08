@@ -41,7 +41,7 @@ function UI({ navigation }) {
               leftIcon={<RiUser3Fill color="#22c55e" />}
               onPress={optionsHandler}
             >
-              <Link to={{ screen: "user" }}>
+              <Link to={{ screen: "users" }}>
                 <Text>Trang cá nhân</Text>
               </Link>
             </Button>

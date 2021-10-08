@@ -21,6 +21,8 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 function UI({ loading, error, user }) {
   if (loading) return <DetailSkeleton />;
+  if (error) return "error";
+  console.log(user);
   return (
     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
       <HStack space="7" m="1%" alignItems="center">
@@ -40,7 +42,7 @@ function UI({ loading, error, user }) {
         <VStack flex="1" space={["2", "3"]}>
           <HStack space="2">
             <Text fontSize={["20", "22"]} fontWeight="600">
-              {user.name}
+              {user?.name}
             </Text>
             <Button bgColor="transparent" p="2" color="gray.500">
               <HiOutlineDotsHorizontal />
