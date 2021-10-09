@@ -8,68 +8,10 @@ import {
   RelationshipDeleteActive,
   RelationshipDeleteCancel,
 } from "../../Relationship";
-
+import Controller from "./Controller";
 // Fetch 12 items
-const data = [
-  {
-    id: 1,
-    type: "yes",
-    name: "Trần Ngọc Huy",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
-  },
-  {
-    id: 2,
-    type: "no",
-    name: "Trần Diệp Phương",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
-  },
-  {
-    id: 3,
-    type: "yes",
-    name: "Trần Vũ Minh Triết",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/156458382_874843366689762_6113705464882053665_n_tl05xu.jpg",
-  },
-  {
-    id: 4,
-    type: "pending",
-    name: "Trần Ngọc Huy",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
-  },
-  {
-    id: 5,
-    type: "sending",
-    name: "Trần Diệp Phương",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
-  },
-  {
-    id: 6,
-    type: "yes",
-    name: "Trần Vũ Minh Triết",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/156458382_874843366689762_6113705464882053665_n_tl05xu.jpg",
-  },
-  {
-    id: 7,
-    type: "pending",
-    name: "Trần Ngọc Huy",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
-  },
-  {
-    id: 8,
-    type: "no",
-    name: "Trần Diệp Phương",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
-  },
-];
 
-function UI() {
+function UI({ loading, error, allUsers }) {
   return (
     <VStack>
       <Box w="full" mt="20px" mb="8px" px="0.5%">
@@ -85,9 +27,9 @@ function UI() {
         flexWrap="wrap"
         justifyContent="flex-start"
       >
-        {data.map((item) => (
+        {allUsers.map((user) => (
           <HStack
-            key={item.id}
+            key={user.id}
             p="12px"
             pl={["8px", "12px"]}
             minW={["100%", "99%", "49%"]}
@@ -104,7 +46,9 @@ function UI() {
               <Box>
                 <Image
                   source={{
-                    uri: item.profileImg,
+                    uri:
+                      "https://odanang.net" +
+                      (user?.avatar?.publicUrl + "/img/no-image.png"),
                   }}
                   alt="Profile Image"
                   size={["48px", "72px"]}
@@ -115,11 +59,11 @@ function UI() {
               </Box>
               <Link to={{ screen: "home" }}>
                 <Text my="8px" fontWeight="600">
-                  {item.name}
+                  {user.name}
                 </Text>
               </Link>
             </HStack>
-            {item.type === "pending" && (
+            {/* {item.type === "pending" && (
               <VStack space="6px">
                 <Box w="120px">
                   <RelationshipUpdateButton />
@@ -143,11 +87,14 @@ function UI() {
               <Box w="120px">
                 <RelationshipDeleteCancel />
               </Box>
-            )}
+            )} */}
           </HStack>
         ))}
       </HStack>
     </VStack>
   );
 }
-export default UI;
+export { UI };
+export default function UserListSimple(props) {
+  return <Controller {...props} UI={UI} />;
+}

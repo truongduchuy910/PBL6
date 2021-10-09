@@ -39,7 +39,8 @@ export default function PostListController({
   const { loading, error, data = {}, refetch } = useQuery(POST_LIST, {
     variables: { first, where, skip, sortBy },
   });
-  const { allPosts, _allPostsMeta } = data;
+  const { allPosts, _allPostsMeta = {} } = data;
+  const { count } = _allPostsMeta;
   return (
     <UI
       {...props}
@@ -48,6 +49,7 @@ export default function PostListController({
       allPosts={allPosts}
       _allPostsMeta={_allPostsMeta}
       refetch={refetch}
+      count={count}
     />
   );
 }

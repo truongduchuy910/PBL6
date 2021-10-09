@@ -7,7 +7,7 @@ function UI({ loading, error, user }) {
   if (loading) return <Text></Text>;
   if (!user) return <Text></Text>;
   return (
-    <Link to={{ screen: "user" }}>
+    <Link to={{ screen: "users", params: { id: user.id } }}>
       <Button
         rounded={8}
         bgColor="gray.100"

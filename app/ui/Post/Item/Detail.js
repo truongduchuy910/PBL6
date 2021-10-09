@@ -13,16 +13,17 @@ import {
   InteractionCommentCreateSimple,
   InteractionCommentListSimple,
   InteractionCommentListToggleButton,
-} from "../../Interaction/Comment";
+} from "../../Interactive/Comment";
 import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
-} from "../../Interaction/Reaction";
+} from "../../Interactive/Reaction";
 import { AlbumCreateButton } from "../../Album";
 import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItemSkeletonDetail from "./SkeletonDetail";
+import InteractiveItemSimple from "../../Interactive/Item/Simple";
 
 function UI(loading, error, post) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -134,10 +135,7 @@ function UI(loading, error, post) {
               <AlbumCreateButton />
             </Box>
           </HStack>
-          <Box w="full">
-            <InteractionCommentCreateSimple my="10" interactive ={post.interactive} />
-            <InteractionCommentListSimple />
-          </Box>
+          <InteractiveItemSimple />
         </Box>
       </VStack>
     </Stack>

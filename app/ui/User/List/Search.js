@@ -8,40 +8,9 @@ import {
   RelationshipDeleteActive,
   RelationshipDeleteCancel,
 } from "../../Relationship";
+import Controller from "./Controller";
 
-// Fetch 12 items
-const data = [
-  {
-    id: 1,
-    type: "yes",
-    name: "Trần Ngọc Huy",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
-  },
-  {
-    id: 2,
-    type: "no",
-    name: "Trần Diệp Phương",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
-  },
-  {
-    id: 3,
-    type: "sending",
-    name: "Trần Vũ Minh Triết",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/156458382_874843366689762_6113705464882053665_n_tl05xu.jpg",
-  },
-  {
-    id: 4,
-    type: "pending",
-    name: "Trần Vũ Minh Triết",
-    profileImg:
-      "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/156458382_874843366689762_6113705464882053665_n_tl05xu.jpg",
-  },
-];
-
-function UI() {
+function UI({ loading, error, allUsers }) {
   return (
     <VStack>
       <HStack
@@ -51,9 +20,9 @@ function UI() {
         flexWrap="wrap"
         justifyContent="flex-start"
       >
-        {data.map((item) => (
+        {allUsers.map((user) => (
           <HStack
-            key={item.id}
+            key={user.id}
             p={["3", "4"]}
             pl={["2", "4"]}
             minW={["100%", "99%"]}
@@ -70,7 +39,9 @@ function UI() {
               <Box>
                 <Image
                   source={{
-                    uri: item.profileImg,
+                    uri:
+                      "https://odanang.net" +
+                      (user?.avatar?.publicUrl || "/img/no-image.png"),
                   }}
                   alt="Profile Image"
                   size={["48px", "72px"]}
@@ -116,4 +87,7 @@ function UI() {
     </VStack>
   );
 }
-export default UI;
+export { UI };
+export default function UserListSearch(props) {
+  return <Controller {...props} UI={UI} />;
+}
