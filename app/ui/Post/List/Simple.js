@@ -4,7 +4,7 @@ import PostItemSimple from "../Item/Simple";
 import PostItemSkeletonSimple from "./SkeletonSimple";
 import PostListController from "./Controller";
 
-function UI(loading, error, allPosts, _allPostsMeta) {
+function UI({ loading, error, allPosts, _allPostsMeta }) {
   if (loading) {
     return <PostItemSkeletonSimple />;
   }
@@ -13,12 +13,11 @@ function UI(loading, error, allPosts, _allPostsMeta) {
     <VStack px={["0", "1"]}>
       {/* Map list posts */}
       {allPosts.map((post) => (
-        <PostItemSimple id={post.id} />
+        <PostItemSimple key={post.id} id={post.id} />
       ))}
     </VStack>
   );
 }
 export default function PostListSimple(props) {
   return <PostListController {...props} UI={UI} />;
-
 }

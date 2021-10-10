@@ -1,6 +1,7 @@
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
 export const COMMENT_LIST = gql`
-  query($where: InteractiveCommentsWhereInput) {
+  query($where: InteractiveCommentWhereInput) {
     _allInteractiveCommentsMeta(where: $where) {
       count
     }
@@ -10,19 +11,19 @@ export const COMMENT_LIST = gql`
     }
   }
 `;
-export function CommentListController(UI, where, ...props) {
-  if (!id) return "ID is required!";
+export function CommentListController({ UI, where, ...props }) {
   const { loading, error, data = {}, refetch } = useQuery(COMMENT_LIST, {
     variables: { where },
   });
-  const { _allInteractiveCommentsMeta, allInteractiveComments  } = data;
+  const { _allInteractiveCommentsMeta = {}, allInteractiveComments } = data;
+  const { count } = _allInteractiveCommentsMeta;
   return (
     <UI
       {...props}
       loading={loading}
       error={error}
-      allComments={allInteractiveComments}
-      _allCommentsMeta= {_allInteractiveCommentsMeta}
+      allInteractiveComments={allInteractiveComments}
+      count={count}
       refetch={refetch}
     />
   );

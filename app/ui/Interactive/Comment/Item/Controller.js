@@ -1,3 +1,4 @@
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { COMMENT_LIST } from "../List/Controller";
 export const COMMENT_ITEM = gql`
@@ -8,17 +9,14 @@ export const COMMENT_ITEM = gql`
     }
   }
 `;
-export function CommenItemController(UI, id, where) {
-  if (!id) return "Id is required!";
+export function CommenItemController({ UI, id, where }) {
   const { loading, error, data = {} } = useQuery(
     id ? COMMENT_ITEM : COMMENT_LIST,
     {
       variables: id ? { id } : { where },
-    }
+    },
   );
-  if (loading) return "...";
-  if (error) return error.message;
-  const { allInteractiveComments = [], InteractiveComment } = data;
+  const { allInteractiveComments, InteractiveComment } = data;
   const [comment] = allInteractiveComments || [InteractiveComment];
   return <UI loading={loading} error={error} comment={comment} />;
 }

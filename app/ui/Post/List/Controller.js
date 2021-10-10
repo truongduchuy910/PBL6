@@ -1,7 +1,12 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 export const POST_LIST = gql`
-  query($first: Int, $skip: skip, $sortBy: sortBy, $where: PostWhereInput) {
+  query(
+    $first: Int
+    $skip: Int
+    $sortBy: [SortPostsBy!]
+    $where: PostWhereInput
+  ) {
     _allPostsMeta(where: $where) {
       count
     }
@@ -24,6 +29,9 @@ export const POST_LIST = gql`
           emoji
         }
       }
+      createdBy {
+        id
+      }
     }
   }
 `;
@@ -40,14 +48,13 @@ export default function PostListController({
     variables: { first, where, skip, sortBy },
   });
   const { allPosts, _allPostsMeta = {} } = data;
-  const { count } = _allPostsMeta;
+  const { count = 0 } = _allPostsMeta;
   return (
     <UI
       {...props}
       loading={loading}
       error={error}
       allPosts={allPosts}
-      _allPostsMeta={_allPostsMeta}
       refetch={refetch}
       count={count}
     />

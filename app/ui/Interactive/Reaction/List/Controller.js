@@ -1,4 +1,5 @@
-import { gql } from "@apollo/client";
+import React from "react";
+import { gql, useQuery } from "@apollo/client";
 export const REACTION_LIST = gql`
   query($where: InteractiveReactionWhereInput) {
     _allInteractiveReactionsMeta(where: $where) {
@@ -11,7 +12,6 @@ export const REACTION_LIST = gql`
   }
 `;
 export default function ReactionListController({ UI, where }) {
-  if (!id) return "ID required!";
   const { loading, error, data = {} } = useQuery(REACTION_LIST, {
     variables: { where },
   });
@@ -24,5 +24,4 @@ export default function ReactionListController({ UI, where }) {
       _allReactionsMeta={_allInteractiveReactionsMeta}
     />
   );
-
 }

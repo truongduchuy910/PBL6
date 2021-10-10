@@ -1,3 +1,4 @@
+import React from "react";
 import { gql, useMutation } from "@apollo/client";
 
 export const COMMENT_CREATE = gql`
@@ -9,7 +10,7 @@ export const COMMENT_CREATE = gql`
   }
 `;
 
-export default function CommentCreate({ UI, interactive  }) {
+export default function CommentCreate({ UI, interactive }) {
   const [on, { loading, error, data = {} }] = useMutation(COMMENT_CREATE);
   const { createComment } = data;
   return (
@@ -18,7 +19,7 @@ export default function CommentCreate({ UI, interactive  }) {
       error={error}
       on={on}
       createComment={createComment}
-      interactive ={interactive }
+      interactive={interactive}
     />
   );
 }
