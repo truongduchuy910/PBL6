@@ -19,6 +19,7 @@ import Controller from "./Controller";
 import DetailSkeleton from "./DetailSkeleton";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostListCount from "../../Post/List/Count";
+import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
 function UI({ loading, error, user }) {
   if (loading) return <DetailSkeleton />;

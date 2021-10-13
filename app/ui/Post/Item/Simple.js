@@ -14,6 +14,7 @@ import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
+
 function UI({ loading, error, post }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,7 +22,8 @@ function UI({ loading, error, post }) {
     setIsModalOpen((prev) => !prev);
     console.log(isModalOpen);
   };
-
+  if (loading) return "...";
+  console.log(post);
   return (
     <Box
       maxW={["100%", "container.md"]}
@@ -42,15 +44,14 @@ function UI({ loading, error, post }) {
       >
         <Image
           source={{
-            uri:
-              "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
+            uri: "https://odanang.net" + post?.createdBy?.avatar?.publicUrl,
           }}
           alt="Profile image"
           size="8"
           rounded="100"
         />
         <Text color="gray.900" fontWeight="600" fontSize="14">
-          {post.content}
+          {post?.createdBy?.name}
         </Text>
         <Text color="gray.400" fontSize="12">
           14 giờ
@@ -85,7 +86,11 @@ function UI({ loading, error, post }) {
       <Text px="3" my="2">
         {post.content}
       </Text>
-      <UploadImageListCarousel />
+      <UploadImageListCarousel
+        urls={post?.images?.map(
+          (image) => "https://odanang.net" + image?.file?.publicUrl,
+        )}
+      />
       <Box px="3" mt="2">
         <InteractionReactionListIconTextWithCount
           where={{ interactive: { post: { id: post.id } } }}

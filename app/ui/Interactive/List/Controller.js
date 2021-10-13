@@ -3,8 +3,8 @@ import { gql, useQuery } from "@apollo/client";
 export const INTERACTIVE_LIST = gql`
   query(
     $first: Int
-    $skip: skip
-    $sortBy: sortBy
+    $skip: Int
+    $sortBy: [SortInteractivesBy!]
     $where: InteractiveWhereInput
   ) {
     _allInteractivesMeta(where: $where) {
