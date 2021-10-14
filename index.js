@@ -75,10 +75,15 @@ function configureExpress(app) {
     config.dir = config.dir.replace(/\\/g, "/")
     config.path = config.path.replace(/\\/g, "/").replace("//", "/")
 
-    config.dir = config.dir.replace('[[...',':').replace(']]','/*').replace('[', ':').replace(']', '');
+    config.dir = config.dir.replace('[[...', ':').replace(']]', '/*').replace('[', ':').replace(']', '');
     // if (config.dir.split(/\\/g)[1].startsWith('[')) {
     //   config.dir = config.dir.replace('[', ':').replace(']', '')D
     // }  
+    // if (config.dir.split('[[...').length() >= 2) {
+    //   var tempDir = config.Dir;
+    //   console.log('[[...]] la:' + tempDir)
+    //   //app[config.file](config.dir, handler);
+    // }
     const { handler } = require(config.path);
     console.log(config)
     app[config.file](config.dir, handler);
