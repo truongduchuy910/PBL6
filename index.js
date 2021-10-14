@@ -21,16 +21,16 @@ var keystone = new Keystone({
       process.env.NODE_ENV === `production`
         ? `mongodb://ecom:${process.env.DB_PWD}@db.itoa.vn:27017/${process.env.DB_NAME}`
         : process.env.DB_DEV
-        ? process.env.DB_DEV
-        : `mongodb://localhost:27017/${process.env.DB_NAME}`,
+          ? process.env.DB_DEV
+          : `mongodb://localhost:27017/${process.env.DB_NAME}`,
   }),
   sessionStore: new MongoStore({
     mongoUrl:
       process.env.NODE_ENV === `production`
         ? `mongodb://session:${process.env.DB_PWD}@db.itoa.vn:27017/${process.env.DB_SESSION}`
         : process.env.DB_DEV
-        ? process.env.DB_DEV
-        : `mongodb://localhost:27017/${process.env.DB_SESSION}`,
+          ? process.env.DB_DEV
+          : `mongodb://localhost:27017/${process.env.DB_SESSION}`,
   }),
   //
   secureCookies: process.env.NODE_ENV === "production",
@@ -70,10 +70,26 @@ function configureExpress(app) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
-  reads("", "./routers", [".js"], ["default", "post", "get"]).map((config) => {
+  reads("", "./routers/", [".js"], ["default", "post", "get"]).map((config) => {
+
+    config.dir = config.dir.replace(/\\/g, "/")
+    config.path = config.path.replace(/\\/g, "/").replace("//", "/")
+
+    config.dir = config.dir.replace('[[...', ':').replace(']]', '/*').replace('[', ':').replace(']', '');
+    // if (config.dir.split(/\\/g)[1].startsWith('[')) {
+    //   config.dir = config.dir.replace('[', ':').replace(']', '')D
+    // }  
+    // if (config.dir.split('[[...').length() >= 2) {
+    //   var tempDir = config.Dir;
+    //   console.log('[[...]] la:' + tempDir)
+    //   //app[config.file](config.dir, handler);
+    // }
     const { handler } = require(config.path);
+    console.log(config)
     app[config.file](config.dir, handler);
-  });
+  },
+
+  );
   return app;
 }
 module.exports = {
