@@ -10,13 +10,12 @@ export const COMMENT_UPDATE = gql`
   }
 `;
 
-export default function CommentUpdate({ UI, children, comment }) {
+export default function CommentUpdate({ UI, comment }) {
   const [on, { loading, error, data = {} }] = useMutation(COMMENT_UPDATE);
   if (loading) return "...";
   if (error) return error.message;
   const { commentUpdate } = data;
   return (
-    <UI comment={comment} onUpdateComment={on} commentUpdate={commentUpdate} /> ||
-    children({ comment, onUpdateComment, commentUpdate })
+    <UI comment={comment} on={on} commentUpdate={commentUpdate} /> 
   );
 }

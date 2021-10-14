@@ -14,16 +14,14 @@ export const POST_UPDATE = gql`
 
 export default function PostUpdate({ UI, children, post }) {
   const [on, { loading, error, data = {} }] = useMutation(POST_UPDATE);
-  const { postUpdated } = data;
+  const { updatePost } = data;
   return (
-    (
-      <UI
-        loading={loading}
-        error={error}
-        post={post}
-        onUpdatePost={on}
-        postUpdated={postUpdated}
-      />
-    ) || children({ post, onUpdatePost, postUpdated })
+    <UI
+      loading={loading}
+      error={error}
+      post={post}
+      on={on}
+      updatePost={updatePost}
+    />
   );
 }
