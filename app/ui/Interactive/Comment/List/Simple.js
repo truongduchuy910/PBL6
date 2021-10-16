@@ -3,11 +3,11 @@ import InteractionCommentItemSimple from "../Item/Simple";
 import { Button, VStack } from "native-base";
 import { CommentListController } from "./Controller";
 
-function UI({ loading, error, allInteractiveComments = [], count }) {
+function UI({ loading, error, allInteractiveComments = [], _allCommentsMeta }) {
   const moreCommentHandler = () => {
     console.log("More comments");
   };
-  if (loading) return "loading...";
+  if (loading) return "Loaing...";
   // Map list comments => InteractionCommentItemSimple
   return (
     <VStack>

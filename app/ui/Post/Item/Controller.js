@@ -15,6 +15,7 @@ export const POST_ITEM = gql`
         }
       }
       interactive {
+        id
         comments {
           content
         }
