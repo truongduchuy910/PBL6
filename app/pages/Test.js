@@ -7,7 +7,7 @@ export default function Test({ navigation }) {
   return (
     <Fragment>
       <Container>
-      <InteractionCommentListSimple />
+      <PostListSimple />
       </Container>
     </Fragment>
   );
