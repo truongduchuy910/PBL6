@@ -6,6 +6,17 @@ export const COMMENT_ITEM = gql`
     InteractiveComment(where: { id: $id }) {
       id
       content
+      createdAt
+      createdBy{
+        ...commentOfUser
+      }
+    }
+  }
+  fragment commentOfUser on User {
+    id
+    name
+    avatar {
+      publicUrl
     }
   }
 `;

@@ -1,5 +1,4 @@
 import { Link, HStack, Input, Stack } from "@chakra-ui/react";
-import { createIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import Controller from "./Controller";
 
