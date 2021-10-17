@@ -24,6 +24,7 @@
     "@itoa/lib": "file:lib",
     "@itoa/list-plugins": "^9.0.0",
     "axios": "^0.21.4",
+    "body-parser": "^1.19.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
     "deepmerge": "^4.2.2",
@@ -31,7 +32,8 @@
     "graphql-request": "^3.5.0",
     "jimp": "^0.16.1",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.6.5"
+    "nodemailer": "^6.6.5",
+    "web-push": "^3.4.5"
   },
   "devDependencies": {
     "@itoa/app-admin-ui": "^10.0.7",

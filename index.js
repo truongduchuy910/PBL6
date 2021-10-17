@@ -14,6 +14,9 @@ const bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
+const webpush = require('web-push')
+const publicVapidKey = 'BCHUIHFrP1lSl1ubhf2cD90norPtb03JZsNPYkoG3niR0pEjjcJbxR2WZjOHwPYVe5o8VExsY_Y4bIQu7_dYBDg'
+const privateVapidKey = 'TYEWUnmxtmkpcZxEUHmQn7hyIxJgjbC9OrHH6QASTSI'
 var keystone = new Keystone({
   onConnect: initialUser,
   adapter: new MongooseAdapter({
