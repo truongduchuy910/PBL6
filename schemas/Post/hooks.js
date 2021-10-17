@@ -16,7 +16,7 @@ async function beforeDelete({ keystone, id }) {
   const context = keystone.createContext({ skipAccessControl: true });
   const {
     data: { Post },
-    errors = [],
+    errors : postError = [],
   } = await keystone.executeGraphQL({
     context,
     query: gql`
@@ -31,8 +31,8 @@ async function beforeDelete({ keystone, id }) {
     variables: { id },
     skipAccessControl: true,
   });
-  if (errors && errors.length) {
-    errors.map((error) => {
+  if (postError && postError.length) {
+    postError.map((error) => {
       console.log(error);
     });
   }
