@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "native-base";
 import CommentDelete from "./Controller";
-function UI({loading, error, comment, clickDetete}) {
+function UI({ loading, error, comment, clickDetete }) {
   const toggleText = (e) => {
     console.log("Comment Delete Text");
   };
@@ -9,7 +9,7 @@ function UI({loading, error, comment, clickDetete}) {
     clickDetete();
   };
   return loading ? (
-    <Text>...</Text>
+    "..."
   ) : (
     <Button
       _text={{ color: "gray.400", fontSize: "12", fontWeight: "600" }}

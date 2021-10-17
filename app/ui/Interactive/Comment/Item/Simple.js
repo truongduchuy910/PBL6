@@ -58,7 +58,7 @@ function UI({ loading, error, comment }) {
             <HStack ml="3" mt="1" space="3">
               <InteractionReactionCreateText />
               <CreateText />
-              <DeleteText />
+              <DeleteText id = {comment?.id} />
               <InteractionReactionListTextWithCount />
               <Text color="gray.400" fontSize="12">
                 {stringCreatedAt}

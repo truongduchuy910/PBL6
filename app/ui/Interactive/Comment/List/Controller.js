@@ -1,19 +1,25 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 export const COMMENT_LIST = gql`
-  query($where: InteractiveCommentWhereInput) {
+  query($first: Int, $skip: Int, $where: InteractiveCommentWhereInput) {
     _allInteractiveCommentsMeta(where: $where) {
       count
     }
-    allInteractiveComments(where: $where) {
+    allInteractiveComments(first: $first, skip: $skip, where: $where) {
       id
       content
     }
   }
 `;
-export function CommentListController({ UI, where, ...props }) {
+export function CommentListController({
+  UI,
+  first,
+  skip,
+  where,
+  ...props
+}) {
   const { loading, error, data = {}, refetch } = useQuery(COMMENT_LIST, {
-    variables: { where },
+    variables: { first, skip, where },
   });
   const { _allInteractiveCommentsMeta = {}, allInteractiveComments } = data;
   const { count } = _allInteractiveCommentsMeta;

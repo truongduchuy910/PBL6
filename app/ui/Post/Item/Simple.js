@@ -90,7 +90,7 @@ function UI({ loading, error, post }) {
           >
             <PostUpdateText />
             <Divider w="full" bgColor="gray.100" />
-            <PostDeleteText />
+            <PostDeleteText id={post?.id} />
           </VStack>
         )}
         <Button
