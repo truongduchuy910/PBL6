@@ -21,10 +21,12 @@ export const COMMENT_LIST = gql`
     }
   }
 `;
-export const RefetchInteractiveCommentList = makeVar();
+export const CommentListRefetch = makeVar(() => {});
+
 export function CommentListController({
   UI,
-  first,
+  first = 5,
+  sortBy = "createdAt_DESC",
   skip,
   where,
   sortBy,

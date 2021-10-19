@@ -41,7 +41,7 @@ export default function PostListController({
   UI,
   first = 20,
   skip,
-  sortBy,
+  sortBy = 'createdAt_DESC',
   where,
   ...props
 }) {
