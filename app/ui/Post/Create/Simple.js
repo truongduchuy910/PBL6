@@ -14,18 +14,18 @@ import Controller from "./Controller";
 
 function UI({ loading, error, on }) {
   const contentRef = useRef();
-
-  const selectChangeHandler = (value) => {
-    console.log(value);
+  const [content, setContent] = useState("");
+  const changeContent = (e) => {
+    const content = e.target.value;
+    setContent(content);
   };
-
   const submitHandler = (event) => {
-    console.log("Post Create Simple");
-    event.preventDefault();
     on({
       variables: {
-        content: contentRef,
-        interactive: { comments: null, reactions: null },
+        data: {
+          content: content,
+          interactive: { create: { comments: null, reactions: null } },
+        },
       },
     });
   };
@@ -57,6 +57,7 @@ function UI({ loading, error, on }) {
             <TextArea
               placeholder="Nhập nội dung ..."
               w="full"
+              onChange={changeContent}
               ref={contentRef}
               name="content"
               bgColor="white"

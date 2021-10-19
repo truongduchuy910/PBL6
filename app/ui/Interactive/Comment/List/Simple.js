@@ -7,7 +7,7 @@ function UI({ loading, error, allInteractiveComments = [], _allCommentsMeta }) {
   const moreCommentHandler = () => {
     console.log("More comments");
   };
-  if (loading) return "Loaing...";
+  if (loading) return "Loading...";
   // Map list comments => InteractionCommentItemSimple
   return (
     <VStack>

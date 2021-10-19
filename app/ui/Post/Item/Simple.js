@@ -15,9 +15,29 @@ import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
 
+function formatTimeCreate(createdAt) {
+  var dayjs = require("dayjs");
+  let stringTime = "";
+  const createdTime = dayjs(createdAt);
+  const now = dayjs();
+  if (now.format("DD-MM-YYYY") === createdTime.format("DD-MM-YYYY")) {
+    if (Number(now.get("hour")) - Number(createdTime.get("hour")) === 0)
+      stringTime =
+        Number(now.get("minute")) -
+        Number(createdTime.get("minute")) +
+        " phút trước";
+    else
+      stringTime =
+        Number(now.get("hour")) -
+        Number(createdTime.get("hour")) +
+        " giờ trước";
+  } else stringTime = createdTime.format("DD-MM-YYYY");
+  return stringTime;
+}
+
 function UI({ loading, error, post }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const stringCreatedAt = formatTimeCreate(post?.createdAt);
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
     console.log(isModalOpen);
@@ -54,7 +74,7 @@ function UI({ loading, error, post }) {
           {post?.createdBy?.name}
         </Text>
         <Text color="gray.400" fontSize="12">
-          14 giờ
+          {stringCreatedAt}
         </Text>
         {isModalOpen && (
           <VStack
@@ -70,7 +90,7 @@ function UI({ loading, error, post }) {
           >
             <PostUpdateText />
             <Divider w="full" bgColor="gray.100" />
-            <PostDeleteText />
+            <PostDeleteText id={post?.id} />
           </VStack>
         )}
         <Button
@@ -88,7 +108,7 @@ function UI({ loading, error, post }) {
       </Text>
       <UploadImageListCarousel
         urls={post?.images?.map(
-          (image) => "https://odanang.net" + image?.file?.publicUrl,
+          (image) => "https://odanang.net" + image?.file?.publicUrl
         )}
       />
       <Box px="3" mt="2">

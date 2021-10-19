@@ -3,7 +3,7 @@ import { Button } from "native-base";
 import { FaRegTrashAlt } from "react-icons/fa";
 import PostDelete from "./Controller";
 
-function UI({loading, error, clickDetete, postDeleted}) {
+function UI({loading, error, clickDetete, post}) {
   const toggleText = (e) => {
     console.log("Post Delete Text");
   };
@@ -12,7 +12,7 @@ function UI({loading, error, clickDetete, postDeleted}) {
   };
 
   return loading ? (
-    <Text>...</Text>
+    "..."
   ) : (
     <Button
       _text={{ color: "gray.400", fontSize: "12", fontWeight: "600" }}
