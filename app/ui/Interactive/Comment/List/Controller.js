@@ -21,7 +21,7 @@ export const COMMENT_LIST = gql`
     }
   }
 `;
-export const CommentListRefetch = makeVar(() => {});
+export const RefetchInteractiveCommentList = makeVar(() => {});
 
 export function CommentListController({
   UI,
@@ -29,7 +29,6 @@ export function CommentListController({
   sortBy = "createdAt_DESC",
   skip,
   where,
-  sortBy,
   ...props
 }) {
   const { loading, error, data = {}, refetch } = useQuery(COMMENT_LIST, {
@@ -49,6 +48,6 @@ export function CommentListController({
         refetch={refetch}
       />
     ),
-    [loading, error, data],
+    [loading, error, data]
   );
 }

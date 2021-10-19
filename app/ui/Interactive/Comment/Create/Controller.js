@@ -19,7 +19,7 @@ export default function CommentCreate({ UI, interactive }) {
        * useReactiveVar return refetchInteractiveCommentList is a state
        * then, it make re-render this component
        */
-      refetchInteractiveCommentList();
+       refetchInteractiveCommentList();
     },
   });
   const { createComment } = data;
