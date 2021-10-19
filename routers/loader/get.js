@@ -1,7 +1,8 @@
-const { sizes, uploadPath } = require("@itoa/lib/stores");
+const { sizes, public } = require("@itoa/schemas/stores");
 const path = require("path");
 const fs = require("fs");
-const chalk = require("chalk");
+const Express = require("express");
+
 /**
  *
  * @param {Express.Request} req
@@ -13,25 +14,18 @@ function handler(req, res) {
   const size =
     sizes
       .sort((a, b) => (a.size > b.size ? -1 : 1))
-      .find((a) => a.size < (w > h ? w : h)) || sizes[0];
+      .find((a) => a.size <= (w <= h ? w : h)) || sizes[0];
 
-  const dir = path.join(
+  const origin = path.join(path.resolve(), public, url);
+  const resize = path.join(
     path.resolve(),
-    uploadPath,
+    public,
     url.replace(/\/img\//g, `/img/${size.name}/`),
   );
-  //
-  if (fs.existsSync(dir)) {
-    res.sendFile(dir);
-  } else {
-    if (process.env.NODE_ENV === "production")
-      console.log(chalk.red("missing  "), chalk.gray(url));
-    res.sendFile(
-      path.join(path.resolve(), "public/img/no-image.png"),
-      (err) => {
-        console.log(err);
-      },
-    );
-  }
+
+  if (fs.existsSync(resize)) res.sendFile(resize);
+  else if (fs.existsSync(origin)) res.sendFile(origin);
+  else
+    res.sendFile(path.join(path.resolve(), public, "/assets/img/no-image.png"));
 }
 module.exports = { handler };
