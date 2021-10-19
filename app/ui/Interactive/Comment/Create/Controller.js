@@ -1,5 +1,6 @@
 import React from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useReactiveVar, ReactiveVar } from "@apollo/client";
+import { RefetchInteractiveCommentList } from "../List/Controller";
 
 export const COMMENT_CREATE = gql`
   mutation($data: InteractiveCommentCreateInput) {
@@ -11,7 +12,16 @@ export const COMMENT_CREATE = gql`
 `;
 
 export default function CommentCreate({ UI, interactive }) {
-  const [on, { loading, error, data = {} }] = useMutation(COMMENT_CREATE);
+  const [on, { loading, error, data = {} }] = useMutation(COMMENT_CREATE, {
+    onCompleted: (data) => {
+      const refetchInteractiveCommentList = RefetchInteractiveCommentList();
+      /**
+       * useReactiveVar return refetchInteractiveCommentList is a state
+       * then, it make re-render this component
+       */
+      refetchInteractiveCommentList();
+    },
+  });
   const { createComment } = data;
   return (
     <UI

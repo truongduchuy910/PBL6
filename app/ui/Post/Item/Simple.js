@@ -108,7 +108,7 @@ function UI({ loading, error, post }) {
       </Text>
       <UploadImageListCarousel
         urls={post?.images?.map(
-          (image) => "https://odanang.net" + image?.file?.publicUrl
+          (image) => "https://odanang.net" + image?.file?.publicUrl,
         )}
       />
       <Box px="3" mt="2">
@@ -141,6 +141,7 @@ function UI({ loading, error, post }) {
           interactive={post.interactive}
         />
         <InteractionCommentListSimple
+          sortBy="createdBy_ASC"
           where={{ interactive: { post: { id: post.id } } }}
         />
       </Box>
