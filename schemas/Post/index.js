@@ -2,6 +2,8 @@ const { Text, Relationship, Images } = require("@itoa/fields");
 const { roleSimple } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
+const { users } = require("@itoa/lib/cache");
+const { hookPost }= require('./hooks');
 module.exports = {
   active: true,
   fields: {
@@ -31,7 +33,9 @@ module.exports = {
   ...multipleLanguage("Translate"),
   labelField: "",
   access: roleSimple,
-  hooks: {},
+  hooks: {
+    hookPost
+  },
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour
