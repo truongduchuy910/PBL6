@@ -1,3 +1,4 @@
+import React from "react";
 import { gql, useMutation } from "@apollo/client";
 
 export const POST_DELETE = gql`
@@ -11,16 +12,16 @@ export const POST_DELETE = gql`
 
 export default function PostDelete({ UI, id }) {
   const [on, { loading, error, data = {} }] = useMutation(POST_DELETE);
-  const { post } = data;
+  const { deletePost } = data;
   const clickDetete = () => {
-    on({ variables: { id } });
+    on({ variables: { id: id } });
   };
   return (
     <UI
       loading={loading}
       error={error}
       clickDetete={clickDetete}
-      post={post}
+      post={deletePost}
     />
   );
 }

@@ -9,7 +9,27 @@ import {
 import { VStack, HStack, Box, Image, Text } from "native-base";
 import { CommenItemController } from "./Controller";
 
+function formatTimeCreate(createdAt) {
+  var dayjs = require("dayjs");
+  let stringTime = "";
+  const createdTime = dayjs(createdAt);
+  const now = dayjs();
+  if (now.format("DD-MM-YYYY") === createdTime.format("DD-MM-YYYY")) {
+    if (Number(now.get("hour")) - Number(createdTime.get("hour")) === 0)
+      stringTime =
+        Number(now.get("minute")) -
+        Number(createdTime.get("minute")) +
+        " phút trước";
+    else
+      stringTime =
+        Number(now.get("hour")) -
+        Number(createdTime.get("hour")) +
+        " giờ trước";
+  } else stringTime = createdTime.format("DD-MM-YYYY");
+  return stringTime;
+}
 function UI({ loading, error, comment }) {
+  const stringCreatedAt = formatTimeCreate(comment?.createdAt);
   if (loading) return "Loading...";
   return (
     <Box mx="auto" my="2" w="full">
@@ -18,7 +38,7 @@ function UI({ loading, error, comment }) {
           <Image
             source={{
               uri:
-                "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/120660089_393393651679331_1736612289947580072_n_zxf7cs.jpg",
+                "https://odanang.net" + comment?.createdBy?.avatar?.publicUrl,
             }}
             alt="Profile image"
             size="8"
@@ -28,20 +48,20 @@ function UI({ loading, error, comment }) {
             <HStack>
               <Box bgColor="gray.50" rounded="8" px="3" py="2" flex="1">
                 <Text color="gray.900" fontWeight="600" fontSize="14">
-                  Trần Ngọc Huy
+                  {comment?.createdBy?.name}
                 </Text>
                 <Text color="gray.700" lineHeight="18">
-                  {comment.content}
+                  {comment?.content}
                 </Text>
               </Box>
             </HStack>
             <HStack ml="3" mt="1" space="3">
               <InteractionReactionCreateText />
               <CreateText />
-              <DeleteText />
+              <DeleteText id = {comment?.id} />
               <InteractionReactionListTextWithCount />
               <Text color="gray.400" fontSize="12">
-                14 giờ
+                {stringCreatedAt}
               </Text>
             </HStack>
 

@@ -1,30 +1,53 @@
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { useMemo } from "react";
+import { gql, useQuery, makeVar } from "@apollo/client";
 export const COMMENT_LIST = gql`
-  query($where: InteractiveCommentWhereInput) {
+  query(
+    $first: Int
+    $skip: Int
+    $where: InteractiveCommentWhereInput
+    $sortBy: [SortInteractiveCommentsBy!]
+  ) {
     _allInteractiveCommentsMeta(where: $where) {
       count
     }
-    allInteractiveComments(where: $where) {
+    allInteractiveComments(
+      first: $first
+      skip: $skip
+      where: $where
+      sortBy: $sortBy
+    ) {
       id
       content
     }
   }
 `;
-export function CommentListController({ UI, where, ...props }) {
+export const RefetchInteractiveCommentList = makeVar(() => {});
+
+export function CommentListController({
+  UI,
+  first = 5,
+  sortBy = "createdAt_DESC",
+  skip,
+  where,
+  ...props
+}) {
   const { loading, error, data = {}, refetch } = useQuery(COMMENT_LIST, {
-    variables: { where },
+    variables: { first, skip, where, sortBy },
   });
   const { _allInteractiveCommentsMeta = {}, allInteractiveComments } = data;
   const { count } = _allInteractiveCommentsMeta;
-  return (
-    <UI
-      {...props}
-      loading={loading}
-      error={error}
-      allInteractiveComments={allInteractiveComments}
-      count={count}
-      refetch={refetch}
-    />
+  if (refetch) RefetchInteractiveCommentList(refetch);
+  return useMemo(
+    () => (
+      <UI
+        {...props}
+        loading={loading}
+        error={error}
+        allInteractiveComments={allInteractiveComments}
+        count={count}
+        refetch={refetch}
+      />
+    ),
+    [loading, error, data]
   );
 }

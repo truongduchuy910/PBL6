@@ -1,4 +1,4 @@
-import { Link, HStack, Input, Stack } from "@chakra-ui/react";
+import { Link, HStack, Input, Stack } from "native-base";
 import { useState } from "react";
 import Controller from "./Controller";
 
@@ -18,9 +18,7 @@ function UI({ on, loading, error, comment }) {
     return (
       <HStack>
         <Input defaultValue={comment.content} onChange={handleChange} />
-        <Link onClick={handleUpdate}>
-          Cập nhật
-        </Link>
+        <Link onClick={handleUpdate}>Cập nhật</Link>
       </HStack>
     );
   };

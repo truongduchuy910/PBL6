@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cross-env PORT=3000 cross-env NODE_ENV=development cross-env DISABLE_LOGGING=true cross-env VALID=true keystone dev",
     "start": "cross-env PORT=3000 NODE_ENV=production DISABLE_LOGGING=true keystone start",
+    "build": "cross-env PORT=3000 NODE_ENV=production DISABLE_LOGGING=true keystone build",
     "next": "next dev",
     "show": "nodemon show.js"
   },

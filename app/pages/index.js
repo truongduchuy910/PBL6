@@ -13,6 +13,7 @@ import EarlyAcess from "./EarlyAcess";
 import Friends from "./Friends";
 import Result from "./Result";
 import Markdown from "./Markdown";
+import Test from "./Test";
 
 export default {
   initialRouteName: "home",
@@ -76,6 +77,11 @@ export default {
       component: Markdown,
       options: { title: "Markdown" },
     },
+    {
+      name: "test",
+      component: Test,
+      options: { title: "Test Component" },
+    },
   ],
   linking: {
     prefixes: ["https://odanang.net"],
@@ -95,6 +101,7 @@ export default {
         friends: "friends",
         result: "result",
         markdown: "markdown",
+        test: "test",
       },
     },
   },

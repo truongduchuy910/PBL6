@@ -15,6 +15,7 @@ export const POST_ITEM = gql`
         }
       }
       interactive {
+        id
         comments {
           content
         }
@@ -22,6 +23,7 @@ export const POST_ITEM = gql`
           emoji
         }
       }
+      createdAt
       createdBy {
         id
         name

@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, makeVar, useQuery } from "@apollo/client";
 export const POST_LIST = gql`
   query(
     $first: Int
@@ -35,27 +35,46 @@ export const POST_LIST = gql`
     }
   }
 `;
-// file ảnh đang lỗi chưa đưa vô
+export const PostListRefetch = makeVar(() => {});
+
 export default function PostListController({
   UI,
-  first = 3,
+  first = 20,
   skip,
-  sortBy,
+  sortBy = 'createdAt_DESC',
   where,
   ...props
 }) {
-  const { loading, error, data = {}, refetch } = useQuery(POST_LIST, {
-    variables: { first, where, skip, sortBy },
-  });
+  const { loading, error, data = {}, fetchMore, refetch } = useQuery(
+    POST_LIST,
+    {
+      variables: { first, where, skip, sortBy },
+    }
+  );
   const { allPosts, _allPostsMeta = {} } = data;
   const { count = 0 } = _allPostsMeta;
+
+  function getMore(e) {
+    if (loading || error) return;
+    if (count <= allPosts.length) return;
+    fetchMore({
+      variables: { skip: allPosts.length },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        return {
+          ...previousResult,
+          allPosts: [...previousResult.allPosts, ...fetchMoreResult.allPosts],
+        };
+      },
+    });
+  }
+  if (refetch) PostListRefetch(refetch);
   return (
     <UI
       {...props}
       loading={loading}
       error={error}
       allPosts={allPosts}
-      refetch={refetch}
+      getMore={getMore}
       count={count}
     />
   );
