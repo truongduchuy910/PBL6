@@ -17,7 +17,6 @@ export default function Home({ navigation }) {
       maxW="full"
       px={["0", "8px"]}
     >
-      {/* <EarlyAccess /> */}
       <Flex w="full" direction="row">
         <Box
           flex={[1, 1, 1, 9]}
@@ -25,7 +24,7 @@ export default function Home({ navigation }) {
           mx={["auto", "auto", "auto", "0"]}
         >
           <PostCreateButton />
-          <PostListSimple />
+          <PostListSimple first={2} />
         </Box>
         <Box flex={[0, 0, 0, 3]} display={["none", "none", "none", "block"]}>
           <Box

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ListToggleText from "../List/ToggleText";
-import CreateText from "../Create/Text";
+import { InteractionCommentCreateUpdateText as CreateText } from "../";
 import DeleteText from "../Delete/Text";
 import {
   InteractionReactionCreateText,
@@ -8,6 +8,7 @@ import {
 } from "../../Reaction";
 import { VStack, HStack, Box, Image, Text } from "native-base";
 import { CommenItemController } from "./Controller";
+import InteractiveItemSimple from "../../Item/Simple";
 
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
@@ -28,9 +29,13 @@ function formatTimeCreate(createdAt) {
   } else stringTime = createdTime.format("DD-MM-YYYY");
   return stringTime;
 }
-function UI({ loading, error, comment }) {
+export function UI({ loading, error, comment }) {
+  const [open, setOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(comment?.createdAt);
-  if (loading) return "Loading...";
+  const { interactive = {} } = comment;
+  const { _commentsMeta = {} } = interactive;
+  const { count = 0 } = _commentsMeta;
+  if (loading) return "...";
   return (
     <Box mx="auto" my="2" w="full">
       <VStack>
@@ -57,8 +62,11 @@ function UI({ loading, error, comment }) {
             </HStack>
             <HStack ml="3" mt="1" space="3">
               <InteractionReactionCreateText />
-              <CreateText />
-              <DeleteText id = {comment?.id} />
+              <CreateText
+                comment={comment}
+                onPress={(e) => setOpen((open) => !open)}
+              />
+              <DeleteText id={comment?.id} />
               <InteractionReactionListTextWithCount />
               <Text color="gray.400" fontSize="12">
                 {stringCreatedAt}
@@ -67,7 +75,10 @@ function UI({ loading, error, comment }) {
 
             {/* Check if this comment has reponses */}
             <HStack ml="3" mt="1">
-              <ListToggleText />
+              <ListToggleText count={count} />
+              {open && comment?.interactive?.id && (
+                <InteractiveItemSimple id={comment?.interactive?.id} />
+              )}
             </HStack>
           </VStack>
         </HStack>

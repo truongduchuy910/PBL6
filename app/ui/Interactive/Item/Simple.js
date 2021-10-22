@@ -1,18 +1,15 @@
+import React from "react";
 import { Box } from "native-base";
-import {
-  InteractionCommentCreateSimple,
-  InteractionCommentListSimple,
-} from "../Comment";
-
-function UI({ interactive }) {
+import InteractionCommentCreateSimple from "../Comment/Create/Simple";
+import { UI as InteractionCommentListSimple } from "../Comment/List/Simple";
+import Controller from "./Controller";
+function UI({ loading, error, interactive }) {
+  if (loading) return "...";
   return (
     <Box w="full">
-      <InteractionCommentCreateSimple
-        my="10"
-        where={{ interactive: { id: interactive.id } }}
-      />
+      <InteractionCommentCreateSimple my="10" interactive={interactive} />
       <InteractionCommentListSimple
-        where={{ interactive: { id: interactive.id } }}
+        allInteractiveComments={interactive.comments}
       />
     </Box>
   );

@@ -7,16 +7,13 @@ export const COMMENT_ITEM = gql`
       id
       content
       createdAt
-      createdBy{
-        ...commentOfUser
+      createdBy {
+        id
+        name
+        avatar {
+          publicUrl
+        }
       }
-    }
-  }
-  fragment commentOfUser on User {
-    id
-    name
-    avatar {
-      publicUrl
     }
   }
 `;

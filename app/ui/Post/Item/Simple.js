@@ -14,6 +14,7 @@ import { PostDeleteText, PostUpdateText } from "../index";
 import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
+import InteractiveItemSimple from "../../Interactive/Item/Simple";
 
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
@@ -136,13 +137,9 @@ function UI({ loading, error, post }) {
             <AlbumCreateButton />
           </Box>
         </HStack>
-        <InteractionCommentCreateSimple
-          my="10"
+        <InteractiveItemSimple
           interactive={post.interactive}
-        />
-        <InteractionCommentListSimple
-          sortBy="createdBy_ASC"
-          where={{ interactive: { post: { id: post.id } } }}
+          sortBy="createdAt_DESC"
         />
       </Box>
     </Box>
