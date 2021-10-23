@@ -2,7 +2,7 @@ const { LocalFileAdapter } = require("@itoa/file-adapters");
 const path = require("path");
 const fs = require("fs");
 var Jimp = require("jimp");
-const chalk = require("chalk");
+// const chalk = require("chalk");
 const { Images, File } = require("@itoa/fields");
 const public = "./public";
 const sizes = [
@@ -33,7 +33,7 @@ async function resize(filename) {
   //
   const _filename = path.join(public, "/upload/img", filename);
   if (!fs.existsSync(_filename)) {
-    console.log(chalk.red("\nmissing "), filename);
+    // console.log(chalk.red("\nmissing "), filename);
     count.missing++; // normal missing
     return; // - MISSING NORMAL FILE!
   }
