@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { HStack, Box, Image, Input } from "native-base";
-import Controller  from "./Controller";
+import Controller from "./Controller";
 
-function UI({ loading, error, on, interactive  }) {
+export function UI({ loading, error, on, interactive }) {
+  const [content, setContent] = useState("");
   const clickCreate = () => {
-    on({
-      variables: {
-        data: {
-          content: userInput,
-          interactive: { connect: { id: interactive.id } },
+    if (!loading)
+      on({
+        variables: {
+          data: {
+            content: content,
+            interactive: { connect: { id: interactive.id } },
+          },
         },
-      },
-    });
+      });
   };
 
-  const [userInput, setUserInput] = useState("");
-
-  const userInputChangeHandle = (e) => {
-    setUserInput(e.target.value);
+  const contentChangeHandle = (e) => {
+    setContent(e.target.value);
   };
 
   const userCommentHandle = (e) => {
@@ -25,11 +25,10 @@ function UI({ loading, error, on, interactive  }) {
     if (!value.trim().length) {
       return;
     }
-    console.log(value);
     clickCreate();
-    setUserInput("");
+    setContent("");
   };
-
+  if (loading) return "...";
   return (
     <Box mx="auto" w="full">
       <HStack space="2" display="flex" flexDirection="row" w="full">
@@ -58,8 +57,8 @@ function UI({ loading, error, on, interactive  }) {
               borderColor: "gray.100",
             }}
             placeholder="Viết bình luận ..."
-            value={userInput}
-            onChange={userInputChangeHandle}
+            value={content}
+            onChange={contentChangeHandle}
             onSubmitEditing={userCommentHandle}
           />
         </Box>

@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useMutation } from "@apollo/client";
+import { RefetchInteractiveItem } from "../../Item/Controller";
 
 export const COMMENT_DELETE = gql`
   mutation($id: ID!) {
@@ -11,7 +12,12 @@ export const COMMENT_DELETE = gql`
 `;
 
 export default function CommentDelete({ UI, id }) {
-  const [on, { loading, error, data = {} }] = useMutation(COMMENT_DELETE);
+  const [on, { loading, error, data = {} }] = useMutation(COMMENT_DELETE, {
+    onCompleted: (data) => {
+      const refetchInteractiveItem = RefetchInteractiveItem();
+      refetchInteractiveItem();
+    },
+  });
   const { deleteInteractiveComment } = data;
   const clickDetete = () => {
     on({ variables: { id: id } });

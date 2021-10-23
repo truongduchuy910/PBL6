@@ -4,24 +4,33 @@ export const INTERACTIVE_LIST = gql`
   query(
     $first: Int
     $skip: Int
-    $sortBy: [SortInteractivesBy!]
+    $sortBy: [SortInteractiveCommentsBy!]
     $where: InteractiveWhereInput
   ) {
     _allInteractivesMeta(where: $where) {
       count
     }
-    allInteractives(
-      first: $first
-      skip: $skip
-      sortBy: $sortBy
-      where: $where
-    ) {
+    allInteractives(where: $where) {
       id
-      comments {
+      comments(sortBy: $sortBy, first: $first, skip: $skip) {
+        id
         content
+        createdBy {
+          name
+          avatar {
+            publicUrl
+          }
+        }
       }
       reactions {
+        id
         emoji
+        createdBy {
+          name
+          avatar {
+            publicUrl
+          }
+        }
       }
     }
   }
@@ -38,14 +47,15 @@ export default function InteractiveListController({
   const { loading, error, data = {}, refetch } = useQuery(INTERACTIVE_LIST, {
     variables: { first, where, skip, sortBy },
   });
-  const { allInteractives, _allInteractivesMeta } = data;
+  const { allInteractives, _allInteractivesMeta = {} } = data;
+  const { count = 0 } = _allInteractivesMeta;
   return (
     <UI
       {...props}
       loading={loading}
       error={error}
       allInteractives={allInteractives}
-      _allInteractivesMeta={_allInteractivesMeta}
+      count={count}
       refetch={refetch}
     />
   );
