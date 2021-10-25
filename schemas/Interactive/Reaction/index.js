@@ -18,7 +18,7 @@ module.exports = {
     },
     interactive: {
       type: Relationship,
-      ref: "Interactive.reactions",
+      ref: "Interactive",
       many: false,
     },
   },
