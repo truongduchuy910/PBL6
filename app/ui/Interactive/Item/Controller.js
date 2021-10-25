@@ -2,8 +2,8 @@ import React from "react";
 import { gql, makeVar, useQuery } from "@apollo/client";
 import { INTERACTIVE_LIST } from "../List/Controller";
 export const INTERACTIVE_ITEM = gql`
-  query($id: ID!, $sortBy: [SortInteractiveCommentsBy!], $first: Int) {
-    allInteractives(where: { post: { id: $id } }) {
+  query($id: ID!, $sortBy: [SortInteractiveCommentsBy!], $first: Int, $where: InteractiveWhereInput) {
+    allInteractives(where: $where) {
       id
       comments(sortBy: $sortBy, first: $first) {
         id

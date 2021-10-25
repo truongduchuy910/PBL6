@@ -109,7 +109,7 @@ function UI({ loading, error, post }) {
       </Text>
       <UploadImageListCarousel
         urls={post?.images?.map(
-          (image) => "https://odanang.net" + image?.file?.publicUrl,
+          (image) => "https://odanang.net" + image?.file?.publicUrl
         )}
       />
       <Box px="3" mt="2">
@@ -139,7 +139,7 @@ function UI({ loading, error, post }) {
         </HStack>
         <InteractiveItemSimple
           interactive={post.interactive}
-          id = {post.id}
+          where={{ post: { id: post.id } }}
           sortBy="createdAt_DESC"
         />
       </Box>
