@@ -3,7 +3,7 @@ const { roleSimple } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
 const { users } = require("@itoa/lib/cache");
-const { hookPost }= require('./hooks');
+const { hookPost }= require('./hook');
 module.exports = {
   active: true,
   fields: {
