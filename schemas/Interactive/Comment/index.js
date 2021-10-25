@@ -12,9 +12,14 @@ module.exports = {
     },
     interactive: {
       type: Relationship,
-      ref: "Interactive",
+      ref: "Interactive.comments",
       many: false,
     },
+    my_interactive: {
+      type: Relationship,
+      ref: "Interactive",
+      many: false
+    }
   },
   ...multipleLanguage("Translate"),
   labelField: "",

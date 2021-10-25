@@ -5,21 +5,21 @@ const { atTracking, byTracking } = require("@itoa/list-plugins");
 module.exports = {
   active: true,
   fields: {
-    // reactions: {
-    //   type: Relationship,
-    //   ref: "InteractiveReaction.interactive",
-    //   many: true,
-    // },
-    // comments: {
-    //   type: Relationship,
-    //   ref: "InteractiveComment.interactive",
-    //   many: true,
-    // },
-    post: {
+    reactions: {
       type: Relationship,
-      ref: "Post.interactive",
-      many: false,
+      ref: "InteractiveReaction.interactive",
+      many: true,
     },
+    comments: {
+      type: Relationship,
+      ref: "InteractiveComment.interactive",
+      many: true,
+    },
+    // post: {
+    //   type: Relationship,
+    //   ref: "Post.interactive",
+    //   many: false,
+    // },
   },
   ...multipleLanguage("Translate"),
   labelField: "",

@@ -26,7 +26,7 @@ module.exports = {
     },
     interactive: {
       type: Relationship,
-      ref: "Interactive.post",
+      ref: "Interactive",
       many: false,
     },
   },
