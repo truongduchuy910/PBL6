@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, makeVar } from "@apollo/client";
 export const INTERACTIVE_LIST = gql`
   query(
     $first: Int
@@ -12,6 +12,9 @@ export const INTERACTIVE_LIST = gql`
     }
     allInteractives(where: $where) {
       id
+      _commentsMeta {
+        count
+      }
       comments(sortBy: $sortBy, first: $first, skip: $skip) {
         id
         content
@@ -35,6 +38,8 @@ export const INTERACTIVE_LIST = gql`
     }
   }
 `;
+
+export const InteractiveListRefetch = makeVar(() => {});
 // file ảnh đang lỗi chưa đưa vô
 export default function InteractiveListController({
   UI,
@@ -44,11 +49,24 @@ export default function InteractiveListController({
   where,
   ...props
 }) {
-  const { loading, error, data = {}, refetch } = useQuery(INTERACTIVE_LIST, {
+  const { loading, error, data = {}, refetch, fetchMore, variables } = useQuery(INTERACTIVE_LIST, {
     variables: { first, where, skip, sortBy },
   });
+  const onClickMore = () => {
+    if (!loading)
+      fetchMore({
+        variables: { skip: data.allInteractives.length },
+        updateQuery: (previousResult, { fetchMoreResult, queryVariables }) => {
+          return {
+            ...previousResult,
+            allPosts: [...previousResult.allInteractives, ...fetchMoreResult.allInteractives],
+          };
+        },
+      });
+  };
   const { allInteractives, _allInteractivesMeta = {} } = data;
   const { count = 0 } = _allInteractivesMeta;
+  if (refetch) InteractiveListRefetch(refetch);
   return (
     <UI
       {...props}
@@ -56,6 +74,7 @@ export default function InteractiveListController({
       error={error}
       allInteractives={allInteractives}
       count={count}
+      onClickMore = {onClickMore}
       refetch={refetch}
     />
   );

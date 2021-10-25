@@ -3,7 +3,13 @@ import { UI as InteractionCommentItemSimple } from "../Item/Simple";
 import { Button, VStack } from "native-base";
 import { CommentListController } from "./Controller";
 
-export function UI({ loading, error, allInteractiveComments = [], count = 0 }) {
+export function UI({
+  loading,
+  error,
+  allInteractiveComments = [],
+  count,
+  onClickMore,
+}) {
   const moreCommentHandler = () => {
     console.log("More comments");
   };
@@ -17,18 +23,21 @@ export function UI({ loading, error, allInteractiveComments = [], count = 0 }) {
         );
       })}
       {/* More comments */}
-      <Button
-        _text={{
-          color: "gray.500",
-          fontSize: "12",
-          fontWeight: "600",
-        }}
-        p="0"
-        bgColor="transparent"
-        onPress={moreCommentHandler}
-      >
-        Xem thêm bình luận
-      </Button>
+      {count > allInteractiveComments.length && (
+        <Button
+          _text={{
+            color: "gray.500",
+            fontSize: "12",
+            fontWeight: "600",
+          }}
+          p="0"
+          bgColor="transparent"
+          onPress={onClickMore}
+        >
+          {console.log(count)}
+          Xem thêm bình luận
+        </Button>
+      )}
     </VStack>
   );
 }
