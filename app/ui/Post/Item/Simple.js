@@ -139,6 +139,7 @@ function UI({ loading, error, post }) {
         </HStack>
         <InteractiveItemSimple
           interactive={post.interactive}
+          id = {post.id}
           sortBy="createdAt_DESC"
         />
       </Box>

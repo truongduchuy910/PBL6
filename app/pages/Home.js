@@ -24,7 +24,7 @@ export default function Home({ navigation }) {
           mx={["auto", "auto", "auto", "0"]}
         >
           <PostCreateButton />
-          <PostListSimple first={2} />
+          <PostListSimple first={5} />
         </Box>
         <Box flex={[0, 0, 0, 3]} display={["none", "none", "none", "block"]}>
           <Box
