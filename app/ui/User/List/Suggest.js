@@ -36,9 +36,12 @@ function UI({ loading, error, allUsers, count, refetch }) {
             <Box>
               <Image
                 source={{
+                  // uri:
+                  //   user?.avatar?.publicUrl &&
+                  //   "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
                   uri:
-                    user?.avatar?.publicUrl &&
-                    "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
+                  "https://odanang.net" +
+                  (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
                 }}
                 alt={user.name}
                 size="80px"
