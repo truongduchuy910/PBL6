@@ -1,9 +1,13 @@
 import React from "react";
 import { HStack, Box, Image, Text, Button } from "native-base";
 import { Link } from "@react-navigation/native";
-
-function UI() {
-  const createHandler = () => {};
+import ControllerGetUser from "./ControllerGetUser"
+function UI({ loading, error, user }) {
+  const createHandler = () => { };
+  if (loading) return "...";
+  if (error) return "error";
+  // user = JSON.stringify(user)
+  console.log(user)
 
   return (
     <Box mt="2" mx="0" w="full" px={["0", "1"]}>
@@ -19,8 +23,11 @@ function UI() {
       >
         <Image
           source={{
+            // uri:
+            //   "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719777/200960556_1184264562021915_3530694902678239694_n_u7mk8s.jpg",
             uri:
-              "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719777/200960556_1184264562021915_3530694902678239694_n_u7mk8s.jpg",
+              "https://odanang.net" +
+              (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
           }}
           alt="Profile image"
           size="8"
@@ -52,4 +59,7 @@ function UI() {
     </Box>
   );
 }
-export default UI;
+//export default UI;
+export default function AvatarUser(props) {
+  return <ControllerGetUser {...props} UI={UI} />;
+}
