@@ -1,10 +1,11 @@
 import React from "react";
-import { VStack } from "native-base";
+import { Button, VStack } from "native-base";
 import PostItemSimple from "../Item/Simple";
 import PostItemSkeletonSimple from "./SkeletonSimple";
 import PostListController from "./Controller";
+import { all } from "deepmerge";
 
-function UI({ loading, error, allPosts, _allPostsMeta }) {
+function UI({ loading, error, allPosts, count, getMore }) {
   if (loading) {
     return <PostItemSkeletonSimple />;
   }
@@ -15,6 +16,9 @@ function UI({ loading, error, allPosts, _allPostsMeta }) {
       {allPosts.map((post) => (
         <PostItemSimple key={post.id} id={post.id} />
       ))}
+      {count > allPosts.length && (
+        <Button onPress={getMore}>Tải thêm bài viết</Button>
+      )}
     </VStack>
   );
 }
