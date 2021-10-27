@@ -7,7 +7,8 @@ export default function Test({ navigation }) {
   return (
     <Fragment>
       <Container>
-      <PostListSimple />
+      <PostCreateSimple />
+      <PostListSimple first = {3}/>
       </Container>
     </Fragment>
   );
