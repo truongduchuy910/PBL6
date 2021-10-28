@@ -12,13 +12,17 @@ const { gql } = require("@apollo/client");
 //     .trim();
 //   resolvedData.description = str.slice(0, 180);
 // }
-async function beforeDelete({ context, existingItem }) {
+async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
+  console.log('existingItem', existingItem)
+  console.log('operation', operation)
+  console.log('listKey', listKey)
+  console.log('fieldPath', fieldPath)
   console.log(existingItem)
   const { id } = existingItem;
   console.log(existingItem)
   //const context = keystone.createContext({ skipAccessControl: true });
   const {
-    data: { },
+    data: { Post },
     errors: postError = [],
   } = await context.executeGraphQL({
     context,
@@ -47,7 +51,7 @@ async function beforeDelete({ context, existingItem }) {
     context,
     query: gql`
       mutation($interactiveId: ID!) {
-        deleteInteractive(id: $id) {
+        deleteInteractive(id: $interactiveId) {
           comments {
             id
           }
@@ -118,7 +122,7 @@ async function beforeDelete({ context, existingItem }) {
 }
 module.exports.content = {
   //beforeChange: contentBeforeChange,
-  beforeDelete: ({ context, existingItem }) => { beforeDelete(context, existingItem) }
+  beforeDelete: ({ context, existingItem, operation, listKey, fieldPath }) => { beforeDelete(context, existingItem, operation, listKey, fieldPath) }
 };
 
 
