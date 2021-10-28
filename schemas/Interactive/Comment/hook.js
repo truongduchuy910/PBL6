@@ -1,9 +1,24 @@
 const { gql } = require("@apollo/client");
-async function afterCreate({ keystone, id }) {
+async function afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalInput, updatedItem, fieldPath) {
+    //const context = keystone.createContext({ skipAccessControl: true });
+    console.log("resolvedData", resolvedData)
+    console.log("listKey", listKey)
+    console.log("fieldKey", fieldKey)
+    console.log("operation", operation)
+    console.log("inputData", inputData)
+    console.log("item", item)
+    console.log("originalInput", originalInput)
+    console.log("updatedItem", updatedItem)
+    console.log("fieldPath", fieldPath)
+    if (operation === 'update') return;
+    const { id } = fieldPath;
+    const id_comment = id;
+    console.log('comment id: ', id)
     const {
-        data: { createInteractive },
+        //data: { createInteractive },
+        data = {},
         errors: createInteractiveError = [],
-    } = await keystone.executeGraphQL({
+    } = await context.executeGraphQL({
         context,
         query: gql`
         mutation {
@@ -15,16 +30,18 @@ async function afterCreate({ keystone, id }) {
         //variables: { id },
         skipAccessControl: true,
     });
+    const { createInteractive } = data
     if (createInteractiveError && createInteractiveError.length) {
         createInteractiveError.map((error) => {
             console.log(error);
         });
     }
-    var idInteractive = createInteractive.id
+    console.log(createInteractive)
+    const id_interactive = createInteractive.id
     const {
-        data: { updateInteractiveComment },
+        //data: { },
         errors: updateInteractiveCommentError = [],
-    } = await keystone.executeGraphQL({
+    } = await context.executeGraphQL({
         context,
         query: gql`
         mutation($id_comment: ID!, $id_interactive: ID!) {
@@ -39,7 +56,7 @@ async function afterCreate({ keystone, id }) {
             }
           }
         `,
-        variables: { id, idInteractive },
+        variables: { id_comment, id_interactive },
         skipAccessControl: true,
     });
     if (updateInteractiveCommentError && updateInteractiveCommentError.length) {
@@ -49,5 +66,5 @@ async function afterCreate({ keystone, id }) {
     }
 }
 module.exports.content = {
-    afterCreate: afterCreate
+    afterChange: ({ context, resolvedData, listKey, fieldKey, operation, inputData, item, originalItem, originalInput, updatedItem, fieldPath }) => { afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalItem, originalInput, updatedItem, fieldPath) }
 };

@@ -1,23 +1,26 @@
 const { gql } = require("@apollo/client");
-async function contentBeforeChange({ existingItem, resolvedData, context }) {
-  const { content, title = "" } = resolvedData || existingItem;
-  if (!content) return;
-  var str = `${content} ${title} ${title}`;
-  str = str
-    .replace(/(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, "")
-    .replace(/#|!|@|$|%|^|&|_|\[|]|\?|\.|,/g, " ")
-    .replace(/\n/g, " ")
-    .replace(/\s+/g, " ")
-    .toLocaleLowerCase()
-    .trim();
-  resolvedData.description = str.slice(0, 180);
-}
-async function beforeDelete({ keystone, id }) {
-  const context = keystone.createContext({ skipAccessControl: true });
+// async function contentBeforeChange({ existingItem, resolvedData, context }) {
+//   const { content, title = "" } = resolvedData || existingItem;
+//   if (!content) return;
+//   var str = `${content} ${title} ${title}`;
+//   str = str
+//     .replace(/(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, "")
+//     .replace(/#|!|@|$|%|^|&|_|\[|]|\?|\.|,/g, " ")
+//     .replace(/\n/g, " ")
+//     .replace(/\s+/g, " ")
+//     .toLocaleLowerCase()
+//     .trim();
+//   resolvedData.description = str.slice(0, 180);
+// }
+async function beforeDelete({ context, existingItem }) {
+  console.log(existingItem)
+  const { id } = existingItem;
+  console.log(existingItem)
+  //const context = keystone.createContext({ skipAccessControl: true });
   const {
-    data: { Post },
-    errors : postError = [],
-  } = await keystone.executeGraphQL({
+    data: { },
+    errors: postError = [],
+  } = await context.executeGraphQL({
     context,
     query: gql`
       query($id: ID!) {
@@ -40,7 +43,7 @@ async function beforeDelete({ keystone, id }) {
   const {
     data: { deleteInteractive },
     errors = [],
-  } = await keystone.executeGraphQL({
+  } = await context.executeGraphQL({
     context,
     query: gql`
       mutation($interactiveId: ID!) {
@@ -114,8 +117,8 @@ async function beforeDelete({ keystone, id }) {
   }
 }
 module.exports.content = {
-  beforeChange: contentBeforeChange,
-  beforeDelete: beforeDelete
+  //beforeChange: contentBeforeChange,
+  beforeDelete: ({ context, existingItem }) => { beforeDelete(context, existingItem) }
 };
 
 
