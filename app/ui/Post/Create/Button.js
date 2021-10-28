@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { HStack, Box, Image, Text, Button } from "native-base";
 import { Link } from "@react-navigation/native";
-import ControllerGetUser from "./ControllerGetUser"
-function UI({ loading, error, user }) {
+import { AuthContext } from '../../Provider/Native'
+function UI() {
   const createHandler = () => { };
-  if (loading) return "...";
-  if (error) return "error";
-  // user = JSON.stringify(user)
-  console.log(user)
-
+  const user = useContext(AuthContext).user
   return (
     <Box mt="2" mx="0" w="full" px={["0", "1"]}>
       <HStack
@@ -56,10 +52,7 @@ function UI({ loading, error, user }) {
           </Button>
         </Link>
       </HStack>
-    </Box>
+    </Box >
   );
 }
-//export default UI;
-export default function AvatarUser(props) {
-  return <ControllerGetUser {...props} UI={UI} />;
-}
+export default UI;
