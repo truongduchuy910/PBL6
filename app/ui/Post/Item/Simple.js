@@ -65,7 +65,9 @@ function UI({ loading, error, post }) {
       >
         <Image
           source={{
-            uri: "https://odanang.net" + post?.createdBy?.avatar?.publicUrl,
+            uri:
+              "https://odanang.net" +
+              (post?.createdBy?.avatar?.publicUrl || "/upload/img/no-image.png"),
           }}
           alt="Profile image"
           size="8"
