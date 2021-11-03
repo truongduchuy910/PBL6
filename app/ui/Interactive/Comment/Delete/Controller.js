@@ -14,8 +14,8 @@ export const COMMENT_DELETE = gql`
 export default function CommentDelete({ UI, id }) {
   const [on, { loading, error, data = {} }] = useMutation(COMMENT_DELETE, {
     onCompleted: (data) => {
-      const refetchInteractiveItem = RefetchInteractiveItem();
-      refetchInteractiveItem();
+      // const refetchInteractiveItem = RefetchInteractiveItem();
+      // refetchInteractiveItem();
     },
   });
   const { deleteInteractiveComment } = data;

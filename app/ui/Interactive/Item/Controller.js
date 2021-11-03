@@ -34,8 +34,6 @@ export const INTERACTIVE_ITEM = gql`
     }
   }
 `;
-export const RefetchInteractiveItem = makeVar(() => {});
-
 export default function InteractiveItem({ UI, id, where, sortBy, first = 3 }) {
   const { loading, error, data = {}, refetch } = useQuery(
     id ? INTERACTIVE_ITEM : INTERACTIVE_LIST,
@@ -43,9 +41,8 @@ export default function InteractiveItem({ UI, id, where, sortBy, first = 3 }) {
       variables: id ? { id, sortBy, first } : { where, sortBy, first },
     }
   );
-  if (!!refetch) RefetchInteractiveItem(refetch);
   const { allInteractives, Interactive } = data;
   const [interactive] = allInteractives || [Interactive];
   console.log(interactive);
-  return <UI loading={loading} error={error} interactive={interactive} />;
+  return <UI loading={loading} error={error} interactive={interactive} refetch = {refetch} />;
 }

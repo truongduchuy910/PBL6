@@ -19,8 +19,8 @@ export default function InteractiveCreate({ UI, interactive }) {
        * useReactiveVar return refetchInteractiveList is a state
        * then, it make re-render this component
        */
-      const refetchInteractiveItem = RefetchInteractiveItem();
-      refetchInteractiveItem();
+      // const refetchInteractiveItem = RefetchInteractiveItem();
+      // refetchInteractiveItem();
     },
   });
   const { createInteractive } = data;

@@ -3,11 +3,15 @@ import { Box } from "native-base";
 import InteractionCommentCreateSimple from "../Comment/Create/Simple";
 import { UI as InteractionCommentListSimple } from "../Comment/List/Simple";
 import Controller from "./Controller";
-function UI({ loading, error, interactive }) {
+function UI({ loading, error, interactive, refetch }) {
   if (loading) return "...";
   return (
     <Box w="full">
-      <InteractionCommentCreateSimple my="10" interactive={interactive} />
+      <InteractionCommentCreateSimple
+        my="10"
+        interactive={interactive}
+        refetch={refetch}
+      />
       <InteractionCommentListSimple
         allInteractiveComments={interactive.comments}
       />
