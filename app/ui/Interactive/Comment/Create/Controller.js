@@ -14,7 +14,6 @@ export const COMMENT_CREATE = gql`
 
 export default function CommentCreate({ UI, interactive, refetch }) {
   const refectInteractiveItem = () => {
-    console.log("Completed create comment");
     refetch();
   };
 
