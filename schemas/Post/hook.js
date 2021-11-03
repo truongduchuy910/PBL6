@@ -1,23 +1,30 @@
 const { gql } = require("@apollo/client");
-async function contentBeforeChange({ existingItem, resolvedData, context }) {
-  const { content, title = "" } = resolvedData || existingItem;
-  if (!content) return;
-  var str = `${content} ${title} ${title}`;
-  str = str
-    .replace(/(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, "")
-    .replace(/#|!|@|$|%|^|&|_|\[|]|\?|\.|,/g, " ")
-    .replace(/\n/g, " ")
-    .replace(/\s+/g, " ")
-    .toLocaleLowerCase()
-    .trim();
-  resolvedData.description = str.slice(0, 180);
-}
-async function beforeDelete({ keystone, id }) {
-  const context = keystone.createContext({ skipAccessControl: true });
+// async function contentBeforeChange({ existingItem, resolvedData, context }) {
+//   const { content, title = "" } = resolvedData || existingItem;
+//   if (!content) return;
+//   var str = `${content} ${title} ${title}`;
+//   str = str
+//     .replace(/(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, "")
+//     .replace(/#|!|@|$|%|^|&|_|\[|]|\?|\.|,/g, " ")
+//     .replace(/\n/g, " ")
+//     .replace(/\s+/g, " ")
+//     .toLocaleLowerCase()
+//     .trim();
+//   resolvedData.description = str.slice(0, 180);
+// }
+async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
+  console.log('existingItem', existingItem)
+  console.log('operation', operation)
+  console.log('listKey', listKey)
+  console.log('fieldPath', fieldPath)
+  console.log(existingItem)
+  const { id } = existingItem;
+  console.log(existingItem)
+  //const context = keystone.createContext({ skipAccessControl: true });
   const {
     data: { Post },
-    errors : postError = [],
-  } = await keystone.executeGraphQL({
+    errors: postError = [],
+  } = await context.executeGraphQL({
     context,
     query: gql`
       query($id: ID!) {
@@ -40,11 +47,11 @@ async function beforeDelete({ keystone, id }) {
   const {
     data: { deleteInteractive },
     errors = [],
-  } = await keystone.executeGraphQL({
+  } = await context.executeGraphQL({
     context,
     query: gql`
       mutation($interactiveId: ID!) {
-        deleteInteractive(id: $id) {
+        deleteInteractive(id: $interactiveId) {
           comments {
             id
           }
@@ -114,8 +121,8 @@ async function beforeDelete({ keystone, id }) {
   }
 }
 module.exports.content = {
-  beforeChange: contentBeforeChange,
-  beforeDelete: beforeDelete
+  //beforeChange: contentBeforeChange,
+  beforeDelete: ({ context, existingItem, operation, listKey, fieldPath }) => { beforeDelete(context, existingItem, operation, listKey, fieldPath) }
 };
 
 
