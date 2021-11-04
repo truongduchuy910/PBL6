@@ -11,8 +11,9 @@ export const REACTION_LIST = gql`
     }
   }
 `;
+
 export default function ReactionListController({ UI, where }) {
-  const { loading, error, data = {} } = useQuery(REACTION_LIST, {
+  const { loading, error, data = {}, refetch } = useQuery(REACTION_LIST, {
     variables: { where },
   });
   const { allInteractiveReactions, _allInteractiveReactionsMeta } = data;

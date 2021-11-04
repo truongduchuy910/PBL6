@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Box, HStack, Image, Text, Button, VStack, Divider } from "native-base";
 import {
-  InteractionCommentCreateSimple,
-  InteractionCommentListSimple,
   InteractionCommentListToggleButton,
 } from "../../Interactive/Comment";
 import {
@@ -36,7 +34,7 @@ function formatTimeCreate(createdAt) {
   return stringTime;
 }
 
-function UI({ loading, error, post }) {
+function UI({ loading, error, post, refetch }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(post?.createdAt);
   const toggleModal = () => {
@@ -116,7 +114,8 @@ function UI({ loading, error, post }) {
       />
       <Box px="3" mt="2">
         <InteractionReactionListIconTextWithCount
-          where={{ interactive: { post: { id: post.id } } }}
+          where={{ interactive: { post: { id: post.id } } }
+        }
         />
       </Box>
       <Box px="3">
@@ -130,7 +129,7 @@ function UI({ loading, error, post }) {
           justifyContent="space-around"
         >
           <Box w="33%">
-            <InteractionReactionCreateButton interactive={post.interactive} />
+            <InteractionReactionCreateButton interactive={post.interactive} refetch={refetch}/>
           </Box>
           <Box w="33%">
             <InteractionCommentListToggleButton />
