@@ -1,9 +1,8 @@
 import React from "react";
 import { Text } from "native-base";
-import Controller from "./Controller"
+import Controller from "./Controller";
 
-
-function UI({loading, error, allReactions, _allReactionsMeta}) {
+function UI({ loading, error, allReactions, _allReactionsMeta }) {
   return loading ? (
     <Text>...</Text>
   ) : (
@@ -13,5 +12,5 @@ function UI({loading, error, allReactions, _allReactionsMeta}) {
   );
 }
 export default function InteractionReactionListTextWithCount(props) {
-  return <Controller {...props} UI={UI}/>
+  return <Controller {...props} UI={UI} />;
 }

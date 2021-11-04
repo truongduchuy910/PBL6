@@ -12,14 +12,14 @@ export const REACTION_CREATE = gql`
 
 export default function ReactionCreate({ UI, interactive }) {
   const [on, { loading, error, data = {} }] = useMutation(REACTION_CREATE);
-  const { createReaction } = data;
+  const { createInteractiveReaction } = data;
   return (
     <UI
+      interactive={interactive}
       loading={loading}
       error={error}
-      interactive={interactive}
       on={on}
-      createReaction={createReaction}
+      createReaction={createInteractiveReaction}
     />
   );
 }

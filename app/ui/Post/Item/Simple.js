@@ -44,7 +44,6 @@ function UI({ loading, error, post }) {
     console.log(isModalOpen);
   };
   if (loading) return "...";
-  console.log(post);
   return (
     <Box
       maxW={["100%", "container.md"]}
@@ -67,7 +66,8 @@ function UI({ loading, error, post }) {
           source={{
             uri:
               "https://odanang.net" +
-              (post?.createdBy?.avatar?.publicUrl || "/upload/img/no-image.png"),
+              (post?.createdBy?.avatar?.publicUrl ||
+                "/upload/img/no-image.png"),
           }}
           alt="Profile image"
           size="8"
@@ -130,7 +130,7 @@ function UI({ loading, error, post }) {
           justifyContent="space-around"
         >
           <Box w="33%">
-            <InteractionReactionCreateButton />
+            <InteractionReactionCreateButton interactive={post.interactive} />
           </Box>
           <Box w="33%">
             <InteractionCommentListToggleButton />
@@ -140,7 +140,6 @@ function UI({ loading, error, post }) {
           </Box>
         </HStack>
         <InteractiveItemSimple
-          interactive={post.interactive}
           where={{ post: { id: post.id } }}
           sortBy="createdAt_DESC"
         />
