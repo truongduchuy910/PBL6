@@ -65,6 +65,60 @@ async function afterCreate(context, resolvedData, listKey, fieldKey, operation, 
         });
     }
 }
+async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
+    console.log(existingItem)
+    const { id } = existingItem;
+    //const context = keystone.createContext({ skipAccessControl: true });
+    const {
+        data: { InteractiveComment },
+        errors: commentError = [],
+    } = await context.executeGraphQL({
+        context,
+        query: gql`
+            query($id: ID!) {
+                InteractiveComment(where: { id: $id }) {
+                my_interactive {
+                    id
+                }
+                }
+            }     
+        `,
+        variables: { id },
+        skipAccessControl: true,
+    });
+    if (commentError && commentError.length) {
+        commentError.map((error) => {
+            console.log(error);
+        });
+    }
+    const interactiveId = InteractiveComment.my_interactive.id
+    const {
+        data: { deleteInteractive },
+        errors = [],
+    } = await context.executeGraphQL({
+        context,
+        query: gql`
+        mutation($interactiveId: ID!) {
+          deleteInteractive(id: $interactiveId) {
+            comments {
+              id
+            }
+            reactions {
+              id
+            }
+          }
+        }     
+      `,
+        variables: { interactiveId },
+        skipAccessControl: true,
+    });
+    if (errors && errors.length) {
+        errors.map((error) => {
+            console.log(error);
+        });
+    }
+}
 module.exports.content = {
+    beforeDelete: ({ context, existingItem, operation, listKey, fieldPath }) => { beforeDelete(context, existingItem, operation, listKey, fieldPath) },
     afterChange: ({ context, resolvedData, listKey, fieldKey, operation, inputData, item, originalItem, originalInput, updatedItem, fieldPath }) => { afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalItem, originalInput, updatedItem, fieldPath) }
 };

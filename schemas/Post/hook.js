@@ -1,25 +1,7 @@
 const { gql } = require("@apollo/client");
-// async function contentBeforeChange({ existingItem, resolvedData, context }) {
-//   const { content, title = "" } = resolvedData || existingItem;
-//   if (!content) return;
-//   var str = `${content} ${title} ${title}`;
-//   str = str
-//     .replace(/(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, "")
-//     .replace(/#|!|@|$|%|^|&|_|\[|]|\?|\.|,/g, " ")
-//     .replace(/\n/g, " ")
-//     .replace(/\s+/g, " ")
-//     .toLocaleLowerCase()
-//     .trim();
-//   resolvedData.description = str.slice(0, 180);
-// }
 async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
-  console.log('existingItem', existingItem)
-  console.log('operation', operation)
-  console.log('listKey', listKey)
-  console.log('fieldPath', fieldPath)
   console.log(existingItem)
   const { id } = existingItem;
-  console.log(existingItem)
   //const context = keystone.createContext({ skipAccessControl: true });
   const {
     data: { Post },
@@ -69,60 +51,128 @@ async function beforeDelete(context, existingItem, operation, listKey, fieldPath
       console.log(error);
     });
   }
-  var comments = []
-  var reactions = []
-  comments = deleteInteractive.comments
-  reactions = deleteInteractive.reactions
-  for (var comment in comments) {
-    var commentId = comment.id
-    const {
-      data,
-      errors = [],
-    } = await keystone.executeGraphQL({
-      context,
-      query: gql`
-        mutation($commentId: ID!) {
-          deleteInteractiveComment(id: $commentId) {
+  // var comments = []
+  // var reactions = []
+  // comments = deleteInteractive.comments
+  // console.log(comments)
+  // reactions = deleteInteractive.reactions
+  // console.log(reactions)
+  // for (var comment in comments) {
+  //   var commentId = comment.id
+  //   const {
+  //     data,
+  //     errors = [],
+  //   } = await keystone.executeGraphQL({
+  //     context,
+  //     query: gql`
+  //       mutation($commentId: ID!) {
+  //         deleteInteractiveComment(id: $commentId) {
+  //           id
+  //         }
+  //       }  
+  //     `,
+  //     variables: { commentId },
+  //     skipAccessControl: true,
+  //   });
+  //   if (errors && errors.length) {
+  //     errors.map((error) => {
+  //       console.log(error);
+  //     });
+  //   }
+  // }
+  // for (var reaction in reactions) {
+  //   var reactionId = reaction.id
+  //   const {
+  //     data,
+  //     errors = [],
+  //   } = await keystone.executeGraphQL({
+  //     context,
+  //     query: gql`
+  //       mutation($reactionId: ID!) {
+  //         deleteInteractiveReaction(id: $reactionId) {
+  //           id
+  //         }
+  //       } 
+  //     `,
+  //     variables: { reactionId },
+  //     skipAccessControl: true,
+  //   });
+  //   if (errors && errors.length) {
+  //     errors.map((error) => {
+  //       console.log(error);
+  //     });
+  //   }
+  // }
+}
+async function afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalInput, updatedItem, fieldPath) {
+  //const context = keystone.createContext({ skipAccessControl: true });
+  console.log("resolvedData", resolvedData)
+  console.log("listKey", listKey)
+  console.log("fieldKey", fieldKey)
+  console.log("operation", operation)
+  console.log("inputData", inputData)
+  console.log("item", item)
+  console.log("originalInput", originalInput)
+  console.log("updatedItem", updatedItem)
+  console.log("fieldPath", fieldPath)
+  if (operation === 'update') return;
+  const { id } = fieldPath;
+  const id_post = id;
+  const {
+    //data: { createInteractive },
+    data = {},
+    errors: createInteractiveError = [],
+  } = await context.executeGraphQL({
+    context,
+    query: gql`
+      mutation {
+          createInteractive(data: { comments: null, reactions: null }) {
             id
           }
-        }  
+      }
       `,
-      variables: { commentId },
-      skipAccessControl: true,
+    //variables: { id },
+    skipAccessControl: true,
+  });
+  const { createInteractive } = data
+  if (createInteractiveError && createInteractiveError.length) {
+    createInteractiveError.map((error) => {
+      console.log(error);
     });
-    if (errors && errors.length) {
-      errors.map((error) => {
-        console.log(error);
-      });
-    }
   }
-  for (var reaction in reactions) {
-    var reactionId = reaction.id
-    const {
-      data,
-      errors = [],
-    } = await keystone.executeGraphQL({
-      context,
-      query: gql`
-        mutation($reactionId: ID!) {
-          deleteInteractiveReaction(id: $reactionId) {
+  console.log(createInteractive)
+  const id_interactive = createInteractive.id
+  const {
+    //data: { },
+    errors: updatePostError = [],
+  } = await context.executeGraphQL({
+    context,
+    query: gql`
+      mutation($id_post: ID!, $id_interactive: ID!) {
+        updatePost(
+          id: $id_post
+          data: { interactive: { connect: { id: $id_interactive } } }
+        ) {
+          id
+          interactive {
             id
           }
-        } 
+        }
+      }
       `,
-      variables: { reactionId },
-      skipAccessControl: true,
+    variables: { id_post, id_interactive },
+    skipAccessControl: true,
+  });
+  if (updatePostError && updatePostError.length) {
+    updatePostError.map((error) => {
+      console.log(error);
     });
-    if (errors && errors.length) {
-      errors.map((error) => {
-        console.log(error);
-      });
-    }
   }
 }
 module.exports.content = {
   //beforeChange: contentBeforeChange,
-  beforeDelete: ({ context, existingItem, operation, listKey, fieldPath }) => { beforeDelete(context, existingItem, operation, listKey, fieldPath) }
+  beforeDelete: ({ context, existingItem, operation, listKey, fieldPath }) => { beforeDelete(context, existingItem, operation, listKey, fieldPath) },
+  afterChange: ({ context, resolvedData, listKey, fieldKey, operation, inputData, item, originalItem, originalInput, updatedItem, fieldPath }) => { afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalItem, originalInput, updatedItem, fieldPath) }
 };
 
 
