@@ -8,6 +8,7 @@ export const INTERACTIVE_ITEM = gql`
       comments(sortBy: $sortBy, first: $first) {
         id
         content
+        createdAt
         createdBy {
           name
           avatar {
@@ -43,6 +44,5 @@ export default function InteractiveItem({ UI, id, where, sortBy, first = 3 }) {
   );
   const { allInteractives, Interactive } = data;
   const [interactive] = allInteractives || [Interactive];
-  console.log(interactive);
   return <UI loading={loading} error={error} interactive={interactive} refetch = {refetch} />;
 }
