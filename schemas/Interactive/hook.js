@@ -1,41 +1,83 @@
 const { gql } = require("@apollo/client");
 async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
-    console.log('existingItem', existingItem)
-    console.log('fieldPath', fieldPath)
-
     const { id } = existingItem;
-    const id_interactive = id;
     const {
-        data: { Interactive },
+        data = {},
         errors: interactiveError = [],
     } = await context.executeGraphQL({
         context,
         query: gql`
-        query($id_interactive: ID!) {
-            Interactive(where: { id: $id_interactive }) {
+        query($id: ID!) {
+            Interactive(where: { id: $id }) {
+              id
               comments {
                 id
+                content
               }
               reactions {
                 id
+                emoji
               }
             }
         }     
         `,
-        variables: { id_interactive },
+        variables: { id },
         skipAccessControl: true,
     });
-    console.log(JSON.parse(JSON.stringify(Interactive)))
-    const { comments = [], reactions = [] } = Interactive
     if (interactiveError || interactiveError.length) {
         interactiveError.map((error) => {
             console.log(error);
         });
     }
-    console.log(comments)
-    console.log(reactions)
+    const { Interactive } = data;
+    const { comments = [], reactions = [] } = Interactive
+    comments.map((comment) => {
+        const commentId = comment.id
+        const {
+            data = {},
+            errors = [],
+        } = context.executeGraphQL({
+            context,
+            query: gql`
+        mutation($commentId: ID!) {
+          deleteInteractiveComment(id: $commentId) {
+            id
+          }
+        }  
+      `,
+            variables: { commentId },
+            skipAccessControl: true,
+        });
+        if (errors && errors.length) {
+            errors.map((error) => {
+                console.log(error);
+            });
+        }
+    })
+    reactions.map((reaction) => {
+        const reactionId = reaction.id
+        const {
+            data,
+            errors = [],
+        } = context.executeGraphQL({
+            context,
+            query: gql`
+        mutation($reactionId: ID!) {
+          deleteInteractiveReaction(id: $reactionId) {
+            id
+          }
+        } 
+      `,
+            variables: { reactionId },
+            skipAccessControl: true,
+        });
+        if (errors && errors.length) {
+            errors.map((error) => {
+                console.log(error);
+            });
+        }
+    });
 }
 module.exports.hook = {
-    //beforeChange: contentBeforeChange,
     beforeDelete: ({ context, existingItem, operation, listKey, fieldPath }) => { beforeDelete(context, existingItem, operation, listKey, fieldPath) }
 };

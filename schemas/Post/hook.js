@@ -1,6 +1,5 @@
 const { gql } = require("@apollo/client");
 async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
-  console.log(existingItem)
   const { id } = existingItem;
   //const context = keystone.createContext({ skipAccessControl: true });
   const {
@@ -51,70 +50,8 @@ async function beforeDelete(context, existingItem, operation, listKey, fieldPath
       console.log(error);
     });
   }
-  // var comments = []
-  // var reactions = []
-  // comments = deleteInteractive.comments
-  // console.log(comments)
-  // reactions = deleteInteractive.reactions
-  // console.log(reactions)
-  // for (var comment in comments) {
-  //   var commentId = comment.id
-  //   const {
-  //     data,
-  //     errors = [],
-  //   } = await keystone.executeGraphQL({
-  //     context,
-  //     query: gql`
-  //       mutation($commentId: ID!) {
-  //         deleteInteractiveComment(id: $commentId) {
-  //           id
-  //         }
-  //       }  
-  //     `,
-  //     variables: { commentId },
-  //     skipAccessControl: true,
-  //   });
-  //   if (errors && errors.length) {
-  //     errors.map((error) => {
-  //       console.log(error);
-  //     });
-  //   }
-  // }
-  // for (var reaction in reactions) {
-  //   var reactionId = reaction.id
-  //   const {
-  //     data,
-  //     errors = [],
-  //   } = await keystone.executeGraphQL({
-  //     context,
-  //     query: gql`
-  //       mutation($reactionId: ID!) {
-  //         deleteInteractiveReaction(id: $reactionId) {
-  //           id
-  //         }
-  //       } 
-  //     `,
-  //     variables: { reactionId },
-  //     skipAccessControl: true,
-  //   });
-  //   if (errors && errors.length) {
-  //     errors.map((error) => {
-  //       console.log(error);
-  //     });
-  //   }
-  // }
 }
 async function afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalInput, updatedItem, fieldPath) {
-  //const context = keystone.createContext({ skipAccessControl: true });
-  console.log("resolvedData", resolvedData)
-  console.log("listKey", listKey)
-  console.log("fieldKey", fieldKey)
-  console.log("operation", operation)
-  console.log("inputData", inputData)
-  console.log("item", item)
-  console.log("originalInput", originalInput)
-  console.log("updatedItem", updatedItem)
-  console.log("fieldPath", fieldPath)
   if (operation === 'update') return;
   const { id } = fieldPath;
   const id_post = id;
@@ -140,7 +77,6 @@ async function afterCreate(context, resolvedData, listKey, fieldKey, operation, 
       console.log(error);
     });
   }
-  console.log(createInteractive)
   const id_interactive = createInteractive.id
   const {
     //data: { },

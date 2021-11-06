@@ -8,12 +8,12 @@ module.exports = {
   fields: {
     reactions: {
       type: Relationship,
-      ref: "InteractiveReaction.interactive",
+      ref: "InteractiveReaction",
       many: true,
     },
     comments: {
       type: Relationship,
-      ref: "InteractiveComment.interactive",
+      ref: "InteractiveComment",
       many: true,
     },
     // post: {

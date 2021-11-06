@@ -1,19 +1,9 @@
 const { gql } = require("@apollo/client");
 async function afterCreate(context, resolvedData, listKey, fieldKey, operation, inputData, item, originalInput, updatedItem, fieldPath) {
     //const context = keystone.createContext({ skipAccessControl: true });
-    console.log("resolvedData", resolvedData)
-    console.log("listKey", listKey)
-    console.log("fieldKey", fieldKey)
-    console.log("operation", operation)
-    console.log("inputData", inputData)
-    console.log("item", item)
-    console.log("originalInput", originalInput)
-    console.log("updatedItem", updatedItem)
-    console.log("fieldPath", fieldPath)
     if (operation === 'update') return;
     const { id } = fieldPath;
     const id_comment = id;
-    console.log('comment id: ', id)
     const {
         //data: { createInteractive },
         data = {},
@@ -36,7 +26,6 @@ async function afterCreate(context, resolvedData, listKey, fieldKey, operation, 
             console.log(error);
         });
     }
-    console.log(createInteractive)
     const id_interactive = createInteractive.id
     const {
         //data: { },
@@ -66,7 +55,6 @@ async function afterCreate(context, resolvedData, listKey, fieldKey, operation, 
     }
 }
 async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
-    console.log(existingItem)
     const { id } = existingItem;
     //const context = keystone.createContext({ skipAccessControl: true });
     const {
