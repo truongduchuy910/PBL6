@@ -10,7 +10,7 @@ function UI({ loading, error, allReactions, _allReactionsMeta }) {
     <HStack alignItems="center" space="1">
       <FaHeart color="#22c55e" size="16" />
       <Text color="gray.800" fontSize="14" fontWeight="500">
-        {_allReactionsMeta.count} lượt thích
+        {_allReactionsMeta?.count} lượt thích
       </Text>
     </HStack>
   );
