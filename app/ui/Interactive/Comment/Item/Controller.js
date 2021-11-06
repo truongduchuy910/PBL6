@@ -14,6 +14,9 @@ export const COMMENT_ITEM = gql`
           publicUrl
         }
       }
+      interactive{
+        id
+      }
     }
   }
 `;

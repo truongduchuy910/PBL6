@@ -2,15 +2,16 @@ import React, { Fragment, useState } from "react";
 import { Button, Text } from "native-base";
 import Controller from "./Controller";
 
-function UI(loading, error, on, interactive) {
+function UI({ loading, error, on, interactive }) {
   const [isLike, setIsLike] = useState(false);
-
   const likeHandle = (e) => {
     console.log("Reaction Create Text");
     on({
       variables: {
-        interactive: { connect: { id: interactive.id } },
-        emoji: "like",
+        data: {
+          interactive: { connect: { id: interactive.id } },
+          emoji: "like",
+        },
       },
     });
     setIsLike((prev) => !prev);

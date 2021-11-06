@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { HStack, Box, Image, Input } from "native-base";
 import Controller from "./Controller";
+import { AuthContext } from "../../../Provider/Native";
 
 export function UI({ loading, error, on, interactive }) {
   const [content, setContent] = useState("");
@@ -15,11 +16,9 @@ export function UI({ loading, error, on, interactive }) {
         },
       });
   };
-
   const contentChangeHandle = (e) => {
     setContent(e.target.value);
   };
-
   const userCommentHandle = (e) => {
     const value = e.target.value;
     if (!value.trim().length) {
@@ -28,6 +27,7 @@ export function UI({ loading, error, on, interactive }) {
     clickCreate();
     setContent("");
   };
+  const user = useContext(AuthContext).user;
   if (loading) return "...";
   return (
     <Box mx="auto" w="full">
@@ -35,7 +35,8 @@ export function UI({ loading, error, on, interactive }) {
         <Image
           source={{
             uri:
-              "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719777/200960556_1184264562021915_3530694902678239694_n_u7mk8s.jpg",
+              "https://odanang.net" +
+              (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
           }}
           alt="Alternate Text"
           size="8"

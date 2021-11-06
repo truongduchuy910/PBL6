@@ -61,13 +61,17 @@ export function UI({ loading, error, comment }) {
               </Box>
             </HStack>
             <HStack ml="3" mt="1" space="3">
-              <InteractionReactionCreateText />
+              <InteractionReactionCreateText
+                interactive={comment.interactive}
+              />
               <CreateText
                 comment={comment}
                 onPress={(e) => setOpen((open) => !open)}
               />
               <DeleteText id={comment?.id} />
-              <InteractionReactionListTextWithCount />
+              <InteractionReactionListTextWithCount
+                where={{ interactive: { id: comment?.interactive?.id } }}
+              />
               <Text color="gray.400" fontSize="12">
                 {stringCreatedAt}
               </Text>

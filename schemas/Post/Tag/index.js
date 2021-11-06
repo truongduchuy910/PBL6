@@ -13,7 +13,7 @@ module.exports = {
   ...multipleLanguage("Translate"),
 
   labelField: "content",
-  access: roleSimple,
+  access: true,
   hooks: {},
   cacheHint: {
     scope: "PUBLIC",

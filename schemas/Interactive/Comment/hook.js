@@ -70,7 +70,7 @@ async function beforeDelete(context, existingItem, operation, listKey, fieldPath
     const { id } = existingItem;
     //const context = keystone.createContext({ skipAccessControl: true });
     const {
-        data: { InteractiveComment },
+        data = {},
         errors: commentError = [],
     } = await context.executeGraphQL({
         context,
@@ -91,9 +91,10 @@ async function beforeDelete(context, existingItem, operation, listKey, fieldPath
             console.log(error);
         });
     }
+    const { InteractiveComment } = data
     const interactiveId = InteractiveComment.my_interactive.id
     const {
-        data: { deleteInteractive },
+        data: { },
         errors = [],
     } = await context.executeGraphQL({
         context,
