@@ -22,9 +22,6 @@ export const INTERACTIVE_LIST = gql`
             publicUrl
           }
         }
-        interactive {
-          id
-        }
       }
       reactions {
         id
