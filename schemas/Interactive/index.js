@@ -2,17 +2,18 @@ const { Relationship } = require("@itoa/fields");
 const { roleSimple } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
+const { hook } = require('./hook')
 module.exports = {
   active: true,
   fields: {
     reactions: {
       type: Relationship,
-      ref: "InteractiveReaction.interactive",
+      ref: "InteractiveReaction",
       many: true,
     },
     comments: {
       type: Relationship,
-      ref: "InteractiveComment.interactive",
+      ref: "InteractiveComment",
       many: true,
     },
     // post: {
@@ -24,7 +25,7 @@ module.exports = {
   ...multipleLanguage("Translate"),
   labelField: "",
   access: true,
-  hooks: {},
+  hooks: hook,
   cacheHint: {
     scope: "PUBLIC",
     maxAge: 60 * 60, // 1 hour

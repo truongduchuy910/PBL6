@@ -10,11 +10,11 @@ module.exports = {
       type: Text,
       isRequired: true,
     },
-    interactive: {
-      type: Relationship,
-      ref: "Interactive.comments",
-      many: false,
-    },
+    // interactive: {
+    //   type: Relationship,
+    //   ref: "Interactive.comments",
+    //   many: false,
+    // },
     my_interactive: {
       type: Relationship,
       ref: "Interactive",

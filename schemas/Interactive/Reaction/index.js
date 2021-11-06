@@ -16,11 +16,11 @@ module.exports = {
       type: Select,
       isRequired: true,
     },
-    interactive: {
-      type: Relationship,
-      ref: "Interactive.reactions",
-      many: false,
-    },
+    // interactive: {
+    //   type: Relationship,
+    //   ref: "Interactive.reactions",
+    //   many: false,
+    // },
   },
   ...multipleLanguage("Translate"),
   labelField: "",
