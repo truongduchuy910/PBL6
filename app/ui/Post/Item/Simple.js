@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Box, HStack, Image, Text, Button, VStack, Divider } from "native-base";
-import { InteractionCommentListToggleButton } from "../../Interactive/Comment";
+import {
+  InteractionCommentCreateSimple,
+  InteractionCommentListSimple,
+  InteractionCommentListToggleButton,
+} from "../../Interactive/Comment";
 import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
@@ -139,7 +143,7 @@ function UI({ loading, error, post, refetch }) {
           </Box>
         </HStack>
         <InteractiveItemSimple
-          where={{ post: { id: post.id } }}
+          where={{ id: post?.interactive?.id }}
           sortBy="createdAt_DESC"
         />
       </Box>

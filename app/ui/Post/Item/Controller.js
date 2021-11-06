@@ -44,7 +44,8 @@ export default function PostItem({ UI, id, where }) {
   const { loading, error, data = {}, refetch } = useQuery(id ? POST_ITEM : POST_LIST, {
     variables: id ? { id } : { where },
   });
+
   const { allPosts, Post } = data;
   const [post] = allPosts || [Post];
-  return <UI loading={loading} error={error} post={post} refetch={refetch} />;
+  return <UI loading={loading} error={error} post={post} refetch={refetch}/>;
 }

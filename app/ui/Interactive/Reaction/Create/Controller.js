@@ -12,7 +12,6 @@ export const REACTION_CREATE = gql`
 `;
 
 export default function ReactionCreate({ UI, interactive, refetch }) {
-  console.log(refetch);
   const refetchPostItem = () => {
     refetch();
   };

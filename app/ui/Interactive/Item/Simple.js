@@ -13,7 +13,7 @@ function UI({ loading, error, interactive, refetch }) {
         refetch={refetch}
       />
       <InteractionCommentListSimple
-        allInteractiveComments={interactive.comments}
+        allInteractiveComments={interactive?.comments}
       />
     </Box>
   );
