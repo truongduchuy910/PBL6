@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Box, HStack, Image, Text, Button, VStack, Divider } from "native-base";
-import {
-  InteractionCommentListToggleButton,
-} from "../../Interactive/Comment";
+import { InteractionCommentListToggleButton } from "../../Interactive/Comment";
 import {
   InteractionReactionCreateButton,
   InteractionReactionListIconTextWithCount,
@@ -114,8 +112,7 @@ function UI({ loading, error, post, refetch }) {
       />
       <Box px="3" mt="2">
         <InteractionReactionListIconTextWithCount
-          where={{ interactive: { post: { id: post.id } } }
-        }
+          _allReactionsMeta={post?.interactive?._reactionsMeta}
         />
       </Box>
       <Box px="3">
@@ -129,7 +126,10 @@ function UI({ loading, error, post, refetch }) {
           justifyContent="space-around"
         >
           <Box w="33%">
-            <InteractionReactionCreateButton interactive={post.interactive} refetch={refetch}/>
+            <InteractionReactionCreateButton
+              interactive={post.interactive}
+              refetch={refetch}
+            />
           </Box>
           <Box w="33%">
             <InteractionCommentListToggleButton />

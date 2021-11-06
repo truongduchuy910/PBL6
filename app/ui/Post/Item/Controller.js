@@ -22,6 +22,12 @@ export const POST_ITEM = gql`
         reactions {
           emoji
         }
+        _commentsMeta{
+          count
+        }
+        _reactionsMeta{
+          count
+        }
       }
       createdAt
       createdBy {
