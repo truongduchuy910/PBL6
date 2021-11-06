@@ -3,10 +3,11 @@ import { gql, useMutation, useReactiveVar } from "@apollo/client";
 import { ReactionListRefetch } from "../List/Controller";
 
 export const REACTION_CREATE = gql`
-  mutation($data: InteractiveReactionCreateInput) {
-    createInteractiveReaction(data: $data) {
-      id
-      emoji
+  mutation($id: ID!, $data: InteractiveUpdateInput) {
+    updateInteractive(id: $id, data: $data) {
+      reactions {
+        emoji
+      }
     }
   }
 `;

@@ -10,9 +10,9 @@ export function UI({ loading, error, interactive, on }) {
     if (!loading)
       on({
         variables: {
+          id: interactive?.id,
           data: {
-            interactive: { connect: { id: interactive.id } },
-            emoji: "like",
+            reactions: { create: { emoji: "like" } },
           },
         },
       });
