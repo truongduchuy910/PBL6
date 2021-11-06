@@ -1,5 +1,6 @@
 import React from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useReactiveVar } from "@apollo/client";
+import { ReactionListRefetch } from "../List/Controller";
 
 export const REACTION_CREATE = gql`
   mutation($data: InteractiveReactionCreateInput) {
@@ -10,8 +11,15 @@ export const REACTION_CREATE = gql`
   }
 `;
 
-export default function ReactionCreate({ UI, interactive }) {
-  const [on, { loading, error, data = {} }] = useMutation(REACTION_CREATE);
+export default function ReactionCreate({ UI, interactive, refetch }) {
+  const refetchPostItem = () => {
+    refetch();
+  };
+  const [on, { loading, error, data = {} }] = useMutation(REACTION_CREATE, {
+    onCompleted: (data) => {
+      refetchPostItem();
+    },
+  });
   const { createInteractiveReaction } = data;
   return (
     <UI

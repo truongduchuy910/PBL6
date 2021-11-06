@@ -11,17 +11,18 @@ export const REACTION_LIST = gql`
     }
   }
 `;
-export default function ReactionListController({ UI, where }) {
-  const { loading, error, data = {} } = useQuery(REACTION_LIST, {
-    variables: { where },
-  });
-  const { allInteractiveReactions, _allInteractiveReactionsMeta } = data;
+
+export default function ReactionListController({ UI, where, _allReactionsMeta }) {
+  // const { loading, error, data = {}, refetch } = useQuery(REACTION_LIST, {
+  //   variables: { where },
+  // });
+  // const { allInteractiveReactions, _allInteractiveReactionsMeta } = data;
   return (
     <UI
-      loading={loading}
-      error={error}
-      allReactions={allInteractiveReactions}
-      _allReactionsMeta={_allInteractiveReactionsMeta}
+      // loading={loading}
+      // error={error}
+      // allReactions={allInteractiveReactions}
+      _allReactionsMeta={_allReactionsMeta}
     />
   );
 }

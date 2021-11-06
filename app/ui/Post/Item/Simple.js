@@ -36,7 +36,7 @@ function formatTimeCreate(createdAt) {
   return stringTime;
 }
 
-function UI({ loading, error, post }) {
+function UI({ loading, error, post, refetch }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(post?.createdAt);
   const toggleModal = () => {
@@ -116,7 +116,7 @@ function UI({ loading, error, post }) {
       />
       <Box px="3" mt="2">
         <InteractionReactionListIconTextWithCount
-          where={{ interactive: { post: { id: post.id } } }}
+          _allReactionsMeta={post?.interactive?._reactionsMeta}
         />
       </Box>
       <Box px="3">
@@ -130,7 +130,10 @@ function UI({ loading, error, post }) {
           justifyContent="space-around"
         >
           <Box w="33%">
-            <InteractionReactionCreateButton interactive={post.interactive} />
+            <InteractionReactionCreateButton
+              interactive={post.interactive}
+              refetch={refetch}
+            />
           </Box>
           <Box w="33%">
             <InteractionCommentListToggleButton />
@@ -140,7 +143,7 @@ function UI({ loading, error, post }) {
           </Box>
         </HStack>
         <InteractiveItemSimple
-          where={{ post: { id: post.id } }}
+          where={{ id: post?.interactive?.id }}
           sortBy="createdAt_DESC"
         />
       </Box>

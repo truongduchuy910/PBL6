@@ -22,6 +22,12 @@ export const POST_ITEM = gql`
         reactions {
           emoji
         }
+        _commentsMeta{
+          count
+        }
+        _reactionsMeta{
+          count
+        }
       }
       createdAt
       createdBy {
@@ -35,11 +41,11 @@ export const POST_ITEM = gql`
   }
 `;
 export default function PostItem({ UI, id, where }) {
-  const { loading, error, data = {} } = useQuery(id ? POST_ITEM : POST_LIST, {
+  const { loading, error, data = {}, refetch } = useQuery(id ? POST_ITEM : POST_LIST, {
     variables: id ? { id } : { where },
   });
 
   const { allPosts, Post } = data;
   const [post] = allPosts || [Post];
-  return <UI loading={loading} error={error} post={post} />;
+  return <UI loading={loading} error={error} post={post} refetch={refetch}/>;
 }

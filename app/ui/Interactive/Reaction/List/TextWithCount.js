@@ -7,7 +7,7 @@ function UI({ loading, error, allReactions, _allReactionsMeta }) {
     <Text>...</Text>
   ) : (
     <Text color="gray.400" fontSize="12" fontWeight="600">
-      {_allReactionsMeta.count} lượt thích
+      {0} lượt thích
     </Text>
   );
 }
