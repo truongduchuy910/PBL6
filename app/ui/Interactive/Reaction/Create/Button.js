@@ -3,20 +3,19 @@ import { Button } from "native-base";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import Controller from "./Controller";
 
-function UI(loading, error, interactive , on) {
+export function UI(loading, error, interactive, on, test) {
   const [isLike, setIsLike] = useState(false);
-
   const likeHandle = (e) => {
-    setIsLike((prev) => !prev);
-    on({
-      variables: {
-        interactive: { connect: { id: interactive.id } },
-        emoji: "like",
-      },
-    });
-    console.log("Reaction Create Button");
+    // setIsLike((prev) => !prev);
+    // on({
+    //   variables: {
+    //     interactive: { connect: { id: interactive.id } },
+    //     emoji: like,
+    //   },
+    // });
+    // console.log("Reaction Create Button");
+    console.log(interactive);
   };
-
   return (
     <Fragment>
       {isLike && (

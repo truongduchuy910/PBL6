@@ -15,11 +15,11 @@ module.exports = {
       ref: "InteractiveComment.interactive",
       many: true,
     },
-    post: {
-      type: Relationship,
-      ref: "Post.interactive",
-      many: false,
-    },
+    // post: {
+    //   type: Relationship,
+    //   ref: "Post.interactive",
+    //   many: false,
+    // },
   },
   ...multipleLanguage("Translate"),
   labelField: "",

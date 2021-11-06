@@ -33,7 +33,7 @@ function UI({ allUsers }) {
               source={{
                 uri:
                   "https://odanang.net" +
-                  (user?.avatar ? user.avatar.publicUrl : "/img/no-image.png"),
+                  (user?.avatar ? user.avatar.publicUrl : "/upload/img/no-image.png"),
               }}
               alt="img"
               size="8"

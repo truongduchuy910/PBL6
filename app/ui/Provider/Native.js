@@ -19,6 +19,9 @@ export const USER_AUTH = gql`
       phone
       name
       email
+      avatar {
+        publicUrl
+      }
     }
   }
 `;

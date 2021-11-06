@@ -15,11 +15,15 @@ export const INTERACTIVE_LIST = gql`
       comments(sortBy: $sortBy, first: $first, skip: $skip) {
         id
         content
+        createdAt
         createdBy {
           name
           avatar {
             publicUrl
           }
+        }
+        interactive {
+          id
         }
       }
       reactions {
@@ -35,7 +39,7 @@ export const INTERACTIVE_LIST = gql`
     }
   }
 `;
-// file ảnh đang lỗi chưa đưa vô
+
 export default function InteractiveListController({
   UI,
   first = 3,

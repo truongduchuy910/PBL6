@@ -2,7 +2,6 @@ import React, { Fragment, useState } from "react";
 import { Button } from "native-base";
 import Controller from "./Controller";
 export function UI({ onPress, comment }) {
-  console.log(comment);
   return (
     <Fragment>
       <Button
