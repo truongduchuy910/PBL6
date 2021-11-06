@@ -2,10 +2,11 @@ import React from "react";
 import { gql, useMutation } from "@apollo/client";
 
 export const COMMENT_CREATE = gql`
-  mutation($data: InteractiveCommentCreateInput) {
-    createInteractiveComment(data: $data) {
-      id
-      content
+  mutation($id: ID!, $data: InteractiveUpdateInput) {
+    updateInteractive(id: $id, data: $data) {
+      comments {
+        content
+      }
     }
   }
 `;
@@ -19,14 +20,7 @@ export default function CommentCreate({ UI, interactive, refetch }) {
       refectInteractiveItem();
     },
   });
-  const { createComment } = data;
   return (
-    <UI
-      loading={loading}
-      error={error}
-      on={on}
-      createComment={createComment}
-      interactive={interactive}
-    />
+    <UI loading={loading} error={error} on={on} interactive={interactive} />
   );
 }

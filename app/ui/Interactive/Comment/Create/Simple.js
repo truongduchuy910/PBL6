@@ -9,9 +9,13 @@ export function UI({ loading, error, on, interactive }) {
     if (!loading)
       on({
         variables: {
+          id: interactive?.id,
           data: {
-            content: content,
-            interactive: { connect: { id: interactive.id } },
+            comments: {
+              create: {
+                content: content,
+              },
+            },
           },
         },
       });
