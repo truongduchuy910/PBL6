@@ -9,18 +9,22 @@ export const REACTION_DELETE = gql`
   }
 `;
 
-export default function ReactionDelete({ UI, id }) {
-  const [on, { loading, error, data = {} }] = useMutation(REACTION_DELETE);
-  const { reaction } = data;
-  const clickDetete = () => {
-    on({ variables: { id: id } });
+export default function ReactionDelete({ UI, id, refetch }) {
+  const refetchPostItem = () => {
+    refetch();
   };
+  const [on, { loading, error, data = {} }] = useMutation(REACTION_DELETE,{
+    onCompleted: (data) => {
+      refetchPostItem();
+    }
+  });
+  const { deleteInteractiveReaction } = data;
   return (
     <UI
       loading={loading}
       error={error}
-      onClickDelete={clickDetete}
-      reaction={reaction}
+      onDelete={on}
+      deletedReaction={deleteInteractiveReaction}
     />
   );
 }
