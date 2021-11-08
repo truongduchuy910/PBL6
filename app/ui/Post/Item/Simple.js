@@ -133,6 +133,7 @@ function UI({ loading, error, post, refetch }) {
             <InteractionReactionCreateButton
               interactive={post.interactive}
               refetch={refetch}
+              reactionsList = {post?.interactive?.reactions}
             />
           </Box>
           <Box w="33%">

@@ -20,12 +20,16 @@ export const POST_ITEM = gql`
           content
         }
         reactions {
+          id
           emoji
+          createdBy {
+            id
+          }
         }
-        _commentsMeta{
+        _commentsMeta {
           count
         }
-        _reactionsMeta{
+        _reactionsMeta {
           count
         }
       }
@@ -41,11 +45,14 @@ export const POST_ITEM = gql`
   }
 `;
 export default function PostItem({ UI, id, where }) {
-  const { loading, error, data = {}, refetch } = useQuery(id ? POST_ITEM : POST_LIST, {
-    variables: id ? { id } : { where },
-  });
+  const { loading, error, data = {}, refetch } = useQuery(
+    id ? POST_ITEM : POST_LIST,
+    {
+      variables: id ? { id } : { where },
+    }
+  );
 
   const { allPosts, Post } = data;
   const [post] = allPosts || [Post];
-  return <UI loading={loading} error={error} post={post} refetch={refetch}/>;
+  return <UI loading={loading} error={error} post={post} refetch={refetch} />;
 }

@@ -1,14 +1,33 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import { Button } from "native-base";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import Controller from "./Controller";
+import { AuthContext } from "../../../Provider/Native";
 
-export function UI({ loading, error, interactive, on }) {
-  const [isLike, setIsLike] = useState(false);
+export function UI({
+  loading,
+  error,
+  interactive,
+  onCreate,
+  onDelete,
+  reactionsList,
+}) {
+  const arrReactions = reactionsList?.map((reaction) => {
+    return { idEmoij: reaction.id, userId: reaction.createdBy.id };
+  });
+  const arrUserId = reactionsList.map((reaction) => {
+    return reaction.createdBy.id;
+  });
+  let idDel;
+  const user = useContext(AuthContext).user;
+  const [isLike, setIsLike] = useState(arrUserId.indexOf(user.id) !== -1);
+  if (isLike === true)
+    idDel = arrReactions[arrUserId.indexOf(user.id)]
+      ? (idDel = arrReactions[arrUserId.indexOf(user.id)].idEmoij)
+      : null;
   const likeHandle = (e) => {
-    setIsLike((prev) => !prev);
-    if (!loading)
-      on({
+    if (!loading && isLike === false)
+      onCreate({
         variables: {
           id: interactive?.id,
           data: {
@@ -16,6 +35,13 @@ export function UI({ loading, error, interactive, on }) {
           },
         },
       });
+    else
+      onDelete({
+        variables: {
+          id: idDel,
+        },
+      });
+    setIsLike((prev) => !prev);
   };
   return (
     <Fragment>
