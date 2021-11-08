@@ -21,7 +21,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostListCount from "../../Post/List/Count";
 import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
-function UI({ loading, error, user }) {
+function UI({ loading, error, user, posts }) {
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
   console.log(user);
@@ -33,7 +33,7 @@ function UI({ loading, error, user }) {
             source={{
               uri:
                 "https://odanang.net" +
-                (user?.avatar?.publicUrl || "/img/no-image.png"),
+                (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
             }}
             alt="Alternate Text"
             w={["100px", "120px"]}
@@ -53,7 +53,8 @@ function UI({ loading, error, user }) {
 
           <HStack space="4">
             <Text fontSize="14" color="gray.500">
-              <PostListCount /> bài đăng
+              {/* <PostListCount /> bài đăng */}
+              {posts.length} bài đăng
             </Text>
             <Text fontSize="14" color="gray.500">
               <RelationshipListCount /> bạn bè

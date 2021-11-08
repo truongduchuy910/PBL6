@@ -11,6 +11,9 @@ export const POST_ITEM = gql`
         publicUrl
       }
     }
+    allPosts(where: { createdBy: { id: $id } }) {
+      id
+    }
   }
 `;
 export default function UserItem({ UI, where, id }) {
@@ -19,5 +22,6 @@ export default function UserItem({ UI, where, id }) {
   });
   const { allUsers, User } = data;
   const [user] = allUsers || [User];
-  return <UI loading={loading} error={error} user={user} />;
+  const { allPosts = [] } = data;
+  return <UI loading={loading} error={error} user={user} posts={allPosts} />;
 }
