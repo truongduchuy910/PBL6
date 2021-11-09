@@ -48,7 +48,7 @@ function UI({ loading, error, allUsers }) {
                   source={{
                     uri:
                       "https://odanang.net" +
-                      (user?.avatar?.publicUrl + "/img/no-image.png"),
+                      (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
                   }}
                   alt="Profile Image"
                   size={["48px", "72px"]}
