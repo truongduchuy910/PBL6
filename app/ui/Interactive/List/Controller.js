@@ -22,6 +22,19 @@ export const INTERACTIVE_LIST = gql`
             publicUrl
           }
         }
+        my_interactive {
+          id
+          reactions {
+            id
+            emoji
+            createdBy {
+              id
+            }
+          }
+          _reactionsMeta{
+            count
+          }
+        }
       }
       reactions {
         id

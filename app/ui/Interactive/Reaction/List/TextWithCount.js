@@ -2,12 +2,12 @@ import React from "react";
 import { Text } from "native-base";
 import Controller from "./Controller";
 
-function UI({ loading, error, allReactions, _allReactionsMeta }) {
+function UI({ loading, error, allReactions, countLikeComment }) {
   return loading ? (
     <Text>...</Text>
   ) : (
     <Text color="gray.400" fontSize="12" fontWeight="600">
-      {0} lượt thích
+      {countLikeComment} lượt thích
     </Text>
   );
 }

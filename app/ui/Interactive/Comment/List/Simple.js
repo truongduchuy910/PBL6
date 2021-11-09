@@ -3,7 +3,7 @@ import { UI as InteractionCommentItemSimple } from "../Item/Simple";
 import { Button, VStack } from "native-base";
 import { CommentListController } from "./Controller";
 
-export function UI({ loading, error, allInteractiveComments = [], count = 0 }) {
+export function UI({ loading, error, allInteractiveComments = [], count = 0, refetchInteractiveItem }) {
   const moreCommentHandler = () => {
     console.log("More comments");
   };
@@ -13,7 +13,7 @@ export function UI({ loading, error, allInteractiveComments = [], count = 0 }) {
     <VStack>
       {allInteractiveComments.map((comment) => {
         return (
-          <InteractionCommentItemSimple key={comment.id} comment={comment} />
+          <InteractionCommentItemSimple key={comment.id} comment={comment} refetchInteractiveItem={refetchInteractiveItem} />
         );
       })}
       {/* More comments */}

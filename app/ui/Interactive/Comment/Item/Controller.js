@@ -14,13 +14,13 @@ export const COMMENT_ITEM = gql`
           publicUrl
         }
       }
-      interactive{
+      my_interactive{
         id
       }
     }
   }
 `;
-export function CommenItemController({ UI, id, where }) {
+export function CommenItemController({ UI, id, where, refetchInteractiveItem }) {
   const { loading, error, data = {} } = useQuery(
     id ? COMMENT_ITEM : COMMENT_LIST,
     {
@@ -29,5 +29,5 @@ export function CommenItemController({ UI, id, where }) {
   );
   const { allInteractiveComments, InteractiveComment } = data;
   const [comment] = allInteractiveComments || [InteractiveComment];
-  return <UI loading={loading} error={error} comment={comment} />;
+  return <UI loading={loading} error={error} comment={comment} refetchInteractiveItem={refetchInteractiveItem} />;
 }
