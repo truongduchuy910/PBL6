@@ -51,6 +51,11 @@ function UI() {
               textAlign="right"
             >
               Đại học Bách Khoa - Đại học Đà Nẵng.
+              Các thành viên:
+              1. Trần Ngọc Huy
+              2. Nguyễn Kim Huy
+              3. Trần Diệp Phương
+              4. Trần Vũ Minh Triết
             </Text>
           </VStack>
         </Stack>

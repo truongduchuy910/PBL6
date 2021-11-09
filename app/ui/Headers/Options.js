@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Box, VStack, Text } from "native-base";
 import { Link } from "@react-navigation/native";
 import { BsFillCaretDownFill } from "react-icons/bs";
@@ -6,14 +6,14 @@ import { RiUser3Fill, RiDownloadCloudFill } from "react-icons/ri";
 import { MdSettings } from "react-icons/md";
 import { HiLockClosed } from "react-icons/hi";
 import { UserSignOutButton } from "../User";
-
+import { AuthContext } from '../Provider/Native'
 function UI({ navigation }) {
   const [isOpenOptions, setIsOpenOptions] = useState(false);
 
   const optionsHandler = () => {
     setIsOpenOptions((prev) => !prev);
   };
-
+  const currentUser = useContext(AuthContext).user
   return (
     <Box position="relative" right="0">
       <Button
@@ -41,7 +41,7 @@ function UI({ navigation }) {
               leftIcon={<RiUser3Fill color="#22c55e" />}
               onPress={optionsHandler}
             >
-              <Link to={{ screen: "users" }}>
+              <Link to={{ screen: "users", params: { id: currentUser.id } }}>
                 <Text>Trang cá nhân</Text>
               </Link>
             </Button>
