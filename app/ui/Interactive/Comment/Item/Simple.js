@@ -67,10 +67,10 @@ export function UI({ loading, error, comment, refetchInteractiveItem }) {
                 reactionsCommentList={comment?.my_interactive?.reactions}
               />
               {console.log(comment)}
-              <CreateText
+              {/* <CreateText
                 comment={comment}
                 onPress={(e) => setOpen((open) => !open)}
-              />
+              /> */}
               <DeleteText id={comment?.id} />
               <InteractionReactionListTextWithCount
                 countLikeComment={
