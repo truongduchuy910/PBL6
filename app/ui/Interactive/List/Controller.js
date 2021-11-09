@@ -17,6 +17,7 @@ export const INTERACTIVE_LIST = gql`
         content
         createdAt
         createdBy {
+          id
           name
           avatar {
             publicUrl
