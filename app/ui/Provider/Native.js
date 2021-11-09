@@ -34,7 +34,6 @@ function createApolloClient(domain = "_", locale = "_") {
   const uri = "https://odanang.net/admin/api";
   const as =
     process.env.NODE_ENV === "production" ? domain : process.env.HOST_DEV;
-  console.log("createApolloClient", uri, as);
   const httpLink = new HttpLink({
     uri,
     headers: {

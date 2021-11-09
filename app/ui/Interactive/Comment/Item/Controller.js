@@ -8,11 +8,11 @@ export const COMMENT_ITEM = gql`
       content
       createdAt
       createdBy {
-        id
         name
         avatar {
           publicUrl
         }
+        id
       }
       my_interactive{
         id

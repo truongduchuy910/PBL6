@@ -15,7 +15,7 @@ import { UploadImageListCarousel } from "../../Upload/Image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
 import InteractiveItemSimple from "../../Interactive/Item/Simple";
-
+import { Link } from "@react-navigation/native";
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
   let stringTime = "";
@@ -62,20 +62,25 @@ function UI({ loading, error, post, refetch }) {
         position="relative"
         zIndex="1"
       >
-        <Image
-          source={{
-            uri:
-              "https://odanang.net" +
-              (post?.createdBy?.avatar?.publicUrl ||
-                "/upload/img/no-image.png"),
-          }}
-          alt="Profile image"
-          size="8"
-          rounded="100"
-        />
-        <Text color="gray.900" fontWeight="600" fontSize="14">
-          {post?.createdBy?.name}
-        </Text>
+        <Link to={{ screen: "users", params: { id: post?.createdBy?.id } }}>
+          <Image
+            source={{
+              uri:
+                "https://odanang.net" +
+                (post?.createdBy?.avatar?.publicUrl ||
+                  "/upload/img/no-image.png"),
+
+            }}
+            alt="Profile image"
+            size="8"
+            rounded="100"
+          />
+        </Link>
+        <Link to={{ screen: "users", params: { id: post?.createdBy?.id } }}>
+          <Text color="gray.900" fontWeight="600" fontSize="14">
+            {post?.createdBy?.name}
+          </Text>
+        </Link>
         <Text color="gray.400" fontSize="12">
           {stringCreatedAt}
         </Text>
@@ -133,7 +138,7 @@ function UI({ loading, error, post, refetch }) {
             <InteractionReactionCreateButton
               interactive={post.interactive}
               refetch={refetch}
-              reactionsList = {post?.interactive?.reactions}
+              reactionsList={post?.interactive?.reactions}
             />
           </Box>
           <Box w="33%">

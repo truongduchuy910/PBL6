@@ -9,7 +9,7 @@ import {
 import { VStack, HStack, Box, Image, Text } from "native-base";
 import { CommenItemController } from "./Controller";
 import InteractiveItemSimple from "../../Item/Simple";
-
+import { Link } from "@react-navigation/native";
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
   let stringTime = "";
@@ -35,26 +35,31 @@ export function UI({ loading, error, comment, refetchInteractiveItem }) {
   const { interactive = {} } = comment;
   const { _commentsMeta = {} } = interactive;
   const { count = 0 } = _commentsMeta;
-  if (loading) return "...";
+  if (loading) return "";
   return (
     <Box mx="auto" my="2" w="full">
       <VStack>
         <HStack space="2" display="flex" flexDirection="row" w="full">
-          <Image
-            source={{
-              uri:
-                "https://odanang.net" + comment?.createdBy?.avatar?.publicUrl,
-            }}
-            alt="Profile image"
-            size="8"
-            rounded="100"
-          />
+          <Link to={{ screen: "users", params: { id: comment?.createdBy?.id } }}>
+            <Image
+              source={{
+                uri:
+                  "https://odanang.net" + (comment?.createdBy?.avatar?.publicUrl ||
+                    "/upload/img/no-image.png"),
+              }}
+              alt="Profile image"
+              size="8"
+              rounded="100"
+            />
+          </Link>
           <VStack flex="1">
             <HStack>
               <Box bgColor="gray.50" rounded="8" px="3" py="2" flex="1">
-                <Text color="gray.900" fontWeight="600" fontSize="14">
-                  {comment?.createdBy?.name}
-                </Text>
+                <Link to={{ screen: "users", params: { id: comment?.createdBy?.id } }}>
+                  <Text color="gray.900" fontWeight="600" fontSize="14">
+                    {comment?.createdBy?.name}
+                  </Text>
+                </Link>
                 <Text color="gray.700" lineHeight="18">
                   {comment?.content}
                 </Text>
@@ -66,7 +71,6 @@ export function UI({ loading, error, comment, refetchInteractiveItem }) {
                 refetchInteractiveItem={refetchInteractiveItem}
                 reactionsCommentList={comment?.my_interactive?.reactions}
               />
-              {console.log(comment)}
               {/* <CreateText
                 comment={comment}
                 onPress={(e) => setOpen((open) => !open)}
