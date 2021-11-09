@@ -4,7 +4,7 @@ import { POST_LIST } from "../List/Controller";
 
 export const GRID_POST = gql`
   query($id: ID!) {
-    allPosts(where: { createdBy: { id: $id } }) {
+    allPosts(sortBy: createdAt_DESC, where: { createdBy: { id: $id } }) {
       id
       images {
         file {
