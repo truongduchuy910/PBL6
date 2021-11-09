@@ -24,7 +24,6 @@ import Field from "../../Field";
 function UI({ loading, error, user, posts }) {
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
-  console.log(user);
   return (
     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
       <HStack space="7" m="1%" alignItems="center">

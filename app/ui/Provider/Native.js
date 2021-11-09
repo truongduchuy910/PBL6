@@ -125,7 +125,7 @@ function Native({ navigation, header }) {
     },
   };
   useEffect(() => {
-    console.log("navigation renderd", user);
+    //console.log("navigation renderd", user);
   });
   const screens = useMemo(
     () => (
