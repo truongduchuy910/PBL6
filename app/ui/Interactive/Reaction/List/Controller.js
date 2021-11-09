@@ -12,7 +12,7 @@ export const REACTION_LIST = gql`
   }
 `;
 
-export default function ReactionListController({ UI, where, _allReactionsMeta }) {
+export default function ReactionListController({ UI, where, _allReactionsMeta, countLikeComment }) {
   // const { loading, error, data = {}, refetch } = useQuery(REACTION_LIST, {
   //   variables: { where },
   // });
@@ -23,6 +23,7 @@ export default function ReactionListController({ UI, where, _allReactionsMeta })
       // error={error}
       // allReactions={allInteractiveReactions}
       _allReactionsMeta={_allReactionsMeta}
+      countLikeComment = {countLikeComment}
     />
   );
 }

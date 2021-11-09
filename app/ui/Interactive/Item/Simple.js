@@ -14,6 +14,7 @@ function UI({ loading, error, interactive, refetch }) {
       />
       <InteractionCommentListSimple
         allInteractiveComments={interactive?.comments}
+        refetchInteractiveItem={refetch}
       />
     </Box>
   );

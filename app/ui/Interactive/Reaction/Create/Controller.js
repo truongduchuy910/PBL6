@@ -2,7 +2,7 @@ import React from "react";
 import { gql, useMutation } from "@apollo/client";
 import { REACTION_DELETE } from "../Delete/Controller";
 
-export const REACTION_CREATE = gql`
+export const REACTION_CREATE_POST = gql`
   mutation($id: ID!, $data: InteractiveUpdateInput) {
     updateInteractive(id: $id, data: $data) {
       reactions {
@@ -11,22 +11,37 @@ export const REACTION_CREATE = gql`
     }
   }
 `;
-
+export const REACTION_CREATE_COMMENT = gql`
+  mutation($id: ID!, $data: InteractiveUpdateInput) {
+    updateInteractive(id: $id, data: $data) {
+      id
+      reactions {
+        id
+        emoji
+      }
+      _reactionsMeta {
+        count
+      }
+    }
+  }
+`;
 export default function ReactionCreate({
   UI,
   interactive,
   refetch,
   reactionsList,
-  id,
+  reactionsCommentList,
+  idMyInteractive,
+  refetchInteractiveItem,
 }) {
   const refetchPostItem = () => {
     refetch();
   };
   const [onCreate, { loading1, error1, data1 = {} }] = useMutation(
-    REACTION_CREATE,
+    idMyInteractive ? REACTION_CREATE_COMMENT : REACTION_CREATE_POST,
     {
       onCompleted: (data) => {
-        refetchPostItem();
+        idMyInteractive ? refetchInteractiveItem() : refetchPostItem();
       },
     }
   );
@@ -34,7 +49,7 @@ export default function ReactionCreate({
     REACTION_DELETE,
     {
       onCompleted: (data) => {
-        refetchPostItem();
+        idMyInteractive ? refetchInteractiveItem() : refetchPostItem();
       },
     }
   );
@@ -50,6 +65,8 @@ export default function ReactionCreate({
       createReaction={createInteractiveReaction}
       deleteReaction={deleteInteractiveReaction}
       reactionsList={reactionsList}
+      idMyInteractive={idMyInteractive}
+      reactionsCommentList={reactionsCommentList}
     />
   );
 }

@@ -29,6 +29,7 @@ export function CommentListController({
   sortBy = "createdAt_DESC",
   skip,
   where,
+  refetchInteractiveItem,
   ...props
 }) {
   const { loading, error, data = {}, refetch } = useQuery(COMMENT_LIST, {
@@ -45,7 +46,7 @@ export function CommentListController({
         error={error}
         allInteractiveComments={allInteractiveComments}
         count={count}
-        refetch={refetch}
+        refetchInteractiveItem={refetchInteractiveItem}
       />
     ),
     [loading, error, data]

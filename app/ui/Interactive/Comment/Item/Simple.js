@@ -29,7 +29,7 @@ function formatTimeCreate(createdAt) {
   } else stringTime = createdTime.format("DD-MM-YYYY");
   return stringTime;
 }
-export function UI({ loading, error, comment }) {
+export function UI({ loading, error, comment, refetchInteractiveItem }) {
   const [open, setOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(comment?.createdAt);
   const { interactive = {} } = comment;
@@ -62,15 +62,20 @@ export function UI({ loading, error, comment }) {
             </HStack>
             <HStack ml="3" mt="1" space="3">
               <InteractionReactionCreateText
-                interactive={comment.interactive}
+                idMyInteractive={comment?.my_interactive?.id}
+                refetchInteractiveItem={refetchInteractiveItem}
+                reactionsCommentList={comment?.my_interactive?.reactions}
               />
-              <CreateText
+              {console.log(comment)}
+              {/* <CreateText
                 comment={comment}
                 onPress={(e) => setOpen((open) => !open)}
-              />
+              /> */}
               <DeleteText id={comment?.id} />
               <InteractionReactionListTextWithCount
-                where={{ interactive: { id: comment?.interactive?.id } }}
+                countLikeComment={
+                  comment?.my_interactive?._reactionsMeta?.count
+                }
               />
               <Text color="gray.400" fontSize="12">
                 {stringCreatedAt}
@@ -81,7 +86,7 @@ export function UI({ loading, error, comment }) {
             <HStack ml="3" mt="1">
               <ListToggleText count={count} />
               {open && comment?.interactive?.id && (
-                <InteractiveItemSimple id={comment?.interactive?.id} />
+                <InteractiveItemSimple id={comment?.my_interactive?.id} />
               )}
             </HStack>
           </VStack>

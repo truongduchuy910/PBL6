@@ -13,10 +13,10 @@ export function UI({
   reactionsList,
 }) {
   const arrReactions = reactionsList?.map((reaction) => {
-    return { idEmoij: reaction.id, userId: reaction.createdBy.id };
+    return { idEmoij: reaction.id, userId: reaction.createdBy?.id };
   });
   const arrUserId = reactionsList.map((reaction) => {
-    return reaction.createdBy.id;
+    return reaction.createdBy?.id;
   });
   let idDel;
   const user = useContext(AuthContext).user;

@@ -1,19 +1,45 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { Button, Text } from "native-base";
 import Controller from "./Controller";
+import { AuthContext } from "../../../Provider/Native";
 
-function UI({ loading, error, on, interactive }) {
-  const [isLike, setIsLike] = useState(false);
+function UI({
+  loading,
+  error,
+  onCreate,
+  onDelete,
+  idMyInteractive,
+  reactionsCommentList,
+}) {
+  const arrReactions = reactionsCommentList?.map((reaction) => {
+    return { idEmoij: reaction.id, userId: reaction.createdBy?.id  };
+  });
+  const arrUserId = reactionsCommentList.map((reaction) => {
+    return reaction.createdBy?.id;
+  });
+  let idDel;
+  const user = useContext(AuthContext).user;
+  const [isLike, setIsLike] = useState(arrUserId.indexOf(user.id) !== -1);
+  if (isLike === true)
+    idDel = arrReactions[arrUserId.indexOf(user.id)]
+      ? (idDel = arrReactions[arrUserId.indexOf(user.id)].idEmoij)
+      : null;
   const likeHandle = (e) => {
-    console.log("Reaction Create Text");
-    on({
-      variables: {
-        data: {
-          interactive: { connect: { id: interactive.id } },
-          emoji: "like",
+    if (!loading && isLike === false)
+      onCreate({
+        variables: {
+          id: idMyInteractive,
+          data: {
+            reactions: { create: { emoji: "like" } },
+          },
         },
-      },
-    });
+      });
+    else
+      onDelete({
+        variables: {
+          id: idDel,
+        },
+      });
     setIsLike((prev) => !prev);
   };
 
