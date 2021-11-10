@@ -32,10 +32,13 @@ export const INTERACTIVE_LIST = gql`
               id
             }
           }
-          _reactionsMeta{
+          _reactionsMeta {
             count
           }
         }
+      }
+      _commentsMeta {
+        count
       }
       reactions {
         id
@@ -59,11 +62,29 @@ export default function InteractiveListController({
   where,
   ...props
 }) {
-  const { loading, error, data = {}, refetch } = useQuery(INTERACTIVE_LIST, {
-    variables: { first, where, skip, sortBy },
-  });
+  const { loading, error, data = {}, fetchMore, refetch } = useQuery(
+    INTERACTIVE_LIST,
+    {
+      variables: { first, where, skip, sortBy },
+    }
+  );
   const { allInteractives, _allInteractivesMeta = {} } = data;
-  const { count = 0 } = _allInteractivesMeta;
+  const { comments } = allInteractives;
+  const { count = 0 } = allInteractives._commentsMeta;
+  console.log(count);
+  function getMore(e) {
+    if (loading || error) return;
+    if (count <= comments.length) return;
+    fetchMore({
+      variables: { skip: allPosts.length },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        return {
+          ...previousResult,
+          allPosts: [...previousResult.allPosts, ...fetchMoreResult.allPosts],
+        };
+      },
+    });
+  }
   return (
     <UI
       {...props}
