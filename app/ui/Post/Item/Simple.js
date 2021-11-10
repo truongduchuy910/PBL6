@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, HStack, Image, Text, Button, VStack, Divider } from "native-base";
 import {
   InteractionCommentCreateSimple,
@@ -16,6 +16,8 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
 import InteractiveItemSimple from "../../Interactive/Item/Simple";
 import { Link } from "@react-navigation/native";
+import { AuthContext } from '../../Provider/Native'
+
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
   let stringTime = "";
@@ -37,6 +39,7 @@ function formatTimeCreate(createdAt) {
 }
 
 function UI({ loading, error, post, refetch }) {
+  const currentUser = useContext(AuthContext).user
   const [isModalOpen, setIsModalOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(post?.createdAt);
   const toggleModal = () => {
@@ -84,7 +87,7 @@ function UI({ loading, error, post, refetch }) {
         <Text color="gray.400" fontSize="12">
           {stringCreatedAt}
         </Text>
-        {isModalOpen && (
+        {isModalOpen && post.createdBy.id === currentUser.id && (
           <VStack
             position="absolute"
             right="3"

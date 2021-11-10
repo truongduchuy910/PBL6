@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ListToggleText from "../List/ToggleText";
 import { InteractionCommentCreateUpdateText as CreateText } from "../";
 import DeleteText from "../Delete/Text";
@@ -10,6 +10,8 @@ import { VStack, HStack, Box, Image, Text } from "native-base";
 import { CommenItemController } from "./Controller";
 import InteractiveItemSimple from "../../Item/Simple";
 import { Link } from "@react-navigation/native";
+import { AuthContext } from '../../../Provider/Native'
+
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
   let stringTime = "";
@@ -30,6 +32,7 @@ function formatTimeCreate(createdAt) {
   return stringTime;
 }
 export function UI({ loading, error, comment, refetchInteractiveItem }) {
+  const currentUser = useContext(AuthContext).user
   const [open, setOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(comment?.createdAt);
   const { interactive = {} } = comment;
@@ -75,7 +78,9 @@ export function UI({ loading, error, comment, refetchInteractiveItem }) {
                 comment={comment}
                 onPress={(e) => setOpen((open) => !open)}
               /> */}
-              <DeleteText id={comment?.id} />
+              {comment?.createdBy?.id === currentUser.id && (
+                <DeleteText id={comment?.id} />
+              )}
               <InteractionReactionListTextWithCount
                 countLikeComment={
                   comment?.my_interactive?._reactionsMeta?.count
