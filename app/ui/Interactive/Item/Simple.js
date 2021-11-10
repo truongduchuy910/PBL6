@@ -3,7 +3,7 @@ import { Box } from "native-base";
 import InteractionCommentCreateSimple from "../Comment/Create/Simple";
 import { UI as InteractionCommentListSimple } from "../Comment/List/Simple";
 import Controller from "./Controller";
-function UI({ loading, error, interactive, refetch }) {
+function UI({ loading, error, interactive, refetch, getMore, count }) {
   if (loading) return "...";
   return (
     <Box w="full">
@@ -15,6 +15,8 @@ function UI({ loading, error, interactive, refetch }) {
       <InteractionCommentListSimple
         allInteractiveComments={interactive?.comments}
         refetchInteractiveItem={refetch}
+        getMore={getMore}
+        count={count}
       />
     </Box>
   );

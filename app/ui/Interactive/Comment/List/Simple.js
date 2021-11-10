@@ -3,32 +3,42 @@ import { UI as InteractionCommentItemSimple } from "../Item/Simple";
 import { Button, VStack } from "native-base";
 import { CommentListController } from "./Controller";
 
-export function UI({ loading, error, allInteractiveComments = [], count = 0, refetchInteractiveItem }) {
-  const moreCommentHandler = () => {
-    console.log("More comments");
-  };
+export function UI({
+  loading,
+  error,
+  allInteractiveComments = [],
+  count = 0,
+  refetchInteractiveItem,
+  getMore,
+}) {
   // Map list comments => InteractionCommentItemSimple
   if (loading) return "...";
   return (
     <VStack>
       {allInteractiveComments.map((comment) => {
         return (
-          <InteractionCommentItemSimple key={comment.id} comment={comment} refetchInteractiveItem={refetchInteractiveItem} />
+          <InteractionCommentItemSimple
+            key={comment.id}
+            comment={comment}
+            refetchInteractiveItem={refetchInteractiveItem}
+          />
         );
       })}
       {/* More comments */}
-      <Button
-        _text={{
-          color: "gray.500",
-          fontSize: "12",
-          fontWeight: "600",
-        }}
-        p="0"
-        bgColor="transparent"
-        onPress={moreCommentHandler}
-      >
-        Xem thêm bình luận
-      </Button>
+      {count > allInteractiveComments.length && (
+        <Button
+          _text={{
+            color: "gray.500",
+            fontSize: "12",
+            fontWeight: "600",
+          }}
+          p="0"
+          bgColor="transparent"
+          onPress={getMore}
+        >
+          Xem thêm bình luận
+        </Button>
+      )}
     </VStack>
   );
 }
