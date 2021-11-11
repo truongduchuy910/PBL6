@@ -104,15 +104,17 @@ function UI({ loading, error, post, refetch }) {
             <PostDeleteText id={post?.id} />
           </VStack>
         )}
-        <Button
-          bgColor="transparent"
-          p="1"
-          color="gray.500"
-          ml="auto"
-          onPress={toggleModal}
-        >
-          <HiOutlineDotsHorizontal />
-        </Button>
+        {post.createdBy.id === currentUser.id && (
+          <Button
+            bgColor="transparent"
+            p="1"
+            color="gray.500"
+            ml="auto"
+            onPress={toggleModal}
+          >
+            <HiOutlineDotsHorizontal />
+          </Button>
+        )}
       </HStack>
       <Text px="3" my="2">
         {post.content}
