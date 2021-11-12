@@ -79,7 +79,7 @@ export function UI({ loading, error, comment, refetchInteractiveItem }) {
                 onPress={(e) => setOpen((open) => !open)}
               /> */}
               {comment?.createdBy?.id === currentUser.id && (
-                <DeleteText id={comment?.id} />
+                <DeleteText id={comment?.id} refetch={refetchInteractiveItem} />
               )}
               <InteractionReactionListTextWithCount
                 countLikeComment={
