@@ -14,6 +14,7 @@ import { PostListGrid } from "../../Post";
 import {
   RelationshipUpdateButton,
   RelationshipDeleteDelete,
+  RelationshipCreateButton,
 } from "../../Relationship";
 import Controller from "./Controller";
 import DetailSkeleton from "./DetailSkeleton";
@@ -68,7 +69,7 @@ function UI({ loading, error, user, posts }) {
           alignItems={["start", "center"]}
           direction={["column", "row"]}
         >
-          <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+          {/* <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
             Trần Ngọc Huy đã gửi lời mời kết bạn
           </Text>
           <HStack space="2">
@@ -78,7 +79,10 @@ function UI({ loading, error, user, posts }) {
             <Box w="130px">
               <RelationshipDeleteDelete />
             </Box>
-          </HStack>
+          </HStack> */}
+          {/* <HStack space="2">
+            <RelationshipCreateButton />
+          </HStack> */}
         </Stack>
       </VStack>
 
