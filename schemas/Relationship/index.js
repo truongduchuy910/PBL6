@@ -11,6 +11,7 @@ module.exports = {
     },
     isAccepted: {
       type: Checkbox,
+      default: false
     },
   },
   ...multipleLanguage("Translate"),
