@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "@react-navigation/native";
 import {
   Box,
@@ -15,6 +15,7 @@ import {
   RelationshipUpdateButton,
   RelationshipDeleteDelete,
   RelationshipCreateButton,
+  RelationshipDeleteActive
 } from "../../Relationship";
 import Controller from "./Controller";
 import DetailSkeleton from "./DetailSkeleton";
@@ -22,7 +23,9 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostListCount from "../../Post/List/Count";
 import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
-function UI({ loading, error, user, posts }) {
+import { AuthContext } from "../../Provider/Native";
+function UI({ loading, error, user, posts, relationship }) {
+  const currentUser = useContext(AuthContext).user
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
   return (
@@ -83,6 +86,36 @@ function UI({ loading, error, user, posts }) {
           {/* <HStack space="2">
             <RelationshipCreateButton />
           </HStack> */}
+          {user?.id !== currentUser?.id && relationship === null && (
+            <HStack space="2">
+              <RelationshipCreateButton />
+            </HStack>
+          )}
+          {user?.id !== currentUser?.id && relationship?.isAccepted === true && (
+            <HStack space="2">
+              <RelationshipDeleteActive />
+            </HStack>
+          )}
+          {user?.id !== currentUser?.id && (relationship?.isAccepted === false || relationship?.isAccepted === null) && (relationship?.createdBy?.id === currentUser.id) && (
+            <HStack space="2">
+              <RelationshipDeleteDelete />
+            </HStack>
+          )}
+          {user?.id !== currentUser?.id && (relationship?.isAccepted === false || relationship?.isAccepted === null) && (relationship?.to?.id === currentUser?.id) && (relationship?.createdBy?.id === user?.id) && (
+            <HStack space="2">
+              <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                {user.name} đã gửi lời mời kết bạn
+              </Text>
+              <HStack space="2">
+                <Box w="130px">
+                  <RelationshipUpdateButton />
+                </Box>
+                <Box w="130px">
+                  <RelationshipDeleteDelete />
+                </Box>
+              </HStack>
+            </HStack>
+          )}
         </Stack>
       </VStack>
 
