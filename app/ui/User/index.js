@@ -4,7 +4,7 @@ import UserSignUpSimple from "./SignUp/Simple";
 import UserSignOutButton from "./SignOut/Button";
 import UserListSuggest from "./List/Suggest";
 import UserListCount from "./List/Count";
-import UserListSimple from "./List/Simple";
+import UserListSimple from "./Friends/Simple";
 import UserListSearch from "./List/Search";
 import UserListSuggestFixed from "./List/SuggestFixed";
 import UserListRequest from "./List/Request";
