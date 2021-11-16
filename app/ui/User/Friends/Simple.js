@@ -8,7 +8,7 @@ import {
   RelationshipDeleteActive,
   RelationshipDeleteCancel,
 } from "../../Relationship";
-import Controller from "./Controller";
+import Controller from "../Friends/Controller";
 // Fetch 12 items
 
 function UI({ loading, error, allUsers }) {
@@ -44,20 +44,22 @@ function UI({ loading, error, allUsers }) {
           >
             <HStack alignItems="center" space={["12px", "16px"]}>
               <Box>
-                <Image
-                  source={{
-                    uri:
-                      "https://odanang.net" +
-                      (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
-                  }}
-                  alt="Profile Image"
-                  size={["48px", "72px"]}
-                  mx="auto"
-                  my={["10px", "6px"]}
-                  rounded="100"
-                />
+                <Link to={{ screen: "users", params: { id: user?.id } }} >
+                  <Image
+                    source={{
+                      uri:
+                        "https://odanang.net" +
+                        (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
+                    }}
+                    alt="Profile Image"
+                    size={["48px", "72px"]}
+                    mx="auto"
+                    my={["10px", "6px"]}
+                    rounded="100"
+                  />
+                </Link>
               </Box>
-              <Link to={{ screen: "home" }}>
+              <Link to={{ screen: "users", params: { id: user?.id } }} >
                 <Text my="8px" fontWeight="600">
                   {user.name}
                 </Text>
@@ -91,7 +93,7 @@ function UI({ loading, error, allUsers }) {
           </HStack>
         ))}
       </HStack>
-    </VStack>
+    </VStack >
   );
 }
 export { UI };
