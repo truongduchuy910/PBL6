@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "native-base";
+import Controller from "./Controller";
 
-function UI() {
+function UI({ error, loading, clickDetete, id }) {
   const clickHandler = (e) => {
-    console.log("User Relationship Delete Button");
+    clickDetete();
   };
 
   return (
@@ -19,7 +20,9 @@ function UI() {
     </Button>
   );
 }
-export default UI;
+export default function RelationshipDeleteDelete(props) {
+  return <Controller {...props} UI={UI} />;
+}
 
 // A đã tạo Relationship tới B, B chưa đồng ý (Relationship đang inActive)
 // B vào tường A thấy nút "xóa lời mời"

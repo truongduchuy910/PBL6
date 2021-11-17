@@ -6,8 +6,8 @@ import {
 } from "../../Relationship";
 import Controller from "./Controller";
 function UI({ loading, error, allUsers }) {
-  if (loading) return 'loading'
-  if (error) return 'error'
+  if (loading) return "loading";
+  if (error) return "error";
   return (
     <VStack w="100%">
       <Box w="full" mt="20px" mb="8px" px="0.5%">
