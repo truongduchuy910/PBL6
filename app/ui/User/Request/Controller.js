@@ -1,8 +1,8 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, makeVar, useQuery } from "@apollo/client";
 export const FRIEND_LIST = gql`
   query($id: ID!) {
-    allRelationships(where: { to: { id: $id }, isAccepted_not: true }) {
+    allRelationships(where: { to: { id: $id }, isAccepted: false }) {
       id
       isAccepted
       createdBy {
@@ -24,15 +24,19 @@ export const FRIEND_LIST = gql`
     }
   }
 `;
+
+export const refetchUserRequest = makeVar(() => {});
+
 export default function UserList({ UI, where, id, ...props }) {
   const { loading, error, data = {}, refetch } = useQuery(FRIEND_LIST, {
     variables: { id },
   });
   const { allRelationships = [] } = data;
-  let allUsers = []
+  let allUsers = [];
   allRelationships.map((relationship) => {
-    allUsers.push(relationship?.createdBy)
-  })
+    allUsers.push(relationship?.createdBy);
+  });
+  if (refetch) refetchUserRequest(refetch);
   return (
     <UI
       {...props}
@@ -40,6 +44,7 @@ export default function UserList({ UI, where, id, ...props }) {
       error={error}
       allUsers={allUsers}
       refetch={refetch}
+      allRelationships={allRelationships}
     />
   );
 }

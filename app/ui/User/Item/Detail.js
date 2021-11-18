@@ -15,7 +15,7 @@ import {
   RelationshipUpdateButton,
   RelationshipDeleteDelete,
   RelationshipCreateButton,
-  RelationshipDeleteActive
+  RelationshipDeleteActive,
 } from "../../Relationship";
 import Controller from "./Controller";
 import DetailSkeleton from "./DetailSkeleton";
@@ -25,7 +25,7 @@ import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
 import { AuthContext } from "../../Provider/Native";
 function UI({ loading, error, user, posts, relationship }) {
-  const currentUser = useContext(AuthContext).user
+  const currentUser = useContext(AuthContext).user;
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
   return (
@@ -88,34 +88,41 @@ function UI({ loading, error, user, posts, relationship }) {
           </HStack> */}
           {user?.id !== currentUser?.id && relationship === null && (
             <HStack space="2">
-              <RelationshipCreateButton />
+              <RelationshipCreateButton toId={user?.id} />
             </HStack>
           )}
           {user?.id !== currentUser?.id && relationship?.isAccepted === true && (
             <HStack space="2">
-              <RelationshipDeleteActive />
+              <RelationshipDeleteActive id={relationship.id} />
             </HStack>
           )}
-          {user?.id !== currentUser?.id && (relationship?.isAccepted === false || relationship?.isAccepted === null) && (relationship?.createdBy?.id === currentUser.id) && (
-            <HStack space="2">
-              <RelationshipDeleteDelete />
-            </HStack>
-          )}
-          {user?.id !== currentUser?.id && (relationship?.isAccepted === false || relationship?.isAccepted === null) && (relationship?.to?.id === currentUser?.id) && (relationship?.createdBy?.id === user?.id) && (
-            <HStack space="2">
-              <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-                {user.name} đã gửi lời mời kết bạn
-              </Text>
+          {user?.id !== currentUser?.id &&
+            (relationship?.isAccepted === false ||
+              relationship?.isAccepted === null) &&
+            relationship?.createdBy?.id === currentUser.id && (
               <HStack space="2">
-                <Box w="130px">
-                  <RelationshipUpdateButton />
-                </Box>
-                <Box w="130px">
-                  <RelationshipDeleteDelete />
-                </Box>
+                <RelationshipDeleteDelete id={relationship.id} />
               </HStack>
-            </HStack>
-          )}
+            )}
+          {user?.id !== currentUser?.id &&
+            (relationship?.isAccepted === false ||
+              relationship?.isAccepted === null) &&
+            relationship?.to?.id === currentUser?.id &&
+            relationship?.createdBy?.id === user?.id && (
+              <HStack space="2">
+                <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                  {user.name} đã gửi lời mời kết bạn
+                </Text>
+                <HStack space="2">
+                  <Box w="130px">
+                    <RelationshipUpdateButton id={relationship.id} />
+                  </Box>
+                  <Box w="130px">
+                    <RelationshipDeleteDelete id={relationship.id} />
+                  </Box>
+                </HStack>
+              </HStack>
+            )}
         </Stack>
       </VStack>
 

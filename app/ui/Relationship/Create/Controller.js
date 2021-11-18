@@ -1,5 +1,6 @@
 import React from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useReactiveVar } from "@apollo/client";
+import { refetchUserItem } from "../../User/Item/Controller";
 
 export const RELATIONSHIP_CREATE = gql`
   mutation($data: RelationshipCreateInput) {
@@ -9,7 +10,7 @@ export const RELATIONSHIP_CREATE = gql`
         id
         name
       }
-      createBy {
+      createdBy {
         id
         name
       }
@@ -18,8 +19,34 @@ export const RELATIONSHIP_CREATE = gql`
   }
 `;
 
-export default function PostCreate({ UI }) {
-  const [on, { loading, error, data = {} }] = useMutation(POST_CREATE);
+export default function RelationshipCreate({ UI, toId }) {
+  const userItemRefetch = useReactiveVar(refetchUserItem);
+  const [on, { loading, error, data = {} }] = useMutation(RELATIONSHIP_CREATE, {
+    onCompleted: (data) => {
+      userItemRefetch();
+    },
+  });
+  const clickAddFriend = () => {
+    on({
+      variables: {
+        data: {
+          to: {
+            connect: {
+              id: toId,
+            },
+          },
+          isAccepted: false,
+        },
+      },
+    });
+  };
   const { createRelationship } = data;
-  return <UI loading={loading} error={error} on={on} createRelationship={createRelationship} />;
+  return (
+    <UI
+      loading={loading}
+      error={error}
+      clickAddFriend={clickAddFriend}
+      createRelationship={createRelationship}
+    />
+  );
 }

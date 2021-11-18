@@ -1,14 +1,17 @@
-import { gql, useMutation } from "@apollo/client";
+import React from "react";
+import { gql, useMutation, useReactiveVar } from "@apollo/client";
+import { refetchUserItem } from "../../User/Item/Controller";
+import { refetchUserRequest } from "../../User/Request/Controller";
 
 export const RELATIONSHIP_UPDATE = gql`
-  mutation($id: ID!, $data: UpdateRelationshipInput) {
+  mutation($id: ID!, $data: RelationshipUpdateInput) {
     updateRelationship(id: $id, data: $data) {
       id
       to {
         id
         name
       }
-      createBy {
+      createdBy {
         id
         name
       }
@@ -17,18 +20,26 @@ export const RELATIONSHIP_UPDATE = gql`
   }
 `;
 
-export default function PostUpdate({ UI, children, relationship }) {
-  const [on, { loading, error, data = {} }] = useMutation(POST_UPDATE);
+export default function RelationshipUpdate({
+  UI,
+  children,
+  relationship,
+  id,
+  page,
+}) {
+  const userItemRefetch = useReactiveVar(refetchUserItem);
+  const userRequestRefetch = useReactiveVar(refetchUserRequest);
+  const [on, { loading, error, data = {} }] = useMutation(RELATIONSHIP_UPDATE, {
+    onCompleted: (data) => {
+      page=='FR' ? userRequestRefetch() : userItemRefetch();
+    },
+  });
+  const clickAgree = () => {
+    on({ variables: { id, data: { isAccepted: true } } });
+  };
   const { updateRelationship } = data;
   return (
-    (
-      <UI
-        loading={loading}
-        error={error}
-        relationship={relationship}
-        on={on}
-        relationshipUpdated={updateRelationship}
-      />
-    ) || children({ relationship, on, relationshipUpdated })
+    <UI loading={loading} error={error} clickAgree={clickAgree} /> ||
+    children({ relationship, on, relationshipUpdated })
   );
 }

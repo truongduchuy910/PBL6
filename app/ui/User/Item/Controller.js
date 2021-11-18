@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, makeVar, useQuery } from "@apollo/client";
 import { POST_LIST } from "../List/Controller";
 export const POST_ITEM_ME = gql`
   query($id: ID!) {
@@ -48,8 +48,11 @@ export const POST_ITEM = gql`
     }
   }
 `;
+
+export const refetchUserItem = makeVar(() => {});
+
 export default function UserItem({ UI, where, id, my_id }) {
-  const { loading, error, data = {} } = useQuery(
+  const { loading, error, data = {}, refetch } = useQuery(
     id && my_id ? POST_ITEM : id ? POST_ITEM_ME : POST_LIST,
     {
       variables:
@@ -61,9 +64,19 @@ export default function UserItem({ UI, where, id, my_id }) {
   const { allPosts = [] } = data;
   const { allRelationships = [] } = data;
   var relationship;
-  if (allRelationships.length === 0) { relationship = null }
-  else {
-    relationship = allRelationships[0]
+  if (allRelationships.length === 0) {
+    relationship = null;
+  } else {
+    relationship = allRelationships[0];
   }
-  return <UI loading={loading} error={error} user={user} posts={allPosts} relationship={relationship} />;
+  if (refetch) refetchUserItem(refetch);
+  return (
+    <UI
+      loading={loading}
+      error={error}
+      user={user}
+      posts={allPosts}
+      relationship={relationship}
+    />
+  );
 }

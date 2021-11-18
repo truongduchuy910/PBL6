@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "native-base";
+import Controller from "./Controller";
 
-function UI() {
+function UI({ error, loading, clickAddFriend }) {
   const clickHandler = (e) => {
-    console.log("User Relationship Create Button");
+    clickAddFriend();
   };
 
   return (
@@ -19,6 +20,8 @@ function UI() {
     </Button>
   );
 }
-export default UI;
+export default function RelationshipCreateButton(props) {
+  return <Controller {...props} UI={UI} />;
+}
 
 // A và B chưa kết bạn với nhau, A gửi lời mời kết bạn cho B, hoặc ngược lại
