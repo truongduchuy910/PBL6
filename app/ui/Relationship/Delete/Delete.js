@@ -4,7 +4,7 @@ import Controller from "./Controller";
 
 function UI({ error, loading, clickDetete, id }) {
   const clickHandler = (e) => {
-    clickDetete();
+    if (confirm("Bạn có chắc chắn muốn xoá hem?") && !loading) clickDetete();
   };
 
   return (

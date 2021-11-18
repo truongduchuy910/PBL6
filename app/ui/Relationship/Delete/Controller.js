@@ -1,6 +1,7 @@
 import React from "react";
 import { gql, useMutation, useReactiveVar } from "@apollo/client";
 import { refetchUserItem } from "../../User/Item/Controller";
+import { refetchUserRequest } from "../../User/Request/Controller";
 
 export const RELATIONSHIP_DELETE = gql`
   mutation($id: ID!) {
@@ -11,11 +12,12 @@ export const RELATIONSHIP_DELETE = gql`
   }
 `;
 
-export default function RelationshipDelete({ UI, id }) {
+export default function RelationshipDelete({ UI, id , page}) {
   const userItemRefetch = useReactiveVar(refetchUserItem);
+  const userRequestRefetch = useReactiveVar(refetchUserRequest);
   const [on, { loading, error, data = {} }] = useMutation(RELATIONSHIP_DELETE, {
     onCompleted: (data) => {
-      userItemRefetch();
+      page=='FR' ? userRequestRefetch() : userItemRefetch();
     },
   });
   const { deleteRelationship } = data;

@@ -5,7 +5,7 @@ import {
   RelationshipDeleteDelete,
 } from "../../Relationship";
 import Controller from "./Controller";
-function UI({ loading, error, allUsers }) {
+function UI({ loading, error, allRelationships }) {
   if (loading) return "loading";
   if (error) return "error";
   return (
@@ -23,9 +23,9 @@ function UI({ loading, error, allUsers }) {
         flexWrap="wrap"
         justifyContent="flex-start"
       >
-        {allUsers.map((user) => (
+        {allRelationships.map((relationship) => (
           <VStack
-            key={user.id}
+            key={relationship.id}
             p="12px"
             minW={["49%", "32%", "24%"]}
             m="0.5%"
@@ -40,7 +40,8 @@ function UI({ loading, error, allUsers }) {
                 source={{
                   uri:
                     "https://odanang.net" +
-                    (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
+                    (relationship?.createdBy?.avatar?.publicUrl ||
+                      "/upload/img/no-image.png"),
                 }}
                 alt="Profile Image"
                 size="80px"
@@ -50,10 +51,10 @@ function UI({ loading, error, allUsers }) {
               />
             </Box>
             <Text my="8px" fontWeight="600">
-              {user.name}
+              {relationship?.createdBy?.name}
             </Text>
-            <RelationshipUpdateButton />
-            <RelationshipDeleteDelete />
+            <RelationshipUpdateButton id={relationship.id} page={"FR"} />
+            <RelationshipDeleteDelete id={relationship.id} page={"FR"}/>
           </VStack>
         ))}
       </HStack>
