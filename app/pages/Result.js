@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Box, Flex, Text } from "native-base";
 import { UserListSuggestFixed } from "../ui/User";
 import { PostListSearch } from "../ui/Post";
 import { UserListSearch } from "../ui/User";
-
+import { useRoute } from "@react-navigation/core";
+import { AuthContext } from "../ui/Provider/Native";
 export default function Result({ navigation }) {
+  const { user } = useContext(AuthContext);
+  const { params = {} } = useRoute();
+  const { keyword } = params;
   return (
     <Container
       w="container.lg"
@@ -26,11 +30,11 @@ export default function Result({ navigation }) {
               color="gray.700"
               px={["8px", "0"]}
             >
-              Kết quả tìm kiếm cho "Trần Ngọc Huy"
+              Kết quả tìm kiếm cho {keyword}
             </Text>
           </Box>
-          <UserListSearch />
-          <PostListSearch />
+          <UserListSearch keyword={keyword} my_id={user?.id} />
+          {/* <PostListSearch /> */}
         </Box>
         <Box flex={[0, 0, 0, 3]} display={["none", "none", "none", "block"]}>
           <Box

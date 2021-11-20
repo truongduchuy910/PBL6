@@ -5,7 +5,7 @@ import UserSignOutButton from "./SignOut/Button";
 import UserListSuggest from "./List/Suggest";
 import UserListCount from "./List/Count";
 import UserListSimple from "./Friends/Simple";
-import UserListSearch from "./List/Search";
+import UserListSearch from "./Search/Search";
 import UserListSuggestFixed from "./List/SuggestFixed";
 import UserListRequest from "./Request/Request";
 import UserItemDetail from "./Item/Detail";

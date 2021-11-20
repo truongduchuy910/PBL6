@@ -1,6 +1,6 @@
 import PostListGrid from "./List/Grid";
 import PostListSimple from "./List/Simple";
-import PostListSearch from "./List/Search";
+import PostListSearch from "./Search/Search";
 import PostListSkeletonGrid from "./List/SkeletonGrid";
 import PostListSkeletonSimple from "./List/SkeletonSimple";
 import PostItemSimple from "./Item/Simple";

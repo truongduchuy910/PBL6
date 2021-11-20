@@ -41,7 +41,7 @@ function UI({ loading, error, allUsers }) {
                   source={{
                     uri:
                       "https://odanang.net" +
-                      (user?.avatar?.publicUrl || "/img/no-image.png"),
+                      (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
                   }}
                   alt="Profile Image"
                   size={["48px", "72px"]}
@@ -52,11 +52,11 @@ function UI({ loading, error, allUsers }) {
               </Box>
               <Link to={{ screen: "home" }}>
                 <Text my="2" fontWeight="600">
-                  {item.name}
+                  {user.name}
                 </Text>
               </Link>
             </HStack>
-            {item.type === "pending" && (
+            {/* {item.type === "pending" && (
               <VStack space="1.5">
                 <Box w="120px">
                   <RelationshipUpdateButton />
@@ -80,7 +80,7 @@ function UI({ loading, error, allUsers }) {
               <Box w="120px">
                 <RelationshipDeleteCancel />
               </Box>
-            )}
+            )} */}
           </HStack>
         ))}
       </HStack>
