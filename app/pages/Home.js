@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, HStack, Box, Flex } from "native-base";
 import {
   UserAuthShort,
@@ -7,8 +7,10 @@ import {
 } from "../ui/User";
 import { PostListSimple, PostCreateButton } from "../ui/Post";
 import EarlyAccess from "./EarlyAcess";
+import { AuthContext } from "../ui/Provider/Native";
 
 export default function Home({ navigation }) {
+  const { user } = useContext(AuthContext);
   return (
     <Container
       w="container.lg"
@@ -35,7 +37,7 @@ export default function Home({ navigation }) {
             position="sticky"
             top="64px"
           >
-            <UserListSuggestFixed />
+            <UserListSuggestFixed id={user?.id} />
           </Box>
         </Box>
       </Flex>

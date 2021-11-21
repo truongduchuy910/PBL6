@@ -49,7 +49,7 @@ export const POST_ITEM = gql`
   }
 `;
 
-export const refetchUserItem = makeVar(() => {});
+export const refetchUserItem = makeVar(() => { });
 
 export default function UserItem({ UI, where, id, my_id }) {
   const { loading, error, data = {}, refetch } = useQuery(
