@@ -1,6 +1,7 @@
 import React from "react";
 import { gql, useMutation, useReactiveVar } from "@apollo/client";
 import { refetchUserItem } from "../../User/Item/Controller";
+import { UserSuggestRefetch } from "../../User/Suggest/Controller";
 
 export const RELATIONSHIP_CREATE = gql`
   mutation($data: RelationshipCreateInput) {
@@ -19,11 +20,12 @@ export const RELATIONSHIP_CREATE = gql`
   }
 `;
 
-export default function RelationshipCreate({ UI, toId }) {
+export default function RelationshipCreate({ UI, toId, page }) {
   const userItemRefetch = useReactiveVar(refetchUserItem);
+  const userSuggestRefetch = useReactiveVar(UserSuggestRefetch);
   const [on, { loading, error, data = {} }] = useMutation(RELATIONSHIP_CREATE, {
     onCompleted: (data) => {
-      userItemRefetch();
+      page === "SF" ? userSuggestRefetch() : userItemRefetch();
     },
   });
   const clickAddFriend = () => {
@@ -43,6 +45,7 @@ export default function RelationshipCreate({ UI, toId }) {
   const { createRelationship } = data;
   return (
     <UI
+      page={page}
       loading={loading}
       error={error}
       clickAddFriend={clickAddFriend}

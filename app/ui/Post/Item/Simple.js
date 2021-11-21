@@ -46,7 +46,7 @@ function UI({ loading, error, post, refetch }) {
     setIsModalOpen((prev) => !prev);
     console.log(isModalOpen);
   };
-  if (loading) return "...";
+  if (loading) return "";
   return (
     <Box
       maxW={["100%", "container.md"]}

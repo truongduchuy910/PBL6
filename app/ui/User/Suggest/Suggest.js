@@ -7,7 +7,9 @@ import {
 import Controller from "./Controller";
 import { Link } from "@react-navigation/native";
 
+
 function UI({ loading, error, friendsSuggest, count, refetch }) {
+  
   return (
     <VStack w="100%">
       <Box w="full" mt="20px" mb="8px" px="0.5%">
@@ -36,7 +38,6 @@ function UI({ loading, error, friendsSuggest, count, refetch }) {
             rounded="8px"
           >
             <Box>
-
               <Link to={{ screen: "users", params: { id: user.id } }}>
                 <Image
                   source={{
@@ -60,7 +61,7 @@ function UI({ loading, error, friendsSuggest, count, refetch }) {
                 {user.name}
               </Text>
             </Link>
-            <RelationshipCreateButton />
+            <RelationshipCreateButton toId={user.id} page={'SF'} />
           </VStack>
         ))}
       </HStack>
