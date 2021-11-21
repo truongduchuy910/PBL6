@@ -6,7 +6,9 @@ export const FRIEND_SUGGEST_FIXED_LIST = gql`
       where: {
         OR: [
           { OR: { createdBy: { id: $id }, isAccepted: true } }
+          { OR: { createdBy: { id: $id }, isAccepted: false } }
           { OR: { to: { id: $id }, isAccepted: true } }
+          { OR: { to: { id: $id }, isAccepted: false } }
         ]
       }
     ) {

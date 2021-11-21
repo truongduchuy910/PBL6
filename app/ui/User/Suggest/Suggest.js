@@ -5,6 +5,8 @@ import {
   RelationshipDeleteDelete,
 } from "../../Relationship";
 import Controller from "./Controller";
+import { Link } from "@react-navigation/native";
+
 function UI({ loading, error, friendsSuggest, count, refetch }) {
   return (
     <VStack w="100%">
@@ -34,25 +36,30 @@ function UI({ loading, error, friendsSuggest, count, refetch }) {
             rounded="8px"
           >
             <Box>
-              <Image
-                source={{
-                  // uri:
-                  //   user?.avatar?.publicUrl &&
-                  //   "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
-                  uri:
-                    "https://odanang.net" +
-                    (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
-                }}
-                alt={user.name}
-                size="80px"
-                mx="auto"
-                mt="8px"
-                rounded="100"
-              />
+
+              <Link to={{ screen: "users", params: { id: user.id } }}>
+                <Image
+                  source={{
+                    // uri:
+                    //   user?.avatar?.publicUrl &&
+                    //   "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
+                    uri:
+                      "https://odanang.net" +
+                      (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
+                  }}
+                  alt={user.name}
+                  size="80px"
+                  mx="auto"
+                  mt="8px"
+                  rounded="100"
+                />
+              </Link>
             </Box>
-            <Text my="8px" fontWeight="600">
-              {user.name}
-            </Text>
+            <Link to={{ screen: "users", params: { id: user.id } }}>
+              <Text fontWeight="600" color="gray.700">
+                {user.name}
+              </Text>
+            </Link>
             <RelationshipCreateButton />
           </VStack>
         ))}

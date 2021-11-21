@@ -24,7 +24,7 @@ import PostListCount from "../../Post/List/Count";
 import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
 import { AuthContext } from "../../Provider/Native";
-function UI({ loading, error, user, posts, relationship }) {
+function UI({ loading, error, user, posts, relationship, count }) {
   const currentUser = useContext(AuthContext).user;
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
@@ -60,7 +60,7 @@ function UI({ loading, error, user, posts, relationship }) {
               {posts.length} bài đăng
             </Text>
             <Text fontSize="14" color="gray.500">
-              <RelationshipListCount /> bạn bè
+              {count} bạn bè
             </Text>
           </HStack>
         </VStack>
@@ -135,20 +135,21 @@ function UI({ loading, error, user, posts, relationship }) {
           <Field>{user.description}</Field>
         </Text>
       </VStack>
-
-      <VStack space="2" m="1%">
-        <HStack justifyContent="space-between" alignItems="center">
-          <Text fontSize="18" fontWeight="600" color="gray.700">
-            Bạn bè
-          </Text>
-          <Link to={{ screen: "friends" }}>
-            <Text color="green.500" textDecoration="none">
-              Xem tất cả
+      {user?.id === currentUser?.id && (
+        <VStack space="2" m="1%">
+          <HStack justifyContent="space-between" alignItems="center">
+            <Text fontSize="18" fontWeight="600" color="gray.700">
+              Bạn bè
             </Text>
-          </Link>
-        </HStack>
-        <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
-      </VStack>
+            <Link to={{ screen: "friends" }}>
+              <Text color="green.500" textDecoration="none">
+                Xem tất cả
+              </Text>
+            </Link>
+          </HStack>
+          <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
+        </VStack>
+      )}
       <Box>
         <VStack w="98%" space="2" m="1%">
           <Text fontSize="18" fontWeight="600" color="gray.700">

@@ -14,6 +14,16 @@ export const POST_ITEM_ME = gql`
     allPosts(where: { createdBy: { id: $id } }) {
       id
     }
+    _allRelationshipsMeta(
+      where: {
+        OR: [
+          { OR: { to: { id: $id }, isAccepted: true } }
+          { OR: { createdBy: { id: $id }, isAccepted: true } }
+        ]
+      }
+    ) {
+      count
+    }
   }
 `;
 export const POST_ITEM = gql`
@@ -46,6 +56,16 @@ export const POST_ITEM = gql`
         id
       }
     }
+    _allRelationshipsMeta(
+      where: {
+        OR: [
+          { OR: { to: { id: $id }, isAccepted: true } }
+          { OR: { createdBy: { id: $id }, isAccepted: true } }
+        ]
+      }
+    ) {
+      count
+    }
   }
 `;
 
@@ -63,6 +83,8 @@ export default function UserItem({ UI, where, id, my_id }) {
   const [user] = allUsers || [User];
   const { allPosts = [] } = data;
   const { allRelationships = [] } = data;
+  const { _allRelationshipsMeta = {} } = data
+  const { count } = _allRelationshipsMeta;
   var relationship;
   if (allRelationships.length === 0) {
     relationship = null;
@@ -72,6 +94,7 @@ export default function UserItem({ UI, where, id, my_id }) {
   if (refetch) refetchUserItem(refetch);
   return (
     <UI
+      count={count}
       loading={loading}
       error={error}
       user={user}

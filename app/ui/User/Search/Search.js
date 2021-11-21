@@ -36,21 +36,23 @@ function UI({ loading, error, allUsers }) {
             justifyContent="space-between"
           >
             <HStack alignItems="center" space={["3", "4"]}>
-              <Box>
-                <Image
-                  source={{
-                    uri:
-                      "https://odanang.net" +
-                      (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
-                  }}
-                  alt="Profile Image"
-                  size={["48px", "72px"]}
-                  mx="auto"
-                  my={["2.5", "1.5"]}
-                  rounded="100"
-                />
-              </Box>
-              <Link to={{ screen: "home" }}>
+              <Link to={{ screen: "users", params: { id: user.id } }}>
+                <Box>
+                  <Image
+                    source={{
+                      uri:
+                        "https://odanang.net" +
+                        (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
+                    }}
+                    alt="Profile Image"
+                    size={["48px", "72px"]}
+                    mx="auto"
+                    my={["2.5", "1.5"]}
+                    rounded="100"
+                  />
+                </Box>
+              </Link>
+              <Link to={{ screen: "users", params: { id: user.id } }}>
                 <Text my="2" fontWeight="600">
                   {user.name}
                 </Text>
