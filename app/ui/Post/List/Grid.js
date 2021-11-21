@@ -4,6 +4,7 @@ import PostItemImageOnly from "../Item/ImageOnly";
 import PostItemSkeletonGrid from "./SkeletonGrid";
 import Controller from "../../Post/Grid/Controller"
 import { useRoute } from "@react-navigation/core";
+import { Link } from "@react-navigation/native";
 const data = [
   {
     id: 1,
@@ -66,6 +67,7 @@ function UI({ error, loading, posts }) {
     // </HStack>
     <HStack maxw="full" w="full" flexWrap="wrap" justifyContent="flex-start">
       {posts.map((item) => (
+
         <Box
           key={item.id}
           minW={["49%", "32%", "24%"]}
@@ -75,10 +77,14 @@ function UI({ error, loading, posts }) {
           rounded="10"
           overflow="hidden"
         >
-          <PostItemImageOnly key={item.id} item={item} />
+          <Link to={{ screen: "posts", params: { id: item?.id } }}>
+            <PostItemImageOnly key={item.id} item={item} />
+          </Link>
         </Box>
-      ))}
-    </HStack>
+
+      ))
+      }
+    </HStack >
   );
 }
 export { UI };

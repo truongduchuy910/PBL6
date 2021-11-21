@@ -4,7 +4,7 @@ import PostListSearch from "./Search/Search";
 import PostListSkeletonGrid from "./List/SkeletonGrid";
 import PostListSkeletonSimple from "./List/SkeletonSimple";
 import PostItemSimple from "./Item/Simple";
-import PostItemDetail from "./Item/Detail";
+import PostItemDetail from "./Detail/Detail";
 import PostItemImageOnly from "./Item/ImageOnly";
 import PostCreateButton from "./Create/Button";
 import PostCreateSimple from "./Create/Simple";
