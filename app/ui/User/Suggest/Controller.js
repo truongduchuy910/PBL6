@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, makeVar, useQuery } from "@apollo/client";
 export const FRIEND_SUGGEST_LIST = gql`
   query($id: ID!) {
     allRelationships(
@@ -44,7 +44,9 @@ export const FRIEND_SUGGEST_LIST = gql`
     }
   }
 `;
-export default function UserList({ UI, id, ...props }) {
+export const UserSuggestRefetch = makeVar(() => {});
+
+export default function UserSuggest({ UI, id, ...props }) {
   const { loading, error, data = {}, refetch } = useQuery(FRIEND_SUGGEST_LIST, {
     variables: { id },
   });
@@ -52,14 +54,16 @@ export default function UserList({ UI, id, ...props }) {
   const [user = {}] = allUsers;
   const { count } = _allUsersMeta;
   const { allRelationships = [] } = data;
-  let allFriends = []
+  let allFriends = [];
   allRelationships.map((relationship) => {
-    if (relationship?.createdBy?.id === id) allFriends.push(relationship?.to)
-    if (relationship?.to?.id === id) allFriends.push(relationship?.createdBy)
-  })
-  let friendsSuggest = []
-  friendsSuggest = allUsers.filter(ar => !allFriends.find(rm => (rm.id === ar.id || ar.id === id)));
-  console.log(friendsSuggest)
+    if (relationship?.createdBy?.id === id) allFriends.push(relationship?.to);
+    if (relationship?.to?.id === id) allFriends.push(relationship?.createdBy);
+  });
+  let friendsSuggest = [];
+  friendsSuggest = allUsers.filter(
+    (ar) => !allFriends.find((rm) => rm.id === ar.id || ar.id === id)
+  );
+  if (refetch) UserSuggestRefetch(refetch);
   return (
     <UI
       {...props}
@@ -68,7 +72,6 @@ export default function UserList({ UI, id, ...props }) {
       friendsSuggest={friendsSuggest}
       user={user}
       count={count}
-      refetch={refetch}
     />
   );
 }

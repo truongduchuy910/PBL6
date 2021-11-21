@@ -25,7 +25,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItemSkeletonDetail from "./SkeletonDetail";
 import InteractiveItemSimple from "../../Interactive/Item/Simple";
 import PostDetail from "./Controller";
-import { AuthContext } from '../../Provider/Native'
+import { AuthContext } from "../../Provider/Native";
 import { Link } from "@react-navigation/native";
 
 function formatTimeCreate(createdAt) {
@@ -48,16 +48,16 @@ function formatTimeCreate(createdAt) {
   return stringTime;
 }
 
-function UI(loading, error, post, refetch) {
+function UI({ loading, error, post, refetch }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const currentUser = useContext(AuthContext).user
+  const currentUser = useContext(AuthContext).user;
   const stringCreatedAt = formatTimeCreate(post?.createdAt);
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
     console.log(isModalOpen);
   };
 
-  console.log(post)
+  console.log(post);
   if (loading) {
     return <PostItemSkeletonDetail />;
   }
@@ -99,7 +99,6 @@ function UI(loading, error, post, refetch) {
                 "https://odanang.net" +
                 (post?.createdBy?.avatar?.publicUrl ||
                   "/upload/img/no-image.png"),
-
             }}
             alt="Profile image"
             size="8"
