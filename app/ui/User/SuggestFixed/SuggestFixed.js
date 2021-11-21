@@ -3,7 +3,7 @@ import { HStack, VStack, Box, Image, Text, Heading, Spacer } from "native-base";
 import { Link } from "@react-navigation/native";
 import Controller from "./Controller";
 
-function UI({ allUsers }) {
+function UI({ friendsSuggest }) {
   return (
     <VStack my="2" w="full">
       <HStack mb="2" w="full">
@@ -16,7 +16,7 @@ function UI({ allUsers }) {
         </Link>
       </HStack>
 
-      {allUsers?.map((user) => (
+      {friendsSuggest?.map((user) => (
         <HStack
           key={user.id}
           m="1"

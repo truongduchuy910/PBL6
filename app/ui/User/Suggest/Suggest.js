@@ -5,7 +5,7 @@ import {
   RelationshipDeleteDelete,
 } from "../../Relationship";
 import Controller from "./Controller";
-function UI({ loading, error, allUsers, count, refetch }) {
+function UI({ loading, error, friendsSuggest, count, refetch }) {
   return (
     <VStack w="100%">
       <Box w="full" mt="20px" mb="8px" px="0.5%">
@@ -21,7 +21,7 @@ function UI({ loading, error, allUsers, count, refetch }) {
         flexWrap="wrap"
         justifyContent="flex-start"
       >
-        {allUsers.map((user) => (
+        {friendsSuggest.map((user) => (
           <VStack
             key={user.id}
             p="12px"
@@ -40,8 +40,8 @@ function UI({ loading, error, allUsers, count, refetch }) {
                   //   user?.avatar?.publicUrl &&
                   //   "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719776/190312313_2943016239348813_282704590362946930_n_pc3vbb.jpg",
                   uri:
-                  "https://odanang.net" +
-                  (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
+                    "https://odanang.net" +
+                    (user?.avatar?.publicUrl || "/upload/img/no-image.png"),
                 }}
                 alt={user.name}
                 size="80px"
