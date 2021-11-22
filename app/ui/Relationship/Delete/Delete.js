@@ -6,8 +6,6 @@ function UI({ error, loading, clickDetete, id }) {
   const clickHandler = (e) => {
     if (confirm("Bạn có chắc chắn muốn xoá hem?") && !loading) clickDetete();
   };
-  const drop = document.querySelector(".drop");
-  console.log(drop);
 
   return (
     <Button
