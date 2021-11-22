@@ -1,5 +1,5 @@
 import React from "react";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, Text } from "native-base";
 import { theme, useFonts } from "./theme";
 import pages from "./pages";
 

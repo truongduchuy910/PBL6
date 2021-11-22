@@ -57,7 +57,7 @@ function UI({ loading, error, user, posts, relationship }) {
           <HStack space="4">
             <Text fontSize="14" color="gray.500">
               {/* <PostListCount /> bài đăng */}
-              {posts.length} bài đăng
+              <Text>{posts.length}</Text> bài đăng
             </Text>
             <Text fontSize="14" color="gray.500">
               <RelationshipListCount /> bạn bè
@@ -72,44 +72,45 @@ function UI({ loading, error, user, posts, relationship }) {
           alignItems={["start", "center"]}
           direction={["column", "row"]}
         >
-          {/* <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-            Trần Ngọc Huy đã gửi lời mời kết bạn
-          </Text>
-          <HStack space="2">
-            <Box w="130px">
-              <RelationshipUpdateButton />
-            </Box>
-            <Box w="130px">
-              <RelationshipDeleteDelete />
-            </Box>
-          </HStack> */}
-          {/* <HStack space="2">
-            <RelationshipCreateButton />
-          </HStack> */}
           {user?.id !== currentUser?.id && relationship === null && (
-            <HStack space="2">
-              <RelationshipCreateButton toId={user?.id} />
-            </HStack>
+            <>
+              <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                Gửi lời mời kết bạn đến {user.name}
+              </Text>
+              <HStack space="2" w="100">
+                <RelationshipCreateButton toId={user?.id} />
+              </HStack>
+            </>
           )}
           {user?.id !== currentUser?.id && relationship?.isAccepted === true && (
-            <HStack space="2">
-              <RelationshipDeleteActive id={relationship.id} />
-            </HStack>
+            <>
+              <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                Bạn và {user.name} đã là bạn bè
+              </Text>
+              <HStack space="2">
+                <RelationshipDeleteActive id={relationship.id} />
+              </HStack>
+            </>
           )}
           {user?.id !== currentUser?.id &&
             (relationship?.isAccepted === false ||
               relationship?.isAccepted === null) &&
             relationship?.createdBy?.id === currentUser.id && (
-              <HStack space="2">
-                <RelationshipDeleteDelete id={relationship.id} />
-              </HStack>
+              <>
+                <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                  Bạn đã gửi kết bạn đến {user.name}
+                </Text>
+                <HStack space="2">
+                  <RelationshipDeleteDelete id={relationship.id} />
+                </HStack>
+              </>
             )}
           {user?.id !== currentUser?.id &&
             (relationship?.isAccepted === false ||
               relationship?.isAccepted === null) &&
             relationship?.to?.id === currentUser?.id &&
             relationship?.createdBy?.id === user?.id && (
-              <HStack space="2">
+              <>
                 <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
                   {user.name} đã gửi lời mời kết bạn
                 </Text>
@@ -121,7 +122,7 @@ function UI({ loading, error, user, posts, relationship }) {
                     <RelationshipDeleteDelete id={relationship.id} />
                   </Box>
                 </HStack>
-              </HStack>
+              </>
             )}
         </Stack>
       </VStack>
