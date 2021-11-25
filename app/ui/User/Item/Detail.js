@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { StyleSheet } from "react-native";
 import { Link } from "@react-navigation/native";
 import {
   Box,
@@ -24,7 +25,10 @@ import PostListCount from "../../Post/List/Count";
 import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
 import { AuthContext } from "../../Provider/Native";
+import { borderWidth } from "styled-system";
 function UI({ loading, error, user, posts, relationship, count }) {
+  const [datePicker, setDatePicker] = useState("");
+  console.log("date picker", datePicker);
   const currentUser = useContext(AuthContext).user;
   if (loading) return <DetailSkeleton />;
   if (error) return "error";
@@ -53,7 +57,6 @@ function UI({ loading, error, user, posts, relationship, count }) {
               <HiOutlineDotsHorizontal />
             </Button>
           </HStack>
-
           <HStack space="4">
             <Text fontSize="14" color="gray.500">
               {/* <PostListCount /> bài đăng */}
@@ -153,9 +156,17 @@ function UI({ loading, error, user, posts, relationship, count }) {
       )}
       <Box>
         <VStack w="98%" space="2" m="1%">
-          <Text fontSize="18" fontWeight="600" color="gray.700">
-            Bài viết
-          </Text>
+          <HStack>
+            <Text fontSize="18" fontWeight="600" color="gray.700">
+              Bài viết
+            </Text>
+            <input
+              type="date"
+              value={datePicker}
+              style={style}
+              onChange={(e) => setDatePicker(e.target.value)}
+            />
+          </HStack>
           <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
         </VStack>
         <PostListGrid />
@@ -167,3 +178,14 @@ export { UI };
 export default function UserItemDetail(props) {
   return <Controller {...props} UI={UI} />;
 }
+const style = {
+  marginLeft: "auto",
+  marginTop: "-10px",
+  padding: "6px 10px",
+  borderRadius: "10px",
+  borderColor: "#eee",
+  borderWidth: 1,
+  borderStyle: "solid",
+  fontFamily: "Lexend",
+  outline: "none",
+};
