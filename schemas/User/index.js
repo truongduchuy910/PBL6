@@ -11,7 +11,7 @@ const { imageAdapter, imageHooks } = require("@itoa/lib/stores");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking } = require("@itoa/list-plugins");
 const { modelUser } = require("@itoa/lib/access");
-module.exports = {
+var user = {
   active: true,
   fields: {
     phone: {
@@ -61,12 +61,8 @@ module.exports = {
     gender: {
       type: Text,
     },
-    posts: {
-      type: Relationship,
-      ref: "Post",
-      many: true,
-    },
-    ...multipleLanguage("Translate"),
+
+    ...(!process.env.AUTH && multipleLanguage("Translate")),
   },
   labelField: "domain",
   access: modelUser,
@@ -85,3 +81,10 @@ module.exports = {
   },
   plugins: [atTracking()],
 };
+if (!process.env.AUTH)
+  user.fields.posts = {
+    type: Relationship,
+    ref: "Post",
+    many: true,
+  };
+module.exports = user;

@@ -3,7 +3,7 @@ const { roleSimple } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
 module.exports = {
-  active: true,
+  active: !process.env.AUTH,
   fields: {
     emoji: {
       options: [

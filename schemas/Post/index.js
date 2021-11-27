@@ -5,7 +5,7 @@ const { atTracking, byTracking } = require("@itoa/list-plugins");
 const { users } = require("@itoa/lib/cache");
 const { content } = require('./hook');
 module.exports = {
-  active: true,
+  active: !process.env.AUTH,
   fields: {
     content: {
       type: Text,

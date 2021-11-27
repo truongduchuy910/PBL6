@@ -1,7 +1,7 @@
 const { gql } = require("@apollo/client");
 async function beforeDelete(context, existingItem, operation, listKey, fieldPath) {
   const { id } = existingItem;
-  //const context = keystone.createContext({ skipAccessControl: true });
+  //const context = itoa.createContext({ skipAccessControl: true });
   const {
     data: { Post },
     errors: postError = [],

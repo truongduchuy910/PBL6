@@ -2,9 +2,9 @@ const { Text, Relationship } = require("@itoa/fields");
 const { roleSimple } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
-const { content } = require('./hook')
+const { content } = require("./hook");
 module.exports = {
-  active: true,
+  active: !process.env.AUTH,
   fields: {
     content: {
       type: Text,
@@ -18,8 +18,8 @@ module.exports = {
     my_interactive: {
       type: Relationship,
       ref: "Interactive",
-      many: false
-    }
+      many: false,
+    },
   },
   ...multipleLanguage("Translate"),
   labelField: "",
