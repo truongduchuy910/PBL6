@@ -4,7 +4,7 @@ const { MongoId } = require("@itoa/fields-mongoid");
 const { roleSimple } = require("@itoa/lib/access");
 
 module.exports = {
-  active: true,
+  active: !process.env.AUTH,
   fields: {
     item: { type: MongoId, isRequired: true },
     listKey: { type: Text, isRequired: true },

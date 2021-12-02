@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 const MongoStore = require("connect-mongo");
 const express = require("express");
-const { Keystone } = require("@itoa/keystone");
+const { Itoa } = require("@itoa/itoa");
 const { GraphQLApp } = require("@itoa/app-graphql");
 const { AdminUIApp } = require("@itoa/app-admin-ui");
 const { MongooseAdapter } = require("@itoa/adapter-mongoose");
@@ -14,7 +14,11 @@ var cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
 dotenv.config();
-var keystone = new Keystone({
+
+/**
+ * ITOA
+ */
+var itoa = new Itoa({
   onConnect: initialUser,
   adapter: new MongooseAdapter({
     mongoUri:
@@ -40,6 +44,7 @@ var keystone = new Keystone({
     sameSite: false,
   },
 });
+
 /**
  * SCHEMA
  */
@@ -47,10 +52,11 @@ var authStrategy = null;
 reads("", "./schemas").map((config) => {
   const schema = require(config.path);
   if (!schema.active) return;
-  keystone.createList(config.name, schema);
+  console.log("create", config.name);
+  itoa.createList(config.name, schema);
   if (!schema.auth) return;
   const { identityField, secretField } = schema.auth;
-  authStrategy = keystone.createAuthStrategy({
+  authStrategy = itoa.createAuthStrategy({
     type: PasswordAuthStrategy,
     list: config.name,
     config: {
@@ -59,6 +65,7 @@ reads("", "./schemas").map((config) => {
     },
   });
 });
+
 /**
  * ROUTER
  * @param {express.Router} app
@@ -83,22 +90,28 @@ function configureExpress(app) {
   });
   return app;
 }
-module.exports = {
-  keystone,
-  apps: [
-    new GraphQLApp(),
+var apps = [new GraphQLApp()];
+if (process.env.AUTH)
+  apps.push(
     new AdminUIApp({
       name: "Itoa.vn",
       appId: process.env.NODE_ENV === "production" ? "145518257438217" : false,
       pageId: process.env.NODE_ENV === "production" ? "106614338147778" : false,
       authStrategy,
       enableDefaultRoute: false,
-    }),
+    })
+  );
+else
+  apps.push(
     new StaticApp({
       path: "/",
       src: "app/web-build",
       fallback: "index.html",
-    }),
-  ],
+    })
+  );
+
+module.exports = {
+  itoa,
+  apps,
   configureExpress,
 };

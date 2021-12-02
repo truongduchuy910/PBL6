@@ -28,7 +28,7 @@
 
 | Tên                |   Vị trí   |                 Yêu cầu |
 | :----------------- | :--------: | ----------------------: |
-| Trần Diệp Phương   |  Dữ liệu   | Node, Keystone, GraphQL |
+| Trần Diệp Phương   |  Dữ liệu   | Node, Itoa, GraphQL |
 | Trần Vũ Minh Triết | Trung gian |  Apollo client, GraphQL |
 | Trần Ngọc Huy      | Giao diện  |            React native |
 | Nguyễn Kim Huy     | Giao diện  |         Next, Chakra-ui |

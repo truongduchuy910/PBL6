@@ -2,9 +2,9 @@ const { Relationship } = require("@itoa/fields");
 const { roleSimple } = require("@itoa/lib/access");
 const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
-const { hook } = require('./hook')
+const { hook } = require("./hook");
 module.exports = {
-  active: true,
+  active: !process.env.AUTH,
   fields: {
     reactions: {
       type: Relationship,
