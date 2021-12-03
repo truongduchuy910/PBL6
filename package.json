@@ -5,7 +5,8 @@
   "scripts": {
     "dev:auth": "cross-env PORT=3001 NODE_ENV=development DISABLE_LOGGING=true AUTH=true itoa dev",
     "dev:core": "cross-env PORT=3002 NODE_ENV=development DISABLE_LOGGING=true itoa dev",
-    "build": "cross-env NODE_ENV=production DISABLE_LOGGING=true itoa build",
+    "build:auth": "cross-env NODE_ENV=production DISABLE_LOGGING=true AUTH=true itoa build",
+    "build:core": "cross-env NODE_ENV=production DISABLE_LOGGING=true itoa build",
     "start:auth": "cross-env PORT=3001 NODE_ENV=production AUTH=true itoa start",
     "start:core": "cross-env PORT=3002 NODE_ENV=production itoa start"
   },

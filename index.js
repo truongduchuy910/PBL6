@@ -14,28 +14,23 @@ var cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
 dotenv.config();
+const coreDatabase = {
+    mongoUri:
+         `mongodb://localhost:27017/${process.env.DB_NAME}`
+  };
 
+const sessionDatabase = {
+    mongoUrl:
+         `mongodb://localhost:27017/${process.env.DB_SESSION}`
+  }
+console.log(coreDatabase, sessionDatabase);
 /**
  * ITOA
  */
 var itoa = new Itoa({
   onConnect: initialUser,
-  adapter: new MongooseAdapter({
-    mongoUri:
-      process.env.NODE_ENV === `production`
-        ? `mongodb://ecom:${process.env.DB_PWD}@db.itoa.vn:27017/${process.env.DB_NAME}`
-        : process.env.DB_DEV
-        ? process.env.DB_DEV
-        : `mongodb://localhost:27017/${process.env.DB_NAME}`,
-  }),
-  sessionStore: new MongoStore({
-    mongoUrl:
-      process.env.NODE_ENV === `production`
-        ? `mongodb://session:${process.env.DB_PWD}@db.itoa.vn:27017/${process.env.DB_SESSION}`
-        : process.env.DB_DEV
-        ? process.env.DB_DEV
-        : `mongodb://localhost:27017/${process.env.DB_SESSION}`,
-  }),
+  adapter: new MongooseAdapter(coreDatabase),
+  sessionStore: new MongoStore(sessionDatabase),
   secureCookies: process.env.NODE_ENV === "production",
   cookieSecret: "seller.itoa.vn",
   cookie: {
