@@ -18,30 +18,33 @@ export const COMMENT_LIST = gql`
     ) {
       id
       content
+      my_interactive {
+        id
+      }
     }
   }
 `;
-export const RefetchInteractiveCommentList = makeVar(() => {});
 
-export function CommentListController({
+export default function CommentListController({
   UI,
   first = 5,
   sortBy = "createdAt_DESC",
   skip,
   where,
   refetchInteractiveItem,
-  ...props
+  existing,
+  id,
 }) {
+  if (existing) return <UI {...existing} id={id} />;
   const { loading, error, data = {}, refetch } = useQuery(COMMENT_LIST, {
     variables: { first, skip, where, sortBy },
   });
   const { _allInteractiveCommentsMeta = {}, allInteractiveComments } = data;
   const { count } = _allInteractiveCommentsMeta;
-  if (refetch) RefetchInteractiveCommentList(refetch);
   return useMemo(
     () => (
       <UI
-        {...props}
+        id={id}
         loading={loading}
         error={error}
         allInteractiveComments={allInteractiveComments}

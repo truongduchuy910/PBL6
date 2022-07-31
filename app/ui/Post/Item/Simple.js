@@ -1,22 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { Text as RNText, Platform } from "react-native";
 import { Box, HStack, Image, Text, Button, VStack, Divider } from "native-base";
-import {
-  InteractionCommentCreateSimple,
-  InteractionCommentListSimple,
-  InteractionCommentListToggleButton,
-} from "../../Interactive/Comment";
-import {
-  InteractionReactionCreateButton,
-  InteractionReactionListIconTextWithCount,
-} from "../../Interactive/Reaction";
-import { AlbumCreateButton } from "../../Album";
-import { PostDeleteText, PostUpdateText } from "../index";
+import PostDeleteText from "../Delete/Text";
+import PostUpdateText from "../Update/Text";
 import { UploadImageListCarousel } from "../../Upload/Image";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import PostItem from "./Controller";
+import Entypo from "react-native-vector-icons/Entypo";
+
+Entypo.loadFont();
+
 import InteractiveItemSimple from "../../Interactive/Item/Simple";
 import { Link } from "@react-navigation/native";
-import { AuthContext } from '../../Provider/Native'
+import { AuthContext } from "../../Provider/Native";
 
 function formatTimeCreate(createdAt) {
   var dayjs = require("dayjs");
@@ -38,19 +33,39 @@ function formatTimeCreate(createdAt) {
   return stringTime;
 }
 
-function UI({ loading, error, post, refetch }) {
-  const currentUser = useContext(AuthContext).user
+export function UI({
+  loading,
+  error,
+  post = {},
+  refetch = () => {},
+  refetchPostList,
+}) {
+  const ref = useRef();
+  const currentUser = useContext(AuthContext).user;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const stringCreatedAt = formatTimeCreate(post?.createdAt);
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
-    console.log(isModalOpen);
   };
-  if (loading) return "";
+
+  useEffect(() => {
+    const hideModal = (e) => {
+      if (isModalOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsModalOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", hideModal);
+    return () => {
+      document.removeEventListener("mousedown", hideModal);
+    };
+  }, [isModalOpen]);
+
+  if (loading) return <Text></Text>;
+
   return (
     <Box
       maxW={["100%", "container.md"]}
-      my={1}
+      my={2}
       py={4}
       rounded={["0", "xl"]}
       borderWidth="1"
@@ -72,7 +87,6 @@ function UI({ loading, error, post, refetch }) {
                 "https://odanang.net" +
                 (post?.createdBy?.avatar?.publicUrl ||
                   "/upload/img/no-image.png"),
-
             }}
             alt="Profile image"
             size="8"
@@ -80,15 +94,27 @@ function UI({ loading, error, post, refetch }) {
           />
         </Link>
         <Link to={{ screen: "users", params: { id: post?.createdBy?.id } }}>
-          <Text color="gray.900" fontWeight="600" fontSize="14">
-            {post?.createdBy?.name}
-          </Text>
+          {Platform.OS !== "web" ? (
+            <RNText
+              style={{
+                fontWeight: "500",
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              {post?.createdBy?.name}
+            </RNText>
+          ) : (
+            <Text color="gray.900" fontWeight="600" fontSize="14">
+              {post?.createdBy?.name}
+            </Text>
+          )}
         </Link>
         <Text color="gray.400" fontSize="12">
           {stringCreatedAt}
         </Text>
-        {isModalOpen && post.createdBy.id === currentUser.id && (
+        {isModalOpen && post.createdBy.id === currentUser?.id && (
           <VStack
+            ref={ref}
             position="absolute"
             right="3"
             top="8"
@@ -99,12 +125,14 @@ function UI({ loading, error, post, refetch }) {
             space="1"
             p="2"
           >
-            <PostUpdateText />
+            <PostUpdateText id={post?.id} />
             <Divider w="full" bgColor="gray.100" />
-            <PostDeleteText id={post?.id} />
+            {post && (
+              <PostDeleteText id={post?.id} refetchPostList={refetchPostList} />
+            )}
           </VStack>
         )}
-        {post.createdBy.id === currentUser.id && (
+        {post.createdBy && post.createdBy.id === currentUser?.id && (
           <Button
             bgColor="transparent"
             p="1"
@@ -112,7 +140,12 @@ function UI({ loading, error, post, refetch }) {
             ml="auto"
             onPress={toggleModal}
           >
-            <HiOutlineDotsHorizontal />
+            <Entypo
+              name="dots-three-horizontal"
+              color="#a1a1aa"
+              size={18}
+              style={{ marginTop: -2 }}
+            />
           </Button>
         )}
       </HStack>
@@ -124,40 +157,8 @@ function UI({ loading, error, post, refetch }) {
           (image) => "https://odanang.net" + image?.file?.publicUrl
         )}
       />
-      <Box px="3" mt="2">
-        <InteractionReactionListIconTextWithCount
-          _allReactionsMeta={post?.interactive?._reactionsMeta}
-        />
-      </Box>
-      <Box px="3">
-        <HStack
-          w="full"
-          my="2"
-          borderBottomWidth="1"
-          borderBottomColor="gray.100"
-          borderTopWidth="1"
-          borderTopColor="gray.100"
-          justifyContent="space-around"
-        >
-          <Box w="33%">
-            <InteractionReactionCreateButton
-              interactive={post.interactive}
-              refetch={refetch}
-              reactionsList={post?.interactive?.reactions}
-            />
-          </Box>
-          <Box w="33%">
-            <InteractionCommentListToggleButton />
-          </Box>
-          <Box w="33%">
-            <AlbumCreateButton />
-          </Box>
-        </HStack>
-        <InteractiveItemSimple
-          where={{ id: post?.interactive?.id }}
-          sortBy="createdAt_DESC"
-        />
-      </Box>
+
+      <InteractiveItemSimple id={post?.interactive.id} />
     </Box>
   );
 }

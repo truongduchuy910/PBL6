@@ -3,7 +3,7 @@ import { Container, Box } from "native-base";
 import Field from "../ui/Field";
 
 const content = `
-# Kilogram
+# Odanang
 ## Mạng xã hội dành cho sinh viên
 
 ![Logo](https://res.cloudinary.com/cloudinaryassets/image/upload/v1633593799/logo-header_qh37fo.svg)

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { gql, makeVar, useQuery } from "@apollo/client";
+import { AuthContext } from "../../Provider/Native";
 export const POST_LIST = gql`
   query(
     $first: Int
@@ -7,7 +8,7 @@ export const POST_LIST = gql`
     $sortBy: [SortPostsBy!]
     $where: PostWhereInput
   ) {
-    _allPostsMeta(where: $where) {
+    _allPostsMeta {
       count
     }
     allPosts(first: $first, skip: $skip, sortBy: $sortBy, where: $where) {
@@ -22,41 +23,58 @@ export const POST_LIST = gql`
         }
       }
       interactive {
-        comments {
-          content
-        }
-        reactions {
-          emoji
-        }
+        id
       }
+      createdAt
       createdBy {
         id
+        name
+        avatar {
+          publicUrl
+        }
       }
     }
   }
 `;
-export const PostListRefetch = makeVar(() => {});
 
 export default function PostListController({
   UI,
-  first = 20,
+  first = 4,
   skip,
-  sortBy = 'createdAt_DESC',
+  sortBy = "createdAt_DESC",
   where,
-  ...props
+  navigation,
 }) {
-  const { loading, error, data = {}, fetchMore, refetch } = useQuery(
-    POST_LIST,
-    {
-      variables: { first, where, skip, sortBy },
-    }
-  );
-  const { allPosts, _allPostsMeta = {} } = data;
+  const { user } = useContext(AuthContext);
+
+  if (!user) return "..."
+  const {
+    loading,
+    error,
+    data = {},
+    fetchMore,
+    refetch,
+  } = useQuery(POST_LIST, {
+    variables: { first, where, skip, sortBy, user: { id: user.id } },
+  });
+  
+  const [loadingMore, setLoadingMore] = useState(false);
+  const { allPosts = [], _allPostsMeta = {} } = data;
   const { count = 0 } = _allPostsMeta;
 
-  function getMore(e) {
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      console.log("post list home");
+      console.log(allPosts.length);
+      refetch();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  function loadMore(e) {
     if (loading || error) return;
-    if (count <= allPosts.length) return;
+    setLoadingMore(true);
     fetchMore({
       variables: { skip: allPosts.length },
       updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -65,17 +83,20 @@ export default function PostListController({
           allPosts: [...previousResult.allPosts, ...fetchMoreResult.allPosts],
         };
       },
+    }).finally(() => {
+      setLoadingMore(false);
     });
   }
-  if (refetch) PostListRefetch(refetch);
+
   return (
     <UI
-      {...props}
       loading={loading}
       error={error}
       allPosts={allPosts}
-      getMore={getMore}
       count={count}
+      loadMore={loadMore}
+      loadingMore={loadingMore}
+      refetch={refetch}
     />
   );
 }

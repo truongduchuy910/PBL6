@@ -1,72 +1,73 @@
 import React, { useState, Fragment, useContext } from "react";
-import { Button } from "native-base";
+import { Button, Text } from "native-base";
+import { Text as RNText, Platform } from "react-native";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import Controller from "./Controller";
 import { AuthContext } from "../../../Provider/Native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-export function UI({
-  loading,
-  error,
-  interactive,
-  onCreate,
-  onDelete,
-  reactionsList,
-}) {
-  const arrReactions = reactionsList?.map((reaction) => {
-    return { idEmoij: reaction.id, userId: reaction.createdBy?.id };
-  });
-  const arrUserId = reactionsList.map((reaction) => {
-    return reaction.createdBy?.id;
-  });
-  let idDel;
-  const user = useContext(AuthContext).user;
-  const [isLike, setIsLike] = useState(arrUserId.indexOf(user.id) !== -1);
-  if (isLike === true)
-    idDel = arrReactions[arrUserId.indexOf(user.id)]
-      ? (idDel = arrReactions[arrUserId.indexOf(user.id)].idEmoij)
-      : null;
-  const likeHandle = (e) => {
-    if (!loading && isLike === false)
-      onCreate({
-        variables: {
-          id: interactive?.id,
-          data: {
-            reactions: { create: { emoji: "like" } },
-          },
-        },
-      });
-    else
-      onDelete({
-        variables: {
-          id: idDel,
-        },
-      });
-    setIsLike((prev) => !prev);
-  };
+FontAwesome.loadFont();
+
+export function UI({ handleClick, createResult, deleteResult, reacted }) {
+  const style = Platform.OS === "web" ? { marginTop: -2 } : {};
   return (
     <Fragment>
-      {isLike && (
+      {reacted ? (
         <Button
           _text={{ color: "green.500", fontSize: "14", fontWeight: "600" }}
           p="2"
           bgColor="transparent"
-          leftIcon={<FaHeart color="#22c55e" size="17" />}
+          leftIcon={
+            <FontAwesome name="heart" color="#22c55e" size={18} style={style} />
+          }
           _hover={{ bgColor: "gray.100" }}
-          onPress={likeHandle}
+          onPress={handleClick}
+          disabled={createResult.loading || deleteResult.loading}
         >
-          Thích
+          {Platform.OS !== "web" ? (
+            <RNText
+              style={{
+                color: "#22c55e",
+                fontWeight: "500",
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              Thích
+            </RNText>
+          ) : (
+            "Thích"
+          )}
         </Button>
-      )}
-      {!isLike && (
+      ) : (
         <Button
           _text={{ color: "gray.400", fontSize: "14", fontWeight: "600" }}
           p="2"
           bgColor="transparent"
-          leftIcon={<FaRegHeart color="#a1a1aa" size="17" />}
+          leftIcon={
+            <FontAwesome
+              name="heart-o"
+              color="#a1a1aa"
+              size={18}
+              style={style}
+            />
+          }
           _hover={{ bgColor: "gray.100" }}
-          onPress={likeHandle}
+          onPress={handleClick}
+          disabled={createResult.loading || deleteResult.loading}
         >
-          Thích
+          {Platform.OS !== "web" ? (
+            <RNText
+              style={{
+                color: "#a1a1aa",
+                fontWeight: "500",
+                fontFamily: "Lexend_500Medium",
+              }}
+            >
+              Thích
+            </RNText>
+          ) : (
+            "Thích"
+          )}
         </Button>
       )}
     </Fragment>

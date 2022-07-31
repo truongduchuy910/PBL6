@@ -1,26 +1,30 @@
 import React from "react";
-import { Button } from "native-base";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { Button, Spinner } from "native-base";
 import PostDelete from "./Controller";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-function UI({loading, error, clickDetete, post}) {
-  const toggleText = (e) => {
-    console.log("Post Delete Text");
-  };
-  const hadleSubmit = (e) => {
-    clickDetete();
-  };
+FontAwesome.loadFont();
+function UI({ loading, error, clickDetete, post }) {
+  if (loading) {
+    return <Spinner color="green.500" size="sm" />;
+  }
 
-  return loading ? (
-    "..."
-  ) : (
+  return (
     <Button
       _text={{ color: "gray.400", fontSize: "12", fontWeight: "600" }}
       p="3"
       py="1.5"
-      bgColor="transparrent"
-      onPress={hadleSubmit}
-      leftIcon={<FaRegTrashAlt color="#22c55e" fontSize="15" />}
+      bgColor="white"
+      onPress={clickDetete}
+      disabled={loading}
+      leftIcon={
+        <FontAwesome
+          name="trash-o"
+          color="#22c55e"
+          size={18}
+          style={{ marginTop: -2, marginRight: 2 }}
+        />
+      }
     >
       Xoá bài viết
     </Button>

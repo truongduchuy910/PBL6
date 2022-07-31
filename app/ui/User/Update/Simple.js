@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useMemo, useState } from "react";
+import { ReactNativeFile } from "apollo-upload-client";
 import { Link } from "@react-navigation/native";
 import {
   Box,
@@ -13,19 +14,24 @@ import {
   Radio,
   Input,
 } from "native-base";
-function UI({ loading, error, user, navigation }) {
+import Controller from "./Controller";
+
+function UI({ loading, error, user, on, data }) {
   /**
    *
    * @param {Event} e
    */
+  const [username, setUsername] = useState(user?.name);
+  const [phone, setPhone] = useState(user?.phone);
+  const [description, setDescription] = useState(user?.description);
+  const [sex, setSex] = useState(user?.gender);
+  const [file, setFile] = useState();
+  const [preview, setPreview] = useState();
 
-  const [username, setUsername] = useState("Nguyễn Kim Huy");
-  const [phone, setPhone] = useState("0394123560");
-  const [description, setDescription] = useState("");
-  const [sex, setSex] = useState("male");
   const [inputError, setInputError] = useState(null);
+  const { updateUser } = data;
 
-  const submitSignUp = () => {
+  const submitUpdate = () => {
     setInputError(null);
 
     // Validation username
@@ -43,12 +49,72 @@ function UI({ loading, error, user, navigation }) {
       setInputError("Kiểm tra lại số điện thoại");
       return;
     }
-
-    console.log(username, phone, description, sex);
-
-    // Save change
-    // if (!loading);
+    on({
+      variables: {
+        id: user?.id,
+        data: {
+          name: username,
+          phone: phone,
+          description: description,
+          gender: sex,
+          avatar: file,
+        },
+      },
+    });
   };
+
+  function changeAvatar({ target: { validity, files } }) {
+    if (validity.valid) {
+      const [file] = files;
+      var reader = new FileReader();
+      var url = reader.readAsDataURL(file);
+      reader.onloadend = function (e) {
+        setPreview(reader.result);
+        setFile(file);
+      }.bind(this);
+    }
+  }
+
+  function pressChangeAvatar() {
+    on({
+      variables: {
+        id: user?.id,
+        data: {
+          avatar: file,
+        },
+      },
+    });
+  }
+
+  const avatar = useMemo(() => {
+    const uri =
+      preview ||
+      "https://odanang.net" +
+        (user?.avatar?.publicUrl || "/upload/img/no-image.png");
+    return (
+      <Fragment>
+        <Box
+          rounded="120px"
+          overflow="hidden"
+          alignSelf="center"
+          position="relative"
+          w="fit-content"
+          mx="auto"
+        >
+          <img src={uri} style={style.img} />
+        </Box>
+        {/* <Image
+        source={{
+          uri
+        }}
+        alt="Alternate Text"
+        size="lg"
+        mx="auto"
+        rounded="100"
+      /> */}
+      </Fragment>
+    );
+  }, [user?.avatar?.publicUrl, preview]);
 
   return (
     <Fragment>
@@ -66,17 +132,23 @@ function UI({ loading, error, user, navigation }) {
         >
           <VStack space={3}>
             <VStack space="4" mb="3">
-              <Image
-                source={{
-                  uri:
-                    "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632719777/200960556_1184264562021915_3530694902678239694_n_u7mk8s.jpg",
-                }}
-                alt="Alternate Text"
-                size="lg"
-                mx="auto"
-                rounded="100"
-              />
+              {avatar}
+              {/* PICKER */}
+              <Box>
+                <label htmlFor="file-upload" style={style.label}>
+                  Chọn ảnh từ máy tính
+                </label>
+                <input
+                  style={style.input}
+                  id="file-upload"
+                  type="file"
+                  onChange={changeAvatar}
+                />
+              </Box>
+              {/*  */}
               <Button
+                as="input"
+                type="file"
                 _text={{
                   color: "gray.400",
                   fontSize: "14",
@@ -87,8 +159,9 @@ function UI({ loading, error, user, navigation }) {
                 w="50%"
                 bgColor="gray.100"
                 mx="auto"
+                onPress={pressChangeAvatar}
               >
-                Thay đổi ảnh đại diện
+                {loading ? "Đang lưu" : "Lưu ảnh đại diện"}
               </Button>
             </VStack>
             <FormControl>
@@ -226,7 +299,7 @@ function UI({ loading, error, user, navigation }) {
             </FormControl>
             {!loading && (
               <Button
-                onPress={submitSignUp}
+                onPress={submitUpdate}
                 rounded={8}
                 bgColor="green.500"
                 p={2}
@@ -247,7 +320,20 @@ function UI({ loading, error, user, navigation }) {
             )}
           </VStack>
         </Box>
-        {error && (
+        {updateUser && !error && !inputError && (
+          <Box
+            my={4}
+            p={3.5}
+            rounded={10}
+            borderWidth={1}
+            borderColor="green.500"
+          >
+            <Text textAlign="center" color="green.500">
+              Lưu thông tin thành công
+            </Text>
+          </Box>
+        )}
+        {error && !inputError && (
           <Box
             my={4}
             p={3.5}
@@ -277,4 +363,26 @@ function UI({ loading, error, user, navigation }) {
     </Fragment>
   );
 }
-export default UI;
+
+const style = {
+  img: {
+    width: "120px",
+    height: "120px",
+    objectFit: "cover",
+    display: "block",
+  },
+  input: {
+    display: "none",
+  },
+  label: {
+    fontFamily: "Lexend_500Medium",
+    fontSize: "14px",
+    color: "#22c55e",
+    cursor: "pointer",
+    textAlign: "center",
+  },
+};
+//export default UI;
+export default function PostCreateSimple(props) {
+  return <Controller {...props} UI={UI} />;
+}

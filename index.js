@@ -15,14 +15,12 @@ const morgan = require("morgan");
 const path = require("path");
 dotenv.config();
 const coreDatabase = {
-    mongoUri:
-         `mongodb://localhost:27017/${process.env.DB_NAME}`
-  };
+  mongoUri: `mongodb://localhost:27017/${process.env.DB_NAME}`,
+};
 
 const sessionDatabase = {
-    mongoUrl:
-         `mongodb://localhost:27017/${process.env.DB_SESSION}`
-  }
+  mongoUrl: `mongodb://localhost:27017/session`,
+};
 console.log(coreDatabase, sessionDatabase);
 /**
  * ITOA
@@ -85,25 +83,22 @@ function configureExpress(app) {
   });
   return app;
 }
-var apps = [new GraphQLApp()];
-if (process.env.AUTH)
-  apps.push(
-    new AdminUIApp({
-      name: "Itoa.vn",
-      appId: process.env.NODE_ENV === "production" ? "145518257438217" : false,
-      pageId: process.env.NODE_ENV === "production" ? "106614338147778" : false,
-      authStrategy,
-      enableDefaultRoute: false,
-    })
-  );
-else
-  apps.push(
-    new StaticApp({
-      path: "/",
-      src: "app/web-build",
-      fallback: "index.html",
-    })
-  );
+
+const apps = [
+  new GraphQLApp(),
+  new AdminUIApp({
+    name: "Itoa.vn",
+    appId: process.env.NODE_ENV === "production" ? "145518257438217" : false,
+    pageId: process.env.NODE_ENV === "production" ? "106614338147778" : false,
+    authStrategy,
+    enableDefaultRoute: false,
+  }),
+  new StaticApp({
+    path: "/",
+    src: "app/web-build",
+    fallback: "index.html",
+  }),
+];
 
 module.exports = {
   itoa,

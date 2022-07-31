@@ -1,10 +1,14 @@
 import React from "react";
 import { Button } from "native-base";
-import { FaRegEdit } from "react-icons/fa";
+import Feather from "react-native-vector-icons/Feather";
+import { useLinkTo } from "@react-navigation/native";
 
-function UI() {
-  const toggleText = (e) => {
-    console.log("Post Update Text");
+Feather.loadFont();
+
+function UI({ id }) {
+  const linkTo = useLinkTo();
+  const navigateHanle = (e) => {
+    linkTo(`/updatepost/${id}`);
   };
 
   return (
@@ -12,9 +16,16 @@ function UI() {
       _text={{ color: "gray.400", fontSize: "12", fontWeight: "600" }}
       p="3"
       py="1.5"
-      bgColor="transparrent"
-      onPress={toggleText}
-      leftIcon={<FaRegEdit color="#22c55e" fontSize="16" />}
+      bgColor="white"
+      onPress={navigateHanle}
+      leftIcon={
+        <Feather
+          name="edit"
+          color="#22c55e"
+          size={18}
+          style={{ marginTop: -2 }}
+        />
+      }
     >
       Sửa bài viết
     </Button>

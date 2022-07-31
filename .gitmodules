@@ -1,0 +1,6 @@
+[submodule "schemas"]
+	path = schemas
+	url = git@github.com:odanang/schemas.git
+[submodule "app"]
+	path = app
+	url = git@github.com:odanang/app.git

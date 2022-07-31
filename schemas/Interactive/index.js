@@ -1,30 +1,17 @@
-const { Relationship } = require("@itoa/fields");
-const { roleSimple } = require("@itoa/lib/access");
-const { multipleLanguage } = require("@itoa/lib/plugins");
+const { Relationship, Checkbox } = require("@itoa/fields");
+// const { roleSimple } = require("@itoa/lib/access");
+// const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
+const { models } = require("@itoa/schemas/config");
 const { hook } = require("./hook");
-module.exports = {
-  active: !process.env.AUTH,
+var interactive = {
+  active: models.includes("Interactive"),
   fields: {
-    reactions: {
-      type: Relationship,
-      ref: "InteractiveReaction",
-      many: true,
-    },
-    comments: {
-      type: Relationship,
-      ref: "InteractiveComment",
-      many: true,
-    },
-    // post: {
-    //   type: Relationship,
-    //   ref: "Post.interactive",
-    //   many: false,
-    // },
+    status: { type: Checkbox },
   },
-  ...multipleLanguage("Translate"),
+  // ...multipleLanguage("Translate"),
   labelField: "",
-  access: true,
+  access: { read: true },
   hooks: hook,
   cacheHint: {
     scope: "PUBLIC",
@@ -32,3 +19,27 @@ module.exports = {
   },
   plugins: [atTracking(), byTracking()],
 };
+
+if (models.includes("InteractiveReaction")) {
+  interactive.fields.reactions = {
+    type: Relationship,
+    ref: "InteractiveReaction.interactive",
+    many: true,
+  };
+}
+
+if (models.includes("InteractiveComment")) {
+  interactive.fields.comments = {
+    type: Relationship,
+    ref: "InteractiveComment.interactive",
+    many: true,
+  };
+}
+if (models.includes("Post")) {
+  interactive.fields.post = {
+    type: Relationship,
+    ref: "Post.interactive",
+    many: false,
+  };
+}
+module.exports = interactive;

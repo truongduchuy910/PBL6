@@ -1,30 +1,52 @@
 import React from "react";
-import { UI as InteractionCommentItemSimple } from "../Item/Simple";
-import { Button, VStack } from "native-base";
-import { CommentListController } from "./Controller";
+import { Platform } from "react-native";
+import InteractionCommentItemSimple from "../Item/Simple";
+import { Button, Text, VStack } from "native-base";
+import Controller from "./Controller";
+import InteractionCommentCreateSimple from "../Create/Simple";
+import InteractionCommentCreateButton from "../Create/Button";
+import { useRoute } from "@react-navigation/core";
 
 export function UI({
   loading,
   error,
   allInteractiveComments = [],
+  interactive,
   count = 0,
-  refetchInteractiveItem,
+  refetch = () => {},
   getMore,
+  id,
 }) {
-  // Map list comments => InteractionCommentItemSimple
-  if (loading) return "...";
+  const { params = {} } = useRoute();
+  const { id: idParams } = params;
+  if (loading) return <Text></Text>;
+
   return (
     <VStack>
+      {Platform.OS !== "web" && !idParams ? (
+        <InteractionCommentCreateButton id={id} />
+      ) : (
+        <InteractionCommentCreateSimple
+          my="10"
+          interactive={interactive}
+          onCompleted={(data) => {
+            refetch();
+          }}
+        />
+      )}
       {allInteractiveComments.map((comment) => {
         return (
           <InteractionCommentItemSimple
             key={comment.id}
-            comment={comment}
-            refetchInteractiveItem={refetchInteractiveItem}
+            existing={{
+              comment,
+              onDeleted: (data) => {
+                refetch();
+              },
+            }}
           />
         );
       })}
-      {/* More comments */}
       {count > allInteractiveComments.length && (
         <Button
           _text={{
@@ -43,5 +65,5 @@ export function UI({
   );
 }
 export default function InteractionCommentListSimple(props) {
-  return <CommentListController {...props} UI={UI} />;
+  return <Controller {...props} UI={UI} />;
 }

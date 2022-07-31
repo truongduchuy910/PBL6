@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[32],{591:function(s,t,e){"use strict";e.r(t),e.d(t,"default",(function(){return r}));var n=e(1),o=e(2);const r=s=>{let{item:{password_is_set:t}={}}=s;return t?"Is set":Object(n.jsx)("span",{css:{color:o.b.danger,fontWeight:"bold"}},"Not set")}}}]);

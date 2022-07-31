@@ -2,8 +2,11 @@ let { File, Text } = require("@itoa/fields");
 let { fileAdapter, fileHooks } = require("@itoa/lib/stores");
 let { roleSimple } = require("@itoa/lib/access");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
-module.exports = {
-  active: !process.env.AUTH,
+
+const { models } = require("@itoa/schemas/config");
+
+const uploadFile = {
+  active: models.includes("UploadFile"),
   fields: {
     file: {
       type: File,
@@ -24,3 +27,5 @@ module.exports = {
   },
   plugins: [atTracking(), byTracking()],
 };
+
+module.exports = uploadFile;

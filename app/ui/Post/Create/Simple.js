@@ -1,35 +1,24 @@
-import React, { useState, useRef } from "react";
-import ImageUploading from "react-images-uploading"; // upload image
+import React from "react";
 import {
-  Select,
   Box,
-  Container,
   Heading,
   VStack,
   FormControl,
   Button,
   TextArea,
+  HStack,
 } from "native-base";
+import { StyleSheet } from "react-native";
 import Controller from "./Controller";
 
-function UI({ loading, error, on }) {
-  const contentRef = useRef();
-  const [content, setContent] = useState("");
-  const changeContent = (e) => {
-    const content = e.target.value;
-    setContent(content);
-  };
-  const submitHandler = (event) => {
-    on({
-      variables: {
-        data: {
-          content: content,
-          interactive: { create: { comments: null, reactions: null } },
-        },
-      },
-    });
-  };
-
+function UI({
+  loading,
+  error,
+  changeImages,
+  previews = [],
+  changeContent,
+  submitHandler,
+}) {
   return (
     <Box maxW="560" mx="auto" w="full" p="2">
       <Heading my="20px" textAlign="center" fontSize={["18px", "20px"]}>
@@ -58,7 +47,6 @@ function UI({ loading, error, on }) {
               placeholder="Nhập nội dung ..."
               w="full"
               onChange={changeContent}
-              ref={contentRef}
               name="content"
               bgColor="white"
               px={2}
@@ -72,6 +60,44 @@ function UI({ loading, error, on }) {
               }}
             />
           </FormControl>
+
+          <VStack my={1}>
+            <HStack
+              maxw="full"
+              w="full"
+              flexWrap="wrap"
+              justifyContent="flex-start"
+            >
+              {previews.map((preview) => {
+                return (
+                  <Box
+                    overflow="hidden"
+                    minWidth="33.33%"
+                    maxWidth="33.33%"
+                    alignSelf="center"
+                    position="relative"
+                    w="fit-content"
+                    rounded="10"
+                    key={preview}
+                  >
+                    <img src={preview} style={style.img} />
+                  </Box>
+                );
+              })}
+            </HStack>
+            <VStack alignItems="center" mt="2">
+              <label htmlFor="file-upload" style={style.label}>
+                Thêm ảnh từ máy tính
+              </label>
+              <input
+                style={style.input}
+                id="file-upload"
+                type="file"
+                multiple
+                onChange={changeImages}
+              />
+            </VStack>
+          </VStack>
 
           {!loading && (
             <Button
@@ -99,13 +125,33 @@ function UI({ loading, error, on }) {
       {error && (
         <Box mt={4} p={3.5} rounded={10} borderWidth={1} borderColor="red.500">
           <Text textAlign="center" color="red.500">
-            Vui lòng kiểm tra các thông tin
+            Đăng bài viết không thành công!
           </Text>
         </Box>
       )}
     </Box>
   );
 }
+
+const style = {
+  img: {
+    height: "120px",
+    objectFit: "cover",
+    display: "block",
+    padding: "2%",
+    // rounded: "10px",
+  },
+  input: {
+    display: "none",
+  },
+  label: {
+    fontFamily: "Lexend_500Medium",
+    fontSize: "14px",
+    color: "#22c55e",
+    cursor: "pointer",
+  },
+};
+
 export default function PostCreateSimple(props) {
   return <Controller {...props} UI={UI} />;
 }

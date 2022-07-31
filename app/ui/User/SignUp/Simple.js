@@ -69,7 +69,7 @@ function UI({ loading, error, user, navigation, on }) {
             uri:
               "https://res.cloudinary.com/cloudinaryassets/image/upload/v1632635691/favicon_gc42jc.svg",
           }}
-          alt="Kilogram logo"
+          alt="Odanang logo"
           size="70px"
           mx="auto"
         />
@@ -220,7 +220,7 @@ function UI({ loading, error, user, navigation, on }) {
             </Link>
           </HStack>
         </Box>
-        {error && (
+        {error && !inputError && (
           <Box
             mt="12px"
             p="14px"

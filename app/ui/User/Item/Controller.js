@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Platform } from "react-native";
 import { gql, makeVar, useQuery } from "@apollo/client";
 import { POST_LIST } from "../List/Controller";
 export const POST_ITEM_ME = gql`
@@ -7,9 +8,11 @@ export const POST_ITEM_ME = gql`
       id
       phone
       name
+      description
       avatar {
         publicUrl
       }
+      description
     }
     allPosts(where: { createdBy: { id: $id } }) {
       id
@@ -32,9 +35,11 @@ export const POST_ITEM = gql`
       id
       phone
       name
+      description
       avatar {
         publicUrl
       }
+      description
     }
     allPosts(where: { createdBy: { id: $id } }) {
       id
@@ -69,9 +74,17 @@ export const POST_ITEM = gql`
   }
 `;
 
-export const refetchUserItem = makeVar(() => { });
+export const refetchUserItem = makeVar(() => {});
 
-export default function UserItem({ UI, where, id, my_id }) {
+export default function UserItem({
+  UI,
+  where,
+  id,
+  my_id,
+  existing,
+  navigation,
+}) {
+  if (existing) return <UI {...existing} />;
   const { loading, error, data = {}, refetch } = useQuery(
     id && my_id ? POST_ITEM : id ? POST_ITEM_ME : POST_LIST,
     {
@@ -83,7 +96,7 @@ export default function UserItem({ UI, where, id, my_id }) {
   const [user] = allUsers || [User];
   const { allPosts = [] } = data;
   const { allRelationships = [] } = data;
-  const { _allRelationshipsMeta = {} } = data
+  const { _allRelationshipsMeta = {} } = data;
   const { count } = _allRelationshipsMeta;
   var relationship;
   if (allRelationships.length === 0) {
@@ -91,7 +104,21 @@ export default function UserItem({ UI, where, id, my_id }) {
   } else {
     relationship = allRelationships[0];
   }
-  if (refetch) refetchUserItem(refetch);
+
+  if (Platform.OS === "web") {
+    if (refetch) refetchUserItem(refetch);
+  }
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      console.log("user item");
+      console.log(allPosts.length);
+      refetch();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <UI
       count={count}

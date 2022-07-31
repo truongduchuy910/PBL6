@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, HStack, Box, Text, VStack, Stack } from "native-base";
-import { Link } from "@react-navigation/native";
 
 function UI() {
   return (
@@ -31,7 +30,7 @@ function UI() {
         >
           <VStack space="2px">
             <Text color="gray.500" fontSize={["12px", "13px"]}>
-              Kilogram - Mạng xã hội sinh viên.
+              Odanang - Mạng xã hội sinh viên.
             </Text>
             <Text color="gray.500" fontSize={["12px", "13px"]}>
               Phiên bản v1.0-beta.0
@@ -50,12 +49,8 @@ function UI() {
               fontSize={["12px", "13px"]}
               textAlign="right"
             >
-              Đại học Bách Khoa - Đại học Đà Nẵng.
-              Các thành viên:
-              1. Trần Ngọc Huy
-              2. Nguyễn Kim Huy
-              3. Trần Diệp Phương
-              4. Trần Vũ Minh Triết
+              Đại học Bách Khoa - Đại học Đà Nẵng. Các thành viên: 1. Trần Ngọc
+              Huy 2. Nguyễn Kim Huy 3. Trần Diệp Phương 4. Trần Vũ Minh Triết
             </Text>
           </VStack>
         </Stack>

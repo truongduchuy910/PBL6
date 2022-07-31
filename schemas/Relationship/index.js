@@ -1,20 +1,17 @@
-const { Uuid, Checkbox, Relationship } = require("@itoa/fields");
-const { roleSimple } = require("@itoa/lib/access");
-const { multipleLanguage } = require("@itoa/lib/plugins");
+const { Checkbox, Relationship } = require("@itoa/fields");
+// const { roleSimple } = require("@itoa/lib/access");
+// const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
-module.exports = {
-  active: !process.env.AUTH,
+const { models } = require("@itoa/schemas/config");
+const relationship = {
+  active: models.includes("Relationship"),
   fields: {
-    to: {
-      type: Relationship,
-      ref: "User",
-    },
     isAccepted: {
       type: Checkbox,
-      default: false
+      default: false,
     },
   },
-  ...multipleLanguage("Translate"),
+  // ...multipleLanguage("Translate"),
   labelField: "",
   access: true,
   hooks: {},
@@ -24,3 +21,10 @@ module.exports = {
   },
   plugins: [atTracking(), , byTracking()],
 };
+if (models.includes("User")) {
+  relationship.fields.to = {
+    type: Relationship,
+    ref: "User",
+  };
+}
+module.exports = relationship;

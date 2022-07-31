@@ -16,22 +16,6 @@ export const POST_ITEM = gql`
       }
       interactive {
         id
-        comments {
-          content
-        }
-        reactions {
-          id
-          emoji
-          createdBy {
-            id
-          }
-        }
-        _commentsMeta {
-          count
-        }
-        _reactionsMeta {
-          count
-        }
       }
       createdAt
       createdBy {
@@ -46,12 +30,8 @@ export const POST_ITEM = gql`
 `;
 export default function PostDetail({ UI, id }) {
   const { loading, error, data = {}, refetch } = useQuery(POST_ITEM, {
-    variables: { id }
-  }
-  );
-
-  const { Post } = data;
-  const post = Post;
-  console.log(post)
+    variables: { id },
+  });
+  const { Post: post } = data;
   return <UI loading={loading} error={error} post={post} refetch={refetch} />;
 }

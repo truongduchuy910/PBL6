@@ -1,16 +1,18 @@
 import React from "react";
 import { HStack, Text } from "native-base";
-import { FaHeart } from "react-icons/fa";
 import Controller from "./Controller";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-function UI({ loading, error, allReactions, _allReactionsMeta }) {
-  return loading ? (
-    <Text>...</Text>
-  ) : (
-    <HStack alignItems="center" space="1">
-      <FaHeart color="#22c55e" size="16" />
+FontAwesome.loadFont();
+
+function UI({ loading, error, allInteractiveReactions = [], count = 0 }) {
+  if (loading) return <Text></Text>;
+
+  return (
+    <HStack alignItems="center" space="1.5">
+      <FontAwesome name="heart" color="#22c55e" size={18} />
       <Text color="gray.800" fontSize="14" fontWeight="500">
-        {_allReactionsMeta?.count} lượt thích
+        {count ? count + " lượt thích" : "Hãy là người đầu tiên thích"}
       </Text>
     </HStack>
   );

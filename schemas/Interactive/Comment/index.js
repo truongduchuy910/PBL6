@@ -1,27 +1,18 @@
 const { Text, Relationship } = require("@itoa/fields");
-const { roleSimple } = require("@itoa/lib/access");
-const { multipleLanguage } = require("@itoa/lib/plugins");
+// const { roleSimple } = require("@itoa/lib/access");
+// const { multipleLanguage } = require("@itoa/lib/plugins");
 const { atTracking, byTracking } = require("@itoa/list-plugins");
 const { content } = require("./hook");
-module.exports = {
-  active: !process.env.AUTH,
+const { models } = require("@itoa/schemas/config");
+const comment = {
+  active: models.includes("InteractiveComment"),
   fields: {
     content: {
       type: Text,
       isRequired: true,
     },
-    // interactive: {
-    //   type: Relationship,
-    //   ref: "Interactive.comments",
-    //   many: false,
-    // },
-    my_interactive: {
-      type: Relationship,
-      ref: "Interactive",
-      many: false,
-    },
   },
-  ...multipleLanguage("Translate"),
+  // ...multipleLanguage("Translate"),
   labelField: "",
   access: true,
   hooks: content,
@@ -31,3 +22,17 @@ module.exports = {
   },
   plugins: [atTracking(), byTracking()],
 };
+
+if (models.includes("Interactive")) {
+  comment.fields.interactive = {
+    type: Relationship,
+    ref: "Interactive.comments",
+    many: false,
+  };
+  comment.fields.my_interactive = {
+    type: Relationship,
+    ref: "Interactive",
+    many: false,
+  };
+}
+module.exports = comment;

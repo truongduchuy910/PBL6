@@ -1,22 +1,36 @@
 import React from "react";
 import { Button } from "native-base";
-import { FaRegComment } from "react-icons/fa";
+import { Text as RNText, Platform } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-function UI() {
-  const toggleButton = (e) => {
-    console.log("Comment List ToggleButton");
-  };
+FontAwesome.loadFont();
 
+function UI({ onPress }) {
+  const style = { marginTop: Platform.OS === "web" ? -4 : -2 };
   return (
     <Button
       _text={{ color: "gray.400", fontSize: "14", fontWeight: "600" }}
       p="2"
       bgColor="transparent"
-      leftIcon={<FaRegComment color="#a1a1aa" size="17" />}
+      leftIcon={
+        <FontAwesome name="comment-o" color="#a1a1aa" size={18} style={style} />
+      }
       _hover={{ bgColor: "gray.100" }}
-      onPress={toggleButton}
+      onPress={onPress}
     >
-      Bình luận
+      {Platform.OS !== "web" ? (
+        <RNText
+          style={{
+            color: "#a1a1aa",
+            fontWeight: "500",
+            fontFamily: "Lexend_500Medium",
+          }}
+        >
+          Bình luận
+        </RNText>
+      ) : (
+        "Bình luận"
+      )}
     </Button>
   );
 }

@@ -19,15 +19,12 @@ import {
 } from "../../Relationship";
 import Controller from "./Controller";
 import DetailSkeleton from "./DetailSkeleton";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import PostListCount from "../../Post/List/Count";
-import RelationshipListCount from "../../Relationship/List/Count";
 import Field from "../../Field";
 import { AuthContext } from "../../Provider/Native";
-function UI({ loading, error, user, posts, relationship, count }) {
+function UI({ loading, error, user, posts, relationship, count, navigation }) {
   const currentUser = useContext(AuthContext).user;
   if (loading) return <DetailSkeleton />;
-  if (error) return "error";
+
   return (
     <VStack maxw="full" mx="auto" my="5" w="full" space="4">
       <HStack space="7" m="1%" alignItems="center">
@@ -49,15 +46,10 @@ function UI({ loading, error, user, posts, relationship, count }) {
             <Text fontSize={["20", "22"]} fontWeight="600">
               {user?.name}
             </Text>
-            <Button bgColor="transparent" p="2" color="gray.500">
-              <HiOutlineDotsHorizontal />
-            </Button>
           </HStack>
-
           <HStack space="4">
             <Text fontSize="14" color="gray.500">
-              {/* <PostListCount /> bài đăng */}
-              <Text>{posts.length}</Text> bài đăng
+              <Text>{posts?.length} bài đăng</Text>
             </Text>
             <Text fontSize="14" color="gray.500">
               {count} bạn bè
@@ -65,75 +57,73 @@ function UI({ loading, error, user, posts, relationship, count }) {
           </HStack>
         </VStack>
       </HStack>
-
-      <VStack space="2" mx="1%" my={["1", "0"]}>
-        <Stack
-          space="2"
-          alignItems={["start", "center"]}
-          direction={["column", "row"]}
-        >
-          {user?.id !== currentUser?.id && relationship === null && (
-            <>
-              <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-                Gửi lời mời kết bạn đến {user.name}
-              </Text>
-              <HStack space="2" w="100">
-                <RelationshipCreateButton toId={user?.id} />
-              </HStack>
-            </>
-          )}
-          {user?.id !== currentUser?.id && relationship?.isAccepted === true && (
-            <>
-              <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-                Bạn và {user.name} đã là bạn bè
-              </Text>
-              <HStack space="2">
-                <RelationshipDeleteActive id={relationship.id} />
-              </HStack>
-            </>
-          )}
-          {user?.id !== currentUser?.id &&
-            (relationship?.isAccepted === false ||
-              relationship?.isAccepted === null) &&
-            relationship?.createdBy?.id === currentUser.id && (
+      {user?.id !== currentUser?.id && (
+        <VStack space="2" mx="1%" my={["1", "0"]}>
+          <Stack
+            space="2"
+            alignItems={["start", "center"]}
+            direction={["column", "row"]}
+          >
+            {relationship === null && (
               <>
                 <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-                  Bạn đã gửi kết bạn đến {user.name}
+                  Gửi lời mời kết bạn đến {user?.name}
                 </Text>
-                <HStack space="2">
-                  <RelationshipDeleteDelete id={relationship.id} />
+                <HStack space="2" w="120">
+                  <RelationshipCreateButton toId={user?.id} />
                 </HStack>
               </>
             )}
-          {user?.id !== currentUser?.id &&
-            (relationship?.isAccepted === false ||
-              relationship?.isAccepted === null) &&
-            relationship?.to?.id === currentUser?.id &&
-            relationship?.createdBy?.id === user?.id && (
+            {relationship?.isAccepted === true && (
               <>
                 <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
-                  {user.name} đã gửi lời mời kết bạn
+                  Bạn và {user?.name} đã là bạn bè
                 </Text>
                 <HStack space="2">
-                  <Box w="130px">
-                    <RelationshipUpdateButton id={relationship.id} />
-                  </Box>
-                  <Box w="130px">
-                    <RelationshipDeleteDelete id={relationship.id} />
-                  </Box>
+                  <RelationshipDeleteActive id={relationship?.id} />
                 </HStack>
               </>
             )}
-        </Stack>
-      </VStack>
-
-      <VStack space="2" m="1%">
+            {(relationship?.isAccepted === false ||
+              relationship?.isAccepted === null) &&
+              relationship?.createdBy?.id === currentUser?.id && (
+                <>
+                  <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                    Bạn đã gửi kết bạn đến {user?.name}
+                  </Text>
+                  <HStack space="2">
+                    <RelationshipDeleteDelete id={relationship?.id} />
+                  </HStack>
+                </>
+              )}
+            {(relationship?.isAccepted === false ||
+              relationship?.isAccepted === null) &&
+              relationship?.to?.id === currentUser?.id &&
+              relationship?.createdBy?.id === user?.id && (
+                <>
+                  <Text mr="4" fontSize="15" fontWeight="600" color="gray.500">
+                    {user?.name} đã gửi lời mời kết bạn
+                  </Text>
+                  <HStack space="2">
+                    <Box w="130px">
+                      <RelationshipUpdateButton id={relationship?.id} />
+                    </Box>
+                    <Box w="130px">
+                      <RelationshipDeleteDelete id={relationship?.id} />
+                    </Box>
+                  </HStack>
+                </>
+              )}
+          </Stack>
+        </VStack>
+      )}
+      <VStack space="2" m="1%" mb="-1">
         <Text fontSize="18" fontWeight="600" color="gray.700">
           Giới thiệu
         </Text>
         <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
         <Text fontSize="14" fontWeight="400" color="gray.600" lineHeight="26px">
-          <Field>{user.description}</Field>
+          <Field>{user?.description}</Field>
         </Text>
       </VStack>
       {user?.id === currentUser?.id && (
@@ -158,12 +148,12 @@ function UI({ loading, error, user, posts, relationship, count }) {
           </Text>
           <Divider bg="gray.100" w="full" my="1" orientation="horizontal" />
         </VStack>
-        <PostListGrid />
+        <PostListGrid navigation={navigation} />
       </Box>
     </VStack>
   );
 }
-export { UI };
+//export { UI };
 export default function UserItemDetail(props) {
   return <Controller {...props} UI={UI} />;
 }

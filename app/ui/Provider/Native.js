@@ -4,13 +4,15 @@ import { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // important
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { ApolloClient, useQuery, gql } from "@apollo/client";
+import { ApolloClient, useQuery, gql, ApolloLink, split } from "@apollo/client";
 import { HttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 //
 import isEqual from "lodash/isEqual";
 import { setContext } from "@apollo/client/link/context";
+import { createUploadLink } from "apollo-upload-client";
 import merge from "deepmerge";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LoadingSpinner from "../Loading/LoadingSpinner";
 
 export const USER_AUTH = gql`
   query {
@@ -22,6 +24,8 @@ export const USER_AUTH = gql`
       avatar {
         publicUrl
       }
+      gender
+      description
     }
   }
 `;
@@ -30,10 +34,25 @@ export const VARIABLE_PROP_NAME = "__variable__";
 /**
  * @returns {ApolloClient}
  */
+const isFile = (value) =>
+  (typeof File !== "undefined" && value instanceof File) ||
+  (typeof Blob !== "undefined" && value instanceof Blob);
+
+const isUpload = ({ variables }) => Object.values(variables).some(isFile);
+
 function createApolloClient(domain = "_", locale = "_") {
   const uri = "https://odanang.net/admin/api";
   const as =
-    process.env.NODE_ENV === "production" ? domain : process.env.HOST_DEV;
+    process.env.NODE_ENV === "production"
+      ? domain
+      : process.env.HOST_DEV || "odanang.net";
+  const uploadLink = createUploadLink({
+    uri,
+    headers: {
+      as, // HOST env for dev mode
+      locale,
+    },
+  });
   const httpLink = new HttpLink({
     uri,
     headers: {
@@ -41,19 +60,24 @@ function createApolloClient(domain = "_", locale = "_") {
       locale,
     },
   });
-  const link = setContext(async (_, { headers }) => {
+  const contextLink = setContext(async (_, { headers }) => {
     const token = await AsyncStorage.getItem("@token");
     return {
       headers: {
         ...headers,
+        as, // HOST env for dev mode
+        locale,
         authorization: token ? `Bearer ${token}` : "",
       },
     };
-  }).concat(httpLink);
+  });
 
   const cache = new InMemoryCache();
   return new ApolloClient({
-    link,
+    link: ApolloLink.from([contextLink, uploadLink]),
+    // link: ApolloLink.from([uploadLink, contextLink]),
+    // link: uploadLink.concat(contextLink),
+    // link: split(isUpload, uploadLink, contextLink),
     ssrMode: typeof window === "undefined",
     cache,
   });
@@ -71,7 +95,7 @@ function mergeState(a, b) {
     arrayMerge: (destinationArray, sourceArray) => [
       ...sourceArray,
       ...destinationArray.filter((d) =>
-        sourceArray.every((s) => !isEqual(d, s)),
+        sourceArray.every((s) => !isEqual(d, s))
       ),
     ],
   });
@@ -123,39 +147,34 @@ function Native({ navigation, header }) {
       background: "rgb(255, 255, 255)",
     },
   };
-  useEffect(() => {
-    //console.log("navigation renderd", user);
-  });
-  const screens = useMemo(
-    () => (
-      <AuthContext.Provider value={result}>
-        <NavigationContainer linking={navigation.linking} theme={customTheme}>
-          <Stack.Navigator
-            screenOptions={{
-              header,
-            }}
-            initialRouteName={navigation.initialRouteName}
-          >
-            {navigation.screens?.map((screen, index) => {
-              return (
-                <Stack.Screen
-                  {...screen}
-                  key={screen.name + index}
-                  component={
-                    !user && navigation.auth.requires.includes(screen.name)
-                      ? navigation.auth.component
-                      : screen.component
-                  }
-                />
-              );
-            })}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </AuthContext.Provider>
-    ),
-    [user, loading],
+  console.log(user);
+  if (result.loading) return <LoadingSpinner />;
+  return (
+    <AuthContext.Provider value={result}>
+      <NavigationContainer linking={navigation.linking} theme={customTheme}>
+        <Stack.Navigator
+          screenOptions={{
+            header,
+          }}
+          initialRouteName={navigation.initialRouteName}
+        >
+          {navigation.screens?.map((screen, index) => {
+            return (
+              <Stack.Screen
+                {...screen}
+                key={screen.name + index}
+                component={
+                  !user && navigation.auth.requires.includes(screen.name)
+                    ? navigation.auth.component
+                    : screen.component
+                }
+              />
+            );
+          })}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
-  return screens;
 }
 export default function ProviderNative(props) {
   const { pageProps = {}, navigation, header } = props;

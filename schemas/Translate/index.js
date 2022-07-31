@@ -3,8 +3,10 @@ const { MongoId } = require("@itoa/fields-mongoid");
 
 const { roleSimple } = require("@itoa/lib/access");
 
-module.exports = {
-  active: !process.env.AUTH,
+const { models } = require("@itoa/schemas/config");
+
+const translate = {
+  active: models.includes("Translate"),
   fields: {
     item: { type: MongoId, isRequired: true },
     listKey: { type: Text, isRequired: true },
@@ -18,3 +20,5 @@ module.exports = {
     maxAge: 60 * 60, // 1 hour
   },
 };
+
+module.exports = translate;
